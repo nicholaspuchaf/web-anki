@@ -1,5 +1,35 @@
 # yaml-language-server: $schema=https://lefthook.dev/schema.json
 pre-push:
+  parallel: true
   jobs:
-    - name: Security and quality gate
-      run: bun run prepush
+    - name: Prettier
+      run: bun run format:check
+
+    - name: ESLint
+      run: bun run lint
+
+    - name: TypeScript
+      run: bun run typecheck
+
+    - name: Testes automatizados
+      run: bun test
+    - name: Build frontend
+      run: bun run build
+
+    - name: Build backend
+      run: bun run build:backend
+
+    - name: Terraform formatação
+      run: terraform -chdir=infra/terraform fmt -check -recursive
+
+    - name: Terraform validação
+      run: terraform -chdir=infra/terraform validate -no-color
+
+    - name: Trivy
+      run: bun run security:trivy
+
+    - name: Pacotes maliciosos (OSV)
+      run: bun run security:malware
+      
+    - name: Playwright
+      run: bun run test:e2e:check

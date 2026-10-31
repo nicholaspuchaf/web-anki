@@ -1,8 +1,7 @@
 # Qualidade e segurança antes do push
 
-O projeto usa **Lefthook** (`lefthook.yml`) para executar `bun run prepush` antes do
-`git push`. O GitHub Actions repete as verificações no commit recebido, em pushes,
-pull requests, execução manual e semanalmente. O workflow não publica recursos.
+O projeto usa **Lefthook** (`lefthook.yml`) para executar etapas nomeadas em paralelo
+antes do `git push`. `bun run prepush` executa o mesmo hook manualmente. O GitHub Actions repete as verificações no commit recebido a cada push. O workflow não publica recursos.
 
 ## Preparação local
 
@@ -14,8 +13,9 @@ bun install --frozen-lockfile
 bun run setup:checks
 ```
 
-O `prepare` instala o Lefthook em clones locais; ele não altera hooks em CI ou no
-Cloudflare Pages. `setup:checks` instala/verifica o Trivy, prepara o Chromium e
+O Lefthook está em `devDependencies`, e seu instalador oficial é autorizado em
+`trustedDependencies`. Assim, o Bun instala os hooks ao instalar o pacote em clones
+locais; o instalador oficial pula CI. Não há script próprio para instalar o Lefthook. `setup:checks` instala/verifica o Trivy, prepara o Chromium e
 inicializa os providers Terraform sem backend. Nenhum plan/apply é executado.
 O estado de hooks é local: cada clone precisa instalar o Lefthook.
 
@@ -34,10 +34,18 @@ O estado de hooks é local: cada clone precisa instalar o Lefthook.
 | `bun run security:trivy`   | Trivy: vulnerabilidades HIGH/CRITICAL e segredos de alta severidade      |
 | `bun run prepush`          | Segurança e todas as verificações de qualidade, incluindo navegador      |
 
+As etapas aparecem separadas no terminal: Prettier, ESLint, TypeScript, testes
+automatizados, build frontend, build backend, Terraform formatação, Terraform
+validação, Trivy, pacotes maliciosos (OSV) e Playwright. `parallel: true` permite
+que as verificações independentes rodem simultaneamente; qualquer falha bloqueia
+o push. O próprio Playwright gera um build exclusivo em `.cache/playwright-build` ao
+iniciar o servidor de testes e depois serve esse diretório. Assim, eles
+podem rodar junto do build normal sem disputar a pasta `dist`.
+
 Execute manualmente o hook pelo Lefthook com:
 
 ```sh
-bunx --no-install lefthook run pre-push
+bunx --no-install lefthook run pre-push --force
 ```
 
 Para corrigir formatação ou problemas de lint automaticamente:
@@ -77,9 +85,9 @@ posterior usa lockfile congelado e ignora lifecycle scripts.
 ## CI e Cloudflare Pages
 
 `.github/workflows/quality.yml` tem dois jobs: segurança e qualidade. Qualidade só
-roda após segurança passar. Dependabot propõe atualizações semanais das actions.
+roda após segurança passar.
 A suíte de navegador usa `https://folha-api.example` interceptada pelos testes,
-sem acessar a AWS. O runner restaura o build normal ao terminar.
+sem acessar a AWS. A suíte gera e serve seu próprio build em `.cache/playwright-build`, sem alterar `dist`.
 
 O workflow GitHub executa **depois** do push; o Lefthook executa **antes**. Hooks
 locais podem ser ignorados pelo Git e verificam o diretório de trabalho; configure
@@ -95,5 +103,28 @@ em uma etapa dependente do CI.
 
 Atualize as dependências pelo Bun e revise `package.json`/`bun.lock`. Para atualizar
 Trivy, obtenha um release oficial confiável, verifique seus checksums e atualize
-versão, nome do arquivo e SHA-256 em `security/tools.json`. Execute novamente
+versão, nome do arquivo e SHA-256 em `security/tools.json`, além do caminho
+versionado de `security:trivy` no `package.json`. Execute novamente
 `bun run security:setup`. Não use scripts remotos executados diretamente por pipe.
+
+## Dependências versus preparação do ambiente
+
+ESLint, Prettier, TypeScript, Playwright e Lefthook são `devDependencies` instaladas
+normalmente pelo `bun install`. Cada execução dos checks usa essas versões locais,
+sem reinstalá-las. `bun run hooks:install` é apenas um atalho para `lefthook install`.
+
+Trivy é um executável externo, não uma dependência JS oficial; o script de setup
+baixa a versão fixada, confere seu checksum e reutiliza o binário instalado. Chromium
+é baixado pelo instalador do próprio Playwright. Terraform é uma ferramenta externa
+e seu `init` prepara os providers. Nenhum desses downloads faz parte de cada push.
+
+## Por que ainda existem três arquivos em scripts
+
+Os comandos comuns ficam diretamente no `package.json`, no Lefthook e no workflow.
+O Playwright gerencia seu próprio build/preview pelo `playwright.config.ts`. Não há
+um runner próprio para lint, testes ou publicação.
+
+Os arquivos restantes têm lógica específica: `install-trivy.ts` verifica o download
+e o checksum do binário; `scan-malware.ts` oferece a CLI para a consulta OSV; e
+`lib/security.ts` interpreta o lockfile, consulta o catálogo e trata paginação/erros.
+Esses arquivos não instalam as dependências JavaScript.

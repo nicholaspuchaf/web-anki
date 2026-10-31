@@ -83,8 +83,8 @@ terraform -chdir=infra/terraform output -raw api_url
 Cadastre o resultado como variável de ambiente **`VITE_API_URL`** no ambiente de
 produção do Pages e execute um novo deploy. Essa URL é pública, não uma credencial.
 O Vite incorpora o valor durante o build; mudar a variável exige reconstruir o site.
-Não execute `cloud:config` no build do Cloudflare: o estado Terraform e as credenciais
-AWS permanecem fora do ambiente de build do frontend.
+O estado Terraform e as credenciais AWS permanecem fora do ambiente de build do
+frontend. Somente a URL pública é necessária no Pages.
 
 Depois dessa configuração, pushes para a branch de produção acionam o deploy no
 Cloudflare. O frontend não exige Wrangler, upload manual ou apply Terraform.
@@ -103,10 +103,10 @@ e [configuração de build](https://developers.cloudflare.com/pages/configuratio
 - Frontend: push para o GitHub; o Cloudflare executa o build e a publicação.
 - Desenvolvimento local: `bun run dev`. Sem API configurada, os dados ficam locais.
 
-O comando opcional `bun run cloud:config` apenas copia o output `api_url` do estado
-Terraform local para `.env.production.local`, útil para `bun run build` e preview
-local. Ele não publica o frontend. Se o Terraform estiver fora do PATH, forneça
-seu caminho em `TERRAFORM_BIN`.
+Para build e preview local com sincronização, cadastre a mesma URL pública em
+`.env.production.local` como `VITE_API_URL=https://sua-api.lambda-url.us-east-1.on.aws`,
+execute `bun run build` e depois `bun run preview`. O arquivo de ambiente local não
+é versionado. A origem HTTPS do preview também precisa estar em `frontend_origins`.
 
 ## Usar em aparelhos diferentes
 

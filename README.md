@@ -29,7 +29,7 @@ O teste E2E usa um build de produção: execute `bun run build` antes dele.
 
 O **Lefthook** executa o gate antes de cada `git push`: Trivy, catálogo de pacotes
 maliciosos OSV, ESLint, TypeScript, Prettier, testes, Playwright, builds e validação
-Terraform. O GitHub Actions repete os checks em pushes/PRs e semanalmente.
+Terraform. O GitHub Actions repete os checks em cada push.
 
 ```sh
 bun run setup:checks

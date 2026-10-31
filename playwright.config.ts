@@ -9,7 +9,10 @@ export default defineConfig({
     serviceWorkers: 'allow',
   },
   webServer: {
-    command: 'bun run preview --port 4173 --strictPort',
+    command:
+      process.env.PLAYWRIGHT_ISOLATED_BUILD === '1'
+        ? 'bun run build --outDir .cache/playwright-build && bun run preview --outDir .cache/playwright-build --port 4173 --strictPort'
+        : 'bun run preview --port 4173 --strictPort',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
   },

@@ -14,20 +14,19 @@
     "format:check": "prettier --check .",
     "build:backend": "bun build backend/handler.ts --target=node --format=esm --minify --outfile=build/lambda/index.mjs",
     "test:backend": "bun test backend.test",
-    "cloud:config": "bun scripts/write-cloud-config.ts",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-    "hooks:install": "bun scripts/install-hooks.ts",
-    "prepare": "bun run hooks:install",
+    "hooks:install": "lefthook install",
     "security:setup": "bun scripts/install-trivy.ts",
-    "security:trivy": "bun scripts/scan-trivy.ts",
+    "security:trivy": ".tools/trivy-0.76.1/trivy fs --config trivy.yaml .",
     "security:malware": "bun scripts/scan-malware.ts",
     "security": "bun run security:malware && bun run security:trivy",
-    "check": "bun scripts/check.ts",
-    "check:all": "bun scripts/check.ts --e2e",
-    "prepush": "bun run security && bun run check:all",
-    "setup:checks": "bun run hooks:install && bun run security:setup && bunx playwright install chromium && terraform -chdir=infra/terraform init -backend=false"
+    "check": "bun run format:check && bun run lint && bun run typecheck && bun test && bun run build:backend && terraform -chdir=infra/terraform fmt -check -recursive && terraform -chdir=infra/terraform validate -no-color && bun run build",
+    "check:all": "bun run check && bun run test:e2e:check",
+    "prepush": "bunx --no-install lefthook run pre-push --force",
+    "setup:checks": "bun run hooks:install && bun run security:setup && bunx playwright install chromium && terraform -chdir=infra/terraform init -backend=false",
+    "test:e2e:check": "VITE_API_URL=https://folha-api.example PLAYWRIGHT_ISOLATED_BUILD=1 playwright test"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -54,5 +53,8 @@
     "typescript-eslint": "^8.72.1",
     "vite": "^7.2.0",
     "vite-plugin-pwa": "^1.1.0"
-  }
+  },
+  "trustedDependencies": [
+    "lefthook"
+  ]
 }

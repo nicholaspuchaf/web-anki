@@ -1,0 +1,3 @@
+project_name     = "folha-leetcode-seu-nome"
+aws_region       = "us-east-1"
+frontend_origins = ["https://SEU-PROJETO.pages.dev"]

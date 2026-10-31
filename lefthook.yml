@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://lefthook.dev/schema.json
+pre-push:
+  jobs:
+    - name: Security and quality gate
+      run: bun run prepush

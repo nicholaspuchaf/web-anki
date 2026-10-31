@@ -1,0 +1,14 @@
+node_modules
+dist
+bun.lock
+.agents
+AGENTS.md
+playwright-report
+test-results
+build
+**/.terraform
+*.tfstate
+*.tfstate.*
+*.tfplan
+.tools
+.cache

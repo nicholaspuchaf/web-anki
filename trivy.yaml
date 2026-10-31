@@ -1,0 +1,33 @@
+# Known vulnerabilities in direct, transitive and development dependencies.
+# Known malicious packages are checked separately through OSV by security:malware.
+scanners:
+  - vuln
+  - secret
+severity:
+  - HIGH
+  - CRITICAL
+exit-code: 1
+format: table
+timeout: 5m
+cache-dir: .cache/trivy
+pkg:
+  include-dev-deps: true
+skip-dirs:
+  - .git
+  - .agents
+  - .tools
+  - .cache
+  - node_modules
+  - dist
+  - build
+  - playwright-report
+  - test-results
+  - infra/terraform/.terraform
+skip-files:
+  - '**/*.tfstate'
+  - '**/*.tfstate.*'
+  - '**/*.tfplan'
+  - '**/*.tfvars'
+  - .env
+  - .env.local
+  - .env.production.local

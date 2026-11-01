@@ -1,3 +1,4 @@
+import { useCloudSync } from '../features/sync/use-cloud-sync';
 import { CloudSyncPanel } from '../features/sync/CloudSyncPanel';
 import { useRef, useState } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
@@ -15,7 +16,21 @@ import { ReviewPage } from '../features/review/ReviewPage';
 import { LibraryEditor } from '../features/library/components/LibraryEditor';
 
 export default function App() {
-  const { library, ready, busy, error, setError, save } = useLibrary();
+  const {
+    library,
+    ready,
+    busy: saving,
+    error,
+    setError,
+    save,
+    reload,
+  } = useLibrary();
+  const cloud = useCloudSync(
+    import.meta.env.VITE_API_URL ?? '',
+    library,
+    reload,
+  );
+  const busy = saving || cloud.working;
   const [notice, setNotice] = useState('');
   const [selected, setSelected] = useState('');
   const [view, setView] = useState<'decks' | 'cards' | 'review'>('decks');
@@ -92,12 +107,7 @@ export default function App() {
                   onImport={() => file.current?.click()}
                 />
                 {import.meta.env.VITE_API_URL && (
-                  <CloudSyncPanel
-                    apiUrl={import.meta.env.VITE_API_URL}
-                    library={library}
-                    save={save}
-                    busy={busy}
-                  />
+                  <CloudSyncPanel library={library} cloud={cloud} busy={busy} />
                 )}
               </>
             )}

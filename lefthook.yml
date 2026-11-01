@@ -30,6 +30,6 @@ pre-push:
 
     - name: Pacotes maliciosos (OSV)
       run: bun run security:malware
-      
+
     - name: Playwright
       run: bun run test:e2e:check

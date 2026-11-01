@@ -70,8 +70,38 @@ Todos os versos são opcionais, inclusive títulos personalizados e o verso bás
 
 ## Sincronização pública opcional
 
-`features/sync` contém o cliente HTTP e o estado das ações manuais de verificar, baixar e publicar. A configuração usa uma URL pública de build, sem credenciais de infraestrutura. O usuário confirma operações que substituem bibliotecas. Respostas 409 invalidam a versão remota conhecida e preservam o estado local.
+`features/sync/api.ts` valida o contrato HTTP por cartão. `model.ts` compara conteúdo,
+mescla por ID/versão e resolve conflitos; `engine.ts` coordena páginas, envios e
+reconciliação. `use-cloud-sync.ts` conecta o motor à interface. A configuração usa
+uma URL pública de build, sem credenciais de infraestrutura. Não há polling nem
+envio automático ao editar: os botões iniciam sincronização nos dois sentidos.
 
-`backend/service.ts` valida o protocolo e reutiliza a validação de backups. O adaptador `backend/handler.ts` persiste um snapshot comprimido no DynamoDB com escrita condicional por revisão. A interface de armazenamento permite testes sem conta AWS. Esta implementação é um primeiro passo limitado a 2 MB brutos/300 KB comprimidos por biblioteca; a evolução para colaboração maior pede registros por entidade e merge.
+A primeira sincronização lê todos os cartões; as próximas consultam desde o último
+checkpoint, com reconciliação completa a cada 24 horas de uso ou sob demanda.
+Respostas antigas não substituem versões mais recentes. Conflitos preservam a
+edição local e ficam persistidos até a escolha explícita do usuário. Cada envio
+aceito atualiza a referência remota sem apagar edições feitas durante o pedido.
+
+O repositório IndexedDB mantém a biblioteca na chave existente `current` e os
+metadados por URL da API em uma chave separada, no mesmo object store. Dados e
+checkpoint são gravados na mesma transação, após todas as páginas. Uma revisão
+local protege contra alterações concorrentes entre abas. Gravações normais também
+verificam se a biblioteca de origem continua atual. Backups mantêm o formato v1;
+versões remotas e checkpoints pertencem ao aparelho, não ao backup.
+
+`backend/model.ts` define registros, limites e validação reutilizando o parser de
+backups. `backend/service.ts` implementa HTTP e conflitos por versão.
+`backend/sync.ts` valida os intervalos e cursores de paginação.
+`backend/store.ts` encapsula GetItem/PutItem condicionais e Query no índice por data;
+`backend/handler.ts` somente conecta o SDK e a configuração de ambiente.
+Os testes cobrem o protocolo e os comandos do adaptador sem uma conta AWS.
+
+Cada cartão inclui o nome/ID de seu baralho para permitir reconstrução local;
+baralhos vazios não têm registro remoto. Exclusões viram tombstones sem TTL.
+O servidor define `last_updated_at`; datas locais e confirmações de envio não
+avançam o checkpoint.
+A sincronização sobrepõe dois minutos e fornece `last_sync_at` somente ao final das
+páginas. A consistência eventual do índice exige reconciliação periódica pelo
+cliente. Consulte o [contrato e limitações](backend-sync.md).
 
 `infra/terraform` gerencia somente o backend AWS: tabela, Lambda, permissões e logs. Todos acessam uma biblioteca compartilhada, conforme a escolha atual: não existe autenticação ou separação por usuário. CORS é restrição de navegador e não controle de identidade. O frontend é publicado pelo Cloudflare Pages via integração GitHub. A variável de build `VITE_API_URL` recebe a URL da Lambda; `frontend_origins` informa ao backend quais origens podem acessar a API por navegador. Terraform não precisa de provider ou credenciais Cloudflare.

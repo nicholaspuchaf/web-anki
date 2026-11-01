@@ -32,6 +32,11 @@ resource "aws_iam_role_policy" "api" {
       },
       {
         Effect   = "Allow"
+        Action   = ["dynamodb:Query"]
+        Resource = "${aws_dynamodb_table.library.arn}/index/library-updated-at"
+      },
+      {
+        Effect   = "Allow"
         Action   = ["logs:CreateLogStream", "logs:PutLogEvents"]
         Resource = "${aws_cloudwatch_log_group.api.arn}:*"
       }
@@ -73,7 +78,7 @@ resource "aws_lambda_function_url" "api" {
 
   cors {
     allow_origins = local.allowed_origins
-    allow_methods = ["GET", "PUT"]
+    allow_methods = ["GET", "PUT", "DELETE"]
     allow_headers = ["content-type", "if-match"]
     max_age       = 3600
   }

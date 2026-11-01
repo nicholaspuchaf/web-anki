@@ -71,9 +71,19 @@ Veja [docs/architecture.md](docs/architecture.md) para responsabilidades, depend
 
 Os cartões ficam no IndexedDB para uso offline. Limpar os dados do site ou o navegador liberar espaço pode remover dados locais. Exporte backups regularmente.
 
-Quando `VITE_API_URL` está configurado, a página inicial oferece **Verificar nuvem**, **Baixar biblioteca** e **Enviar biblioteca**. A biblioteca da nuvem é pública e compartilhada: qualquer pessoa pode ler, editar e excluir os cartões. Somente dados publicados manualmente são enviados à AWS. Não inclua informações privadas.
+O backend agora armazena um item por flashcard e oferece sincronização incremental
+por data, com versões por cartão e exclusões lógicas. A biblioteca remota é pública
+e compartilhada: qualquer pessoa pode consultar, editar e excluir cartões.
 
-O envio usa verificação de versão e recusa conflitos, preservando os dados locais. Não há sincronização automática nem mesclagem entre aparelhos. Sem a variável, o app continua funcionando inteiramente local.
+Com `VITE_API_URL` configurado, clique em **Sincronizar** para receber alterações e
+publicar cartões novos, editados e excluídos neste aparelho. Apenas diferenças são
+enviadas; não há envio automático ao salvar. Conflitos preservam a alteração local
+e permitem escolher **Manter minha alteração** ou **Usar versão da nuvem**.
+
+Versões, exclusões e o ponto de sincronização ficam no IndexedDB. A primeira
+sincronização e a primeira após 24 horas fazem uma reconciliação completa; o botão
+**Reconciliar biblioteca** permite solicitá-la antes. Baralhos vazios ficam locais.
+Backups JSON continuam disponíveis. Veja o [contrato da API](docs/backend-sync.md).
 
 ## Infraestrutura com Terraform
 

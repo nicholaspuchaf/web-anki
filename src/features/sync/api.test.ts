@@ -1,45 +1,59 @@
 import { expect, test } from 'bun:test';
 import { CloudError, createCloudApi, type HttpRequest } from './api';
-import { emptyLibrary } from '../library/model';
+import { cloudFixture, START } from '../../../tests/helpers/cloud';
+import type { CardContent } from './model';
 
-test('cliente valida a biblioteca e envia sua revisão para detectar conflitos', async () => {
-  const calls: Array<{ url: string; options?: RequestInit }> = [];
-  const request = (async (
-    url: string | URL | Request,
-    options?: RequestInit,
-  ) => {
-    calls.push({ url: String(url), options });
-    return Response.json(
-      options?.method === 'GET'
-        ? { revision: '0', updatedAt: null, library: emptyLibrary }
-        : { revision: 'new', updatedAt: '2026-10-31T00:00:00Z' },
-    );
-  }) as HttpRequest;
-  const api = createCloudApi('https://api.example/', request);
-  expect((await api.get()).library).toEqual(emptyLibrary);
-  await api.put(emptyLibrary, '0');
-  expect(calls[1].url).toBe('https://api.example/library');
-  expect(calls[1].options?.headers).toEqual({
-    'content-type': 'application/json',
-    'if-match': '0',
-  });
-  expect(calls[1].options?.body).toBe(JSON.stringify(emptyLibrary));
+const content: CardContent = {
+  card: {
+    id: 'c',
+    deckId: 'd',
+    front: 'Two Sum',
+    back: '',
+    due: 0,
+    reviews: 0,
+    interval: 0,
+  },
+  deck: { id: 'd', name: 'Algoritmos' },
+};
+test('cliente usa o contrato real do backend para criar, atualizar, paginar e excluir', async () => {
+  const { api, advance, calls } = cloudFixture();
+  expect((await api.put('c', content, 0)).version).toBe(1);
+  expect((await api.get('c')).flashcard_id).toBe('c');
+  advance();
+  expect((await api.put('c', content, 1)).version).toBe(2);
+  expect((await api.changes({ since: START })).changes).toHaveLength(1);
+  expect(calls.at(-1)?.query.since).toBe(START);
+  expect((await api.delete('c', 2)).deleted_at).not.toBeNull();
+  expect(calls.map((call) => call.path)).not.toContain('/library');
 });
-
-test('cliente preserva o status de conflito e rejeita bibliotecas inválidas', async () => {
-  const conflict = (async () =>
-    Response.json({ error: 'Conflito' }, { status: 409 })) as HttpRequest;
-  await expect(
-    createCloudApi('https://api.example', conflict).put(emptyLibrary, '0'),
-  ).rejects.toMatchObject({ status: 409, message: 'Conflito' });
+test('cliente preserva conflito e rejeita respostas de sincronização ou cartões inválidos', async () => {
+  const { api } = cloudFixture();
+  await api.put('c', content, 0);
+  await expect(api.put('c', content, 0)).rejects.toMatchObject({ status: 409 });
   expect(new CloudError('erro', 409)).toBeInstanceOf(Error);
-  const invalid = (async () =>
+  for (const invalid of [
+    {},
+    { changes: [], next_cursor: null, last_sync_at: null },
+    { changes: [], next_cursor: 'next', last_sync_at: START },
+    {
+      changes: [{ flashcard_id: 'c', version: 1 }],
+      next_cursor: null,
+      last_sync_at: START,
+    },
+  ]) {
+    const request: HttpRequest = async () => Response.json(invalid);
+    await expect(
+      createCloudApi('https://api.example', request).changes(),
+    ).rejects.toThrow();
+  }
+  const mismatched: HttpRequest = async () =>
     Response.json({
-      revision: '0',
-      updatedAt: null,
-      library: {},
-    })) as HttpRequest;
+      flashcard_id: 'other',
+      last_updated_at: START,
+      deleted_at: START,
+      version: 1,
+    });
   await expect(
-    createCloudApi('https://api.example', invalid).get(),
+    createCloudApi('https://api.example', mismatched).get('c'),
   ).rejects.toThrow();
 });

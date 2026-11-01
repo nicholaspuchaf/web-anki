@@ -40,12 +40,14 @@ export function useLibrary() {
     setBusy(true);
     setError('');
     try {
-      await writeLibrary(next);
+      await writeLibrary(next, library);
       setLibrary(next);
       return true;
-    } catch {
+    } catch (cause) {
       setError(
-        'Não foi possível salvar. Verifique o espaço disponível e tente novamente.',
+        cause instanceof Error
+          ? cause.message
+          : 'Não foi possível salvar. Verifique o espaço disponível e tente novamente.',
       );
       return false;
     } finally {
@@ -53,5 +55,9 @@ export function useLibrary() {
       setBusy(false);
     }
   };
-  return { library, ready, busy, error, setError, save };
+  async function reload() {
+    const data = await readLibrary();
+    setLibrary(data);
+  }
+  return { library, ready, busy, error, setError, save, reload };
 }

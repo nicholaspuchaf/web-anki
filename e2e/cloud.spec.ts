@@ -1,81 +1,117 @@
 import { expect, test } from '@playwright/test';
-import type { Library } from '../src/features/library/model';
+import { cloudFixture } from '../tests/helpers/cloud';
+import type { CardContent } from '../src/features/sync/model';
 
 const endpoint = process.env.VITE_API_URL;
-test('sincronização pública baixa dados, publica alterações e preserva conflitos', async ({
+test('sincroniza cartões com o backend real, persiste checkpoint e resolve conflitos sem perder edição local', async ({
   page,
+  context,
 }) => {
-  test.skip(
-    !endpoint,
-    'Configure VITE_API_URL no build e no teste para validar a sincronização.',
-  );
-  let library: Library = {
-    version: 1,
-    decks: [{ id: 'd', name: 'Nuvem' }],
-    cards: [],
+  test.skip(!endpoint, 'Configure VITE_API_URL no build e no teste.');
+  const cloud = cloudFixture(['http://127.0.0.1:4173']);
+  const content: CardContent = {
+    card: {
+      id: 'c',
+      deckId: 'd',
+      front: 'Two Sum',
+      back: 'Hash map',
+      due: 0,
+      interval: 0,
+      reviews: 0,
+    },
+    deck: { id: 'd', name: 'Nuvem' },
   };
-  let revision = '12345678-1234-1234-1234-123456789abc';
-  await page.route(`${endpoint}/library`, async (route) => {
+  await cloud.api.put('c', content, 0);
+  await context.route(`${endpoint}/**`, async (route) => {
     const request = route.request();
-    const headers = {
-      'access-control-allow-origin': '*',
-      'access-control-allow-headers': 'content-type,if-match',
-      'access-control-allow-methods': 'GET,PUT',
-    };
-    if (request.method() === 'OPTIONS')
-      return route.fulfill({ status: 204, headers });
-    if (request.method() === 'GET')
-      return route.fulfill({
-        json: { revision, updatedAt: null, library },
-        headers,
-      });
-    if (request.headers()['if-match'] !== revision)
-      return route.fulfill({
-        status: 409,
-        json: { error: 'Alterada em outro aparelho. Verifique novamente.' },
-        headers,
-      });
-    library = request.postDataJSON();
-    revision = crypto.randomUUID();
-    return route.fulfill({
-      json: { revision, updatedAt: '2026-10-31T00:00:00Z' },
-      headers,
+    const url = new URL(request.url());
+    const result = await cloud.dispatch({
+      requestContext: {
+        http: { method: request.method(), path: url.pathname },
+      },
+      headers: request.headers(),
+      body: request.postData(),
+      queryStringParameters: Object.fromEntries(url.searchParams),
+    });
+    await route.fulfill({
+      status: result.statusCode,
+      body: result.body,
+      headers: {
+        ...result.headers,
+        'access-control-allow-origin': '*',
+        'access-control-allow-headers': 'content-type,if-match',
+        'access-control-allow-methods': 'GET,PUT,DELETE',
+      },
     });
   });
   await page.goto('/');
-  await expect(
-    page.getByRole('heading', { name: 'Biblioteca pública compartilhada' }),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'Verificar nuvem' }).click();
-  await expect(
-    page.getByRole('button', { name: '↓ Baixar biblioteca' }),
-  ).toBeEnabled();
-  await page.getByRole('button', { name: '↓ Baixar biblioteca' }).click();
+  await page.getByRole('button', { name: 'Sincronizar', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText(
+    'Sincronização concluída',
+  );
   await expect(
     page.getByRole('button', { name: /Nuvem.*Abrir baralho/ }),
   ).toBeVisible();
-  await page.getByRole('button', { name: '+ Novo baralho' }).click();
-  await page.getByLabel('Nome do baralho').fill('Somente local');
+  await page.reload();
+  await page.getByRole('button', { name: /Nuvem.*Abrir baralho/ }).click();
+  await page.getByRole('button', { name: 'Editar', exact: true }).click();
+  await page
+    .getByLabel('Verso · resposta (opcional)')
+    .fill('Minha solução offline');
   await page.getByRole('button', { name: 'Salvar', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
-  revision = crypto.randomUUID();
-  page.once('dialog', (dialog) => dialog.accept());
-  await page.getByRole('button', { name: '↑ Enviar biblioteca' }).click();
-  await expect(page.getByRole('alert')).toContainText(
-    'Alterada em outro aparelho',
+  await page.getByRole('button', { name: '← Todos os baralhos' }).click();
+  cloud.advance();
+  await cloud.api.put(
+    'c',
+    { ...content, card: { ...content.card, back: 'Outra pessoa editou' } },
+    1,
   );
+  await page.getByRole('button', { name: 'Sincronizar', exact: true }).click();
   await expect(
-    page.getByRole('button', { name: /Somente local.*Abrir baralho/ }),
+    page.getByRole('heading', { name: 'Conflito: Two Sum' }),
   ).toBeVisible();
-  await page.getByRole('button', { name: 'Verificar nuvem' }).click();
+  expect(
+    cloud.calls.filter((call) => call.path === '/sync').at(-1)?.query.since,
+  ).toBeTruthy();
+  await page.reload();
   await expect(
-    page.getByRole('button', { name: '↑ Enviar biblioteca' }),
-  ).toBeEnabled();
+    page.getByRole('heading', { name: 'Conflito: Two Sum' }),
+  ).toBeVisible();
+  await page.getByText('Minha versão', { exact: true }).click();
+  await expect(page.locator('.sync-conflict-preview').first()).toContainText(
+    'Minha solução offline',
+  );
+  await page.getByRole('button', { name: 'Manter minha alteração' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Conflito: Two Sum' }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'Sincronizar', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText(
+    '1 alteração(ões) enviada(s)',
+  );
+  expect(cloud.records.get('c')).toMatchObject({
+    version: 3,
+    card: { back: 'Minha solução offline' },
+  });
+  await page.getByRole('button', { name: /Nuvem.*Abrir baralho/ }).click();
   page.once('dialog', (dialog) => dialog.accept());
-  await page.getByRole('button', { name: '↑ Enviar biblioteca' }).click();
-  await expect(page.getByRole('status')).toContainText('Biblioteca publicada');
-  expect(library.decks.map((deck) => deck.name)).toEqual([
-    'Nuvem',
-    'Somente local',
-  ]);
+  await page.getByRole('button', { name: 'Excluir', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Two Sum', exact: true }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: '← Todos os baralhos' }).click();
+  await page.getByRole('button', { name: 'Sincronizar', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText(
+    '1 alteração(ões) enviada(s)',
+  );
+  expect(cloud.records.get('c')?.deleted_at).not.toBeNull();
+  expect(cloud.calls.filter((call) => call.method === 'DELETE')).toHaveLength(
+    1,
+  );
+  expect(cloud.calls.some((call) => call.path === '/library')).toBe(false);
+  await context.setOffline(true);
+  await expect(
+    page.getByRole('button', { name: 'Sincronizar', exact: true }),
+  ).toBeDisabled();
 });

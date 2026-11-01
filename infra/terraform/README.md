@@ -1,17 +1,23 @@
 # Backend AWS com Terraform; frontend via GitHub + Cloudflare Pages
 
 Biblioteca **pública e compartilhada**, sem Cognito e sem login. Qualquer pessoa
-pode baixar, editar e substituir os cartões. A sincronização inicial é manual e
-usa verificação de versão para impedir sobrescritas silenciosas entre aparelhos.
+pode consultar, criar, editar e excluir cartões. O backend usa um item por flashcard
+e sincronização incremental por data, com verificação de versão por cartão.
+
+O frontend usa `/sync` e `/flashcards/:id`. O protocolo antigo `/library` retorna 410. Depois de aplicar o backend, configure `VITE_API_URL`, publique o frontend e
+clique em **Sincronizar** para o primeiro envio dos cartões locais.
 
 Nenhum recurso foi aplicado a uma conta durante o desenvolvimento.
 
 ## Recursos gerenciados pelo Terraform
 
-- Tabela DynamoDB Standard provisionada: 5 unidades de leitura e 5 de escrita.
+- Uma tabela DynamoDB Standard provisionada: 5 unidades de leitura e 5 de escrita.
+- Índice global `library-updated-at`: mais 5 unidades de leitura e 5 de escrita,
+  com projeção ALL para retornar o conteúdo sem leituras extras por cartão.
 - Lambda Node.js 22 ARM64, 128 MB, timeout de 15 segundos, concorrência reservada 2.
 - Function URL pública HTTPS, com CORS explícito para as origens informadas em `frontend_origins`.
-- IAM limitado a GetItem/PutItem na tabela e escrita no grupo de logs.
+- IAM limitado a GetItem/PutItem na tabela, Query no índice de sincronização e logs.
+- CORS permite GET, PUT e DELETE; os pedidos de escrita usam If-Match.
 - Grupo CloudWatch com retenção de sete dias.
 
 Não há Cognito, API Gateway, domínio próprio, VPC ou NAT Gateway.
@@ -108,44 +114,52 @@ Para build e preview local com sincronização, cadastre a mesma URL pública em
 execute `bun run build` e depois `bun run preview`. O arquivo de ambiente local não
 é versionado. A origem HTTPS do preview também precisa estar em `frontend_origins`.
 
-## Usar em aparelhos diferentes
+## API e sincronização incremental
 
-1. Abra o site no computador ou iPhone.
-2. Na página de baralhos, clique em **Verificar nuvem**.
-3. **Baixar biblioteca** substitui os dados locais após confirmação quando necessário.
-4. Faça suas edições/revisões normalmente; continuam salvas no IndexedDB offline.
-5. Clique em **Enviar biblioteca** para publicar a versão local para todos.
-6. Em outro aparelho, verifique e baixe novamente para ver as alterações.
+O contrato completo, exemplos e responsabilidades do cliente estão em
+[docs/backend-sync.md](../../docs/backend-sync.md). Rotas disponíveis:
 
-Se outra pessoa publicar entre verificar e enviar, a API retorna conflito (409).
-Os dados locais são preservados. Verifique de novo, compare os dados/backup e
-escolha qual versão manter. Não há mesclagem automática nesta versão.
+- `PUT /flashcards/:id`: cria ou atualiza um cartão com seu baralho.
+- `GET /flashcards/:id`: leitura consistente de um cartão, inclusive tombstone.
+- `DELETE /flashcards/:id`: exclusão lógica com versão e nova data.
+- `GET /sync?since=<last_sync_at>`: alterações com sobreposição de dois minutos.
+- `GET /sync`: leitura completa paginada para início e reconciliação periódica.
 
-Sem `VITE_API_URL`, o aplicativo funciona somente com armazenamento local.
-Para desenvolvimento local com API real, use um endereço HTTPS e inclua sua origem
-em `frontend_origins`. A configuração atual aceita somente origens HTTPS explícitas;
-ela não libera `localhost` HTTP nem previews automaticamente.
+Não existe mais gravação da biblioteca inteira. O cliente deve enviar cada cartão
+com sua versão; `If-Match: 0` cria, as próximas escritas usam a versão recebida.
+O limite é 250 KB de JSON UTF-8 por pedido de cartão, não por biblioteca.
 
-## Modelo e limites iniciais
+O índice é eventualmente consistente. A sobreposição reduz o risco de perder
+alterações atrasadas, mas não garante ausência de perdas: o cliente deve realizar
+reconciliação completa ocasional. A interface faz isso no primeiro sync e na
+primeira sincronização após 24 horas. Não há polling: consultas e envios são
+iniciados pelos botões **Sincronizar** e **Reconciliar biblioteca**.
 
-A tabela mantém um snapshot gzip da biblioteca sob `PUBLIC_LIBRARY`, acompanhado
-de `revision` e `updatedAt`. O GET usa leitura consistente; o PUT aplica condição
-atômica de revisão. Exclusões de cartões são publicadas pelo próximo envio da
-biblioteca, inclusive uma biblioteca vazia.
-
-Limites por biblioteca sincronizada: 2 MB de JSON e 300 KB compactados. Esses
-limites mantêm o snapshot abaixo do limite de item do DynamoDB. Bibliotecas maiores
-continuam exportáveis localmente; a API recusa o envio com 413, sem apagar nada.
-Para crescer além disso ou colaborar simultaneamente, o próximo passo é migrar
-para registros por entidade e resolução de conflitos por cartão.
-
-A capacidade fixa pode produzir 429 em picos ou snapshots grandes. Aguarde antes
-de repetir o envio. A reserva de concorrência reduz paralelismo, **não define um
-teto de gasto**. A franquia gratuita é compartilhada com outros recursos elegíveis
-da conta/região; tráfego público, logs e outros usos podem gerar cobrança.
+A capacidade da tabela e do índice pode produzir 429 em picos. A reserva de
+concorrência reduz paralelismo, **não define um teto de gasto**. O índice consome
+capacidade e armazenamento próprios. A franquia gratuita é compartilhada com outros
+recursos elegíveis da conta/região; tráfego público, logs e outros usos podem gerar
+cobrança. Não há provisioned concurrency na Lambda.
 
 CORS limita origens em navegadores; ele **não autentica ninguém**. O endpoint é
-público por decisão do projeto e também pode ser usado por clientes HTTP externos.
+público por decisão do projeto e pode ser usado por clientes HTTP externos.
+
+## Transição de dados existentes
+
+A chave primária `pk`, o nome e as proteções da tabela foram preservados. O plano
+esperado adiciona o índice à tabela existente; confirme isso no seu próprio plan.
+O item antigo `PUBLIC_LIBRARY`, se existir, permanece intacto e fica fora do índice
+por não possuir `library_id` e `last_updated_at`. Não há migração automática nem
+exclusão desse snapshot. Ele não aparece na API nova.
+
+Antes de atualizar uma instalação com dados remotos, exporte a biblioteca usando
+a versão antiga do aplicativo. Para migrar, envie cada cartão do backup com o
+respectivo baralho para `PUT /flashcards/:id`, usando `If-Match: 0`. Um conflito
+409 precisa ser resolvido individualmente; não sobrescreva com uma versão inventada.
+Baralhos vazios não são sincronizados neste modelo, pois só existem itens de cartões.
+Alternativamente, importe o backup JSON na interface nova e clique em
+**Sincronizar**. Os cartões serão enviados individualmente; conflitos exigirão sua
+escolha. Não há migração automática do item remoto antigo.
 
 ## Estado e dados
 

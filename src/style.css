@@ -1508,3 +1508,46 @@ label {
     font-size: 12px;
   }
 }
+
+.sync-conflict {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 0;
+}
+.sync-conflict h3 {
+  overflow-wrap: anywhere;
+}
+.sync-conflict-versions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sync-conflict-versions details {
+  min-width: 0;
+}
+.sync-conflict-versions summary {
+  cursor: pointer;
+}
+.sync-conflict pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 18rem;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+
+.sync-conflict-preview {
+  margin-top: 0.75rem;
+  max-height: 28rem;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.sync-conflict-preview h4 {
+  margin: 1rem 0 0.25rem;
+}
+.sync-conflict-preview p {
+  font-size: 0.85rem;
+}

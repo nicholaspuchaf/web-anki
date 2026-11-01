@@ -1,18 +1,20 @@
 import type { Library } from '../library/model';
-import type { SaveLibrary } from '../library/hooks/use-library';
 import { useOnline } from '../../shared/hooks/use-online';
 import { Alert } from '../../shared/ui/Alert';
-import { useCloudSync } from './use-cloud-sync';
+import type { CloudSync } from './use-cloud-sync';
+import { ConflictPreview } from './ConflictPreview';
+import { localContent, remoteContent } from './model';
 
-type Props = {
+export function CloudSyncPanel({
+  library,
+  cloud,
+  busy,
+}: {
   library: Library;
-  save: SaveLibrary;
+  cloud: CloudSync;
   busy: boolean;
-  apiUrl: string;
-};
-export function CloudSyncPanel({ library, save, busy, apiUrl }: Props) {
+}) {
   const online = useOnline();
-  const cloud = useCloudSync(apiUrl, library, save);
   const disabled = !online || busy || cloud.working;
   return (
     <section className="cloud-panel" aria-labelledby="cloud-title">
@@ -21,37 +23,82 @@ export function CloudSyncPanel({ library, save, busy, apiUrl }: Props) {
           <p className="eyebrow">SINCRONIZAÇÃO MANUAL</p>
           <h2 id="cloud-title">Biblioteca pública compartilhada</h2>
           <p>
-            Todos acessam os mesmos cartões. Não envie informações privadas.
+            Sincronizar recebe alterações da nuvem e publica as suas. Todos
+            podem ver, editar e excluir os mesmos cartões.
           </p>
         </div>
-        <span className="difficulty">DynamoDB</span>
+        <span className="difficulty">Nuvem</span>
       </div>
       <div className="cloud-actions">
-        <button disabled={disabled} onClick={() => void cloud.check()}>
-          {cloud.working ? 'Sincronizando…' : 'Verificar nuvem'}
-        </button>
-        <button
-          disabled={disabled || !cloud.remote}
-          onClick={() => void cloud.download()}
-        >
-          ↓ Baixar biblioteca
-        </button>
         <button
           className="primary"
-          disabled={disabled || !cloud.remote}
-          onClick={() => void cloud.upload()}
+          disabled={disabled}
+          onClick={() => void cloud.sync()}
         >
-          ↑ Enviar biblioteca
+          {cloud.working ? 'Sincronizando…' : 'Sincronizar'}
+        </button>
+        <button disabled={disabled} onClick={() => void cloud.sync(true)}>
+          Reconciliar biblioteca
         </button>
       </div>
-      {cloud.remote && (
-        <p className="cloud-status">
-          Na nuvem: {cloud.remote.library.cards.length} cartões ·{' '}
-          {cloud.remote.updatedAt
-            ? `atualizada em ${new Date(cloud.remote.updatedAt).toLocaleString('pt-BR')}`
-            : 'nenhuma publicação ainda'}
-        </p>
-      )}
+      <p className="cloud-status">
+        {cloud.pending} alteração(ões) local(is) para enviar ·{' '}
+        {cloud.state.last_sync_at
+          ? `Última sincronização: ${new Date(cloud.state.last_sync_at).toLocaleString('pt-BR')}`
+          : 'Este aparelho ainda não foi sincronizado.'}
+      </p>
+      <p className="cloud-status">
+        A reconciliação verifica todos os cartões no primeiro uso e a cada 24
+        horas, ao sincronizar. Baralhos vazios ficam apenas neste aparelho.
+      </p>
+      {Object.values(cloud.state.conflicts).map((remote) => {
+        const local = library.cards.find(
+          (card) => card.id === remote.flashcard_id,
+        );
+        const title =
+          local?.front ??
+          (remote.deleted_at === null
+            ? remote.card.front
+            : remote.flashcard_id);
+        return (
+          <article className="sync-conflict" key={remote.flashcard_id}>
+            <h3>Conflito: {title}</h3>
+            <div className="sync-conflict-versions">
+              <details>
+                <summary>
+                  Minha versão{local ? '' : ' · excluído neste aparelho'}
+                </summary>
+                <ConflictPreview
+                  content={localContent(library, remote.flashcard_id)}
+                />
+              </details>
+              <details>
+                <summary>
+                  Versão da nuvem
+                  {remote.deleted_at !== null ? ' · excluído' : ''}
+                </summary>
+                <ConflictPreview content={remoteContent(remote)} />
+              </details>
+            </div>
+            <div className="cloud-actions">
+              <button
+                disabled={disabled}
+                onClick={() => void cloud.resolve(remote.flashcard_id, 'local')}
+              >
+                Manter minha alteração
+              </button>
+              <button
+                disabled={disabled}
+                onClick={() =>
+                  void cloud.resolve(remote.flashcard_id, 'remote')
+                }
+              >
+                Usar versão da nuvem
+              </button>
+            </div>
+          </article>
+        );
+      })}
       {!online && (
         <p className="cloud-status">
           Offline: continue estudando neste aparelho e sincronize quando

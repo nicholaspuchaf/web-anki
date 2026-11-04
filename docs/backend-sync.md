@@ -162,3 +162,47 @@ protocolo de ordenação/registro de alterações.
 
 Referências: [índices globais e consistência](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html)
 e [Query, limites e paginação](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html).
+
+## Consultar dados de um problema LeetCode
+
+`GET /leetcode/problems/two-sum` retorna `slug`, `url`, `title`, `number`,
+`difficulty`, `tags` e `content_html`. A rota recebe apenas um slug validado, e
+consulta um endpoint fixo `https://leetcode.com/graphql/`. Não aceita URL de destino
+arbitrária, cookies ou sessão do usuário. Importar não lê ou escreve no DynamoDB.
+
+O backend usa timeout de oito segundos, limita a resposta upstream a 1 MB e mantém
+até 100 problemas em cache por seis horas na memória da instância Lambda. O cache
+é oportunista: desaparece em cold starts e não é compartilhado entre instâncias.
+Não há novo recurso de infraestrutura ou tarefa periódica para a importação.
+
+Erros: 400 slug inválido; 404 problema inexistente; 422 enunciado Premium ou
+indisponível; 429 limite do LeetCode; 502 bloqueio/falha/formato inválido; 504 timeout.
+O endpoint GraphQL usado pelo próprio site não tem um contrato público estável;
+mudanças e bloqueios podem interromper a importação. O preenchimento manual segue
+disponível. O comportamento com o IP de saída da AWS deve ser conferido após deploy.
+
+A interface interpreta o HTML em um template inerte e extrai texto, sem inserir o
+HTML recebido na página. Exemplos, restrições, código inline e potências são
+preservados. Imagens viram indicações para consulta no enunciado original. Antes de
+substituir uma pergunta existente, o usuário confirma; versos e tags personalizadas
+são preservados. O resultado só é salvo quando o usuário clica em Salvar.
+
+## Cartões de múltipla escolha
+
+O campo opcional `card.multipleChoice` preserva alternativas e resposta correta:
+
+```json
+{
+  "options": ["Uma fila", "Uma pilha", "Um mapa", "Um conjunto"],
+  "correctIndex": 1,
+  "explanation": "Uma pilha usa a ordem LIFO."
+}
+```
+
+São exigidas quatro alternativas não vazias e distintas, um índice inteiro de 0 a
+3 e uma explicação string (pode ser vazia). Esse campo não pode coexistir com
+`card.leetcode`. A API rejeita dados inválidos com 400 usando o mesmo parser do app.
+`deck.defaultTemplate` pode ser `basic`, `leetcode` ou `multiple-choice`; sua ausência
+mantém o comportamento dos baralhos existentes. Não há mudança de rotas, esquema
+de chaves do DynamoDB ou infraestrutura. O backend precisa ser republicado para
+reconhecer e preservar esses campos antes de sincronizar com o frontend novo.

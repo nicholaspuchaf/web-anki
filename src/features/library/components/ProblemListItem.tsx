@@ -26,6 +26,9 @@ export function ProblemListItem({
     <article className="problem-list-item">
       <div>
         <div className="problem-list-meta">
+          {card.multipleChoice && (
+            <span className="eyebrow">MÚLTIPLA ESCOLHA · 4 ALTERNATIVAS</span>
+          )}
           {card.leetcode && (
             <>
               <span className="eyebrow">
@@ -38,7 +41,7 @@ export function ProblemListItem({
           )}
         </div>
         <h3>{card.front.split('\n')[0]}</h3>
-        {!card.leetcode && <p>{card.back}</p>}
+        {!card.leetcode && !card.multipleChoice && <p>{card.back}</p>}
         {card.leetcode && (
           <TagList tags={card.leetcode.tags} onSelect={onTag} />
         )}
@@ -58,8 +61,10 @@ export function ProblemListItem({
         >
           {card.favorite ? '★' : '☆'}
         </button>
-        {card.leetcode && (
-          <button onClick={onPreview}>Visualizar cartão</button>
+        {(card.leetcode || card.multipleChoice) && (
+          <button disabled={busy} onClick={onPreview}>
+            Visualizar cartão
+          </button>
         )}
         <button disabled={busy} onClick={onEdit}>
           Editar

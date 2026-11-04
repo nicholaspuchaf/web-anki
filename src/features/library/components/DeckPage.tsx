@@ -7,7 +7,7 @@ import { emptyFilters, filterCards } from '../filter-cards';
 import { CardFilters } from './CardFilters';
 import { ProblemListItem } from './ProblemListItem';
 import { Modal } from '../../../shared/ui/Modal';
-import { LeetCodeCard } from '../../leetcode/components/LeetCodeCard';
+import { CardPreview } from './CardPreview';
 
 type Props = {
   library: Library;
@@ -128,7 +128,7 @@ export function DeckPage({
       </div>
       {preview && (
         <Modal title="Prévia do cartão" wide onClose={() => setPreview(null)}>
-          <LeetCodeCard key={preview.id} card={preview} />
+          <CardPreview key={preview.id} card={preview} />
         </Modal>
       )}
     </>

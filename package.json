@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build:backend": "bun build backend/handler.ts --target=node --format=esm --minify --outfile=build/lambda/index.mjs",
-    "test:backend": "bun test backend.test dynamo-store.test",
+    "test:backend": "bun test backend.test dynamo-store.test import-problem.test",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",

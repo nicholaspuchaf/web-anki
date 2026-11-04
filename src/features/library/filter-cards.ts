@@ -22,6 +22,7 @@ export function filterCards(cards: Card[], filters: CardFilters): Card[] {
       (!query ||
         [
           card.front,
+          ...(card.multipleChoice?.options ?? []),
           card.leetcode?.number ?? '',
           ...(card.leetcode?.tags ?? []),
         ]

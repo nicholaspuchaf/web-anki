@@ -1,5 +1,6 @@
 import { parseLeetCode } from '../leetcode/model';
-import type { Library } from '../library/model';
+import { isCardTemplate, type Library } from '../library/model';
+import { parseMultipleChoice } from '../multiple-choice/model';
 
 export function parseBackup(text: string): Library {
   const data: unknown = JSON.parse(text);
@@ -19,11 +20,18 @@ export function parseBackup(text: string): Library {
       !d.id ||
       ids.has(d.id) ||
       typeof d.name !== 'string' ||
-      !d.name.trim()
+      !d.name.trim() ||
+      (d.defaultTemplate !== undefined && !isCardTemplate(d.defaultTemplate))
     )
       throw new Error('Baralho inválido ou duplicado.');
     ids.add(d.id);
-    return { id: d.id, name: d.name.trim() };
+    return {
+      id: d.id,
+      name: d.name.trim(),
+      ...(d.defaultTemplate !== undefined
+        ? { defaultTemplate: d.defaultTemplate }
+        : {}),
+    };
   });
   const cardIds = new Set<string>();
   const cards = value.cards.map((c) => {
@@ -46,6 +54,12 @@ export function parseBackup(text: string): Library {
     )
       throw new Error('Cartão inválido ou sem baralho.');
     cardIds.add(c.id);
+    if (c.leetcode !== undefined && c.multipleChoice !== undefined)
+      throw new Error('O cartão deve usar apenas um template.');
+    const multipleChoice =
+      c.multipleChoice !== undefined
+        ? parseMultipleChoice(c.multipleChoice)
+        : undefined;
     const leetcode =
       c.leetcode !== undefined ? parseLeetCode(c.leetcode) : undefined;
     const legacyExamples = (
@@ -65,6 +79,7 @@ export function parseBackup(text: string): Library {
       reviews: c.reviews,
       ...(c.favorite !== undefined ? { favorite: c.favorite } : {}),
       ...(leetcode ? { leetcode } : {}),
+      ...(multipleChoice ? { multipleChoice } : {}),
     };
   });
   return { version: 1, decks, cards };

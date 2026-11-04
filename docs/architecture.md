@@ -105,3 +105,40 @@ páginas. A consistência eventual do índice exige reconciliação periódica p
 cliente. Consulte o [contrato e limitações](backend-sync.md).
 
 `infra/terraform` gerencia somente o backend AWS: tabela, Lambda, permissões e logs. Todos acessam uma biblioteca compartilhada, conforme a escolha atual: não existe autenticação ou separação por usuário. CORS é restrição de navegador e não controle de identidade. O frontend é publicado pelo Cloudflare Pages via integração GitHub. A variável de build `VITE_API_URL` recebe a URL da Lambda; `frontend_origins` informa ao backend quais origens podem acessar a API por navegador. Terraform não precisa de provider ou credenciais Cloudflare.
+
+## Importação de enunciado LeetCode
+
+`leetcode/problem-url.ts` valida links e o contrato de metadados compartilhado entre
+browser e backend. `backend/leetcode.ts` encapsula consulta pública, limites,
+cache temporário e erros recuperáveis; `service.ts` expõe a rota GET.
+`leetcode/import-problem.ts` chama essa rota e converte HTML em texto usando um
+fragmento inerte, descartando conteúdo ativo. O editor aplica o resultado somente
+após concluir a consulta e preserva versos e tags personalizadas. Uma falha mantém
+o rascunho anterior. Não há sessão LeetCode, scraping de área autenticada ou novo
+recurso Terraform. Testes de navegador usam o handler real com transporte upstream
+simulado; uma consulta real ao problema Two Sum também validou o adaptador.
+
+## Template de múltipla escolha
+
+`Card.multipleChoice` é uma extensão opcional com `options` (tupla de quatro textos),
+`correctIndex` (0 a 3) e `explanation` (texto opcional, representado por string vazia).
+`multiple-choice/model.ts` centraliza criação e validação, utilizada tanto pelos
+comandos de gravação quanto pelo parser de backup compartilhado com o backend.
+Um cartão não pode conter simultaneamente `leetcode` e `multipleChoice`.
+
+`Deck.defaultTemplate` é opcional e aceita `basic`, `leetcode` ou `multiple-choice`.
+O editor de novos cartões usa essa preferência; cartões existentes continuam
+usando seu próprio template, e baralhos antigos mantêm o padrão LeetCode ao criar.
+O parser preserva o campo no backup e na API sem mudar o formato Library v1.
+
+`MultipleChoiceFields` edita alternativas e gabarito. `MultipleChoiceCard` mantém a
+tentativa apenas em memória e notifica a revisão depois da confirmação.
+`CardPreview` seleciona o componente apropriado para a prévia do editor e do
+baralho. A revisão só libera avaliação após responder; erros usam obrigatoriamente
+`again`. Treino livre não grava a tentativa. Trocar de cartão reinicia a seleção.
+O comparador de conflitos mostra alternativas, gabarito e explicação para permitir
+uma escolha informada entre a edição local e a remota.
+
+As extensões são aditivas: backups antigos continuam legíveis. Clientes antigos
+não conhecem múltipla escolha e podem descartar esses campos; frontend e backend
+precisam ser publicados juntos para preservar o novo template na nuvem.

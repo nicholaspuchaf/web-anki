@@ -1,3 +1,4 @@
+import { MultipleChoiceCard } from '../multiple-choice/components/MultipleChoiceCard';
 import { getAvailableFaces } from '../leetcode/model';
 import { LeetCodeCard } from '../leetcode/components/LeetCodeCard';
 import type { Library } from '../library/model';
@@ -12,12 +13,23 @@ type Props = {
   onBack: () => void;
 };
 export function ReviewPage({ library, review, busy, now, onBack }: Props) {
-  const { current, reviewed, remaining, revealed, reveal, rate, practice } =
-    review;
+  const {
+    current,
+    reviewed,
+    remaining,
+    revealed,
+    reveal,
+    rate,
+    practice,
+    choiceCorrect,
+    answerChoice,
+  } = review;
   const hasAnswer = current
-    ? current.leetcode
-      ? getAvailableFaces(current.leetcode).length > 0
-      : Boolean(current.back.trim())
+    ? current.multipleChoice
+      ? true
+      : current.leetcode
+        ? getAvailableFaces(current.leetcode).length > 0
+        : Boolean(current.back.trim())
     : false;
   return (
     <section className="review">
@@ -34,7 +46,14 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
           <p>
             {reviewed} revisados · {remaining} restantes
           </p>
-          {current.leetcode ? (
+          {current.multipleChoice ? (
+            <MultipleChoiceCard
+              key={current.id}
+              card={current}
+              busy={busy}
+              onAnswer={answerChoice}
+            />
+          ) : current.leetcode ? (
             <LeetCodeCard key={current.id} card={current} onReveal={reveal} />
           ) : (
             <div className="flashcard">
@@ -54,15 +73,23 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
             </div>
           )}
           {practice ? (
-            <button
-              className="primary reveal"
-              disabled={busy}
-              onClick={() => rate('good')}
-            >
-              Concluir treino deste cartão →
-            </button>
+            current.multipleChoice && !revealed ? (
+              <p className="review-instruction">
+                Selecione uma alternativa e confirme sua resposta.
+              </p>
+            ) : (
+              <button
+                className="primary reveal"
+                disabled={busy}
+                onClick={() => rate('good')}
+              >
+                Concluir treino deste cartão →
+              </button>
+            )
           ) : revealed || !hasAnswer ? (
-            <div className="ratings">
+            <div
+              className={`ratings${current.multipleChoice && choiceCorrect === false ? ' ratings-retry' : ''}`}
+            >
               {(
                 [
                   ['again', 'De novo', '1 minuto'],
@@ -70,22 +97,34 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
                   ['good', 'Bom', ''],
                   ['easy', 'Fácil', ''],
                 ] as const
-              ).map(([rating, label, hint]) => {
-                const next = schedule(current, rating, now);
-                return (
-                  <button
-                    key={rating}
-                    disabled={busy}
-                    onClick={() => rate(rating)}
-                  >
-                    {label}
-                    <small>
-                      {hint || `${Math.round(next.interval * 10) / 10} dia(s)`}
-                    </small>
-                  </button>
-                );
-              })}
+              )
+                .filter(
+                  ([rating]) =>
+                    !current.multipleChoice ||
+                    choiceCorrect !== false ||
+                    rating === 'again',
+                )
+                .map(([rating, label, hint]) => {
+                  const next = schedule(current, rating, now);
+                  return (
+                    <button
+                      key={rating}
+                      disabled={busy}
+                      onClick={() => rate(rating)}
+                    >
+                      {label}
+                      <small>
+                        {hint ||
+                          `${Math.round(next.interval * 10) / 10} dia(s)`}
+                      </small>
+                    </button>
+                  );
+                })}
             </div>
+          ) : current.multipleChoice ? (
+            <p className="review-instruction">
+              Selecione uma alternativa e confirme sua resposta para continuar.
+            </p>
           ) : !current.leetcode ? (
             <button className="primary reveal" onClick={() => reveal()}>
               Mostrar resposta

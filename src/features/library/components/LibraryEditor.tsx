@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useOnline } from '../../../shared/hooks/use-online';
 import { addDeck, putCard } from '../commands';
 import { Modal } from '../../../shared/ui/Modal';
 import { Button } from '../../../shared/ui/Button';
 import { TextField } from '../../../shared/ui/TextField';
 import { Alert } from '../../../shared/ui/Alert';
-import type { Card, Library } from '../model';
+import type { Card, CardTemplate, Library } from '../model';
+import { SelectField } from '../../../shared/ui/SelectField';
+import {
+  createMultipleChoice,
+  parseMultipleChoice,
+} from '../../multiple-choice/model';
+import { MultipleChoiceFields } from '../../multiple-choice/components/MultipleChoiceFields';
+import { CardPreview } from './CardPreview';
 import type { SaveLibrary } from '../hooks/use-library';
-import { createLeetCode } from '../../leetcode/model';
+import { createLeetCode, normalizeTags } from '../../leetcode/model';
+import { importProblem } from '../../leetcode/import-problem';
+import { problemLink } from '../../leetcode/problem-url';
 import { LeetCodeFields } from '../../leetcode/components/LeetCodeFields';
-import { LeetCodeCard } from '../../leetcode/components/LeetCodeCard';
 
 type Props = {
   modal: 'deck' | 'card';
@@ -29,7 +38,18 @@ export function LibraryEditor({
   onClose,
 }: Props) {
   const [template, setTemplate] = useState(
-    editing ? (editing.leetcode ? 'leetcode' : 'basic') : 'leetcode',
+    editing
+      ? editing.multipleChoice
+        ? 'multiple-choice'
+        : editing.leetcode
+          ? 'leetcode'
+          : 'basic'
+      : (library.decks.find((deck) => deck.id === selected)?.defaultTemplate ??
+          'leetcode'),
+  );
+  const [deckTemplate, setDeckTemplate] = useState<CardTemplate>('leetcode');
+  const [multipleChoice, setMultipleChoice] = useState(
+    () => editing?.multipleChoice ?? createMultipleChoice(),
   );
   const [front, setFront] = useState(editing?.front ?? '');
   const [back, setBack] = useState(editing?.back ?? '');
@@ -39,16 +59,75 @@ export function LibraryEditor({
   const [createdAt] = useState(() => Date.now());
   const [preview, setPreview] = useState(false);
   const [error, setError] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [importMessage, setImportMessage] = useState('');
+  const importRequest = useRef<AbortController | null>(null);
+  useEffect(() => () => importRequest.current?.abort(), []);
+  const editorBusy = busy || importing;
+  const online = useOnline();
+  async function fillFromLink() {
+    if (editorBusy || importRequest.current) return;
+    setError('');
+    setImportMessage('');
+    try {
+      problemLink(leetcode.url);
+    } catch (cause) {
+      setError((cause as Error).message);
+      return;
+    }
+    if (
+      (front.trim() || leetcode.number.trim() || leetcode.tags.length) &&
+      !window.confirm(
+        'Substituir a pergunta, o número e a dificuldade pelos dados do LeetCode? Suas tags personalizadas e seus versos serão mantidos.',
+      )
+    )
+      return;
+    const controller = new AbortController();
+    importRequest.current = controller;
+    setImporting(true);
+    try {
+      const { problem, description } = await importProblem(
+        import.meta.env.VITE_API_URL ?? '',
+        leetcode.url,
+        AbortSignal.any([controller.signal, AbortSignal.timeout(12_000)]),
+      );
+      if (controller.signal.aborted) return;
+      setFront(description.text);
+      setLeetcode((previous) => ({
+        ...previous,
+        url: problem.url,
+        number: problem.number,
+        difficulty: problem.difficulty,
+        tags: normalizeTags([...previous.tags, ...problem.tags].join(',')),
+      }));
+      setImportMessage(
+        description.hasImages
+          ? 'Dados preenchidos. O enunciado contém imagens: consulte o link original para visualizá-las. Seus versos foram mantidos.'
+          : 'Enunciado, número, dificuldade e tópicos preenchidos. Revise os campos antes de salvar. Seus versos foram mantidos.',
+      );
+    } catch (cause) {
+      if (!controller.signal.aborted)
+        setError(
+          cause instanceof Error && cause.name !== 'TimeoutError'
+            ? cause.message
+            : 'A consulta demorou para responder. Tente novamente ou preencha manualmente.',
+        );
+    } finally {
+      if (!controller.signal.aborted) setImporting(false);
+      importRequest.current = null;
+    }
+  }
   const draft: Card = {
     id: editing?.id ?? 'preview',
     deckId: selected,
     front,
-    back,
+    back: template === 'multiple-choice' ? '' : back,
     due: editing?.due ?? createdAt,
     interval: editing?.interval ?? 0,
     reviews: editing?.reviews ?? 0,
     favorite: editing?.favorite ?? false,
     ...(template === 'leetcode' ? { leetcode } : {}),
+    ...(template === 'multiple-choice' ? { multipleChoice } : {}),
   };
   return (
     <Modal
@@ -59,7 +138,7 @@ export function LibraryEditor({
             ? 'Editar cartão'
             : 'Novo cartão'
       }
-      busy={busy}
+      busy={editorBusy}
       onClose={onClose}
       wide={modal === 'card' && template === 'leetcode'}
     >
@@ -68,32 +147,50 @@ export function LibraryEditor({
           {error}
         </Alert>
       )}
+      {importMessage && <Alert>{importMessage}</Alert>}
       {modal === 'card' && (
         <div className="editor-toolbar">
           <div className="field template-field">
             <label htmlFor="card-template">Template</label>
             <select
-              disabled={busy}
+              disabled={editorBusy}
               id="card-template"
               value={template}
               onChange={(e) => {
-                setTemplate(e.target.value);
+                setTemplate(e.target.value as CardTemplate);
                 setPreview(false);
               }}
             >
               <option value="leetcode">LeetCode · múltiplos versos</option>
               <option value="basic">Básico · pergunta e resposta</option>
+              <option value="multiple-choice">
+                Múltipla escolha · 4 alternativas
+              </option>
             </select>
           </div>
-          {template === 'leetcode' && (
-            <Button disabled={busy} onClick={() => setPreview(!preview)}>
+          {(template === 'leetcode' || template === 'multiple-choice') && (
+            <Button
+              disabled={editorBusy}
+              onClick={() => {
+                try {
+                  if (!preview && template === 'multiple-choice') {
+                    if (!front.trim()) throw new Error('Preencha a pergunta.');
+                    parseMultipleChoice(multipleChoice);
+                  }
+                  setError('');
+                  setPreview(!preview);
+                } catch (cause) {
+                  setError((cause as Error).message);
+                }
+              }}
+            >
               {preview ? 'Continuar editando' : 'Pré-visualizar cartão'}
             </Button>
           )}
         </div>
       )}
       {preview ? (
-        <LeetCodeCard card={draft} />
+        <CardPreview card={draft} />
       ) : (
         <form
           onSubmit={async (e) => {
@@ -105,6 +202,8 @@ export function LibraryEditor({
                   ? addDeck(
                       library,
                       String(new FormData(e.currentTarget).get('name')),
+                      undefined,
+                      deckTemplate,
                     )
                   : putCard(library, {
                       ...draft,
@@ -120,17 +219,59 @@ export function LibraryEditor({
             }
           }}
         >
-          <fieldset className="form-content" disabled={busy}>
+          <fieldset className="form-content" disabled={editorBusy}>
             {modal === 'deck' ? (
-              <TextField
-                label="Nome do baralho"
-                name="name"
-                required
-                maxLength={100}
-                placeholder="Ex.: LeetCode · padrões e algoritmos"
-              />
+              <>
+                <TextField
+                  label="Nome do baralho"
+                  name="name"
+                  required
+                  maxLength={100}
+                  placeholder="Ex.: LeetCode · padrões e algoritmos"
+                />
+                <SelectField
+                  label="Template padrão dos cartões"
+                  value={deckTemplate}
+                  onChange={(event) =>
+                    setDeckTemplate(event.target.value as CardTemplate)
+                  }
+                  options={[
+                    { value: 'leetcode', label: 'LeetCode · múltiplos versos' },
+                    { value: 'basic', label: 'Básico · pergunta e resposta' },
+                    {
+                      value: 'multiple-choice',
+                      label: 'Múltipla escolha · 4 alternativas',
+                    },
+                  ]}
+                />
+              </>
             ) : (
               <>
+                {template === 'leetcode' && (
+                  <div className="problem-import">
+                    <TextField
+                      label="Link do problema (HTTPS)"
+                      type="url"
+                      value={leetcode.url}
+                      onChange={(e) =>
+                        setLeetcode({ ...leetcode, url: e.target.value })
+                      }
+                      placeholder="https://leetcode.com/problems/two-sum/"
+                    />
+                    <Button
+                      disabled={editorBusy || !leetcode.url.trim() || !online}
+                      onClick={() => void fillFromLink()}
+                    >
+                      {importing
+                        ? 'Consultando LeetCode…'
+                        : 'Preencher pelo link'}
+                    </Button>
+                    <p className="field-help">
+                      Importa o enunciado público e usa os tópicos como tags. Os
+                      campos continuam editáveis.
+                    </p>
+                  </div>
+                )}
                 <TextField
                   multiline
                   label={
@@ -150,6 +291,11 @@ export function LibraryEditor({
                 />
                 {template === 'leetcode' ? (
                   <LeetCodeFields value={leetcode} onChange={setLeetcode} />
+                ) : template === 'multiple-choice' ? (
+                  <MultipleChoiceFields
+                    value={multipleChoice}
+                    onChange={setMultipleChoice}
+                  />
                 ) : (
                   <TextField
                     multiline
@@ -161,8 +307,8 @@ export function LibraryEditor({
                 )}
               </>
             )}
-            <Button type="submit" variant="primary" disabled={busy}>
-              {busy ? 'Salvando…' : 'Salvar'}
+            <Button type="submit" variant="primary" disabled={editorBusy}>
+              {importing ? 'Consultando…' : busy ? 'Salvando…' : 'Salvar'}
             </Button>
           </fieldset>
         </form>

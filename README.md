@@ -56,16 +56,51 @@ Veja [docs/quality.md](docs/quality.md) para os pré-requisitos e limites dos sc
 - Treino livre dos cartões filtrados, sem alterar o agendamento ou a contagem de revisões.
 - Campo de tentativa temporária para raciocinar antes de revelar a resposta (não é salvo).
 - Template básico de pergunta/resposta continua disponível, inclusive para cartões antigos.
+- Template de múltipla escolha: quatro alternativas, uma correta e explicação opcional; seleção e confirmação antes de revelar o gabarito.
+- Template padrão ao criar um baralho, aplicado automaticamente aos novos cartões; cada cartão pode usar outro template.
 - Backup JSON preserva todo o template; arquivos antigos continuam importáveis.
 - Instalação na tela inicial do iPhone e funcionamento offline após carregar o app.
 
-Todos os versos são opcionais. Você pode salvar somente a pergunta, manter versos em branco para completar depois ou remover todos. Na prévia e na revisão, apenas versos preenchidos aparecem. Cartões sem versos também podem ser avaliados normalmente. Não há execução do código nem busca automática do enunciado no LeetCode.
+Nos templates básico e LeetCode, todos os versos são opcionais. Você pode salvar somente a pergunta, manter versos em branco para completar depois ou remover todos. Na prévia e na revisão, apenas versos preenchidos aparecem. Cartões sem versos também podem ser avaliados normalmente. Não há execução do código. A importação do enunciado pelo link está disponível no editor LeetCode.
 
 O agendamento é simples, não implementa FSRS ou sincronização com Anki. “De novo” agenda para um minuto; “Difícil” usa ao menos um dia e multiplica o intervalo por 1,2; “Bom” usa ao menos um dia e multiplica por 2,5; “Fácil” usa ao menos quatro dias e multiplica por 3,5. Cartões marcados “De novo” aparecem em uma nova sessão quando vencerem. Não há suporte a `.apkg`.
+
+## Múltipla escolha
+
+Ao criar um baralho, escolha **Múltipla escolha · 4 alternativas** no campo
+**Template padrão dos cartões**. Também é possível selecionar esse template no
+editor de qualquer cartão. Preencha a pergunta, as alternativas A a D e marque a
+única resposta correta. A explicação é opcional. As alternativas devem estar
+preenchidas e ser diferentes; o editor valida antes de salvar ou mostrar a prévia.
+
+Na revisão, selecione uma alternativa e clique em **Confirmar resposta**. O gabarito
+e a explicação aparecem após a confirmação; a escolha fica bloqueada para essa
+tentativa. Se errar, avance com **De novo**, agendando a próxima revisão para um
+minuto. Se acertar, use as avaliações normais de dificuldade. O treino livre também
+exige uma escolha confirmada, mas não altera datas nem contagem de revisões.
+
+A prévia é interativa e não grava uma revisão. Os dados são preservados no IndexedDB,
+backup JSON e sincronização por cartão. Publique o backend e frontend atualizados
+antes de sincronizar: versões anteriores não conhecem os novos campos.
 
 ## Arquitetura
 
 Veja [docs/architecture.md](docs/architecture.md) para responsabilidades, dependências e pontos de extensão.
+
+## Preencher LeetCode pelo link
+
+No editor de cartão LeetCode, cole o link do problema e clique em **Preencher pelo
+link**. A pergunta recebe o título e o enunciado completo, incluindo exemplos,
+restrições e follow-up. Número e dificuldade são preenchidos; os tópicos viram tags
+junto das tags que você já criou. Versos, resposta pessoal e solução permanecem
+intactos. Se já houver conteúdo, confirme antes de substituir a pergunta.
+
+A importação requer internet e `VITE_API_URL` apontando para o backend atualizado.
+Ela consulta apenas dados públicos, sem login ou cookies do LeetCode. Problemas
+Premium, limites de consultas e bloqueios do LeetCode mostram um erro e preservam
+seus dados. HTML é convertido em texto; imagens são indicadas para consulta no
+link original. Os campos continuam editáveis, e importar não salva nem publica o
+cartão automaticamente.
 
 ## Backup e sincronização
 

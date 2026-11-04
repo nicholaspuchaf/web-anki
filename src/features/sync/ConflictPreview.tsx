@@ -1,4 +1,5 @@
 import type { CardContent } from './model';
+import { optionLetters } from '../multiple-choice/model';
 import { CodeBlock } from '../leetcode/components/CodeBlock';
 import { difficultyLabels, faceLabels } from '../leetcode/model';
 
@@ -16,6 +17,24 @@ export function ConflictPreview({ content }: { content: CardContent | null }) {
         <>
           <h4>Resposta</h4>
           <p className="preserve-text">{card.back}</p>
+        </>
+      )}
+      {card.multipleChoice && (
+        <>
+          <h4>Alternativas</h4>
+          <ul>
+            {card.multipleChoice.options.map((option, index) => (
+              <li key={index} className="preserve-text">
+                {optionLetters[index]}. {option}
+                {index === card.multipleChoice!.correctIndex
+                  ? ' · Correta'
+                  : ''}
+              </li>
+            ))}
+          </ul>
+          {card.multipleChoice.explanation && (
+            <p className="preserve-text">{card.multipleChoice.explanation}</p>
+          )}
         </>
       )}
       {card.leetcode && (

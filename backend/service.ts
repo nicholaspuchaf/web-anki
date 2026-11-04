@@ -10,6 +10,7 @@ import {
   type StoredFlashcard,
 } from './model';
 import { encodeCursor, syncQuery } from './sync';
+import { loadProblem, ProblemImportError } from './leetcode';
 
 export type HttpEvent = {
   headers?: Record<string, string | undefined>;
@@ -38,6 +39,7 @@ export function createHandler(
   store: FlashcardStore,
   origins: string[],
   now: () => Date = () => new Date(),
+  importProblem = loadProblem,
 ) {
   return async (event: HttpEvent): Promise<HttpResponse> => {
     const method = event.requestContext.http.method;
@@ -56,6 +58,20 @@ export function createHandler(
         error:
           'O protocolo de biblioteca inteira foi substituído por /sync e /flashcards/:id. Atualize o cliente.',
       });
+    const problem = /^\/leetcode\/problems\/([^/]+)$/.exec(path);
+    if (problem) {
+      if (method !== 'GET')
+        return reply(405, { error: 'Método não permitido.' });
+      try {
+        return reply(200, await importProblem(problem[1]));
+      } catch (cause) {
+        if (cause instanceof ProblemImportError)
+          return reply(cause.status, { error: cause.message });
+        return reply(502, {
+          error: 'Não foi possível consultar o LeetCode agora.',
+        });
+      }
+    }
     const match = /^\/flashcards\/([^/]+)$/.exec(path);
     if (path !== '/sync' && !match)
       return reply(404, { error: 'Rota não encontrada.' });

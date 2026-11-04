@@ -8,6 +8,7 @@ export function useReview(library: Library, save: SaveLibrary) {
   const [practice, setPractice] = useState(false);
   const [queue, setQueue] = useState<string[]>([]);
   const [revealed, setRevealed] = useState(false);
+  const [choiceCorrect, setChoiceCorrect] = useState<boolean | null>(null);
   const [reviewed, setReviewed] = useState(0);
   const current = library.cards.find((c) => c.id === queue[0]);
 
@@ -27,9 +28,14 @@ export function useReview(library: Library, save: SaveLibrary) {
     setPractice(options?.practice ?? false);
     setReviewed(0);
     setRevealed(false);
+    setChoiceCorrect(null);
   }
   async function rate(rating: Rating) {
     if (!current) return;
+    if (current.multipleChoice) {
+      if (!revealed || choiceCorrect === null) return;
+      if (!practice && !choiceCorrect) rating = 'again';
+    }
     if (
       practice ||
       (await save({
@@ -41,6 +47,7 @@ export function useReview(library: Library, save: SaveLibrary) {
     ) {
       setQueue((q) => q.slice(1));
       setRevealed(false);
+      setChoiceCorrect(null);
       setReviewed((n) => n + 1);
     }
   }
@@ -49,6 +56,11 @@ export function useReview(library: Library, save: SaveLibrary) {
     current,
     remaining: queue.length,
     revealed,
+    choiceCorrect,
+    answerChoice: (correct: boolean) => {
+      setChoiceCorrect(correct);
+      setRevealed(true);
+    },
     reviewed,
     begin,
     rate,

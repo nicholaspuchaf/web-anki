@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { SelectField } from '../../../shared/ui/SelectField';
 import { languageOptions } from '../languages';
 import { TextField } from '../../../shared/ui/TextField';
@@ -13,6 +14,7 @@ import {
 
 type Props = { value: LeetCode; onChange: (value: LeetCode) => void };
 export function LeetCodeFields({ value, onChange }: Props) {
+  const [tagDraft, setTagDraft] = useState<string | null>(null);
   const patch = (data: Partial<LeetCode>) => onChange({ ...value, ...data });
   const changeFace = (id: string, data: Partial<CardFace>) =>
     patch({
@@ -35,31 +37,27 @@ export function LeetCodeFields({ value, onChange }: Props) {
           placeholder="Ex.: 1"
           maxLength={20}
         />
-        <label>
-          Dificuldade
-          <select
-            value={value.difficulty}
-            onChange={(e) =>
-              patch({ difficulty: e.target.value as LeetCode['difficulty'] })
-            }
-          >
-            <option value="easy">Fácil</option>
-            <option value="medium">Médio</option>
-            <option value="hard">Difícil</option>
-          </select>
-        </label>
+        <SelectField
+          label="Dificuldade"
+          value={value.difficulty}
+          options={[
+            { value: 'easy', label: 'Fácil' },
+            { value: 'medium', label: 'Médio' },
+            { value: 'hard', label: 'Difícil' },
+          ]}
+          onChange={(e) =>
+            patch({ difficulty: e.target.value as LeetCode['difficulty'] })
+          }
+        />
       </div>
       <TextField
-        label="Link do problema (HTTPS)"
-        type="url"
-        value={value.url}
-        onChange={(e) => patch({ url: e.target.value })}
-        placeholder="https://leetcode.com/problems/..."
-      />
-      <TextField
         label="Tags separadas por vírgula"
-        defaultValue={value.tags.join(', ')}
-        onChange={(e) => patch({ tags: normalizeTags(e.target.value) })}
+        value={tagDraft ?? value.tags.join(', ')}
+        onChange={(e) => {
+          setTagDraft(e.target.value);
+          patch({ tags: normalizeTags(e.target.value) });
+        }}
+        onBlur={() => setTagDraft(null)}
         placeholder="array, hash map, two pointers"
       />
       <TextField
@@ -69,19 +67,18 @@ export function LeetCodeFields({ value, onChange }: Props) {
         onChange={(e) => patch({ constraints: e.target.value })}
         placeholder="Observações extras sobre casos de borda (opcional)"
       />
-      <label>
-        Cor do cartão
-        <select
-          value={value.accent}
-          onChange={(e) =>
-            patch({ accent: e.target.value as LeetCode['accent'] })
-          }
-        >
-          <option value="forest">Floresta</option>
-          <option value="indigo">Índigo</option>
-          <option value="amber">Âmbar</option>
-        </select>
-      </label>
+      <SelectField
+        label="Cor do cartão"
+        value={value.accent}
+        options={[
+          { value: 'forest', label: 'Floresta' },
+          { value: 'indigo', label: 'Índigo' },
+          { value: 'amber', label: 'Âmbar' },
+        ]}
+        onChange={(e) =>
+          patch({ accent: e.target.value as LeetCode['accent'] })
+        }
+      />
       <div className="editor-heading">
         <h3>Versos do cartão</h3>
         <p>

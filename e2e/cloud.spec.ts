@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { cloudFixture } from '../tests/helpers/cloud';
+import { cloudFixture, START } from '../tests/helpers/cloud';
 import type { CardContent } from '../src/features/sync/model';
 
 const endpoint = process.env.VITE_API_URL;
@@ -8,6 +8,7 @@ test('sincroniza cartões com o backend real, persiste checkpoint e resolve conf
   context,
 }) => {
   test.skip(!endpoint, 'Configure VITE_API_URL no build e no teste.');
+  await page.clock.setFixedTime(new Date(START));
   const cloud = cloudFixture(['http://127.0.0.1:4173']);
   const content: CardContent = {
     card: {

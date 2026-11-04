@@ -2,16 +2,18 @@
 
 Catálogo revisado em **2026-11-04**: **326 cartões**, em **20 categorias**, incluindo **45 recursos de Bedrock e AgentCore**.
 
-O conteúdo está em [src/content/aws-services.json](../src/content/aws-services.json). Cada entrada tem nome, categoria, definição curta, caso de uso, comentário de nível pleno (`intermediateComment`) e fonte oficial. As definições têm até 150 caracteres e no máximo quatro linhas; o teste de navegador também verifica o limite visual no layout de celular.
+O conteúdo está em [src/content/aws-services.json](../src/content/aws-services.json). Cada entrada tem nome, categoria, definição curta, caso de uso, comentários de nível pleno (`intermediateComment`) e sênior (`seniorComment`) e fonte oficial. As definições têm até 150 caracteres e no máximo quatro linhas; o teste de navegador também verifica o limite visual no layout de celular.
 
 O catálogo reúne serviços, funcionalidades importantes e ferramentas da AWS. Não é uma enumeração de todas as APIs, modelos de IA, SKUs ou combinações de recursos. Os exemplos são didáticos e originais, não instruções para provisionar infraestrutura.
 
 O verso **Visão de pleno** aprofunda cada serviço com decisões de arquitetura, limitações, segurança e operação. Os comentários são específicos de cada cartão e podem ser revelados separadamente, depois da definição e do caso de uso.
 
+O quarto verso, **Visão de sênior**, contém um comentário original por serviço, sem substituir o de pleno. Cada comentário apresenta um cenário ou limite de garantia, suas consequências e uma forma de avaliar ou mitigar o risco. O foco inclui falhas correlacionadas, resultados ambíguos, restauração, mudanças compatíveis, segurança e custo por resultado útil. São orientações de engenharia para estudo, não relatos de experiência pessoal nem garantias universais do produto.
+
 ## Como funciona
 
 - O baralho aparece automaticamente, sem confirmação, em bibliotecas novas e existentes.
-- Cada cartão tem três versos: **O que é**, **Quando usar** e **Visão de pleno**.
+- Cada cartão tem quatro versos: **O que é**, **Quando usar**, **Visão de pleno** e **Visão de sênior**.
 - Conteúdo e IDs pertencem ao repositório; a interface permite estudar e favoritar. Alterações de conteúdo são feitas no JSON.
 - Ao atualizar o site, o conteúdo é atualizado por ID sem perder datas, revisões ou favoritos locais. Preserve o ID ao renomear um serviço.
 - `syncEnabled: false` existe no baralho e nos cartões. Os IDs `builtin-aws-*` também são bloqueados pelo cliente e pelo backend.
@@ -19,6 +21,22 @@ O verso **Visão de pleno** aprofunda cada serviço com decisões de arquitetura
 - O catálogo está no build e no cache da PWA. Não há consultas externas ao abrir ou estudar; a fonte só é acessada se você abrir o link.
 - Backups JSON preservam o conteúdo, o progresso e a indicação de armazenamento local. Restaurar um backup antigo também repõe o catálogo do site.
 - A lista exibe 50 cartões por vez; pesquisa e filtros consideram o catálogo inteiro.
+
+## Leituras para aprofundar os comentários
+
+Referências oficiais consultadas para os limites técnicos e padrões usados nos versos de sênior:
+
+- [Timeouts, retries e backoff com jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/): resultados ambíguos e amplificação de carga por retentativas.
+- [Transactional outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html): publicação de eventos junto a alterações de dados.
+- [Modelo de consistência do S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html): garantias por chave e limites entre objetos.
+- [Pinning no RDS Proxy](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-pinning.html): estado de sessão e reaproveitamento de conexões.
+- [Concorrência no Aurora DSQL](https://docs.aws.amazon.com/aurora-dsql/latest/userguide/working-with-concurrency-control.html): conflitos e repetição de transações.
+- [Global Tables do DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html): escolha do modo de consistência entre Regiões.
+- [Avaliação de políticas IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html): composição de permissões e limites.
+- [Garantias do Managed Service for Apache Flink](https://aws.amazon.com/managed-service-apache-flink/faqs/): dependência dos conectores para a garantia de processamento.
+- [Sincronização de Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/kb-data-source-sync-ingest.html): atualização dos dados derivados.
+- [Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html): escopo dos filtros.
+- [Políticas temporais do AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html): histórico, sessão e condições de autorização.
 
 ## Disponibilidade e verificação
 

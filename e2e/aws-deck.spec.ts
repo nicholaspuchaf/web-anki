@@ -3,7 +3,7 @@ import catalog from '../src/content/aws-services.json' with { type: 'json' };
 import { cloudFixture } from '../tests/helpers/cloud';
 
 const endpoint = process.env.VITE_API_URL;
-test('baralho AWS carrega automaticamente, revela três versos, mantém progresso offline e nunca envia cartões à nuvem', async ({
+test('baralho AWS carrega automaticamente, revela quatro versos, mantém progresso offline e nunca envia cartões à nuvem', async ({
   page,
   context,
 }, testInfo) => {
@@ -86,6 +86,9 @@ test('baralho AWS carrega automaticamente, revela três versos, mantém progress
   await expect(
     page.getByText(entry.intermediateComment, { exact: true }),
   ).toHaveCount(0);
+  await expect(
+    page.getByText(entry.seniorComment, { exact: true }),
+  ).toHaveCount(0);
   await page.getByRole('button', { name: /O que é/ }).click();
   await expect(page.getByText(entry.definition, { exact: true })).toBeVisible();
   const lineCounts = await page.evaluate(
@@ -124,6 +127,16 @@ test('baralho AWS carrega automaticamente, revela três versos, mantém progress
     page.getByText(entry.intermediateComment, { exact: true }),
   ).toBeVisible();
   await expect(page.getByText(entry.useCase, { exact: true })).toHaveCount(0);
+  await expect(
+    page.getByText(entry.seniorComment, { exact: true }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: /Visão de sênior/ }).click();
+  await expect(
+    page.getByText(entry.seniorComment, { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(entry.intermediateComment, { exact: true }),
+  ).toHaveCount(0);
   await expect(
     page.getByRole('link', { name: 'Consultar fonte oficial' }),
   ).toHaveAttribute('href', entry.sourceUrl);

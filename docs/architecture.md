@@ -146,7 +146,7 @@ precisam ser publicados juntos para preservar o novo template na nuvem.
 ## Baralhos incluídos no repositório
 
 `content/aws-services.json` contém o catálogo de estudo, sem estado de revisão.
-`bundled-decks/aws.ts` converte-o em cartões com IDs estáveis, três versos e
+`bundled-decks/aws.ts` converte-o em cartões com IDs estáveis, quatro versos e
 `syncEnabled: false`. `withBundledAwsDeck` atualiza apenas o conteúdo reservado e
 preserva agendamento, revisões, favoritos e todos os cartões pessoais.
 `bootstrap.ts` aplica essa composição a bibliotecas novas ou existentes usando
@@ -172,4 +172,4 @@ inclua os 326 cartões no pacote de execução.
 O catálogo e seus limites são validados em testes, assim como atualização sem
 perda de progresso, preservação de bibliotecas existentes e zero chamadas DynamoDB
 em pedidos com IDs reservados. O teste de navegador confirma carregamento automático,
-três versos, limite visual das definições, ausência de envio e uso offline.
+quatro versos, limite visual das definições, ausência de envio e uso offline.

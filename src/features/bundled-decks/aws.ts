@@ -33,6 +33,11 @@ export function withBundledAwsDeck(library: Library): Library {
           title: 'Visão de pleno',
           content: entry.intermediateComment,
         },
+        {
+          id: `${id}-senior`,
+          title: 'Visão de sênior',
+          content: entry.seniorComment,
+        },
       ],
       tags: [
         'aws',

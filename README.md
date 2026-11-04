@@ -70,7 +70,8 @@ O agendamento é simples, não implementa FSRS ou sincronização com Anki. “D
 O site já abre com **AWS · Serviços e aplicações**, um catálogo de **326 cartões**
 em 20 categorias, incluindo 45 recursos de Bedrock e AgentCore. Cada cartão tem
 **O que é** (explicação curta), **Quando usar** (exemplo simples e bom uso) e
-**Visão de pleno** (decisões de arquitetura, limitações e cuidados práticos específicos do serviço).
+**Visão de pleno** (decisões de arquitetura, limitações e cuidados práticos específicos do serviço), além de
+**Visão de sênior** (cenários de falha, fronteiras das garantias, recuperação e trade-offs de produção).
 O [índice completo e as fontes](docs/aws-catalog.md) ficam no repositório; o conteúdo
 editável está em [src/content/aws-services.json](src/content/aws-services.json).
 

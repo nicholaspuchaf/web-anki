@@ -16,7 +16,7 @@ import { parseBackup } from '../backup/parse-backup';
 import { parseStudyFaces } from '../standard/model';
 import { removeCard, removeDeck } from '../library/commands';
 
-test('catálogo extenso tem IDs estáveis, três versos com aprofundamento, categorias e fontes oficiais', () => {
+test('catálogo extenso tem IDs estáveis, quatro versos com aprofundamento, categorias e fontes oficiais', () => {
   const library = withBundledAwsDeck(emptyLibrary);
   expect(AWS_CARD_COUNT).toBeGreaterThanOrEqual(300);
   expect(
@@ -36,10 +36,23 @@ test('catálogo extenso tem IDs estáveis, três versos com aprofundamento, cate
   expect(
     new Set(catalog.cards.map((entry) => entry.intermediateComment)).size,
   ).toBe(AWS_CARD_COUNT);
+  expect(new Set(catalog.cards.map((entry) => entry.seniorComment)).size).toBe(
+    AWS_CARD_COUNT,
+  );
   for (const card of library.cards) {
     expect(isBundledId(card.id)).toBe(true);
     expect(card.syncEnabled).toBe(false);
-    expect(card.faces).toHaveLength(3);
+    expect(card.faces).toHaveLength(4);
+    const entry = catalog.cards.find(
+      (item) => card.id === `builtin-aws-${item.id}`,
+    )!;
+    expect(card.faces![3]).toEqual({
+      id: `${card.id}-senior`,
+      title: 'Visão de sênior',
+      content: entry.seniorComment,
+    });
+    expect(entry.seniorComment.length).toBeGreaterThan(250);
+    expect(entry.seniorComment).not.toBe(entry.intermediateComment);
     expect(card.faces![2].title).toBe('Visão de pleno');
     expect(card.faces![2].content.length).toBeGreaterThan(150);
     expect(card.faces![0].title).toBe('O que é');
@@ -59,37 +72,47 @@ test('catálogo extenso tem IDs estáveis, três versos com aprofundamento, cate
   expect(withBundledAwsDeck(library)).toEqual(library);
 });
 
-test('atualiza o conteúdo do repositório sem duplicar nem perder revisões e favoritos', () => {
-  const library = withBundledAwsDeck(emptyLibrary);
-  const card = library.cards[0];
-  card.due = 12345;
-  card.interval = 7;
-  card.reviews = 4;
-  card.favorite = true;
-  card.front = 'Conteúdo antigo';
-  card.faces![0].content = 'Versão antiga';
-  card.faces = card.faces!.slice(0, 2);
-  card.syncEnabled = true;
-  library.decks[0].syncEnabled = true;
-  const migrated = withBundledAwsDeck(library);
-  expect(migrated.cards).toHaveLength(AWS_CARD_COUNT);
-  expect(migrated.cards[0]).toMatchObject({
-    front: catalog.cards[0].name,
-    due: 12345,
-    interval: 7,
-    reviews: 4,
-    favorite: true,
-    syncEnabled: false,
-  });
-  expect(migrated.cards[0].faces![0].content).toBe(catalog.cards[0].definition);
-  expect(migrated.cards[0].faces![2]).toMatchObject({
-    title: 'Visão de pleno',
-    content: catalog.cards[0].intermediateComment,
-  });
-  expect(parseBackup(JSON.stringify(migrated))).toEqual(migrated);
-  expect(() => removeCard(migrated, card.id)).toThrow('repositório');
-  expect(() => removeDeck(migrated, AWS_DECK_ID)).toThrow('repositório');
-});
+test.each([2, 3])(
+  'atualiza cartões de %i versos sem duplicar nem perder revisões e favoritos',
+  (previousFaceCount) => {
+    const library = withBundledAwsDeck(emptyLibrary);
+    const card = library.cards[0];
+    card.due = 12345;
+    card.interval = 7;
+    card.reviews = 4;
+    card.favorite = true;
+    card.front = 'Conteúdo antigo';
+    card.faces![0].content = 'Versão antiga';
+    card.faces = card.faces!.slice(0, previousFaceCount);
+    card.syncEnabled = true;
+    library.decks[0].syncEnabled = true;
+    const migrated = withBundledAwsDeck(library);
+    expect(migrated.cards).toHaveLength(AWS_CARD_COUNT);
+    expect(migrated.cards[0]).toMatchObject({
+      front: catalog.cards[0].name,
+      due: 12345,
+      interval: 7,
+      reviews: 4,
+      favorite: true,
+      syncEnabled: false,
+    });
+    expect(migrated.cards[0].faces![0].content).toBe(
+      catalog.cards[0].definition,
+    );
+    expect(migrated.cards[0].faces![2]).toMatchObject({
+      title: 'Visão de pleno',
+      content: catalog.cards[0].intermediateComment,
+    });
+    expect(migrated.cards[0].faces).toHaveLength(4);
+    expect(migrated.cards[0].faces![3]).toMatchObject({
+      title: 'Visão de sênior',
+      content: catalog.cards[0].seniorComment,
+    });
+    expect(parseBackup(JSON.stringify(migrated))).toEqual(migrated);
+    expect(() => removeCard(migrated, card.id)).toThrow('repositório');
+    expect(() => removeDeck(migrated, AWS_DECK_ID)).toThrow('repositório');
+  },
+);
 
 test('adiciona o padrão a uma biblioteca existente e mantém os dados pessoais intactos', () => {
   const own: Library = {

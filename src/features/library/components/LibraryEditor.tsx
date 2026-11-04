@@ -142,6 +142,7 @@ export function LibraryEditor({
     ...(template === 'multi-face'
       ? {
           faces,
+          ...(editing?.frontImage ? { frontImage: editing.frontImage } : {}),
           ...(editing?.tags ? { tags: editing.tags } : {}),
           ...(editing?.sourceUrl ? { sourceUrl: editing.sourceUrl } : {}),
         }

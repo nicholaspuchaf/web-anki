@@ -215,6 +215,8 @@ O cliente não gera PUT nem DELETE para esses cartões, e preserva o conteúdo l
 quando recebe versões ou exclusões remotas incompatíveis.
 
 O baralho AWS usa a chave local `builtin-aws-services` e cartões `builtin-aws-*`.
+O baralho Design Patterns usa `builtin-patterns-design` e cartões `builtin-patterns-*`;
+a mesma proteção local se aplica aos dois catálogos.
 Esses IDs são recusados com 403 nas rotas individuais antes de acessar DynamoDB,
 inclusive se o corpo tentar declarar `syncEnabled: true`. PUT de qualquer outro
 cartão ou baralho marcado com `syncEnabled: false` também retorna 403.

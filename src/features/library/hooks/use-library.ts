@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { bootstrapLibrary } from '../../bundled-decks/bootstrap';
-import { withBundledAwsDeck } from '../../bundled-decks/aws';
+import { withBundledDecks } from '../../bundled-decks/catalog';
 import { emptyLibrary, type Library } from '../model';
 import { writeLibrary } from '../../../shared/storage/library-repository';
 
@@ -39,7 +39,7 @@ export function useLibrary() {
     setBusy(true);
     setError('');
     try {
-      const seeded = withBundledAwsDeck(next);
+      const seeded = withBundledDecks(next);
       await writeLibrary(seeded, library);
       setLibrary(seeded);
       return true;

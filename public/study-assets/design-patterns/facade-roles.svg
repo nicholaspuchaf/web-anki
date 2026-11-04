@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="390" viewBox="0 0 680 390" role="img" aria-labelledby="title desc">
+<title id="title">Facade</title>
+<desc id="desc">Mapa de responsabilidades: Client: jornada simples; Facade: coordena subsistema; Subsystem A: operações internas; Subsystem B: operações internas</desc>
+<rect width="680" height="390" rx="18" fill="#f8fafc"/>
+<text x="28" y="40" font-family="sans-serif" font-size="24" font-weight="700" fill="#0f172a">Facade</text>
+<text x="28" y="67" font-family="sans-serif" font-size="15" fill="#475569">Mapa de responsabilidades · ilustração autoral</text>
+<rect x="28" y="90" width="300" height="106" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="44" y="120" font-family="sans-serif" font-size="19" font-weight="600" fill="#0c4a6e">Client</text>
+<text x="44" y="148" font-family="sans-serif" font-size="16" fill="#1e293b">jornada simples</text>
+<rect x="352" y="90" width="300" height="106" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="368" y="120" font-family="sans-serif" font-size="19" font-weight="600" fill="#0c4a6e">Facade</text>
+<text x="368" y="148" font-family="sans-serif" font-size="16" fill="#1e293b">coordena subsistema</text>
+<rect x="28" y="214" width="300" height="106" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="44" y="244" font-family="sans-serif" font-size="19" font-weight="600" fill="#0c4a6e">Subsystem A</text>
+<text x="44" y="272" font-family="sans-serif" font-size="16" fill="#1e293b">operações internas</text>
+<rect x="352" y="214" width="300" height="106" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="368" y="244" font-family="sans-serif" font-size="19" font-weight="600" fill="#0c4a6e">Subsystem B</text>
+<text x="368" y="272" font-family="sans-serif" font-size="16" fill="#1e293b">operações internas</text>
+<text x="28" y="370" font-family="sans-serif" font-size="14" fill="#475569">Leia os papéis e explique como colaboram. Não é um diagrama UML.</text></svg>

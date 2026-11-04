@@ -173,3 +173,28 @@ O catálogo e seus limites são validados em testes, assim como atualização se
 perda de progresso, preservação de bibliotecas existentes e zero chamadas DynamoDB
 em pedidos com IDs reservados. O teste de navegador confirma carregamento automático,
 quatro versos, limite visual das definições, ausência de envio e uso offline.
+
+## Composição de catálogos e imagens de estudo
+
+`bundled-decks/catalog.ts` compõe AWS e Design Patterns na abertura, gravação e
+restauração. `merge.ts` atualiza somente os IDs e o deck do catálogo aplicado,
+preservando os outros baralhos, cartões pessoais e estado de revisão. A relação
+entre IDs de deck e prefixos fica em `ids.ts`, sem importar conteúdo na Lambda.
+`bundledDeckReviewedAt` fornece a data correspondente ao catálogo da tela.
+
+`content/design-patterns.json` contém 22 padrões com oito perguntas cada. O conteúdo
+é uma síntese original; o índice e a matriz editorial ficam em
+`docs/design-patterns`. `design-pattern-assets.json` rastreia as dez ilustrações
+permitidas pelo fornecedor; 22 mapas SVG autorais complementam o material.
+
+`Card.frontImage` e `StudyFace.image` usam `StudyImage`, com caminho local, texto
+alternativo, legenda e crédito, além de link de fonte opcional. O parser aceita
+somente caminhos sob `/study-assets/` com extensão de imagem e links HTTPS sem
+credenciais, rejeitando caminhos relativos, protocolos executáveis e imagens remotas.
+`StudyIllustration` é compartilhado pela pergunta e pelos versos e permite ampliar
+o arquivo local. Versos contendo apenas imagem também podem ser revelados.
+
+Backups preservam os metadados visuais; eles não incorporam os bytes das imagens.
+Os recursos incluídos são distribuídos pela aplicação e precacheados pela PWA.
+O teste de navegador consulta todos os 32 recursos sem rede e verifica revisão,
+favoritos, créditos, ocultação dos versos e convivência com o baralho AWS.

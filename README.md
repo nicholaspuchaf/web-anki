@@ -83,6 +83,19 @@ incluídos não podem ser editados ou excluídos pela interface.
 
 O template **Básico · vários versos** também pode ser usado em outros baralhos.
 
+## Baralho Design Patterns
+
+**Design Patterns · Conceitos e decisões** inclui **176 cartões**, oito para cada um
+dos 22 padrões do catálogo Refactoring.Guru. As perguntas cobrem conceito, problema,
+estrutura, implementação, exemplo original, aplicabilidade, trade-offs e comparações.
+Há 22 mapas autorais na pergunta e dez ilustrações do site em versos independentes,
+com crédito e link de origem. As imagens são locais e funcionam offline após o
+primeiro carregamento completo da PWA.
+
+O material é uma síntese original, sem cópia integral dos artigos ou promessa de
+cobertura de 100% do texto. Veja o [índice, a matriz de cobertura e a atribuição](docs/design-patterns/README.md).
+Este baralho também é local, não vai ao DynamoDB e preserva revisões e favoritos.
+
 ## Múltipla escolha
 
 Ao criar um baralho, escolha **Múltipla escolha · 4 alternativas** no campo

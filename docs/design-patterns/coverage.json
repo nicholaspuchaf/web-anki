@@ -1,0 +1,382 @@
+{
+  "reviewedAt": "2026-11-04",
+  "scope": "Síntese original dos temas centrais; não é cópia integral nem cobertura de 100% dos artigos.",
+  "catalogUrl": "https://refactoring.guru/design-patterns/catalog",
+  "usagePolicy": "https://refactoring.guru/content-usage-policy",
+  "patterns": [
+    {
+      "id": "factory-method",
+      "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/factory-method-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/factory-method-refactoring-guru.png"
+    },
+    {
+      "id": "abstract-factory",
+      "sourceUrl": "https://refactoring.guru/design-patterns/abstract-factory",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/abstract-factory-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "builder",
+      "sourceUrl": "https://refactoring.guru/design-patterns/builder",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/builder-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/builder-refactoring-guru.png"
+    },
+    {
+      "id": "prototype",
+      "sourceUrl": "https://refactoring.guru/design-patterns/prototype",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/prototype-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "singleton",
+      "sourceUrl": "https://refactoring.guru/design-patterns/singleton",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/singleton-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "adapter",
+      "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/adapter-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/adapter-refactoring-guru.png"
+    },
+    {
+      "id": "bridge",
+      "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/bridge-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/bridge-refactoring-guru.png"
+    },
+    {
+      "id": "composite",
+      "sourceUrl": "https://refactoring.guru/design-patterns/composite",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/composite-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/composite-refactoring-guru.png"
+    },
+    {
+      "id": "decorator",
+      "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/decorator-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/decorator-refactoring-guru.png"
+    },
+    {
+      "id": "facade",
+      "sourceUrl": "https://refactoring.guru/design-patterns/facade",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/facade-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "flyweight",
+      "sourceUrl": "https://refactoring.guru/design-patterns/flyweight",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/flyweight-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "proxy",
+      "sourceUrl": "https://refactoring.guru/design-patterns/proxy",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/proxy-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "chain-of-responsibility",
+      "sourceUrl": "https://refactoring.guru/design-patterns/chain-of-responsibility",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/chain-of-responsibility-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/chain-of-responsibility-refactoring-guru.png"
+    },
+    {
+      "id": "command",
+      "sourceUrl": "https://refactoring.guru/design-patterns/command",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/command-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "iterator",
+      "sourceUrl": "https://refactoring.guru/design-patterns/iterator",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/iterator-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "mediator",
+      "sourceUrl": "https://refactoring.guru/design-patterns/mediator",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/mediator-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "memento",
+      "sourceUrl": "https://refactoring.guru/design-patterns/memento",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/memento-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "observer",
+      "sourceUrl": "https://refactoring.guru/design-patterns/observer",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/observer-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/observer-refactoring-guru.png"
+    },
+    {
+      "id": "state",
+      "sourceUrl": "https://refactoring.guru/design-patterns/state",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/state-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/state-refactoring-guru.png"
+    },
+    {
+      "id": "strategy",
+      "sourceUrl": "https://refactoring.guru/design-patterns/strategy",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/strategy-roles.svg",
+      "thirdPartyImage": "/study-assets/design-patterns/strategy-refactoring-guru.png"
+    },
+    {
+      "id": "template-method",
+      "sourceUrl": "https://refactoring.guru/design-patterns/template-method",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/template-method-roles.svg",
+      "thirdPartyImage": null
+    },
+    {
+      "id": "visitor",
+      "sourceUrl": "https://refactoring.guru/design-patterns/visitor",
+      "topics": [
+        "conceito",
+        "problema",
+        "estrutura",
+        "implementacao",
+        "exemplo",
+        "aplicabilidade",
+        "trade-offs",
+        "comparacao"
+      ],
+      "cardCount": 8,
+      "localDiagram": "/study-assets/design-patterns/visitor-roles.svg",
+      "thirdPartyImage": null
+    }
+  ]
+}

@@ -9,6 +9,11 @@ export default defineConfig({
         manualChunks(id) {
           if (id.endsWith('/src/content/aws-services.json'))
             return 'aws-catalog';
+          if (
+            id.endsWith('/src/content/design-patterns.json') ||
+            id.endsWith('/src/content/design-pattern-assets.json')
+          )
+            return 'patterns-catalog';
         },
       },
     },
@@ -38,7 +43,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,svg,ico,woff2}'],
+        globPatterns: ['**/*.{js,css,html,png,svg,webp,jpg,jpeg,ico,woff2}'],
         navigateFallback: 'index.html',
       },
     }),

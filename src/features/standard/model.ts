@@ -1,4 +1,10 @@
-export type StudyFace = { id: string; title: string; content: string };
+import { parseStudyImage, type StudyImage } from './image';
+export type StudyFace = {
+  id: string;
+  title: string;
+  content: string;
+  image?: StudyImage;
+};
 export function createStudyFaces(): StudyFace[] {
   return [
     { id: crypto.randomUUID(), title: 'Resposta', content: '' },
@@ -24,9 +30,10 @@ export function parseStudyFaces(value: unknown): StudyFace[] {
       id: x.id,
       title: x.title.trim() || `Verso ${index + 1}`,
       content: x.content,
+      ...(x.image !== undefined ? { image: parseStudyImage(x.image) } : {}),
     };
   });
 }
 export function filledFaces(faces: StudyFace[]): StudyFace[] {
-  return faces.filter((face) => face.content.trim());
+  return faces.filter((face) => face.content.trim() || face.image);
 }

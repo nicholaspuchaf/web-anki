@@ -1,3 +1,4 @@
+import { parseStudyImage } from '../standard/image';
 import { parseLeetCode } from '../leetcode/model';
 import { isCardTemplate, type Library } from '../library/model';
 import { parseStudyFaces } from '../standard/model';
@@ -87,6 +88,9 @@ export function parseBackup(text: string): Library {
       id: c.id,
       deckId: c.deckId,
       front,
+      ...(c.frontImage !== undefined
+        ? { frontImage: parseStudyImage(c.frontImage) }
+        : {}),
       back: c.back,
       due: c.due,
       interval: c.interval,

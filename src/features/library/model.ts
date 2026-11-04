@@ -1,3 +1,4 @@
+import type { StudyImage } from '../standard/image';
 import type { LeetCode } from '../leetcode/model';
 import type { MultipleChoice } from '../multiple-choice/model';
 import type { StudyFace } from '../standard/model';
@@ -21,6 +22,7 @@ export type Card = {
   id: string;
   deckId: string;
   front: string;
+  frontImage?: StudyImage;
   back: string;
   due: number;
   interval: number;

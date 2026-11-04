@@ -1,5 +1,5 @@
 import { isBundledId } from '../../bundled-decks/ids';
-import { AWS_CATALOG_REVIEWED_AT } from '../../bundled-decks/aws';
+import { bundledDeckReviewedAt } from '../../bundled-decks/catalog';
 import { useState } from 'react';
 import { getDeckCards, getDueCards } from '../selectors';
 import { removeDeck, removeCard, putCard } from '../commands';
@@ -61,7 +61,7 @@ export function DeckPage({
       {deck.syncEnabled === false && (
         <p className="local-deck-notice">
           {isBundledId(deck.id)
-            ? `Incluído no site · catálogo revisado em ${AWS_CATALOG_REVIEWED_AT}. Conteúdo mantido no repositório; progresso e favoritos ficam neste aparelho.`
+            ? `Incluído no site · catálogo revisado em ${bundledDeckReviewedAt(deck.id)}. Conteúdo mantido no repositório; progresso e favoritos ficam neste aparelho.`
             : 'Baralho local: os cartões não são enviados para a nuvem.'}
         </p>
       )}

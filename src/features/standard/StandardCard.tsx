@@ -1,3 +1,4 @@
+import { StudyIllustration } from './StudyIllustration';
 import { useState } from 'react';
 import type { Card } from '../library/model';
 import { filledFaces } from './model';
@@ -17,6 +18,7 @@ export function StandardCard({
     <article className="standard-card">
       <p className="eyebrow">PERGUNTA E VERSOS</p>
       <h2 className="preserve-text">{card.front}</h2>
+      {card.frontImage && <StudyIllustration image={card.frontImage} />}
       <TagList tags={card.tags ?? []} />
       <nav className="standard-face-options" aria-label="Versos do cartão">
         {faces.map((item, index) => (
@@ -35,7 +37,8 @@ export function StandardCard({
       {face ? (
         <section aria-label="Verso selecionado" className="standard-face">
           <h3>{face.title}</h3>
-          <p className="preserve-text">{face.content}</p>
+          {face.content && <p className="preserve-text">{face.content}</p>}
+          {face.image && <StudyIllustration image={face.image} />}
         </section>
       ) : (
         <p className="review-instruction">
@@ -51,7 +54,7 @@ export function StandardCard({
           target="_blank"
           rel="noreferrer"
         >
-          Consultar fonte oficial ↗
+          Consultar fonte ↗
         </a>
       )}
     </article>

@@ -1762,3 +1762,29 @@ label {
   color: var(--blue);
   font-size: 0.7rem;
 }
+
+.study-illustration {
+  margin: 1rem 0;
+  min-width: 0;
+}
+.study-illustration > a {
+  display: block;
+  border-radius: 0.65rem;
+  background: #f8fafc;
+  overflow: hidden;
+}
+.study-illustration img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 32rem;
+  object-fit: contain;
+}
+.study-illustration figcaption {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}

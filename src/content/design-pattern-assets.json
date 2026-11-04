@@ -1,0 +1,122 @@
+[
+  {
+    "pattern": "factory-method",
+    "src": "/study-assets/design-patterns/factory-method-refactoring-guru.png",
+    "alt": "Estrutura de factory method",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/factory-method/structure.png?id=4cba0803f42517cfe8548c9bc7dc4c9b",
+    "sha256": "885311e3d3dcc81e8dfc96565a66bb758815fdeea89459369b43481ff211a7fe",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "builder",
+    "src": "/study-assets/design-patterns/builder-refactoring-guru.png",
+    "alt": "Estrutura de builder",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/builder",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/builder/structure.png?id=fe9e23559923ea0657aa5fe75efef333",
+    "sha256": "2683511e8b379510304e8c2508b9d867f858ffee084a5570ec7bd2c2034ee899",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "adapter",
+    "src": "/study-assets/design-patterns/adapter-refactoring-guru.png",
+    "alt": "Estrutura de adapter",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/adapter/structure-object-adapter.png?id=33dffbe3aece294162440c7ddd3d5d4f",
+    "sha256": "ea59fdd37850889b37fa81b22816d9e744353ee1696a18d1635cd9422194db6a",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "bridge",
+    "src": "/study-assets/design-patterns/bridge-refactoring-guru.png",
+    "alt": "Estrutura de bridge",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/bridge/structure-en.png?id=827afa4b40008dc29d26fe0f4d41b9cc",
+    "sha256": "e192a6f68271d83bd07b798dc0ef8195bc4123d3db75e5d6707ba357d626509d",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "composite",
+    "src": "/study-assets/design-patterns/composite-refactoring-guru.png",
+    "alt": "Estrutura de composite",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/composite",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/composite/structure-en.png?id=b7f114558b594dfb220d225398b2b744",
+    "sha256": "00eef3722d4d77443e67aafc1a63bc2726a32116dba29daaecf136731d0f9711",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "decorator",
+    "src": "/study-assets/design-patterns/decorator-refactoring-guru.png",
+    "alt": "Estrutura de decorator",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/decorator/structure.png?id=8c95d894aecce5315cc1b12093a7ea0c",
+    "sha256": "cbb52ff908b20278cf8268afe1a76595fdee99e90e58ad6ce70844e61698b62e",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "chain-of-responsibility",
+    "src": "/study-assets/design-patterns/chain-of-responsibility-refactoring-guru.png",
+    "alt": "Estrutura de chain of responsibility",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/chain-of-responsibility",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/chain-of-responsibility/structure.png?id=848f0fc8dca57a44974d63f8181f5406",
+    "sha256": "020888dc59446f140133445314ee205e161c65e66537f42560e79876c52e7776",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "observer",
+    "src": "/study-assets/design-patterns/observer-refactoring-guru.png",
+    "alt": "Estrutura de observer",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/observer",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/observer/structure.png?id=365b7e2b8fbecc8948f34b9f8f16f33c",
+    "sha256": "8880bf7e5fd330a0260963d86ac88d1f1ea00c463eac1213ef79a90d0d82bace",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "state",
+    "src": "/study-assets/design-patterns/state-refactoring-guru.png",
+    "alt": "Estrutura de state",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/state",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/state/structure-en.png?id=caac48afbc4b2d95829cd7c7eb0dcacf",
+    "sha256": "e79268507ccde88b415507b4254eff17fe10fa4b51443bea903806a7fa8e55a4",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  },
+  {
+    "pattern": "strategy",
+    "src": "/study-assets/design-patterns/strategy-refactoring-guru.png",
+    "alt": "Estrutura de strategy",
+    "caption": "Estrutura do padrão — Refactoring.Guru",
+    "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+    "sourceUrl": "https://refactoring.guru/design-patterns/strategy",
+    "originalUrl": "https://refactoring.guru/images/patterns/diagrams/strategy/structure.png?id=c6aa910c94960f35d100bfca02810ea1",
+    "sha256": "c95b7aee884a26b542c0bf9a2eae031a16af560133345bfabcb32c9f1d364465",
+    "usagePolicy": "https://refactoring.guru/content-usage-policy",
+    "retrievedAt": "2026-11-04"
+  }
+]

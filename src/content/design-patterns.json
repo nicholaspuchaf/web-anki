@@ -1,0 +1,1197 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-11-04",
+  "name": "Design Patterns · Conceitos e decisões",
+  "syncEnabled": false,
+  "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
+  "patterns": [
+    {
+      "id": "factory-method",
+      "name": "Factory Method",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
+      "diagram": [
+        ["Creator", "create(): Product"],
+        ["ConcreteCreator", "sobrescreve create()"],
+        ["Product", "contrato comum"],
+        ["ConcreteProduct", "implementa Product"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual decisão o Factory Method adia?",
+          "answer": "A classe concreta do produto; subclasses escolhem a implementação usada pela lógica herdada."
+        },
+        {
+          "id": "problema",
+          "question": "Que acoplamento ele reduz?",
+          "answer": "O fluxo principal deixa de construir diretamente produtos específicos, evitando alterações espalhadas para cada variante."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem cria e quem usa?",
+          "answer": "ConcreteCreator sobrescreve a criação; Creator trabalha com Product; ConcreteProduct cumpre esse contrato."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir o ponto de extensão?",
+          "answer": "Extraia a criação para um método substituível, retorne a abstração e faça o fluxo chamá-lo."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo simples representa a ideia?",
+          "answer": "Exportacao.executar() chama criarFormato(); ExportacaoCsv fornece Csv. O algoritmo herdado não conhece esse formato concreto."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando usar esse mecanismo?",
+          "answer": "Quando subclasses precisam especializar produtos de um fluxo reutilizável. O método também pode reaproveitar instâncias."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo merece atenção?",
+          "answer": "Criar subclasses só para escolher objetos aumenta complexidade; uma função injetada pode bastar num caso simples."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Abstract Factory?",
+          "answer": "Factory Method especializa uma criação por herança; Abstract Factory oferece uma família de produtos compatíveis."
+        }
+      ]
+    },
+    {
+      "id": "abstract-factory",
+      "name": "Abstract Factory",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/abstract-factory",
+      "diagram": [
+        ["Client", "usa contratos"],
+        ["Factory", "createA() / createB()"],
+        ["FactoryX", "produz AX e BX"],
+        ["FactoryY", "produz AY e BY"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que uma Abstract Factory preserva?",
+          "answer": "A compatibilidade entre produtos de uma mesma família, ocultando suas classes concretas."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema pede famílias?",
+          "answer": "Variações combinadas podem misturar componentes incompatíveis quando cada objeto é escolhido isoladamente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais papéis colaboram?",
+          "answer": "Cliente usa fábrica e produtos abstratos; cada fábrica concreta entrega uma variante de todos os produtos."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como organizar a implementação?",
+          "answer": "Defina contratos por produto e métodos na fábrica; injete uma fábrica concreta na composição da aplicação."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo evita mistura de variantes?",
+          "answer": "TemaClaro cria BotaoClaro e MenuClaro; TemaEscuro cria ambos escuros, sem decisões dispersas no cliente."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando faz sentido adotá-la?",
+          "answer": "Quando várias famílias precisam ser intercambiáveis e seus produtos devem funcionar juntos."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Onde a extensão fica cara?",
+          "answer": "Adicionar uma família é simples; adicionar um novo tipo de produto exige mudar todas as fábricas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Builder?",
+          "answer": "Abstract Factory entrega produtos relacionados; Builder coordena etapas para construir uma representação complexa."
+        }
+      ]
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/builder",
+      "diagram": [
+        ["Client", "escolhe construção"],
+        ["Director", "ordena etapas"],
+        ["Builder", "define etapas"],
+        ["Product", "resultado final"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Builder separa?",
+          "answer": "O processo de montagem de um objeto complexo e as representações produzidas por esse processo."
+        },
+        {
+          "id": "problema",
+          "question": "Qual sintoma sugere seu uso?",
+          "answer": "Construtores enormes ou subclasses para todas as combinações de configuração tornam a criação difícil de compreender."
+        },
+        {
+          "id": "estrutura",
+          "question": "O Director é obrigatório?",
+          "answer": "Não. Ele reutiliza sequências; o cliente pode chamar o builder diretamente e obter seu produto."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como manter a montagem segura?",
+          "answer": "Defina etapas, builders concretos e obtenção do resultado; reinicie estado quando necessário e valide invariantes ao concluir."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra representações diferentes?",
+          "answer": "As etapas titulo() e secao() produzem um RelatorioPdf ou RelatorioHtml conforme o builder escolhido."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando esse padrão agrega valor?",
+          "answer": "Quando construção possui várias etapas, opções ou representações que compartilham uma sequência."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual armadilha aparece em produção?",
+          "answer": "Reutilizar um builder mutável sem reset pode vazar configuração entre construções; produtos incompletos não devem escapar."
+        },
+        {
+          "id": "comparacao",
+          "question": "Builder equivale a métodos encadeados?",
+          "answer": "Não. Encadeamento é sintaxe opcional; o padrão trata construção gradual e pode gerar produtos sem interface comum."
+        }
+      ]
+    },
+    {
+      "id": "prototype",
+      "name": "Prototype",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/prototype",
+      "diagram": [
+        ["Client", "solicita cópia"],
+        ["Prototype", "clone()"],
+        ["ConcretePrototype", "controla cópia"],
+        ["Registry", "protótipos por chave"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Prototype permite?",
+          "answer": "Criar objetos copiando instâncias existentes, sem conhecer suas classes concretas."
+        },
+        {
+          "id": "problema",
+          "question": "Por que copiar externamente pode falhar?",
+          "answer": "O cliente pode desconhecer o tipo concreto ou não acessar estado privado necessário à cópia."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem conhece a lógica de cópia?",
+          "answer": "O próprio protótipo concreto implementa clone(); um registro opcional organiza modelos prontos por chave."
+        },
+        {
+          "id": "implementacao",
+          "question": "Qual decisão vem antes de implementar clone()?",
+          "answer": "Definir o que será copiado ou compartilhado, incluindo referências, identidade e ciclos no grafo de objetos."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo usa configurações prontas?",
+          "answer": "Um editor clona um bloco configurado e muda seu texto, preservando o estilo do modelo."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando clonar pode ajudar?",
+          "answer": "Quando inicialização é trabalhosa ou existem muitas configurações reutilizáveis sem necessidade de uma subclasse por combinação."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual risco exige teste específico?",
+          "answer": "Cópia rasa compartilha objetos internos; cópia profunda mal planejada pode duplicar recursos ou entrar em recursão."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com outros criacionais?",
+          "answer": "Factories podem usar protótipos internamente; Builder monta em etapas, enquanto Prototype parte de uma instância pronta."
+        }
+      ]
+    },
+    {
+      "id": "singleton",
+      "name": "Singleton",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/singleton",
+      "diagram": [
+        ["Client A", "pede instância"],
+        ["Singleton", "getInstance()"],
+        ["Client B", "pede instância"],
+        ["Instance", "referência compartilhada"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Quais responsabilidades o Singleton combina?",
+          "answer": "Controlar uma instância e oferecer acesso global a ela."
+        },
+        {
+          "id": "problema",
+          "question": "Qual necessidade ele pretende atender?",
+          "answer": "Compartilhar um recurso cuja multiplicidade precisa ser controlada, evitando criação independente pelos clientes."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como sua estrutura restringe criação?",
+          "answer": "Construtor restrito, referência estática e um método de acesso que devolve a instância guardada."
+        },
+        {
+          "id": "implementacao",
+          "question": "Que cuidado vale na inicialização tardia?",
+          "answer": "Concorrência pode criar duas instâncias; use o mecanismo seguro da linguagem e considere também o estado compartilhado."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo ilustra identidade compartilhada?",
+          "answer": "Duas chamadas a Configuracao.getInstance() devolvem a mesma referência dentro do escopo definido."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando questionar sua adoção?",
+          "answer": "Quando a necessidade real é só compartilhar uma dependência; injeção explícita pode controlar o ciclo de vida."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo aparece nos testes?",
+          "answer": "Dependência global oculta e estado persistente dificultam isolamento, paralelismo e substituição de colaboradores."
+        },
+        {
+          "id": "comparacao",
+          "question": "Uma instância significa unicidade distribuída?",
+          "answer": "Não. Unicidade depende do processo ou escopo; múltiplos processos podem manter instâncias próprias."
+        }
+      ]
+    },
+    {
+      "id": "adapter",
+      "name": "Adapter",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
+      "diagram": [
+        ["Client", "espera Target"],
+        ["Target", "contrato esperado"],
+        ["Adapter", "traduz chamadas"],
+        ["Adaptee", "API incompatível"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Adapter reconcilia?",
+          "answer": "Interfaces incompatíveis, preservando o contrato que o cliente espera."
+        },
+        {
+          "id": "problema",
+          "question": "Quando a incompatibilidade vira problema?",
+          "answer": "Ao integrar código existente ou externo cuja interface não pode ser alterada convenientemente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como os participantes colaboram?",
+          "answer": "Cliente usa Target; Adapter implementa esse contrato e traduz chamadas para o Adaptee encapsulado."
+        },
+        {
+          "id": "implementacao",
+          "question": "Composição ou herança?",
+          "answer": "Adapter de objeto encapsula a dependência; adapter de classe depende dos mecanismos de herança disponíveis na linguagem."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo simples representa a tradução?",
+          "answer": "Um adaptador implementa pagar(centavos) e chama a API externa cobrar(valorDecimal), convertendo valores cuidadosamente."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando vale introduzir essa camada?",
+          "answer": "Quando reaproveitar uma implementação exige compatibilizá-la com uma abstração já usada pelo sistema."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual risco a tradução esconde?",
+          "answer": "Nomes compatíveis não garantem semântica equivalente; preserve unidades, erros e garantias esperadas pelo cliente."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como distinguir Adapter de Facade?",
+          "answer": "Adapter compatibiliza interfaces; Facade simplifica um subsistema. Decorator preserva a interface para acrescentar comportamento."
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "name": "Bridge",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
+      "diagram": [
+        ["Abstraction", "API de alto nível"],
+        ["RefinedAbstraction", "variação de controle"],
+        ["Implementation", "operações delegadas"],
+        ["ConcreteImplementation", "variação de plataforma"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Quais variações o Bridge separa?",
+          "answer": "Abstração e implementação, permitindo evolução independente por composição."
+        },
+        {
+          "id": "problema",
+          "question": "Qual explosão ele evita?",
+          "answer": "Uma subclasse para cada combinação de duas dimensões que variam independentemente."
+        },
+        {
+          "id": "estrutura",
+          "question": "O que conecta as duas hierarquias?",
+          "answer": "A abstração guarda uma referência à interface de implementação e delega operações necessárias."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir a separação?",
+          "answer": "Identifique dimensões independentes, extraia o contrato da implementação e injete uma implementação na abstração."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra duas dimensões?",
+          "answer": "Alertas simples ou agrupados usam saída por e-mail ou arquivo, sem uma classe para cada par."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando planejar esse padrão?",
+          "answer": "Quando plataformas e funcionalidades precisam combinar-se e crescer separadamente, inclusive com troca de implementação."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo pode não compensar?",
+          "answer": "Mais indireção e contratos para manter; dimensões apenas hipotéticas não justificam generalizar o desenho."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Adapter?",
+          "answer": "Bridge organiza variações desde o desenho; Adapter normalmente reconcilia interfaces existentes que não combinam."
+        }
+      ]
+    },
+    {
+      "id": "composite",
+      "name": "Composite",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/composite",
+      "diagram": [
+        ["Client", "usa Component"],
+        ["Component", "operação comum"],
+        ["Leaf", "executa diretamente"],
+        ["Composite", "agrega filhos"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual estrutura o Composite representa?",
+          "answer": "Árvores de objetos tratadas uniformemente por um contrato comum."
+        },
+        {
+          "id": "problema",
+          "question": "Que distinção o cliente deixa de repetir?",
+          "answer": "Não precisa verificar a cada operação se está diante de um elemento simples ou de um grupo."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como folha e composto respondem?",
+          "answer": "Leaf executa o trabalho; Composite delega aos filhos e combina resultados conforme a operação."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como implementar a recursão?",
+          "answer": "Defina operações comuns, coleção de filhos nos compostos e regras de combinação; proteja a estrutura contra ciclos indevidos."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo representa uma árvore?",
+          "answer": "Uma pasta calcula tamanho somando arquivos e subpastas; cada filho oferece a mesma operação tamanho()."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando o padrão faz sentido?",
+          "answer": "Quando o domínio contém relações parte-todo hierárquicas e o tratamento uniforme simplifica os consumidores."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual limite da uniformidade?",
+          "answer": "Uma interface ampla pode exigir operações sem sentido nas folhas; preserve contratos coerentes e controle profundidade."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com outros padrões?",
+          "answer": "Iterator percorre a árvore; Visitor adiciona operações; Decorator normalmente envolve um componente, em vez de agregar filhos."
+        }
+      ]
+    },
+    {
+      "id": "decorator",
+      "name": "Decorator",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
+      "diagram": [
+        ["Client", "usa Component"],
+        ["Component", "contrato preservado"],
+        ["Decorator", "encapsula componente"],
+        ["ConcreteComponent", "comportamento base"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Decorator acrescenta?",
+          "answer": "Responsabilidades a um objeto por wrappers combináveis, sem alterar sua interface principal."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema da herança ele evita?",
+          "answer": "Subclasses para cada combinação de capacidades opcionais, escolhidas rigidamente antes da execução."
+        },
+        {
+          "id": "estrutura",
+          "question": "Qual contrato sustenta o empilhamento?",
+          "answer": "Componente e decorators compartilham interface; cada decorator guarda outro componente e delega a ele."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como implementar uma capacidade?",
+          "answer": "Encapsule o componente e execute a lógica adicional antes ou depois da chamada delegada."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra composição dinâmica?",
+          "answer": "LeitorComMetricas(LeitorComCache(LeitorArquivo)) combina observação e cache sem criar uma subclasse para cada combinação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando é uma boa escolha?",
+          "answer": "Quando responsabilidades precisam ser combinadas em execução ou herança não oferece flexibilidade suficiente."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Que detalhe altera o resultado?",
+          "answer": "A ordem dos wrappers pode mudar comportamento, erros e efeitos; teste combinações e evite dependência oculta entre camadas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Proxy?",
+          "answer": "Decorator compõe capacidades; Proxy controla acesso ou ciclo de vida. Ambos podem delegar preservando uma interface."
+        }
+      ]
+    },
+    {
+      "id": "facade",
+      "name": "Facade",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/facade",
+      "diagram": [
+        ["Client", "jornada simples"],
+        ["Facade", "coordena subsistema"],
+        ["Subsystem A", "operações internas"],
+        ["Subsystem B", "operações internas"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual é a intenção de Facade?",
+          "answer": "Oferecer uma entrada simples para capacidades de um subsistema complexo."
+        },
+        {
+          "id": "problema",
+          "question": "Qual acoplamento ela reduz?",
+          "answer": "Clientes deixam de coordenar diretamente diversas classes, inicializações e sequências internas da biblioteca."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem conhece os detalhes internos?",
+          "answer": "A fachada coordena o subsistema; seus componentes não precisam conhecer a existência da fachada."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como desenhar a interface pública?",
+          "answer": "Escolha jornadas relevantes e esconda a coordenação; separe fachadas quando responsabilidades crescerem demais."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo representa simplificação?",
+          "answer": "Publicador.publicar() coordena validação, armazenamento e indexação, oferecendo uma operação orientada à jornada."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando vale usar uma fachada?",
+          "answer": "Para fornecer acesso restrito e conveniente, isolar bibliotecas ou definir fronteiras entre camadas."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual degradação deve ser evitada?",
+          "answer": "Uma fachada que acumula todas as regras vira objeto central difícil de manter; não esconda falhas parciais relevantes."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Mediator e Adapter?",
+          "answer": "Mediator organiza comunicação entre colegas; Adapter compatibiliza contratos; Facade simplifica o acesso a um subsistema."
+        }
+      ]
+    },
+    {
+      "id": "flyweight",
+      "name": "Flyweight",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/flyweight",
+      "diagram": [
+        ["Context", "estado extrínseco"],
+        ["Flyweight", "estado compartilhado"],
+        ["Factory", "reúso por chave"],
+        ["Client", "fornece contexto"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Flyweight economiza?",
+          "answer": "Memória ao compartilhar estado repetido entre muitos objetos lógicos."
+        },
+        {
+          "id": "problema",
+          "question": "Qual cenário motiva compartilhamento?",
+          "answer": "Um volume grande de objetos repete dados que poderiam existir uma única vez."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais estados precisam ser separados?",
+          "answer": "Intrínseco pertence ao flyweight compartilhado; extrínseco varia por ocorrência e vem do contexto."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como controlar reutilização?",
+          "answer": "Uma fábrica localiza o flyweight por chave; mantenha o estado compartilhado imutável e passe o contexto às operações."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra os dois estados?",
+          "answer": "Vários caracteres compartilham dados de glifo; posição e seleção permanecem em cada ocorrência do editor."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando adotar esse padrão?",
+          "answer": "Após medir pressão de memória causada por grande repetição de estado que pode ser separado."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo acompanha a economia?",
+          "answer": "Mais lógica de contexto e busca; alterar estado compartilhado indevidamente afeta muitas ocorrências ao mesmo tempo."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Singleton e cache?",
+          "answer": "Pode haver vários flyweights por chave; o objetivo é compartilhar estado, não impor unicidade global ou apenas acelerar leitura."
+        }
+      ]
+    },
+    {
+      "id": "proxy",
+      "name": "Proxy",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/proxy",
+      "diagram": [
+        ["Client", "usa Service"],
+        ["Service", "contrato comum"],
+        ["Proxy", "controla delegação"],
+        ["RealService", "executa trabalho"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que um Proxy controla?",
+          "answer": "O acesso a outro objeto, preservando a interface esperada pelo cliente."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema pode motivá-lo?",
+          "answer": "Um serviço caro, remoto ou protegido precisa de controle antes de ser utilizado diretamente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Qual relação existe entre proxy e serviço?",
+          "answer": "Ambos implementam o contrato; o proxy decide quando inicializar, validar ou encaminhar ao serviço real."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir um proxy?",
+          "answer": "Extraia o contrato comum, encapsule o serviço e substitua o ponto de composição sem alterar os consumidores."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra criação tardia?",
+          "answer": "ImagemLazy guarda o caminho e carrega a imagem real apenas na primeira solicitação de renderização."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quais aplicações são frequentes?",
+          "answer": "Acesso remoto, proteção, inicialização tardia, cache e registro de chamadas, conforme a necessidade."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Que transparência merece cautela?",
+          "answer": "Uma chamada remota tem latência e falhas diferentes de uma local; não esconda esses limites do contrato."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Decorator?",
+          "answer": "Proxy prioriza mediação de acesso e ciclo de vida; Decorator combina capacidades adicionais escolhidas pelo cliente."
+        }
+      ]
+    },
+    {
+      "id": "chain-of-responsibility",
+      "name": "Chain of Responsibility",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/chain-of-responsibility",
+      "diagram": [
+        ["Client", "inicia solicitação"],
+        ["Handler", "contrato comum"],
+        ["Handler A", "trata ou encaminha"],
+        ["Handler B", "próximo elo"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que a cadeia desacopla?",
+          "answer": "Quem envia uma solicitação e os handlers que podem tratá-la, encadeados em ordem configurável."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema evita?",
+          "answer": "Acoplar o remetente a todos os possíveis tratadores e suas condições de execução."
+        },
+        {
+          "id": "estrutura",
+          "question": "O que cada handler decide?",
+          "answer": "Executar sua parte, interromper ou encaminhar ao próximo; o contrato deve definir a semântica adotada."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como construir a cadeia?",
+          "answer": "Padronize a operação, armazene o próximo elo e configure a ordem no ponto de composição."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo permite interrupção?",
+          "answer": "Uma requisição passa por autenticação, quota e validação; uma reprovação encerra o processamento."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando usar esse encadeamento?",
+          "answer": "Quando tratadores e ordem variam ou mais de um objeto pode receber a solicitação."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual falha não pode ficar implícita?",
+          "answer": "Uma solicitação pode terminar sem tratamento. Defina fallback, efeitos parciais e regras claras de interrupção."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Decorator?",
+          "answer": "A cadeia pode parar ou escolher tratadores; decorators normalmente combinam comportamento ao redor de um componente."
+        }
+      ]
+    },
+    {
+      "id": "command",
+      "name": "Command",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/command",
+      "diagram": [
+        ["Invoker", "aciona comando"],
+        ["Command", "execute()"],
+        ["ConcreteCommand", "guarda parâmetros"],
+        ["Receiver", "realiza operação"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que Command transforma em objeto?",
+          "answer": "Uma solicitação, com dados e comportamento suficientes para ser executada por uma interface comum."
+        },
+        {
+          "id": "problema",
+          "question": "Que acoplamento ele reduz?",
+          "answer": "O componente que dispara a ação deixa de conhecer detalhes do objeto que realiza o trabalho."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais são os papéis principais?",
+          "answer": "Invoker aciona Command; o comando concreto guarda parâmetros e delega ao Receiver. Cliente configura esses objetos."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como preparar comandos para desfazer?",
+          "answer": "Registre informações necessárias antes do efeito e defina undo; nem toda operação possui inversão segura."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra reutilização da ação?",
+          "answer": "Botão e atalho executam o mesmo SalvarDocumento, sem duplicar a lógica de gravação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando um objeto de ação ajuda?",
+          "answer": "Para filas, histórico, agendamento, macros ou troca de ações sem alterar quem as invoca."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual cuidado vale para replay?",
+          "answer": "Comandos com efeitos externos podem precisar de idempotência; repetir execute() não garante repetir apenas a intenção."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Strategy?",
+          "answer": "Command representa uma solicitação executável; Strategy representa uma maneira intercambiável de executar um algoritmo."
+        }
+      ]
+    },
+    {
+      "id": "iterator",
+      "name": "Iterator",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/iterator",
+      "diagram": [
+        ["Client", "consome sequência"],
+        ["Iterator", "next() / hasNext()"],
+        ["Collection", "cria iterador"],
+        ["ConcreteIterator", "guarda posição"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Iterator esconde?",
+          "answer": "A representação da coleção enquanto fornece acesso sequencial aos seus elementos."
+        },
+        {
+          "id": "problema",
+          "question": "Qual mistura de responsabilidades ele evita?",
+          "answer": "Colocar todos os algoritmos de navegação e o estado de cada percurso dentro da coleção."
+        },
+        {
+          "id": "estrutura",
+          "question": "Onde fica a posição do percurso?",
+          "answer": "No iterador concreto; a coleção fornece um modo de criar iteradores independentes."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como separar navegação e armazenamento?",
+          "answer": "Defina contrato de iteração, implemente percurso e exponha a criação sem revelar a estrutura interna."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra percursos distintos?",
+          "answer": "Uma árvore oferece iterador em profundidade e outro em largura, mantendo o cliente no mesmo contrato."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando vale introduzir um iterador?",
+          "answer": "Quando há estruturas complexas, vários percursos ou necessidade de múltiplas navegações simultâneas."
+        },
+        {
+          "id": "trade-offs",
+          "question": "O que definir para mutações?",
+          "answer": "Decida se o percurso usa snapshot, reflete mudanças ou falha; não deixe invalidação e concorrência ambíguas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com Composite?",
+          "answer": "Iterator percorre uma estrutura; Composite modela a árvore. A mesma árvore pode oferecer vários iteradores."
+        }
+      ]
+    },
+    {
+      "id": "mediator",
+      "name": "Mediator",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/mediator",
+      "diagram": [
+        ["Colleague A", "emite evento"],
+        ["Mediator", "coordena interação"],
+        ["Colleague B", "recebe ação"],
+        ["Client", "conecta participantes"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Mediator centraliza?",
+          "answer": "Regras de comunicação entre componentes que deixam de depender diretamente uns dos outros."
+        },
+        {
+          "id": "problema",
+          "question": "Qual sintoma sugere mediação?",
+          "answer": "Mudanças em um componente exigem conhecer e ajustar muitos colegas conectados diretamente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como os colegas interagem?",
+          "answer": "Notificam o mediador; ele decide quais participantes devem reagir conforme o contexto."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como extrair essa coordenação?",
+          "answer": "Identifique interações, defina notificações e mova a coordenação para um mediador com responsabilidade delimitada."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo reduz dependências?",
+          "answer": "Um formulário avisa sobre mudança de seleção; o mediador habilita campos e atualiza a validação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando esse arranjo ajuda?",
+          "answer": "Quando componentes precisam ser reutilizados sem carregar todas as relações particulares da tela ou fluxo original."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual concentração deve ser evitada?",
+          "answer": "O mediador pode virar objeto onisciente; separe jornadas e mantenha regras locais nos componentes apropriados."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Observer?",
+          "answer": "Mediator define coordenação entre colegas; Observer define assinatura de notificações. Podem colaborar no mesmo sistema."
+        }
+      ]
+    },
+    {
+      "id": "memento",
+      "name": "Memento",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/memento",
+      "diagram": [
+        ["Originator", "captura / restaura"],
+        ["Memento", "guarda snapshot"],
+        ["Caretaker", "organiza histórico"],
+        ["Client", "pede restauração"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual é a intenção de Memento?",
+          "answer": "Capturar e restaurar estado anterior sem expor detalhes internos do objeto."
+        },
+        {
+          "id": "problema",
+          "question": "Que problema do histórico ele evita?",
+          "answer": "Fazer o gerenciador de undo conhecer e manipular campos privados do objeto restaurado."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem pode interpretar o snapshot?",
+          "answer": "Originator cria e restaura; Memento guarda estado; Caretaker organiza o histórico sem depender de sua representação interna."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como preservar encapsulamento?",
+          "answer": "Ofereça acesso restrito ao estado e uma interface limitada de metadados para quem organiza os snapshots."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo representa restauração?",
+          "answer": "Um editor captura o estado antes de uma edição e restaura esse memento ao desfazer."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando esse mecanismo ajuda?",
+          "answer": "Quando rollback local e histórico precisam preservar o encapsulamento de objetos cujo estado é complexo."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo cresce com o histórico?",
+          "answer": "Snapshots podem consumir muita memória; defina retenção e isolamento das referências mutáveis para preservar versões antigas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com Command?",
+          "answer": "Command pode usar Memento para desfazer; snapshots de estado não desfazem automaticamente efeitos em sistemas externos."
+        }
+      ]
+    },
+    {
+      "id": "observer",
+      "name": "Observer",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/observer",
+      "diagram": [
+        ["Publisher", "mantém assinaturas"],
+        ["Subscriber", "update(event)"],
+        ["Subscriber A", "reage ao evento"],
+        ["Subscriber B", "reage ao evento"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que Observer oferece?",
+          "answer": "Assinatura de notificações para objetos interessados em mudanças de um publicador."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema evita?",
+          "answer": "Polling constante ou dependência do publicador em uma lista fixa de classes consumidoras."
+        },
+        {
+          "id": "estrutura",
+          "question": "Qual contrato conecta os participantes?",
+          "answer": "O publicador mantém assinaturas e notifica uma interface comum implementada pelos assinantes."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como gerenciar inscrições?",
+          "answer": "Disponibilize assinatura e cancelamento e defina dados do evento e momento de notificação."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra múltiplos interessados?",
+          "answer": "Ao publicar PedidoConfirmado, a tela e o relatório reagem por assinaturas independentes."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando usar notificações?",
+          "answer": "Quando interessados variam em execução e mudanças de um objeto precisam informar outros sem acoplamento concreto."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual risco surge no ciclo de vida?",
+          "answer": "Inscrições esquecidas retêm objetos; ordem, falhas e reentrância das notificações precisam de contrato explícito."
+        },
+        {
+          "id": "comparacao",
+          "question": "Observer garante mensageria durável?",
+          "answer": "Não. O padrão descreve colaboração; persistência, entrega e retries exigem mecanismos adicionais."
+        }
+      ]
+    },
+    {
+      "id": "state",
+      "name": "State",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/state",
+      "diagram": [
+        ["Context", "estado atual"],
+        ["State", "contrato de ação"],
+        ["State A", "comportamento A"],
+        ["State B", "comportamento B"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que State encapsula?",
+          "answer": "Comportamentos que variam conforme o estado atual de um objeto."
+        },
+        {
+          "id": "problema",
+          "question": "Qual sintoma sugere a extração?",
+          "answer": "Condicionais repetidas de estado espalhadas por várias operações do mesmo contexto."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem recebe as ações do contexto?",
+          "answer": "O objeto State atual implementa o comportamento; contexto ou estados coordenam transições conforme o desenho."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como transformar os condicionais?",
+          "answer": "Defina o contrato dos estados, extraia os comportamentos e explicite transições e acesso ao contexto."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra comportamento variável?",
+          "answer": "Uma assinatura Ativa libera acesso; Suspensa recusa e orienta regularização para a mesma solicitação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando State ajuda?",
+          "answer": "Quando existem vários estados com comportamento relevante e o fluxo evolui frequentemente."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo pode ser excessivo?",
+          "answer": "Poucos estados simples podem não justificar várias classes. Teste transições inválidas e efeitos para preservar invariantes."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Strategy?",
+          "answer": "State acompanha ciclo de vida e transições; Strategy escolhe um algoritmo intercambiável sem exigir esse ciclo."
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/strategy",
+      "diagram": [
+        ["Context", "delega algoritmo"],
+        ["Strategy", "execute()"],
+        ["Strategy A", "algoritmo A"],
+        ["Strategy B", "algoritmo B"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que Strategy torna intercambiável?",
+          "answer": "Algoritmos que cumprem um mesmo contrato, isolados do contexto que os utiliza."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema costuma motivá-lo?",
+          "answer": "Um contexto acumula condicionais ou variantes que mudam apenas a maneira de executar uma tarefa."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como contexto e estratégia colaboram?",
+          "answer": "O contexto recebe uma Strategy e delega a ela; implementações concretas oferecem alternativas."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como extrair uma estratégia?",
+          "answer": "Defina entradas e resultados comuns, separe algoritmos e selecione a implementação na composição ou em execução."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra troca de algoritmo?",
+          "answer": "CalculadoraFrete recebe FreteExpresso ou FreteEconomico e mantém o fluxo de cotação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando aplicar esse padrão?",
+          "answer": "Quando algoritmos precisam variar independentemente, ser testados isoladamente ou escolhidos em execução."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo é fácil ignorar?",
+          "answer": "O cliente precisa escolher a estratégia correta; contratos mal definidos fazem variações aparentemente equivalentes quebrar expectativas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Template Method?",
+          "answer": "Strategy usa composição e pode trocar instâncias; Template Method fixa um esqueleto e varia etapas por herança."
+        }
+      ]
+    },
+    {
+      "id": "template-method",
+      "name": "Template Method",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/template-method",
+      "diagram": [
+        ["AbstractClass", "define sequência"],
+        ["TemplateMethod", "chama etapas"],
+        ["ConcreteClass", "especializa etapas"],
+        ["Hooks", "extensões opcionais"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que Template Method mantém fixo?",
+          "answer": "O esqueleto de um algoritmo, delegando certas etapas a subclasses."
+        },
+        {
+          "id": "problema",
+          "question": "Qual duplicação ele reduz?",
+          "answer": "Fluxos quase iguais repetem a mesma sequência, mas diferem em alguns passos."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais pontos de extensão existem?",
+          "answer": "Etapas abstratas obrigatórias, operações com implementação padrão e hooks opcionais na classe base."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como preservar o fluxo definido?",
+          "answer": "Extraia a sequência comum e limite sobrescrita do método principal conforme os recursos da linguagem."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo separa sequência e etapas?",
+          "answer": "Importador executa ler, validar e persistir; subclasses especializam leitura para formatos diferentes."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando esse desenho ajuda?",
+          "answer": "Quando variantes compartilham uma sequência estável e precisam substituir poucas etapas, não o algoritmo inteiro."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual acoplamento merece atenção?",
+          "answer": "Subclasses dependem das decisões da base; muitos hooks e efeitos laterais tornam a ordem difícil de manter."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com Factory Method?",
+          "answer": "Uma etapa pode ser um Factory Method. Strategy varia o algoritmo por composição, sem exigir subclasses do contexto."
+        }
+      ]
+    },
+    {
+      "id": "visitor",
+      "name": "Visitor",
+      "category": "Comportamentais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/visitor",
+      "diagram": [
+        ["Element", "accept(visitor)"],
+        ["ConcreteElement", "seleciona visitX"],
+        ["Visitor", "operações por tipo"],
+        ["ConcreteVisitor", "novo comportamento"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que Visitor separa?",
+          "answer": "Operações de uma estrutura de objetos das classes que representam seus elementos."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema costuma motivá-lo?",
+          "answer": "Novas operações sobre muitos tipos exigiriam alterar repetidamente classes estáveis do modelo."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como funciona o double dispatch?",
+          "answer": "O elemento recebe o visitor em accept() e chama visitTipo(this), selecionando comportamento pelo elemento e visitante."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como organizar a implementação?",
+          "answer": "Defina métodos de visita por tipo, adicione accept aos elementos e crie um visitor por operação."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra operação adicional?",
+          "answer": "Um visitor de auditoria percorre nós de uma expressão e produz avisos sem colocar essa lógica em cada nó."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando tende a funcionar melhor?",
+          "answer": "Quando os tipos de elementos são estáveis e novas operações surgem com frequência."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual mudança fica mais cara?",
+          "answer": "Adicionar um novo tipo pode exigir atualizar todos os visitors; acesso excessivo ao estado ameaça encapsulamento."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com Iterator?",
+          "answer": "Iterator organiza percurso; Visitor executa operações por tipo. A travessia pode ficar fora do visitor."
+        }
+      ]
+    }
+  ]
+}

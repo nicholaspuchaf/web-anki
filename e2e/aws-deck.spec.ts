@@ -138,7 +138,7 @@ test('baralho AWS carrega automaticamente, revela quatro versos, mantém progres
     page.getByText(entry.intermediateComment, { exact: true }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole('link', { name: 'Consultar fonte oficial' }),
+    page.getByRole('link', { name: 'Consultar fonte' }),
   ).toHaveAttribute('href', entry.sourceUrl);
   expect(
     await page.evaluate(

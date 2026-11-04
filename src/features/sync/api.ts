@@ -1,3 +1,5 @@
+import { canSyncCard } from '../library/sync-policy';
+import { isBundledId } from '../bundled-decks/ids';
 import { parseBackup } from '../backup/parse-backup';
 import type { CardContent, CloudCard } from './model';
 
@@ -100,6 +102,18 @@ export function createCloudApi(baseUrl: string, request: HttpRequest = fetch) {
     version: number,
     content?: CardContent,
   ) {
+    if (
+      isBundledId(id) ||
+      (content &&
+        !canSyncCard(
+          { version: 1, decks: [content.deck], cards: [content.card] },
+          id,
+        ))
+    )
+      throw new CloudError(
+        'Este cartão é local e não pode ser enviado para a nuvem.',
+        403,
+      );
     const result = parseCloudCard(
       await send(
         `/flashcards/${encodeURIComponent(id)}`,

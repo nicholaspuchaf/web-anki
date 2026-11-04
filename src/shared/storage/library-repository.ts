@@ -3,6 +3,8 @@ import { openDB } from 'idb';
 import { emptyLibrary, type Library } from '../../features/library/model';
 import { emptySyncState, type SyncState } from '../../features/sync/model';
 
+export class LibraryConflictError extends Error {}
+
 const database = () =>
   openDB('folha', 1, {
     upgrade(db) {
@@ -36,7 +38,7 @@ export async function writeLibrary(
     ) {
       tx.abort();
       await tx.done.catch(() => {});
-      throw new Error(
+      throw new LibraryConflictError(
         'Os dados mudaram em outra aba. Recarregue antes de salvar.',
       );
     }

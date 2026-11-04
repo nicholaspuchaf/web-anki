@@ -5,6 +5,8 @@ import {
   type CardTemplate,
   type Library,
 } from './model';
+import { parseStudyFaces } from '../standard/model';
+import { isBundledId } from '../bundled-decks/ids';
 import { parseMultipleChoice } from '../multiple-choice/model';
 
 export function addDeck(
@@ -27,6 +29,8 @@ export function addDeck(
 }
 
 export function removeDeck(library: Library, id: string): Library {
+  if (isBundledId(id))
+    throw new Error('Este baralho é mantido no repositório do site.');
   return {
     ...library,
     decks: library.decks.filter((d) => d.id !== id),
@@ -38,13 +42,18 @@ export function putCard(library: Library, card: Card): Library {
   if (!library.decks.some((d) => d.id === card.deckId))
     throw new Error('Baralho não encontrado.');
   if (!card.front.trim()) throw new Error('Preencha a pergunta.');
-  if (card.leetcode !== undefined && card.multipleChoice !== undefined)
+  if (
+    [card.leetcode, card.multipleChoice, card.faces].filter(
+      (value) => value !== undefined,
+    ).length > 1
+  )
     throw new Error('O cartão deve usar apenas um template.');
   const next = {
     ...card,
     front: card.front.trim(),
     back: card.back.trim(),
     ...(card.leetcode ? { leetcode: parseLeetCode(card.leetcode) } : {}),
+    ...(card.faces !== undefined ? { faces: parseStudyFaces(card.faces) } : {}),
     ...(card.multipleChoice
       ? { multipleChoice: parseMultipleChoice(card.multipleChoice) }
       : {}),
@@ -58,5 +67,7 @@ export function putCard(library: Library, card: Card): Library {
 }
 
 export function removeCard(library: Library, id: string): Library {
+  if (isBundledId(id))
+    throw new Error('Este cartão é mantido no repositório do site.');
   return { ...library, cards: library.cards.filter((c) => c.id !== id) };
 }

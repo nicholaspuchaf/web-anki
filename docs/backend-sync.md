@@ -206,3 +206,23 @@ São exigidas quatro alternativas não vazias e distintas, um índice inteiro de
 mantém o comportamento dos baralhos existentes. Não há mudança de rotas, esquema
 de chaves do DynamoDB ou infraestrutura. O backend precisa ser republicado para
 reconhecer e preservar esses campos antes de sincronizar com o frontend novo.
+
+## Conteúdo local e incluído no site
+
+`deck.syncEnabled` e `card.syncEnabled` são booleanos opcionais; `false` exclui o
+conteúdo da sincronização. A ausência mantém o comportamento público anterior.
+O cliente não gera PUT nem DELETE para esses cartões, e preserva o conteúdo local
+quando recebe versões ou exclusões remotas incompatíveis.
+
+O baralho AWS usa a chave local `builtin-aws-services` e cartões `builtin-aws-*`.
+Esses IDs são recusados com 403 nas rotas individuais antes de acessar DynamoDB,
+inclusive se o corpo tentar declarar `syncEnabled: true`. PUT de qualquer outro
+cartão ou baralho marcado com `syncEnabled: false` também retorna 403.
+O catálogo é entregue com o frontend e não precisa de uma operação de seed na AWS.
+
+`card.faces` é uma lista opcional de `{ id, title, content }` para o template
+`multi-face`; não pode coexistir com `leetcode` ou `multipleChoice`. `card.tags` e
+`card.sourceUrl` são opcionais e preservados pelo parser. Cartões de vários versos
+criados em baralhos comuns continuam sincronizáveis. Publique o backend atualizado
+para que ele reconheça os campos e aplique a proteção adicional; não há novo recurso
+Terraform para esse baralho.

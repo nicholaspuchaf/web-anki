@@ -9,6 +9,8 @@ import {
   type FlashcardStore,
   type StoredFlashcard,
 } from './model';
+import { isBundledId } from '../src/features/bundled-decks/ids';
+import { canSyncCard } from '../src/features/library/sync-policy';
 import { encodeCursor, syncQuery } from './sync';
 import { loadProblem, ProblemImportError } from './leetcode';
 
@@ -106,6 +108,10 @@ export function createHandler(
       const id = match![1];
       if (!validId(id))
         return reply(400, { error: 'Identificador de cartão inválido.' });
+      if (isBundledId(id))
+        return reply(403, {
+          error: 'Cartões incluídos no site não são armazenados na nuvem.',
+        });
       if (method === 'GET') {
         const current = await store.get(id);
         return current
@@ -143,6 +149,16 @@ export function createHandler(
         if (Buffer.byteLength(JSON.stringify(content), 'utf8') > MAX_CARD_BYTES)
           return reply(413, { error: 'Cartão maior que o limite de 250 KB.' });
       }
+      if (
+        content &&
+        !canSyncCard(
+          { version: 1, cards: [content.card], decks: [content.deck] },
+          id,
+        )
+      )
+        return reply(403, {
+          error: 'Este baralho ou cartão está marcado como local.',
+        });
       const current = await store.get(id);
       if ((current?.version ?? 0) !== expectedVersion)
         return reply(409, {

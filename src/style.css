@@ -1697,3 +1697,68 @@ label {
 .ratings.ratings-retry {
   grid-template-columns: 1fr;
 }
+
+.standard-card {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+.standard-card h2 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  overflow-wrap: anywhere;
+}
+.standard-face-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+.standard-face-options button {
+  font-size: 0.95rem;
+}
+.standard-face-options button[aria-pressed='true'] {
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-color: var(--blue);
+}
+.standard-face-options button span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+.standard-face {
+  background: var(--surface-raised);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-wrap: anywhere;
+}
+.standard-face h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+.standard-face p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.standard-source {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+.local-deck-notice {
+  padding: 0.75rem 1rem;
+  background: var(--blue-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.local-deck-badge {
+  display: inline-block;
+  color: var(--blue);
+  font-size: 0.7rem;
+}

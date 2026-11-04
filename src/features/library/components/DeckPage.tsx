@@ -1,3 +1,5 @@
+import { isBundledId } from '../../bundled-decks/ids';
+import { AWS_CATALOG_REVIEWED_AT } from '../../bundled-decks/aws';
 import { useState } from 'react';
 import { getDeckCards, getDueCards } from '../selectors';
 import { removeDeck, removeCard, putCard } from '../commands';
@@ -30,12 +32,13 @@ export function DeckPage({
   onEdit,
 }: Props) {
   const [filters, setFilters] = useState(emptyFilters);
+  const [visibleCount, setVisibleCount] = useState(50);
   const [preview, setPreview] = useState<Card | null>(null);
   const cards = getDeckCards(library, deck.id);
   const filtered = filterCards(cards, filters);
   const due = getDueCards(filtered, now);
   const tags = [
-    ...new Set(cards.flatMap((c) => c.leetcode?.tags ?? [])),
+    ...new Set(cards.flatMap((c) => c.tags ?? c.leetcode?.tags ?? [])),
   ].sort();
   return (
     <>
@@ -55,6 +58,13 @@ export function DeckPage({
           + Novo cartão
         </button>
       </div>
+      {deck.syncEnabled === false && (
+        <p className="local-deck-notice">
+          {isBundledId(deck.id)
+            ? `Incluído no site · catálogo revisado em ${AWS_CATALOG_REVIEWED_AT}. Conteúdo mantido no repositório; progresso e favoritos ficam neste aparelho.`
+            : 'Baralho local: os cartões não são enviados para a nuvem.'}
+        </p>
+      )}
       <CardFilters value={filters} onChange={setFilters} tags={tags} />
       <div className="toolbar">
         <button
@@ -74,7 +84,12 @@ export function DeckPage({
         </button>
         <button
           className="danger"
-          disabled={busy}
+          disabled={busy || isBundledId(deck.id)}
+          title={
+            isBundledId(deck.id)
+              ? 'Este baralho é incluído automaticamente no site'
+              : undefined
+          }
           onClick={async () => {
             if (
               window.confirm(
@@ -107,7 +122,7 @@ export function DeckPage({
         </div>
       )}
       <div className="card-list">
-        {filtered.map((card) => (
+        {filtered.slice(0, visibleCount).map((card) => (
           <ProblemListItem
             key={card.id}
             card={card}
@@ -126,6 +141,15 @@ export function DeckPage({
           />
         ))}
       </div>
+      {filtered.length > visibleCount && (
+        <button
+          className="load-more"
+          onClick={() => setVisibleCount((count) => count + 50)}
+        >
+          Mostrar mais cartões · {Math.min(visibleCount, filtered.length)} de{' '}
+          {filtered.length}
+        </button>
+      )}
       {preview && (
         <Modal title="Prévia do cartão" wide onClose={() => setPreview(null)}>
           <CardPreview key={preview.id} card={preview} />

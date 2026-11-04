@@ -142,3 +142,34 @@ uma escolha informada entre a edição local e a remota.
 As extensões são aditivas: backups antigos continuam legíveis. Clientes antigos
 não conhecem múltipla escolha e podem descartar esses campos; frontend e backend
 precisam ser publicados juntos para preservar o novo template na nuvem.
+
+## Baralhos incluídos no repositório
+
+`content/aws-services.json` contém o catálogo de estudo, sem estado de revisão.
+`bundled-decks/aws.ts` converte-o em cartões com IDs estáveis, três versos e
+`syncEnabled: false`. `withBundledAwsDeck` atualiza apenas o conteúdo reservado e
+preserva agendamento, revisões, favoritos e todos os cartões pessoais.
+`bootstrap.ts` aplica essa composição a bibliotecas novas ou existentes usando
+comparação de estado para não sobrescrever uma alteração concorrente.
+
+`useLibrary` aplica o catálogo ao abrir, salvar ou restaurar. O repositório IndexedDB
+continua genérico; não depende de um conteúdo específico. Os cartões e o baralho
+reservados não são excluídos pela interface. A autoria acontece no JSON; não há
+consulta de catálogo nem provisionamento de recursos AWS durante o estudo.
+
+`standard/model.ts` valida `Card.faces`, versos genéricos independentes de LeetCode.
+`StandardCard` é compartilhado por prévia e revisão. `Card.tags` e `sourceUrl`
+permitem categorizar o material e consultar sua fonte. O template `multi-face`
+permite criar outros cartões com esse formato, mantendo versos opcionais.
+
+`library/sync-policy.ts` centraliza a exclusão de dados locais. Ela filtra pendências,
+ignora atualizações/tombstones remotos que atingiriam conteúdo local e remove
+metadados de conflito incompatíveis. O cliente HTTP bloqueia envios diretos; o
+backend recusa os IDs reservados antes de GetItem/PutItem e recusa payloads com
+`syncEnabled: false`. O módulo de IDs é separado do catálogo para que a Lambda não
+inclua os 326 cartões no pacote de execução.
+
+O catálogo e seus limites são validados em testes, assim como atualização sem
+perda de progresso, preservação de bibliotecas existentes e zero chamadas DynamoDB
+em pedidos com IDs reservados. O teste de navegador confirma carregamento automático,
+três versos, limite visual das definições, ausência de envio e uso offline.

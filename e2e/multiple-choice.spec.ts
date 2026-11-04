@@ -120,7 +120,11 @@ test('baralho de múltipla escolha cria, valida, revisa e preserva alternativas 
   const download = await downloadPromise;
   const path = (await download.path())!;
   const backup = JSON.parse(await readFile(path, 'utf8'));
-  expect(backup.decks[0].defaultTemplate).toBe('multiple-choice');
+  expect(
+    backup.decks.find(
+      (deck: { name: string }) => deck.name === 'Conhecimentos gerais',
+    ).defaultTemplate,
+  ).toBe('multiple-choice');
   expect(backup.cards[0].multipleChoice.correctIndex).toBe(1);
   expect(backup.cards[0].reviews).toBe(1);
   expect(backup.cards[0].interval).toBe(0);

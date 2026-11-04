@@ -3,6 +3,16 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.endsWith('/src/content/aws-services.json'))
+            return 'aws-catalog';
+        },
+      },
+    },
+  },
   plugins: [
     react({ babel: { plugins: ['babel-plugin-react-compiler'] } }),
     VitePWA({

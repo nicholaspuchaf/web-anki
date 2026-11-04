@@ -1,5 +1,7 @@
 import { parseLeetCode } from '../leetcode/model';
 import { isCardTemplate, type Library } from '../library/model';
+import { parseStudyFaces } from '../standard/model';
+import { safeProblemUrl } from '../leetcode/model';
 import { parseMultipleChoice } from '../multiple-choice/model';
 
 export function parseBackup(text: string): Library {
@@ -21,13 +23,15 @@ export function parseBackup(text: string): Library {
       ids.has(d.id) ||
       typeof d.name !== 'string' ||
       !d.name.trim() ||
-      (d.defaultTemplate !== undefined && !isCardTemplate(d.defaultTemplate))
+      (d.defaultTemplate !== undefined && !isCardTemplate(d.defaultTemplate)) ||
+      (d.syncEnabled !== undefined && typeof d.syncEnabled !== 'boolean')
     )
       throw new Error('Baralho inválido ou duplicado.');
     ids.add(d.id);
     return {
       id: d.id,
       name: d.name.trim(),
+      ...(d.syncEnabled !== undefined ? { syncEnabled: d.syncEnabled } : {}),
       ...(d.defaultTemplate !== undefined
         ? { defaultTemplate: d.defaultTemplate }
         : {}),
@@ -45,6 +49,12 @@ export function parseBackup(text: string): Library {
       !c.front.trim() ||
       typeof c.back !== 'string' ||
       (c.favorite !== undefined && typeof c.favorite !== 'boolean') ||
+      (c.syncEnabled !== undefined && typeof c.syncEnabled !== 'boolean') ||
+      (c.tags !== undefined &&
+        (!Array.isArray(c.tags) ||
+          c.tags.some((tag) => typeof tag !== 'string' || !tag.trim()))) ||
+      (c.sourceUrl !== undefined &&
+        (typeof c.sourceUrl !== 'string' || !safeProblemUrl(c.sourceUrl))) ||
       !Number.isFinite(c.due) ||
       c.due < 0 ||
       !Number.isFinite(c.interval) ||
@@ -54,7 +64,11 @@ export function parseBackup(text: string): Library {
     )
       throw new Error('Cartão inválido ou sem baralho.');
     cardIds.add(c.id);
-    if (c.leetcode !== undefined && c.multipleChoice !== undefined)
+    if (
+      [c.leetcode, c.multipleChoice, c.faces].filter(
+        (value) => value !== undefined,
+      ).length > 1
+    )
       throw new Error('O cartão deve usar apenas um template.');
     const multipleChoice =
       c.multipleChoice !== undefined
@@ -80,6 +94,12 @@ export function parseBackup(text: string): Library {
       ...(c.favorite !== undefined ? { favorite: c.favorite } : {}),
       ...(leetcode ? { leetcode } : {}),
       ...(multipleChoice ? { multipleChoice } : {}),
+      ...(c.faces !== undefined ? { faces: parseStudyFaces(c.faces) } : {}),
+      ...(c.tags !== undefined
+        ? { tags: [...new Set(c.tags.map((tag) => tag.trim().toLowerCase()))] }
+        : {}),
+      ...(c.sourceUrl !== undefined ? { sourceUrl: c.sourceUrl } : {}),
+      ...(c.syncEnabled !== undefined ? { syncEnabled: c.syncEnabled } : {}),
     };
   });
   return { version: 1, decks, cards };

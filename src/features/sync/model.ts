@@ -1,3 +1,4 @@
+import { canSyncCard } from '../library/sync-policy';
 import type { Card, Deck, Library } from '../library/model';
 
 export type CardContent = { card: Card; deck: Deck };
@@ -61,6 +62,7 @@ export function pendingIds(library: Library, state: SyncState): string[] {
   ]);
   return [...ids].filter(
     (id) =>
+      canSyncCard(library, id, recordAt(state.records, id)) &&
       !recordAt(state.conflicts, id) &&
       !sameContent(
         localContent(library, id),
@@ -69,6 +71,7 @@ export function pendingIds(library: Library, state: SyncState): string[] {
   );
 }
 export function applyRemote(library: Library, record: CloudCard): Library {
+  if (!canSyncCard(library, record.flashcard_id, record)) return library;
   const cards = library.cards.filter((card) => card.id !== record.flashcard_id);
   if (record.deleted_at !== null) return { ...library, cards };
   const decks = [...library.decks];
@@ -91,6 +94,10 @@ export function mergeChanges(
     Object.create(null),
     state.conflicts,
   );
+  for (const id of Object.keys(records))
+    if (!canSyncCard(library, id, records[id])) delete records[id];
+  for (const id of Object.keys(conflicts))
+    if (!canSyncCard(library, id, conflicts[id])) delete conflicts[id];
   const dirtyDecks = new Set(
     library.decks
       .filter((deck) => {
@@ -113,6 +120,7 @@ export function mergeChanges(
       latest.set(record.flashcard_id, record);
   for (const incoming of latest.values()) {
     const id = incoming.flashcard_id;
+    if (!canSyncCard(library, id, incoming)) continue;
     const previous = records[id];
     if (
       incoming.version <=

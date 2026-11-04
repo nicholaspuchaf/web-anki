@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { bootstrapLibrary } from '../../bundled-decks/bootstrap';
+import { withBundledAwsDeck } from '../../bundled-decks/aws';
 import { emptyLibrary, type Library } from '../model';
-import {
-  readLibrary,
-  writeLibrary,
-} from '../../../shared/storage/library-repository';
+import { writeLibrary } from '../../../shared/storage/library-repository';
 
 export type SaveLibrary = (next: Library) => Promise<boolean>;
 
@@ -16,7 +15,7 @@ export function useLibrary() {
 
   useEffect(() => {
     let active = true;
-    readLibrary()
+    bootstrapLibrary()
       .then((data) => {
         if (active) {
           setLibrary(data);
@@ -40,8 +39,9 @@ export function useLibrary() {
     setBusy(true);
     setError('');
     try {
-      await writeLibrary(next, library);
-      setLibrary(next);
+      const seeded = withBundledAwsDeck(next);
+      await writeLibrary(seeded, library);
+      setLibrary(seeded);
       return true;
     } catch (cause) {
       setError(
@@ -56,7 +56,7 @@ export function useLibrary() {
     }
   };
   async function reload() {
-    const data = await readLibrary();
+    const data = await bootstrapLibrary();
     setLibrary(data);
   }
   return { library, ready, busy, error, setError, save, reload };

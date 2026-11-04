@@ -1,3 +1,5 @@
+import { StandardCard } from '../standard/StandardCard';
+import { filledFaces } from '../standard/model';
 import { MultipleChoiceCard } from '../multiple-choice/components/MultipleChoiceCard';
 import { getAvailableFaces } from '../leetcode/model';
 import { LeetCodeCard } from '../leetcode/components/LeetCodeCard';
@@ -25,11 +27,13 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
     answerChoice,
   } = review;
   const hasAnswer = current
-    ? current.multipleChoice
-      ? true
-      : current.leetcode
-        ? getAvailableFaces(current.leetcode).length > 0
-        : Boolean(current.back.trim())
+    ? current.faces
+      ? filledFaces(current.faces).length > 0
+      : current.multipleChoice
+        ? true
+        : current.leetcode
+          ? getAvailableFaces(current.leetcode).length > 0
+          : Boolean(current.back.trim())
     : false;
   return (
     <section className="review">
@@ -46,7 +50,9 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
           <p>
             {reviewed} revisados · {remaining} restantes
           </p>
-          {current.multipleChoice ? (
+          {current.faces ? (
+            <StandardCard key={current.id} card={current} onReveal={reveal} />
+          ) : current.multipleChoice ? (
             <MultipleChoiceCard
               key={current.id}
               card={current}
@@ -124,6 +130,10 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
           ) : current.multipleChoice ? (
             <p className="review-instruction">
               Selecione uma alternativa e confirme sua resposta para continuar.
+            </p>
+          ) : current.faces ? (
+            <p className="review-instruction">
+              Escolha um verso para revelar e depois avalie sua lembrança.
             </p>
           ) : !current.leetcode ? (
             <button className="primary reveal" onClick={() => reveal()}>

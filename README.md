@@ -65,6 +65,23 @@ Nos templates básico e LeetCode, todos os versos são opcionais. Você pode sal
 
 O agendamento é simples, não implementa FSRS ou sincronização com Anki. “De novo” agenda para um minuto; “Difícil” usa ao menos um dia e multiplica o intervalo por 1,2; “Bom” usa ao menos um dia e multiplica por 2,5; “Fácil” usa ao menos quatro dias e multiplica por 3,5. Cartões marcados “De novo” aparecem em uma nova sessão quando vencerem. Não há suporte a `.apkg`.
 
+## Baralho AWS padrão
+
+O site já abre com **AWS · Serviços e aplicações**, um catálogo de **326 cartões**
+em 20 categorias, incluindo 45 recursos de Bedrock e AgentCore. Cada cartão tem
+**O que é** (explicação curta), **Quando usar** (exemplo simples e bom uso) e
+**Visão de pleno** (decisões de arquitetura, limitações e cuidados práticos específicos do serviço).
+O [índice completo e as fontes](docs/aws-catalog.md) ficam no repositório; o conteúdo
+editável está em [src/content/aws-services.json](src/content/aws-services.json).
+
+Esse baralho usa `syncEnabled: false` e IDs reservados que o backend também recusa.
+Não é enviado ao DynamoDB, inclusive progresso e favoritos. Ele funciona offline
+após o primeiro carregamento e recebe atualizações de conteúdo pelo deploy do site,
+preservando as revisões locais por ID. O conteúdo é mantido no JSON; os cartões
+incluídos não podem ser editados ou excluídos pela interface.
+
+O template **Básico · vários versos** também pode ser usado em outros baralhos.
+
 ## Múltipla escolha
 
 Ao criar um baralho, escolha **Múltipla escolha · 4 alternativas** no campo

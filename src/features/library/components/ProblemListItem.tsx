@@ -1,3 +1,4 @@
+import { isBundledId } from '../../bundled-decks/ids';
 import type { Card } from '../model';
 import { difficultyLabels } from '../../leetcode/model';
 import { TagList } from '../../leetcode/components/TagList';
@@ -41,7 +42,10 @@ export function ProblemListItem({
           )}
         </div>
         <h3>{card.front.split('\n')[0]}</h3>
-        {!card.leetcode && !card.multipleChoice && <p>{card.back}</p>}
+        {!card.leetcode && !card.multipleChoice && !card.faces && (
+          <p>{card.back}</p>
+        )}
+        {card.tags && <TagList tags={card.tags} onSelect={onTag} />}
         {card.leetcode && (
           <TagList tags={card.leetcode.tags} onSelect={onTag} />
         )}
@@ -61,15 +65,32 @@ export function ProblemListItem({
         >
           {card.favorite ? '★' : '☆'}
         </button>
-        {(card.leetcode || card.multipleChoice) && (
+        {(card.leetcode || card.multipleChoice || card.faces) && (
           <button disabled={busy} onClick={onPreview}>
             Visualizar cartão
           </button>
         )}
-        <button disabled={busy} onClick={onEdit}>
+        <button
+          disabled={busy || isBundledId(card.id)}
+          title={
+            isBundledId(card.id)
+              ? 'Conteúdo mantido no repositório do site'
+              : undefined
+          }
+          onClick={onEdit}
+        >
           Editar
         </button>
-        <button className="danger" disabled={busy} onClick={onDelete}>
+        <button
+          className="danger"
+          disabled={busy || isBundledId(card.id)}
+          title={
+            isBundledId(card.id)
+              ? 'Conteúdo mantido no repositório do site'
+              : undefined
+          }
+          onClick={onDelete}
+        >
           Excluir
         </button>
       </div>

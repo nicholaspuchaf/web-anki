@@ -1,3 +1,5 @@
+import { createStudyFaces } from '../../standard/model';
+import { StandardFields } from '../../standard/StandardFields';
 import { useEffect, useRef, useState } from 'react';
 import { useOnline } from '../../../shared/hooks/use-online';
 import { addDeck, putCard } from '../commands';
@@ -41,15 +43,20 @@ export function LibraryEditor({
     editing
       ? editing.multipleChoice
         ? 'multiple-choice'
-        : editing.leetcode
-          ? 'leetcode'
-          : 'basic'
+        : editing.faces
+          ? 'multi-face'
+          : editing.leetcode
+            ? 'leetcode'
+            : 'basic'
       : (library.decks.find((deck) => deck.id === selected)?.defaultTemplate ??
           'leetcode'),
   );
   const [deckTemplate, setDeckTemplate] = useState<CardTemplate>('leetcode');
   const [multipleChoice, setMultipleChoice] = useState(
     () => editing?.multipleChoice ?? createMultipleChoice(),
+  );
+  const [faces, setFaces] = useState(
+    () => editing?.faces ?? createStudyFaces(),
   );
   const [front, setFront] = useState(editing?.front ?? '');
   const [back, setBack] = useState(editing?.back ?? '');
@@ -121,13 +128,24 @@ export function LibraryEditor({
     id: editing?.id ?? 'preview',
     deckId: selected,
     front,
-    back: template === 'multiple-choice' ? '' : back,
+    back:
+      template === 'multiple-choice' || template === 'multi-face' ? '' : back,
     due: editing?.due ?? createdAt,
     interval: editing?.interval ?? 0,
     reviews: editing?.reviews ?? 0,
     favorite: editing?.favorite ?? false,
+    ...(editing?.syncEnabled !== undefined
+      ? { syncEnabled: editing.syncEnabled }
+      : {}),
     ...(template === 'leetcode' ? { leetcode } : {}),
     ...(template === 'multiple-choice' ? { multipleChoice } : {}),
+    ...(template === 'multi-face'
+      ? {
+          faces,
+          ...(editing?.tags ? { tags: editing.tags } : {}),
+          ...(editing?.sourceUrl ? { sourceUrl: editing.sourceUrl } : {}),
+        }
+      : {}),
   };
   return (
     <Modal
@@ -163,12 +181,15 @@ export function LibraryEditor({
             >
               <option value="leetcode">LeetCode · múltiplos versos</option>
               <option value="basic">Básico · pergunta e resposta</option>
+              <option value="multi-face">Básico · vários versos</option>
               <option value="multiple-choice">
                 Múltipla escolha · 4 alternativas
               </option>
             </select>
           </div>
-          {(template === 'leetcode' || template === 'multiple-choice') && (
+          {(template === 'leetcode' ||
+            template === 'multiple-choice' ||
+            template === 'multi-face') && (
             <Button
               disabled={editorBusy}
               onClick={() => {
@@ -238,6 +259,7 @@ export function LibraryEditor({
                   options={[
                     { value: 'leetcode', label: 'LeetCode · múltiplos versos' },
                     { value: 'basic', label: 'Básico · pergunta e resposta' },
+                    { value: 'multi-face', label: 'Básico · vários versos' },
                     {
                       value: 'multiple-choice',
                       label: 'Múltipla escolha · 4 alternativas',
@@ -291,6 +313,8 @@ export function LibraryEditor({
                 />
                 {template === 'leetcode' ? (
                   <LeetCodeFields value={leetcode} onChange={setLeetcode} />
+                ) : template === 'multi-face' ? (
+                  <StandardFields faces={faces} onChange={setFaces} />
                 ) : template === 'multiple-choice' ? (
                   <MultipleChoiceFields
                     value={multipleChoice}

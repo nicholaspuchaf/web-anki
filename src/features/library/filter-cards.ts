@@ -16,15 +16,17 @@ export function filterCards(cards: Card[], filters: CardFilters): Card[] {
   return cards.filter(
     (card) =>
       (!filters.favorites || card.favorite) &&
-      (!filters.tag || card.leetcode?.tags.includes(filters.tag)) &&
+      (!filters.tag ||
+        (card.tags ?? card.leetcode?.tags)?.includes(filters.tag)) &&
       (!filters.difficulty ||
         card.leetcode?.difficulty === filters.difficulty) &&
       (!query ||
         [
           card.front,
           ...(card.multipleChoice?.options ?? []),
+          ...(card.faces ?? []).flatMap((face) => [face.title, face.content]),
           card.leetcode?.number ?? '',
-          ...(card.leetcode?.tags ?? []),
+          ...(card.tags ?? card.leetcode?.tags ?? []),
         ]
           .join(' ')
           .toLocaleLowerCase()

@@ -1,8 +1,10 @@
+import { StandardCard } from '../../standard/StandardCard';
 import type { Card } from '../model';
 import { LeetCodeCard } from '../../leetcode/components/LeetCodeCard';
 import { MultipleChoiceCard } from '../../multiple-choice/components/MultipleChoiceCard';
 
 export function CardPreview({ card }: { card: Card }) {
+  if (card.faces) return <StandardCard card={card} />;
   if (card.multipleChoice) return <MultipleChoiceCard card={card} />;
   if (card.leetcode) return <LeetCodeCard card={card} />;
   return (

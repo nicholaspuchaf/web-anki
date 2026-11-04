@@ -1,3 +1,4 @@
+import { isBundledId } from '../../bundled-decks/ids';
 import { getDeckCards, getDueCards } from '../selectors';
 import type { Library } from '../model';
 
@@ -28,13 +29,13 @@ export function LibraryPage({
       <section className="intro">
         <div>
           <p className="eyebrow">SEU WORKSPACE</p>
-          <h1>Revisão de problemas</h1>
+          <h1>Revisão de cartões</h1>
           <p>Retome o raciocínio. Reconheça os padrões. Resolva de novo.</p>
         </div>
         <div className="library-stats">
           <div>
             <strong>{library.cards.length}</strong>
-            <span>Problemas</span>
+            <span>Cartões</span>
           </div>
           <div>
             <strong>{due.length}</strong>
@@ -96,6 +97,13 @@ export function LibraryPage({
                     <span>↗</span>
                   </div>
                   <h3>{d.name}</h3>
+                  {d.syncEnabled === false && (
+                    <small className="local-deck-badge">
+                      {isBundledId(d.id)
+                        ? 'Incluído no site · apenas neste aparelho'
+                        : 'Apenas neste aparelho'}
+                    </small>
+                  )}
                   <p>
                     {items.length} {items.length === 1 ? 'cartão' : 'cartões'}
                   </p>

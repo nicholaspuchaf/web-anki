@@ -116,3 +116,7 @@ latest binary's recommended copy:
 Both are idempotent: re-runs replace the block delimited by the ai-memory
 start/end HTML-comment markers, without disturbing the rest of the file.
 <!-- ai-memory:end -->
+
+## Conclusão de tarefas grandes
+
+Após concluir e validar uma tarefa grande de implementação, crie automaticamente um commit local com as alterações da tarefa, sem pedir confirmação adicional. Siga [.agents/skills/commit-completed-task/SKILL.md](.agents/skills/commit-completed-task/SKILL.md), revise o diff, preserve alterações alheias e respeite os hooks. Informe o hash e a validação no resultado final. Essa preferência não autoriza push, deploy ou reescrita do histórico.

@@ -19,6 +19,12 @@ export function ConflictPreview({ content }: { content: CardContent | null }) {
           <p className="preserve-text">{card.back}</p>
         </>
       )}
+      {card.faces?.map((face) => (
+        <section key={face.id}>
+          <h4>{face.title}</h4>
+          <p className="preserve-text">{face.content || 'Sem conteúdo.'}</p>
+        </section>
+      ))}
       {card.multipleChoice && (
         <>
           <h4>Alternativas</h4>

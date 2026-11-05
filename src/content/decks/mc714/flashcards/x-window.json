@@ -1,0 +1,61 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "x-window-1",
+      "question": "No X Window System, quem é o servidor e qual recurso oferece?",
+      "answer": "O servidor X oferece o serviço gráfico e de entrada, normalmente na máquina do usuário.",
+      "explanation": "Ele gerencia a interação com tela, teclado e mouse; não é necessariamente o computador que executa a aplicação.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-2",
+      "question": "Qual é o cliente no X Window System?",
+      "answer": "A aplicação gráfica que solicita serviços ao servidor X.",
+      "explanation": "Ela pode executar remotamente ou na mesma máquina. O papel deriva do consumo do serviço gráfico.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-3",
+      "question": "Por que os papéis de cliente e servidor no X parecem invertidos?",
+      "answer": "Porque o recurso servido é o display do usuário, consumido pela aplicação.",
+      "explanation": "O computador remoto pode ser servidor de computação e hospedar um cliente X ao mesmo tempo.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-4",
+      "question": "Qual é o caminho de uma solicitação para desenhar uma janela no X?",
+      "answer": "Aplicação cliente → pedido gráfico → servidor X → tela.",
+      "explanation": "A máquina que executa a lógica não precisa ser a mesma que apresenta a janela.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-5",
+      "question": "Quem captura um clique e quem interpreta seu significado no X?",
+      "answer": "O servidor X recebe a entrada; a aplicação cliente interpreta o evento encaminhado.",
+      "explanation": "Depois de processar a ação, a aplicação pode pedir uma atualização gráfica.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-6",
+      "question": "Uma aplicação X executada na mesma máquina do usuário deixa de ser cliente X?",
+      "answer": "Não. Ela continua consumindo o serviço gráfico do servidor X.",
+      "explanation": "Cliente/servidor descreve o papel na interação, não a localização física.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-7",
+      "question": "Que responsabilidades a arquitetura X separa?",
+      "answer": "Processamento da aplicação e sua apresentação/interação gráfica.",
+      "explanation": "Isso permite executar a aplicação remotamente e utilizar dispositivos gráficos locais.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    },
+    {
+      "id": "x-window-8",
+      "question": "Um programa roda no laboratório e aparece no seu notebook via X. Onde estão cliente e servidor X?",
+      "answer": "Cliente X: programa no laboratório. Servidor X: serviço gráfico associado à tela do notebook.",
+      "explanation": "A justificativa correta é quem solicita e quem fornece os recursos gráficos.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "builtin-mc714",
+  "name": "Sistemas Distribuidos - MC714",
+  "defaultTemplate": "multi-face",
+  "syncEnabled": false,
+  "reviewedAt": "2026-11-05",
+  "tagPolicy": {
+    "required": ["sistemas-distribuidos", "unicamp", "mc714"],
+    "oneOf": ["p1", "p2", "p3"],
+    "default": "p2"
+  },
+  "content": {
+    "flashcards": [
+      "flashcards/x-window.json",
+      "flashcards/x-wan.json",
+      "flashcards/interfaces-remotas.json",
+      "flashcards/cloud-gaming.json",
+      "flashcards/aplicacoes-web.json",
+      "flashcards/metricas-qoe.json",
+      "flashcards/escolha-arquitetural.json"
+    ],
+    "carousels": [
+      "carousels/x-window.json",
+      "carousels/x-wan.json",
+      "carousels/interfaces-remotas.json",
+      "carousels/cloud-gaming.json",
+      "carousels/aplicacoes-web.json",
+      "carousels/metricas-qoe.json",
+      "carousels/escolha-arquitetural.json"
+    ]
+  }
+}

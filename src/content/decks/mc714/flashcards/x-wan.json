@@ -1,0 +1,61 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "x-wan-1",
+      "question": "O principal problema do X em WANs é sempre falta de banda?",
+      "answer": "Não. Dependências de respostas podem tornar a operação muito sensível à latência.",
+      "explanation": "Mesmo mensagens pequenas sofrem com RTT alto; interfaces com imagens podem também exigir muita banda.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-2",
+      "question": "Qual hipótese permite estimar T ≈ N × RTT?",
+      "answer": "N interações remotas sequenciais, em que cada etapa precisa aguardar uma resposta.",
+      "explanation": "Não vale multiplicar qualquer contagem de mensagens por RTT; mensagens independentes podem se sobrepor.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-3",
+      "question": "Cinco dependências com RTT de 100 ms introduzem aproximadamente quanto tempo de espera?",
+      "answer": "500 ms.",
+      "explanation": "5 × 100 ms. Processamento, transmissão e renderização podem adicionar outros custos.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-4",
+      "question": "Cinco dependências passam de RTT 1 ms para 100 ms. Quanto cresce a parcela de espera?",
+      "answer": "De 5 ms para 500 ms: 100 vezes.",
+      "explanation": "A mudança é causada pelo RTT sob a mesma cadeia de dependências.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-5",
+      "question": "Todo comando do protocolo X precisa aguardar uma resposta?",
+      "answer": "Não. Há requisições assíncronas, e trabalho pode ser agrupado ou sobreposto.",
+      "explanation": "O impacto da WAN depende das sincronizações efetivamente presentes no caminho crítico.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-6",
+      "question": "Por que ampliar banda pode não melhorar uma ação X que transfere poucos bytes?",
+      "answer": "Porque a espera por respostas remotas pode dominar o tempo total.",
+      "explanation": "Uma transmissão pequena termina rápido, mas a próxima etapa ainda depende da chegada da resposta.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-7",
+      "question": "Quando a banda também pode se tornar um gargalo em uma aplicação X?",
+      "answer": "Quando há grande volume de imagens ou atualizações gráficas complexas.",
+      "explanation": "Comandos simples podem ser compactos; isso não garante tráfego baixo para toda aplicação.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    },
+    {
+      "id": "x-wan-8",
+      "question": "Oito dependências com RTT de 80 ms: qual espera aproximada e que otimização investigar?",
+      "answer": "Cerca de 640 ms; investigar a redução ou sobreposição das dependências.",
+      "explanation": "Multiplicar a banda sem mudar o RTT não resolve essa parcela de espera.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"]
+    }
+  ]
+}

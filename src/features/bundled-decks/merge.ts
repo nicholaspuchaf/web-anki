@@ -8,6 +8,7 @@ export function mergeBundledDeck(
   library: Library,
   deck: Deck,
   content: BundledCard[],
+  options: { preservePersonalCards?: boolean } = {},
 ): Library {
   const previous = new Map(library.cards.map((card) => [card.id, card]));
   const cards: Card[] = content.map((card) => {
@@ -30,7 +31,9 @@ export function mergeBundledDeck(
         : [...library.decks, localDeck],
       cards: [
         ...library.cards.filter(
-          (card) => !ownsBundledId(deck.id, card.id) && card.deckId !== deck.id,
+          (card) =>
+            !ownsBundledId(deck.id, card.id) &&
+            (options.preservePersonalCards || card.deckId !== deck.id),
         ),
         ...cards,
       ],

@@ -1,3 +1,4 @@
+import { deckTagPolicy, enforceDeckTags } from '../decks/tag-policy';
 import { parseLeetCode } from '../leetcode/model';
 import {
   isCardTemplate,
@@ -50,6 +51,14 @@ export function putCard(library: Library, card: Card): Library {
     throw new Error('O cartão deve usar apenas um template.');
   const next = {
     ...card,
+    ...(deckTagPolicy(card.deckId)
+      ? {
+          tags: enforceDeckTags(card.deckId, [
+            ...(card.tags ?? []),
+            ...(card.leetcode?.tags ?? []),
+          ]),
+        }
+      : {}),
     front: card.front.trim(),
     back: card.back.trim(),
     ...(card.leetcode ? { leetcode: parseLeetCode(card.leetcode) } : {}),

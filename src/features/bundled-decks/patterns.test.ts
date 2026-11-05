@@ -1,3 +1,4 @@
+import mc714 from '../../content/decks/mc714/flashcards';
 import { expect, test } from 'bun:test';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -85,7 +86,9 @@ test('recompor dois baralhos preserva conteúdo, progresso, favoritos e cartões
     ],
   };
   const library = withBundledDecks(own);
-  expect(library.cards).toHaveLength(AWS_CARD_COUNT + PATTERNS_CARD_COUNT + 1);
+  expect(library.cards).toHaveLength(
+    AWS_CARD_COUNT + PATTERNS_CARD_COUNT + mc714.cards.length + 1,
+  );
   expect(library.cards[0]).toEqual(own.cards[0]);
   const pattern = library.cards.find(
     (card) => card.deckId === PATTERNS_DECK_ID,

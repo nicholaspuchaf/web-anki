@@ -1,3 +1,4 @@
+import { deckTagPolicy, enforceDeckTags } from '../decks/tag-policy';
 import { parseStudyImage } from '../standard/image';
 import { parseLeetCode } from '../leetcode/model';
 import { isCardTemplate, type Library } from '../library/model';
@@ -99,8 +100,15 @@ export function parseBackup(text: string): Library {
       ...(leetcode ? { leetcode } : {}),
       ...(multipleChoice ? { multipleChoice } : {}),
       ...(c.faces !== undefined ? { faces: parseStudyFaces(c.faces) } : {}),
-      ...(c.tags !== undefined
-        ? { tags: [...new Set(c.tags.map((tag) => tag.trim().toLowerCase()))] }
+      ...(c.tags !== undefined || deckTagPolicy(c.deckId)
+        ? {
+            tags: enforceDeckTags(
+              c.deckId,
+              deckTagPolicy(c.deckId)
+                ? [...(c.tags ?? []), ...(leetcode?.tags ?? [])]
+                : (c.tags ?? []),
+            ),
+          }
         : {}),
       ...(c.sourceUrl !== undefined ? { sourceUrl: c.sourceUrl } : {}),
       ...(c.syncEnabled !== undefined ? { syncEnabled: c.syncEnabled } : {}),

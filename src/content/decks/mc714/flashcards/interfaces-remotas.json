@@ -1,0 +1,135 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "interfaces-remotas-1",
+      "question": "O que tipicamente cruza a rede no X, no VNC e em uma aplicação web?",
+      "answer": "X: requisições gráficas e eventos. VNC: atualizações visuais e entradas. Web: código, recursos, dados e requisições.",
+      "explanation": "Esses são modelos conceituais; protocolos modernos podem combinar mecanismos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-2",
+      "question": "Onde acontece a renderização no modelo VNC?",
+      "answer": "Principalmente no computador remoto.",
+      "explanation": "O cliente recebe o resultado visual, exibe atualizações e envia entradas ao remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-3",
+      "question": "O VNC precisa transmitir a imagem completa da tela em toda atualização?",
+      "answer": "Não. Atualizações podem conter regiões modificadas do framebuffer.",
+      "explanation": "O RFB oferece mecanismos de atualização e diferentes codificações; não é necessariamente vídeo contínuo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-4",
+      "question": "Qual vantagem do desktop remoto para aplicações legadas?",
+      "answer": "Permitir usar a aplicação e seu ambiente remoto sem reescrever a interface para web.",
+      "explanation": "Isso troca o esforço de adaptação por dependência de apresentação e interação remotas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-5",
+      "question": "Por que uma interface HTML/JavaScript pode abrir um menu sem esperar a rede?",
+      "answer": "Porque o código e os recursos necessários podem estar no navegador.",
+      "explanation": "O backend só participa se a interação realmente depender de dados ou processamento remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-6",
+      "question": "O que significa transparência de acesso em sistemas distribuídos?",
+      "answer": "Ocultar diferenças de acesso ou representação entre recursos locais e remotos por uma interface uniforme.",
+      "explanation": "Ela não garante que desempenho, falhas ou todos os detalhes de localização sejam indistinguíveis.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-7",
+      "question": "Uma interface web pode executar diretamente qualquer aplicação gráfica tradicional?",
+      "answer": "Não. Em geral, a interface precisa ser desenvolvida ou adaptada para o navegador.",
+      "explanation": "Transparência para o usuário final não equivale a compatibilidade binária ou gráfica universal.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-8",
+      "question": "Todo thin client transmite somente imagens comprimidas?",
+      "answer": "Não. Soluções podem combinar imagens, vídeo, comandos e outras otimizações.",
+      "explanation": "Thin client descreve uma divisão de responsabilidades, não um único protocolo de transmissão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-9",
+      "question": "Qual abordagem combina bem com aplicações X tradicionais em uma LAN de baixa latência?",
+      "answer": "O próprio X Window System pode ser adequado.",
+      "explanation": "É preciso considerar compatibilidade, padrão de dependências e volume de dados, não apenas o rótulo LAN.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    },
+    {
+      "id": "interfaces-remotas-10",
+      "question": "Que critérios distinguem X, desktop remoto e web ao escolher uma arquitetura?",
+      "answer": "Local de execução/renderização, tráfego, dependências remotas, compatibilidade e custo de adaptação.",
+      "explanation": "Não existe um vencedor universal; o contexto e os requisitos determinam o compromisso adequado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ]
+    }
+  ]
+}

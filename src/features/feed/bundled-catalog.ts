@@ -1,3 +1,4 @@
+import mc714 from '../../content/decks/mc714/carousels';
 import learning from '../../content/decks/learning/carousels';
 import type { Deck } from '../decks/model';
 import aws from '../../content/decks/aws/carousels';
@@ -17,6 +18,7 @@ export const bundledCarouselDecks: BundledCarouselDeck[] = [
   { id: 'builtin-aws-services', source: aws },
   { id: 'builtin-patterns-design', source: patterns },
   { id: 'local-learning', source: learning },
+  { id: 'builtin-mc714', source: mc714 },
 ].map(({ id, source }) => {
   const deck = bundledDeckDefinitions.find(
     (definition) => definition.deck.id === id,

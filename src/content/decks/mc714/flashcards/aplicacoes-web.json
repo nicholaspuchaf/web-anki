@@ -1,0 +1,109 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "aplicacoes-web-1",
+      "question": "Qual é a diferença de renderização entre cloud gaming e uma interface web típica?",
+      "answer": "Cloud gaming renderiza remotamente; a interface web típica é renderizada no navegador.",
+      "explanation": "A web pode executar parte da lógica local e usar o backend para dados e regras.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-2",
+      "question": "Por que digitar em um editor web pode responder sem RTT?",
+      "answer": "Porque código, estado e renderização necessários à ação podem estar locais.",
+      "explanation": "Isso não garante que o texto já tenha sido salvo no servidor.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-3",
+      "question": "Qual aproximação descreve uma interação inteiramente local no navegador?",
+      "answer": "T ≈ processamento local + renderização local.",
+      "explanation": "A ação não pode depender de uma resposta remota para que essa aproximação se aplique.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-4",
+      "question": "Uma operação web exige uma consulta remota com uma ida e volta. Qual aproximação usar?",
+      "answer": "T ≈ RTT + processamento remoto + renderização local.",
+      "explanation": "Requisições sequenciais adicionais, filas ou transferências grandes podem acrescentar custos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-5",
+      "question": "Por que uma aplicação web orientada a dados pode gastar menos banda que vídeo remoto contínuo?",
+      "answer": "Porque pode transmitir recursos reutilizáveis e dados sob demanda, renderizando localmente.",
+      "explanation": "Carregamento inicial, conteúdo multimídia e implementação ainda influenciam o volume real.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-6",
+      "question": "Como CDN e cache ajudam a distribuição de aplicações web?",
+      "answer": "Reutilizam e aproximam recursos estáticos, reduzindo transferências repetidas e carga de origem.",
+      "explanation": "Não eliminam automaticamente gargalos em APIs, bancos ou processamento remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-7",
+      "question": "Uma aplicação JavaScript funciona offline automaticamente?",
+      "answer": "Não. É necessário projetar cache, armazenamento e comportamento sem rede.",
+      "explanation": "Operações pendentes e conflitos de sincronização também precisam de uma estratégia.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    },
+    {
+      "id": "aplicacoes-web-8",
+      "question": "Uma interface mostra “salvo” instantaneamente antes da confirmação remota. Que distinção é necessária?",
+      "answer": "Estado local/pendente versus persistência confirmada no servidor.",
+      "explanation": "Uma resposta visual rápida não prova a conclusão bem-sucedida da operação remota.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ]
+    }
+  ]
+}

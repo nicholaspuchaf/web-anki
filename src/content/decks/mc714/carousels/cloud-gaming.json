@@ -1,0 +1,220 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-cloud-gaming",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "Cloud gaming · Da entrada ao fóton",
+      "scope": "Cloud gaming · Da entrada ao fóton",
+      "objective": "Reconstruir a cadeia de interação remota e calcular latência e consumo de dados sem confundir métricas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "intervalDays": 3,
+      "template": "grafite",
+      "sourceUrl": "https://datatracker.ietf.org/doc/html/rfc6143",
+      "slides": [
+        {
+          "id": "cloud-gaming-1",
+          "title": "A máquina potente está no datacenter",
+          "blocks": [
+            {
+              "id": "cloud-gaming-0-p",
+              "type": "paragraph",
+              "text": "No cloud gaming, o jogo e a renderização executam remotamente. O dispositivo do usuário recebe imagens codificadas e envia entradas. Isso permite acessar jogos exigentes sem renderização 3D equivalente no cliente."
+            },
+            {
+              "id": "cloud-gaming-0-b",
+              "type": "bullets",
+              "items": [
+                "O cliente ainda precisa decodificar e exibir o fluxo.",
+                "Uma conexão adequada continua sendo necessária."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-2",
+          "title": "A interação atravessa seis etapas",
+          "blocks": [
+            {
+              "id": "cloud-gaming-1-p",
+              "type": "paragraph",
+              "text": "Uma tecla precisa chegar ao servidor antes de produzir um resultado remoto. Depois, o quadro precisa ser gerado, codificado, entregue, decodificado e apresentado."
+            },
+            {
+              "id": "cloud-gaming-1-b",
+              "type": "bullets",
+              "items": [
+                "Captura e envio da entrada.",
+                "Processamento/renderização e codificação.",
+                "Entrega, decodificação e exibição."
+              ]
+            },
+            {
+              "id": "cloud-gaming-1-img",
+              "type": "image",
+              "src": "/study-assets/mc714/cloud-pipeline.svg",
+              "alt": "Cadeia de seis etapas do envio da entrada até a exibição do quadro no cloud gaming.",
+              "caption": "Esquema autoral de estudo · Folha / MC714",
+              "credit": "Folha · diagrama autoral"
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-3",
+          "title": "Input-to-photon é o caminho completo",
+          "blocks": [
+            {
+              "id": "cloud-gaming-2-p",
+              "type": "paragraph",
+              "text": "A latência percebida inclui mais do que o RTT. Filas, processamento, codificação, decodificação e espera pela exibição podem contribuir para o atraso observado."
+            },
+            {
+              "id": "cloud-gaming-2-f",
+              "type": "code",
+              "language": "text",
+              "text": "T_interação ≈ T_envio + T_processamento/renderização\n             + T_codificação + T_retorno\n             + T_decodificação + T_exibição\nSome cada componente uma vez; não acrescente RTT de novo."
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-4",
+          "title": "Reconstrua os 70 ms",
+          "blocks": [
+            {
+              "id": "cloud-gaming-3-p",
+              "type": "paragraph",
+              "text": "Use os valores como exemplo didático, não como promessa de um serviço real. A soma mostra por que reduzir apenas um componente nem sempre torna a experiência suficiente."
+            },
+            {
+              "id": "cloud-gaming-3-f",
+              "type": "code",
+              "language": "text",
+              "text": "Envio: 20 ms\nProcessamento/renderização: 12 ms\nCodificação: 5 ms\nRetorno: 20 ms\nDecodificação: 5 ms\nExibição: 8 ms\nTotal: 70 ms"
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-5",
+          "title": "RTT baixo ajuda, mas não basta",
+          "blocks": [
+            {
+              "id": "cloud-gaming-4-p",
+              "type": "paragraph",
+              "text": "Mesmo com uma rede rápida, filas no servidor, codificação lenta ou atrasos no dispositivo podem dominar o caminho crítico. Em jogos competitivos, dezenas de milissegundos adicionais podem importar."
+            },
+            {
+              "id": "cloud-gaming-4-b",
+              "type": "bullets",
+              "items": [
+                "Meça a cadeia completa da entrada até a apresentação.",
+                "Um ping isolado não mede a qualidade total da sessão."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-6",
+          "title": "Vídeo precisa de uma taxa sustentada",
+          "blocks": [
+            {
+              "id": "cloud-gaming-5-p",
+              "type": "paragraph",
+              "text": "Maior resolução, taxa de quadros ou qualidade tende a exigir mais dados, dependendo do conteúdo e do codec. O fluxo pode continuar mesmo sem novas entradas do usuário."
+            },
+            {
+              "id": "cloud-gaming-5-b",
+              "type": "bullets",
+              "items": [
+                "Bitrate: bits transmitidos por segundo.",
+                "A banda precisa sustentar o fluxo; oscilações também afetam a experiência."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-7",
+          "title": "20 Mbps por uma hora",
+          "blocks": [
+            {
+              "id": "cloud-gaming-6-p",
+              "type": "paragraph",
+              "text": "A conversão usa unidades decimais e taxa constante, sem contar overhead de protocolos ou variação adaptativa. Divida bits por oito para obter bytes."
+            },
+            {
+              "id": "cloud-gaming-6-f",
+              "type": "code",
+              "language": "text",
+              "text": "20 Mb/s × 3600 s = 72 000 Mb\n72 000 / 8 = 9 000 MB ≈ 9 GB por hora\nGB decimal; não confundir com GiB."
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-8",
+          "title": "Dois acessos, um jogador",
+          "blocks": [
+            {
+              "id": "cloud-gaming-7-p",
+              "type": "paragraph",
+              "text": "A conexão de 50 Mbps com 15 ms pode ser melhor para um fluxo de 20 Mbps do que a de 500 Mbps com 150 ms. Isso supõe que os 50 Mbps estejam realmente disponíveis e sejam estáveis."
+            },
+            {
+              "id": "cloud-gaming-7-b",
+              "type": "bullets",
+              "items": [
+                "Após atender à taxa do fluxo, mais banda não reduz automaticamente a latência.",
+                "Perda, jitter, congestionamento e filas ainda precisam ser avaliados."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-9",
+          "title": "Adaptação preserva continuidade, não elimina distância",
+          "blocks": [
+            {
+              "id": "cloud-gaming-8-p",
+              "type": "paragraph",
+              "text": "Reduzir bitrate, resolução ou qualidade pode ajudar quando a capacidade disponível cai. Essa adaptação pode evitar interrupções, mas não remove o tempo de propagação da rede."
+            },
+            {
+              "id": "cloud-gaming-8-b",
+              "type": "bullets",
+              "items": [
+                "Bitrate adaptativo atua no volume transmitido.",
+                "Latência geográfica e processamento continuam existindo."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud-gaming-10",
+          "title": "Exercício: atacar o componente dominante",
+          "blocks": [
+            {
+              "id": "cloud-gaming-9-p",
+              "type": "paragraph",
+              "text": "Uma sessão já tem rede suficiente, mas espera 30 ms em uma fila de renderização. Aumentar a velocidade nominal de acesso pode não reduzir essa espera."
+            },
+            {
+              "id": "cloud-gaming-9-b",
+              "type": "bullets",
+              "items": [
+                "Investigue fila, saturação e orçamento de processamento por sessão.",
+                "Avalie o atraso de ponta a ponta antes e depois da mudança."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

@@ -1,0 +1,251 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-metricas-qoe",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "Qualidade percebida · Mais do que Mbps",
+      "scope": "Qualidade percebida · Mais do que Mbps",
+      "objective": "Escolher métricas de responsividade, fluidez, qualidade, energia e continuidade para cada modelo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "intervalDays": 3,
+      "template": "prisma",
+      "sourceUrl": "https://web.dev/articles/inp",
+      "slides": [
+        {
+          "id": "metricas-qoe-1",
+          "title": "Throughput não resume a experiência",
+          "blocks": [
+            {
+              "id": "metricas-qoe-0-p",
+              "type": "paragraph",
+              "text": "Vazão mede dados efetivamente transferidos por unidade de tempo. Uma sessão pode ter vazão suficiente e ainda responder mal por latência, variação ou falhas."
+            },
+            {
+              "id": "metricas-qoe-0-b",
+              "type": "bullets",
+              "items": [
+                "Defina a tarefa e o que constitui uma experiência aceitável.",
+                "Escolha métricas do caminho completo, não só da conexão nominal."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-2",
+          "title": "Input-to-photon e RTT respondem perguntas diferentes",
+          "blocks": [
+            {
+              "id": "metricas-qoe-1-p",
+              "type": "paragraph",
+              "text": "Input-to-photon avalia da ação à imagem percebida. RTT avalia a ida e volta de uma comunicação. Compare ambos para identificar custos além da rede."
+            },
+            {
+              "id": "metricas-qoe-1-b",
+              "type": "bullets",
+              "items": [
+                "Input-to-photon: experiência de interação gráfica.",
+                "RTT: componente de comunicação remota."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-3",
+          "title": "Jitter: a instabilidade também pesa",
+          "blocks": [
+            {
+              "id": "metricas-qoe-2-p",
+              "type": "paragraph",
+              "text": "Jitter é a variação do atraso. Uma média baixa pode esconder oscilações grandes que desorganizam a entrega e a apresentação dos quadros."
+            },
+            {
+              "id": "metricas-qoe-2-b",
+              "type": "bullets",
+              "items": [
+                "30 ms muito instáveis podem ser piores que 40 ms estáveis.",
+                "Buffers podem suavizar variação à custa de mais atraso."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-4",
+          "title": "Perda de pacotes: um sintoma, efeitos diferentes",
+          "blocks": [
+            {
+              "id": "metricas-qoe-3-p",
+              "type": "paragraph",
+              "text": "Perdas podem prejudicar a continuidade e a imagem em streaming. Em transportes confiáveis usados por requisições web, retransmissões podem aumentar o tempo de conclusão."
+            },
+            {
+              "id": "metricas-qoe-3-b",
+              "type": "bullets",
+              "items": [
+                "O efeito depende do transporte, da recuperação e da aplicação.",
+                "Não conclua o impacto só pela porcentagem sem observar a experiência."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-5",
+          "title": "FPS médio não mostra o ritmo",
+          "blocks": [
+            {
+              "id": "metricas-qoe-4-p",
+              "type": "paragraph",
+              "text": "A taxa de quadros é relevante, mas a regularidade dos tempos entre quadros também importa. Uma média alta pode conviver com pausas perceptíveis."
+            },
+            {
+              "id": "metricas-qoe-4-f",
+              "type": "code",
+              "language": "text",
+              "text": "60 FPS → intervalo médio ≈ 1000/60 ≈ 16,7 ms\nCompare também distribuição de frame times e travamentos.\nMédia igual não implica fluidez igual."
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-6",
+          "title": "Responsividade web: INP",
+          "blocks": [
+            {
+              "id": "metricas-qoe-5-p",
+              "type": "paragraph",
+              "text": "Interaction to Next Paint observa o tempo de interações qualificadas até a próxima pintura, considerando atrasos de entrada, processamento e apresentação. É uma métrica de resposta visual da página."
+            },
+            {
+              "id": "metricas-qoe-5-b",
+              "type": "bullets",
+              "items": [
+                "Não equivale necessariamente à conclusão de uma requisição ou de um salvamento.",
+                "Para tarefas remotas, meça também o tempo até a confirmação útil."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-7",
+          "title": "Carregamento inicial também é espera",
+          "blocks": [
+            {
+              "id": "metricas-qoe-6-p",
+              "type": "paragraph",
+              "text": "Uma aplicação pode ser rápida depois de iniciada, mas exigir muito tempo para baixar e preparar seus recursos. A primeira experiência deve ser medida separadamente da resposta durante o uso."
+            },
+            {
+              "id": "metricas-qoe-6-b",
+              "type": "bullets",
+              "items": [
+                "Observe o tempo até uma interação útil.",
+                "Dispositivos lentos também podem gastar tempo inicializando JavaScript."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-8",
+          "title": "Qualidade visual é mais que resolução",
+          "blocks": [
+            {
+              "id": "metricas-qoe-7-p",
+              "type": "paragraph",
+              "text": "No vídeo remoto, avalie artefatos de compressão, nitidez e estabilidade, além da resolução. Na interface web, deslocamentos inesperados e renderização irregular também podem prejudicar a tarefa."
+            },
+            {
+              "id": "metricas-qoe-7-b",
+              "type": "bullets",
+              "items": [
+                "Mais pixels não compensam todos os artefatos.",
+                "A métrica deve refletir a legibilidade e a finalidade do conteúdo."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-9",
+          "title": "Energia: especifique a unidade e a tarefa",
+          "blocks": [
+            {
+              "id": "metricas-qoe-8-p",
+              "type": "paragraph",
+              "text": "Use joules por tarefa ou potência média em watts durante uma sessão. Para comparar alternativas, mantenha condições, duração e qualidade semelhantes."
+            },
+            {
+              "id": "metricas-qoe-8-f",
+              "type": "code",
+              "language": "text",
+              "text": "Energia (J) = potência média (W) × tempo (s)\nPotência menor por mais tempo não garante menor energia total."
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-10",
+          "title": "Disponibilidade e continuidade",
+          "blocks": [
+            {
+              "id": "metricas-qoe-9-p",
+              "type": "paragraph",
+              "text": "Avalie interrupções, desconexões e capacidade de retomar a tarefa. Uma aplicação web pode manter trabalho local durante falhas; uma sessão remota depende mais diretamente da conectividade para continuar interativa."
+            },
+            {
+              "id": "metricas-qoe-9-b",
+              "type": "bullets",
+              "items": [
+                "Observe falhas e retomada, não apenas uma sessão sem incidentes.",
+                "Offline útil depende das funcionalidades realmente implementadas."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-11",
+          "title": "Médias podem esconder usuários insatisfeitos",
+          "blocks": [
+            {
+              "id": "metricas-qoe-10-p",
+              "type": "paragraph",
+              "text": "Uma avaliação real deve incluir distribuição dos atrasos e cenários distintos. Percentis, períodos de congestionamento e classes de dispositivos ajudam a expor casos ruins."
+            },
+            {
+              "id": "metricas-qoe-10-b",
+              "type": "bullets",
+              "items": [
+                "Compare tarefas e condições equivalentes.",
+                "Não misture a latência de um clique local com a confirmação de uma gravação remota."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metricas-qoe-12",
+          "title": "Exercício: escolha um painel pequeno",
+          "blocks": [
+            {
+              "id": "metricas-qoe-11-p",
+              "type": "paragraph",
+              "text": "Para cloud gaming competitivo, priorize input-to-photon, variação, perda, frame times e qualidade. Para um editor web, observe responsividade, confirmação de salvamento, carregamento e continuidade."
+            },
+            {
+              "id": "metricas-qoe-11-b",
+              "type": "bullets",
+              "items": [
+                "Inclua banda suficiente e energia quando forem restrições.",
+                "Escolha métricas que expliquem o sintoma observado."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

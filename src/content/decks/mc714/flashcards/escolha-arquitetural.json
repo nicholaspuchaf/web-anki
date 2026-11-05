@@ -1,0 +1,135 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "escolha-arquitetural-1",
+      "question": "Qual trade-off aparece ao transferir mais processamento para o servidor?",
+      "answer": "Menor exigência computacional no cliente, com maior dependência remota e possível aumento de custo no provedor.",
+      "explanation": "A intensidade depende do tráfego, da interatividade, da capacidade compartilhada e da aplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-2",
+      "question": "Por que a infraestrutura de cloud gaming tende a crescer com sessões simultâneas?",
+      "answer": "Porque executar, renderizar, codificar e transmitir cada sessão consome capacidade.",
+      "explanation": "O custo não precisa ser uma GPU física exclusiva por usuário; recursos podem ser compartilhados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-3",
+      "question": "Quais responsabilidades normalmente permanecem no backend de uma aplicação web?",
+      "answer": "APIs, regras de negócio, armazenamento, autenticação e acesso a dados.",
+      "explanation": "Renderização local não significa ausência de processamento ou gargalos no servidor.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-4",
+      "question": "Cloud gaming sempre consome menos bateria que uma aplicação web?",
+      "answer": "Não. O resultado depende de processamento local, decodificação, rede, hardware e tarefa.",
+      "explanation": "Compare condições semelhantes; uma aplicação simples pode ser mais econômica que vídeo contínuo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-5",
+      "question": "Que tarefas ainda consomem recursos no cliente de cloud gaming?",
+      "answer": "Capturar entradas, receber dados, decodificar vídeo e exibir quadros.",
+      "explanation": "A renderização 3D remota reduz uma carga importante, mas não elimina CPU, rede, tela ou energia locais.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-6",
+      "question": "O que significa heterogeneidade de clientes para essa decisão arquitetural?",
+      "answer": "Diferenças de capacidade computacional, memória, hardware e condições de rede entre usuários.",
+      "explanation": "Uma solução adequada a um desktop com fibra pode falhar em um celular antigo com rede móvel instável.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-7",
+      "question": "Quais dois eixos devem ser avaliados primeiro ao escolher execução local ou remota?",
+      "answer": "Capacidade do cliente e qualidade da conexão de rede.",
+      "explanation": "Também entram compatibilidade, esforço de adaptação, energia, custos e metas de qualidade.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-8",
+      "question": "Cite adaptações web úteis para clientes e redes variados.",
+      "answer": "Layout responsivo, carregamento sob demanda, cache, menos requisições e funcionalidades offline planejadas.",
+      "explanation": "Elas atacam restrições diferentes; JavaScript pesado ainda pode sobrecarregar um dispositivo modesto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-9",
+      "question": "Um celular fraco com rede instável é automaticamente um bom candidato a cloud gaming?",
+      "answer": "Não. A execução remota alivia computação, mas depende de conexão suficiente, estável e com atraso adequado.",
+      "explanation": "Teste jitter, perda e latência; adaptar bitrate pode ajudar a continuidade, sem remover a distância.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    },
+    {
+      "id": "escolha-arquitetural-10",
+      "question": "Como estruturar uma comparação arquitetural em uma resposta de prova?",
+      "answer": "Ligar requisito e restrições ao local de execução, ao tráfego, ao caminho de latência e ao custo deslocado.",
+      "explanation": "Conclua em que condições a alternativa é adequada, evitando afirmar um vencedor universal.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ]
+    }
+  ]
+}

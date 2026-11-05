@@ -1,3 +1,4 @@
+import mc714 from '../../content/decks/mc714/deck.json' with { type: 'json' };
 import type { Deck } from '../decks/model';
 import type { Carousel, FeedData } from './model';
 import patterns from '../../content/decks/design-patterns/deck.json' with { type: 'json' };
@@ -20,6 +21,7 @@ export function feedDecks(data: FeedData, library: Deck[] = []): Deck[] {
       GENERAL_DECK,
       parseDeck(patterns),
       parseDeck(aws),
+      parseDeck(mc714),
       ...(data.decks ?? []),
       ...library,
     ].map((d) => [d.id, d]),

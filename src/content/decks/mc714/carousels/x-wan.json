@@ -1,0 +1,169 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-x-wan",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "X em WANs · O custo das esperas",
+      "scope": "X em WANs · O custo das esperas",
+      "objective": "Distinguir latência de banda e calcular o impacto de interações remotas sequenciais.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "intervalDays": 3,
+      "template": "oceano",
+      "sourceUrl": "https://www.x.org/guide/communication/",
+      "slides": [
+        {
+          "id": "x-wan-1",
+          "title": "Banda alta não apaga a distância",
+          "blocks": [
+            {
+              "id": "x-wan-0-p",
+              "type": "paragraph",
+              "text": "Uma conexão pode transmitir muitos dados por segundo e ainda demorar para devolver uma resposta. Para operações dependentes de respostas, o tempo de ida e volta é decisivo."
+            },
+            {
+              "id": "x-wan-0-b",
+              "type": "bullets",
+              "items": [
+                "Banda: capacidade de transmissão.",
+                "RTT: tempo de ida e volta.",
+                "O gargalo depende do caminho crítico da operação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-wan-2",
+          "title": "A palavra-chave é dependência",
+          "blocks": [
+            {
+              "id": "x-wan-1-p",
+              "type": "paragraph",
+              "text": "Se o próximo passo depende da resposta do anterior, os atrasos de rede se acumulam. Não se pode esconder essa espera apenas enviando dados mais rapidamente."
+            },
+            {
+              "id": "x-wan-1-b",
+              "type": "bullets",
+              "items": [
+                "Considere consultas de estado ou sincronizações necessárias à aplicação.",
+                "Conte as interações sequenciais, não apenas o total de mensagens."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-wan-3",
+          "title": "Um modelo simples para raciocinar",
+          "blocks": [
+            {
+              "id": "x-wan-2-p",
+              "type": "paragraph",
+              "text": "Quando N interações precisam aguardar uma resposta antes de prosseguir, uma estimativa simplificada do componente de espera é N vezes o RTT. Processamento e transmissão podem acrescentar outros custos."
+            },
+            {
+              "id": "x-wan-2-f",
+              "type": "code",
+              "language": "text",
+              "text": "T_espera ≈ N × RTT\nHipótese: N dependências sequenciais, sem sobreposição.\nNão é uma fórmula para toda requisição X."
+            }
+          ]
+        },
+        {
+          "id": "x-wan-4",
+          "title": "Cinco esperas: LAN contra WAN",
+          "blocks": [
+            {
+              "id": "x-wan-3-p",
+              "type": "paragraph",
+              "text": "Com cinco interações sequenciais, o mesmo padrão de dependências se torna muito mais lento quando o RTT cresce de 1 ms para 100 ms. A conta isola o custo da rede, não o tempo completo de renderização."
+            },
+            {
+              "id": "x-wan-3-f",
+              "type": "code",
+              "language": "text",
+              "text": "LAN: 5 × 1 ms = 5 ms\nWAN: 5 × 100 ms = 500 ms\nRazão: 500 / 5 = 100 vezes"
+            }
+          ]
+        },
+        {
+          "id": "x-wan-5",
+          "title": "Não transforme a aproximação em regra absoluta",
+          "blocks": [
+            {
+              "id": "x-wan-4-p",
+              "type": "paragraph",
+              "text": "O X admite requisições assíncronas. Nem todo comando exige uma resposta, e uma aplicação pode agrupar ou sobrepor trabalho. O problema ocorre quando há respostas necessárias no caminho crítico."
+            },
+            {
+              "id": "x-wan-4-b",
+              "type": "bullets",
+              "items": [
+                "Não diga que todo comando gráfico custa um RTT.",
+                "O protocolo, a biblioteca e o comportamento da aplicação influenciam as esperas."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-wan-6",
+          "title": "Imagens também podem pesar",
+          "blocks": [
+            {
+              "id": "x-wan-5-p",
+              "type": "paragraph",
+              "text": "Comandos simples podem exigir poucos bytes. Imagens e atualizações complexas podem aumentar o volume transferido e introduzir um gargalo de banda além da latência."
+            },
+            {
+              "id": "x-wan-5-b",
+              "type": "bullets",
+              "items": [
+                "Poucos bytes não eliminam RTT.",
+                "Muitos pixels podem exigir transmissão substancial.",
+                "Dois gargalos podem coexistir."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-wan-7",
+          "title": "Qual melhoria ataca qual problema?",
+          "blocks": [
+            {
+              "id": "x-wan-6-p",
+              "type": "paragraph",
+              "text": "Aumentar banda ajuda quando o volume de dados é o gargalo. Reduzir dependências remotas, agrupar trabalho ou aproximar a execução pode ajudar quando a espera por respostas domina."
+            },
+            {
+              "id": "x-wan-6-b",
+              "type": "bullets",
+              "items": [
+                "Diagnostique antes de escolher uma otimização.",
+                "Uma troca de arquitetura muda onde o trabalho e as esperas acontecem."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-wan-8",
+          "title": "Exercício: uma rede dez vezes mais rápida",
+          "blocks": [
+            {
+              "id": "x-wan-7-p",
+              "type": "paragraph",
+              "text": "Uma ação transfere poucos bytes, mas exige oito respostas sequenciais com RTT de 80 ms. Aumentar somente a banda em dez vezes não reduz a parcela de espera por RTT."
+            },
+            {
+              "id": "x-wan-7-f",
+              "type": "code",
+              "language": "text",
+              "text": "Espera aproximada: 8 × 80 ms = 640 ms\nRTT inalterado → parcela de espera praticamente inalterada\nPergunta útil: quais dependências podem ser eliminadas?"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

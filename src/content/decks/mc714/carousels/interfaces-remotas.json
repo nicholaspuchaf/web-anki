@@ -1,0 +1,227 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-interfaces-remotas",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "X, VNC e Web · O que atravessa a rede?",
+      "scope": "X, VNC e Web · O que atravessa a rede?",
+      "objective": "Comparar local de renderização, dados transmitidos e transparência de acesso nas três abordagens.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "intervalDays": 3,
+      "template": "editorial",
+      "sourceUrl": "https://datatracker.ietf.org/doc/html/rfc6143",
+      "slides": [
+        {
+          "id": "interfaces-remotas-1",
+          "title": "Compare a fronteira, não só o nome",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-0-p",
+              "type": "paragraph",
+              "text": "As três abordagens distribuem a aplicação de formas diferentes. Pergunte onde a interface é produzida, o que cruza a rede e quais ações precisam de uma resposta remota."
+            },
+            {
+              "id": "interfaces-remotas-0-b",
+              "type": "bullets",
+              "items": [
+                "X: requisições gráficas e eventos.",
+                "VNC: atualizações do framebuffer e entradas.",
+                "Web: código, recursos, dados e requisições."
+              ]
+            },
+            {
+              "id": "interfaces-remotas-0-img",
+              "type": "image",
+              "src": "/study-assets/mc714/models.svg",
+              "alt": "Três modelos: X envia operações para o serviço gráfico local; VNC envia pixels do computador remoto; Web envia código e dados ao navegador.",
+              "caption": "Esquema autoral de estudo · Folha / MC714",
+              "credit": "Folha · diagrama autoral"
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-2",
+          "title": "X: pedir operações gráficas",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-1-p",
+              "type": "paragraph",
+              "text": "O cliente X solicita operações ao servidor X associado à tela. Isso pode ser econômico para gráficos simples, mas depende da compatibilidade com X e do padrão de comunicação da aplicação."
+            },
+            {
+              "id": "interfaces-remotas-1-b",
+              "type": "bullets",
+              "items": [
+                "Não é preciso transmitir continuamente uma imagem completa de toda a tela.",
+                "Dependências síncronas e imagens complexas podem piorar o desempenho."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-3",
+          "title": "VNC: observar o resultado remoto",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-2-p",
+              "type": "paragraph",
+              "text": "No modelo VNC, a aplicação e a renderização acontecem remotamente. O cliente exibe atualizações visuais e envia entradas para o computador remoto."
+            },
+            {
+              "id": "interfaces-remotas-2-b",
+              "type": "bullets",
+              "items": [
+                "A tela pode ser atualizada por regiões.",
+                "O protocolo RFB não exige reenviar uma imagem completa a cada mudança."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-4",
+          "title": "O ciclo de um desktop remoto",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-3-p",
+              "type": "paragraph",
+              "text": "O sistema remoto produz a interface. Atualizações do framebuffer chegam ao cliente, enquanto teclado e mouse fazem o caminho inverso. O usuário pode utilizar aplicações existentes sem reescrever suas interfaces."
+            },
+            {
+              "id": "interfaces-remotas-3-f",
+              "type": "code",
+              "language": "text",
+              "text": "Computador remoto → atualização visual → cliente\nCliente → teclado/mouse → computador remoto\nA ação ainda espera o processamento e o retorno remoto."
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-5",
+          "title": "Thin client é uma categoria mais ampla",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-4-p",
+              "type": "paragraph",
+              "text": "Não trate todo thin client como um único codec ou protocolo. Soluções podem combinar imagens, vídeo, comandos e otimizações de regiões. VNC é um exemplo concreto de apresentação remota baseada em framebuffer."
+            },
+            {
+              "id": "interfaces-remotas-4-b",
+              "type": "bullets",
+              "items": [
+                "Codificação e compressão influenciam CPU, banda e atraso.",
+                "Vídeo, animações e mudanças frequentes podem aumentar o tráfego."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-6",
+          "title": "Web: enviar uma descrição executável da interface",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-5-p",
+              "type": "paragraph",
+              "text": "O navegador recebe HTML, CSS e JavaScript e produz a interface localmente. APIs fornecem dados quando necessário, sem enviar obrigatoriamente a imagem da tela."
+            },
+            {
+              "id": "interfaces-remotas-5-b",
+              "type": "bullets",
+              "items": [
+                "Abrir um menu pode ser inteiramente local.",
+                "Listar arquivos remotos pode exigir uma requisição ao backend."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-7",
+          "title": "Transparência de acesso",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-6-p",
+              "type": "paragraph",
+              "text": "A transparência de acesso esconde diferenças de acesso ou representação entre recursos locais e remotos. O usuário pode interagir com o recurso por uma interface uniforme. Isso não implica esconder atrasos ou falhas."
+            },
+            {
+              "id": "interfaces-remotas-6-b",
+              "type": "bullets",
+              "items": [
+                "X apresenta janelas de aplicações X locais ou remotas.",
+                "VNC reproduz um ambiente remoto.",
+                "Web apresenta serviços remotos por uma interface adaptada ao navegador."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-8",
+          "title": "Transparência não é compatibilidade universal",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-7-p",
+              "type": "paragraph",
+              "text": "A interface web pode esconder a localização do backend, mas não executa automaticamente toda aplicação gráfica legada. Em geral, essa interface precisa ser desenvolvida ou adaptada."
+            },
+            {
+              "id": "interfaces-remotas-7-b",
+              "type": "bullets",
+              "items": [
+                "X exige compatibilidade com seu modelo/protocolo.",
+                "VNC permite acesso a aplicações já instaladas no desktop remoto.",
+                "Web exige implementação apropriada para o navegador."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-9",
+          "title": "Escolha por restrição real",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-8-p",
+              "type": "paragraph",
+              "text": "Para um desktop legado completo, apresentação remota pode evitar reescrita. Para um sistema orientado a dados acessível pela internet, uma interface web costuma aproveitar o processamento local. Para aplicações X em LAN, o X pode se adequar bem."
+            },
+            {
+              "id": "interfaces-remotas-8-b",
+              "type": "bullets",
+              "items": [
+                "Cenário ideal é uma tendência, não uma garantia universal.",
+                "Compare latência, banda, compatibilidade e esforço de adaptação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interfaces-remotas-10",
+          "title": "Exercício: identifique o tráfego",
+          "blocks": [
+            {
+              "id": "interfaces-remotas-9-p",
+              "type": "paragraph",
+              "text": "Um menu abre instantaneamente no navegador sem requisição. Outro sistema envia uma região de pixels atualizada após o clique. Em um terceiro, uma aplicação solicita ao serviço gráfico uma operação de desenho."
+            },
+            {
+              "id": "interfaces-remotas-9-b",
+              "type": "bullets",
+              "items": [
+                "Menu local: modelo web com interação local.",
+                "Região de pixels: apresentação remota, como VNC.",
+                "Pedido gráfico: modelo X."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

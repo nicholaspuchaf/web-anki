@@ -1,3 +1,5 @@
+import { DeckTagFields } from '../../decks/DeckTagFields';
+import { deckTagPolicy } from '../../decks/tag-policy';
 import { createStudyFaces } from '../../standard/model';
 import { StandardFields } from '../../standard/StandardFields';
 import { useEffect, useRef, useState } from 'react';
@@ -58,6 +60,7 @@ export function LibraryEditor({
   const [faces, setFaces] = useState(
     () => editing?.faces ?? createStudyFaces(),
   );
+  const [cardTags, setCardTags] = useState<string[]>(editing?.tags ?? []);
   const [front, setFront] = useState(editing?.front ?? '');
   const [back, setBack] = useState(editing?.back ?? '');
   const [leetcode, setLeetcode] = useState(
@@ -147,6 +150,7 @@ export function LibraryEditor({
           ...(editing?.sourceUrl ? { sourceUrl: editing.sourceUrl } : {}),
         }
       : {}),
+    ...(deckTagPolicy(selected) ? { tags: cardTags } : {}),
   };
   return (
     <Modal
@@ -242,6 +246,13 @@ export function LibraryEditor({
           }}
         >
           <fieldset className="form-content" disabled={editorBusy}>
+            {modal === 'card' && (
+              <DeckTagFields
+                deckId={selected}
+                tags={cardTags}
+                onChange={setCardTags}
+              />
+            )}
             {modal === 'deck' ? (
               <>
                 <TextField

@@ -1,0 +1,179 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-x-window",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "X Window System · Quem serve quem?",
+      "scope": "X Window System · Quem serve quem?",
+      "objective": "Explicar a separação entre aplicação e apresentação e reconstruir o caminho de uma interação X.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-window"],
+      "intervalDays": 3,
+      "template": "blueprint",
+      "sourceUrl": "https://www.x.org/guide/communication/",
+      "slides": [
+        {
+          "id": "x-window-1",
+          "title": "A aplicação e a tela podem estar longe",
+          "blocks": [
+            {
+              "id": "x-window-0-p",
+              "type": "paragraph",
+              "text": "No X Window System, uma aplicação gráfica pode executar em uma máquina e apresentar suas janelas em outra. A rede conecta a aplicação aos recursos gráficos disponibilizados pelo servidor X."
+            },
+            {
+              "id": "x-window-0-b",
+              "type": "bullets",
+              "items": [
+                "Executar a aplicação é diferente de apresentar sua interface.",
+                "A aplicação também pode executar na mesma máquina do servidor X."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-window-2",
+          "title": "Servidor é quem fornece o recurso",
+          "blocks": [
+            {
+              "id": "x-window-1-p",
+              "type": "paragraph",
+              "text": "O papel não depende de qual computador parece mais potente ou remoto. O servidor X fornece acesso ao display e aos dispositivos de entrada; o cliente X solicita operações gráficas."
+            },
+            {
+              "id": "x-window-1-b",
+              "type": "bullets",
+              "items": [
+                "Servidor X: oferece o serviço gráfico.",
+                "Cliente X: aplicação que usa esse serviço."
+              ]
+            },
+            {
+              "id": "x-window-1-img",
+              "type": "image",
+              "src": "/study-assets/mc714/x-roles.svg",
+              "alt": "Servidor X na máquina do usuário oferece tela e entrada; aplicação remota cliente envia pedidos e recebe eventos.",
+              "caption": "Esquema autoral de estudo · Folha / MC714",
+              "credit": "Folha · diagrama autoral"
+            }
+          ]
+        },
+        {
+          "id": "x-window-3",
+          "title": "A inversão é apenas aparente",
+          "blocks": [
+            {
+              "id": "x-window-2-p",
+              "type": "paragraph",
+              "text": "Na visão habitual de uma API, o usuário consome um serviço remoto. No X, a aplicação consome o serviço gráfico associado ao usuário. O critério cliente/servidor continua sendo quem solicita e quem oferece o serviço."
+            },
+            {
+              "id": "x-window-2-b",
+              "type": "bullets",
+              "items": [
+                "Localização física não define o papel.",
+                "Uma máquina pode oferecer um serviço e consumir outro ao mesmo tempo."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-window-4",
+          "title": "Desenhar: da aplicação ao display",
+          "blocks": [
+            {
+              "id": "x-window-3-p",
+              "type": "paragraph",
+              "text": "A aplicação cliente solicita a criação de uma janela, o desenho de elementos ou uma atualização. O servidor X atende às requisições e apresenta o resultado nos recursos gráficos que gerencia."
+            },
+            {
+              "id": "x-window-3-b",
+              "type": "bullets",
+              "items": [
+                "Aplicação → requisição gráfica → servidor X → tela.",
+                "O usuário não precisa executar localmente toda a lógica da aplicação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-window-5",
+          "title": "Clicar: da entrada à aplicação",
+          "blocks": [
+            {
+              "id": "x-window-4-p",
+              "type": "paragraph",
+              "text": "O servidor X recebe a entrada do teclado ou mouse e encaminha os eventos apropriados ao cliente. A aplicação interpreta o clique e pode solicitar uma nova atualização visual."
+            },
+            {
+              "id": "x-window-4-b",
+              "type": "bullets",
+              "items": [
+                "Entrada → servidor X → evento → aplicação.",
+                "A atualização resultante percorre o caminho gráfico de volta."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-window-6",
+          "title": "Um ciclo completo",
+          "blocks": [
+            {
+              "id": "x-window-5-p",
+              "type": "paragraph",
+              "text": "Uma aplicação remota abre uma janela no notebook do usuário. O usuário clica em um botão, a aplicação processa a ação e a tela é atualizada. Separe o caminho do pedido gráfico do caminho dos eventos."
+            },
+            {
+              "id": "x-window-5-f",
+              "type": "code",
+              "language": "text",
+              "text": "Aplicação remota → pedido gráfico → X local → janela\nMouse local → X local → evento → aplicação remota\nAplicação remota → atualização → X local → tela"
+            }
+          ]
+        },
+        {
+          "id": "x-window-7",
+          "title": "O que foi separado?",
+          "blocks": [
+            {
+              "id": "x-window-6-p",
+              "type": "paragraph",
+              "text": "O principal desacoplamento é entre processamento da aplicação e apresentação/interação. Isso permite usar recursos computacionais remotos sem transferir toda a aplicação para o computador do usuário."
+            },
+            {
+              "id": "x-window-6-b",
+              "type": "bullets",
+              "items": [
+                "O cliente ainda precisa de um servidor X compatível para apresentar a aplicação.",
+                "A compatibilidade com X importa: não é uma forma universal de executar qualquer aplicação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "x-window-8",
+          "title": "Teste seu modelo mental",
+          "blocks": [
+            {
+              "id": "x-window-7-p",
+              "type": "paragraph",
+              "text": "Um programa de laboratório roda em um servidor Linux e aparece na tela de uma estação. Quem é o cliente X? O programa do laboratório. Quem é o servidor X? O componente que oferece o serviço gráfico à estação do usuário."
+            },
+            {
+              "id": "x-window-7-b",
+              "type": "bullets",
+              "items": [
+                "Justifique pelo recurso fornecido, não pela distância.",
+                "Explique também quem captura o clique e quem decide seu significado."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

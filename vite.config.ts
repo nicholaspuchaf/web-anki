@@ -7,6 +7,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes('/src/content/decks/mc714/flashcards/'))
+            return 'mc714-flashcards';
+          if (id.includes('/src/content/decks/mc714/carousels/'))
+            return 'mc714-carousels';
           if (id.includes('/src/content/decks/aws/flashcards/'))
             return 'aws-catalog';
           if (

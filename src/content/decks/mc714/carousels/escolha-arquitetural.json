@@ -1,0 +1,215 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-escolha-arquitetural",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "Cliente, rede e custo · Escolhendo a arquitetura",
+      "scope": "Cliente, rede e custo · Escolhendo a arquitetura",
+      "objective": "Relacionar capacidade do cliente, condições de rede, energia e escala a uma escolha justificada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "intervalDays": 3,
+      "template": "terracota",
+      "sourceUrl": "https://web.dev/articles/inp",
+      "slides": [
+        {
+          "id": "escolha-arquitetural-1",
+          "title": "A arquitetura distribui trabalho e dependência",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-0-p",
+              "type": "paragraph",
+              "text": "Transferir processamento ao servidor pode aliviar o cliente, mas aumenta a necessidade de comunicação e recursos do provedor. Executar localmente aproveita o dispositivo, mas exige capacidade e energia nele."
+            },
+            {
+              "id": "escolha-arquitetural-0-b",
+              "type": "bullets",
+              "items": [
+                "O compromisso envolve cliente, rede e datacenter.",
+                "Compare a mesma tarefa, com qualidade e metas explícitas."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-2",
+          "title": "Cloud gaming desloca o custo computacional",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-1-p",
+              "type": "paragraph",
+              "text": "O provedor mantém recursos para executar as sessões e produzir imagens: CPU, memória, GPU quando necessária, codificação e rede. A capacidade precisa acompanhar a concorrência."
+            },
+            {
+              "id": "escolha-arquitetural-1-b",
+              "type": "bullets",
+              "items": [
+                "Não conclua que cada sessão exige uma GPU física exclusiva.",
+                "Compartilhamento, carga e qualidade determinam o custo real por sessão."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-3",
+          "title": "Web distribui parte do trabalho",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-2-p",
+              "type": "paragraph",
+              "text": "Interfaces locais reduzem a necessidade de gerar cada quadro remotamente. Arquivos estáticos podem ser reutilizados, mas APIs, armazenamento, autenticação e regras continuam exigindo infraestrutura."
+            },
+            {
+              "id": "escolha-arquitetural-2-b",
+              "type": "bullets",
+              "items": [
+                "Distribuição de processamento pode favorecer a escala.",
+                "Menor custo por usuário é uma tendência do modelo, não garantia para toda aplicação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-4",
+          "title": "Menos GPU local não significa bateria gratuita",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-3-p",
+              "type": "paragraph",
+              "text": "O cliente remoto ainda recebe dados, decodifica vídeo e mantém a tela ativa. Decodificador de hardware eficiente ajuda, enquanto a rede e a carga contínua também consomem energia."
+            },
+            {
+              "id": "escolha-arquitetural-3-b",
+              "type": "bullets",
+              "items": [
+                "Em web, JavaScript e renderização podem elevar CPU/GPU locais.",
+                "Uma aplicação simples pode consumir menos que um fluxo contínuo de vídeo."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-5",
+          "title": "Não existe vencedor energético universal",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-4-p",
+              "type": "paragraph",
+              "text": "A comparação depende da tarefa, do hardware, da rede, do codec, da duração e da qualidade. Uma economia de renderização local pode ser compensada por vídeo e comunicação contínuos."
+            },
+            {
+              "id": "escolha-arquitetural-4-b",
+              "type": "bullets",
+              "items": [
+                "Meça energia por tarefa ou potência durante sessões comparáveis.",
+                "Evite afirmar que cloud gaming sempre poupa bateria."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-6",
+          "title": "Clientes heterogêneos, restrições distintas",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-5-p",
+              "type": "paragraph",
+              "text": "Usuários podem ter GPUs potentes, celulares com pouca memória ou dispositivos antigos. As redes também variam em capacidade disponível, atraso, perdas e estabilidade."
+            },
+            {
+              "id": "escolha-arquitetural-5-b",
+              "type": "bullets",
+              "items": [
+                "Um cliente fraco com rede estável pode se beneficiar de execução remota.",
+                "Uma rede ruim pode tornar a interatividade remota inadequada."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-7",
+          "title": "Adapte sem prometer milagres",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-6-p",
+              "type": "paragraph",
+              "text": "Cloud gaming pode adaptar bitrate/qualidade. A web pode usar layout responsivo, carregamento sob demanda, cache, menos requisições e recursos offline. Cada técnica trata uma restrição diferente."
+            },
+            {
+              "id": "escolha-arquitetural-6-b",
+              "type": "bullets",
+              "items": [
+                "Reduzir bitrate não elimina propagação.",
+                "Layout responsivo não resolve sozinho falta de memória ou tarefas JavaScript pesadas."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-8",
+          "title": "Uma matriz de decisão prática",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-7-p",
+              "type": "paragraph",
+              "text": "Comece pela viabilidade: o cliente consegue executar a tarefa? Em seguida, verifique se a rede satisfaz as dependências remotas. Só então compare custo, adaptação e experiência."
+            },
+            {
+              "id": "escolha-arquitetural-7-f",
+              "type": "code",
+              "language": "text",
+              "text": "Cliente fraco + rede boa → considerar execução remota\nCliente capaz + rede instável → favorecer interações locais\nDesktop legado sem reescrita → considerar desktop remoto\nInterface orientada a dados pela internet → considerar web"
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-9",
+          "title": "Caso: celular simples e rede móvel irregular",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-8-p",
+              "type": "paragraph",
+              "text": "A execução remota alivia a renderização do celular, mas jitter e perdas ameaçam a sessão. A web pode reduzir comunicação e complexidade, porém também precisa caber na memória e no processamento disponíveis."
+            },
+            {
+              "id": "escolha-arquitetural-8-b",
+              "type": "bullets",
+              "items": [
+                "Teste o dispositivo e a rede reais.",
+                "Considere reduzir qualidade, complexidade ou escopo da funcionalidade."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escolha-arquitetural-10",
+          "title": "Resposta de prova: explique a causalidade",
+          "blocks": [
+            {
+              "id": "escolha-arquitetural-9-p",
+              "type": "paragraph",
+              "text": "Uma boa comparação liga a escolha ao caminho da interação. Não basta escrever que uma tecnologia é melhor: diga onde o trabalho ocorre, o que é transmitido, qual métrica domina e qual custo foi deslocado."
+            },
+            {
+              "id": "escolha-arquitetural-9-b",
+              "type": "bullets",
+              "items": [
+                "Requisito → restrição → divisão de trabalho → consequência.",
+                "Conclua com condições e limitações, não com uma regra absoluta."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

@@ -1,3 +1,4 @@
+import { enforceDeckTags } from '../decks/tag-policy';
 import { parseDeck, type Deck } from '../decks/model';
 import {
   carouselTemplates,
@@ -247,11 +248,10 @@ export function parseCarousel(value: unknown): Carousel {
     title: string(input.title, 'o título do carrossel'),
     scope: string(input.scope, 'o escopo'),
     objective: string(input.objective, 'o objetivo de aprendizado'),
-    tags: [
-      ...new Set(
-        input.tags.map((item) => string(item, 'as tags').toLocaleLowerCase()),
-      ),
-    ],
+    tags: enforceDeckTags(
+      input.deckId as string | undefined,
+      input.tags.map((item) => string(item, 'as tags')),
+    ),
     intervalDays: input.intervalDays as number,
     slides,
     ...(input.template !== undefined

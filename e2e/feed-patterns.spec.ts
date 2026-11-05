@@ -84,7 +84,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
   });
   await page.getByRole('link', { name: 'Feed', exact: false }).click();
   await feedAction(page, 'Meus carrosséis');
-  await expect(page.locator('.feed-manager article')).toHaveCount(23);
+  await expect(page.locator('.feed-manager article')).toHaveCount(30);
   for (const carousel of catalog.carousels)
     await expect(
       page.getByRole('heading', { name: carousel.title, exact: true }),
@@ -110,7 +110,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
   await expect(item).toHaveCount(0);
   await page.reload();
   await feedAction(page, 'Meus carrosséis');
-  await expect(page.locator('.feed-manager article')).toHaveCount(22);
+  await expect(page.locator('.feed-manager article')).toHaveCount(29);
   await expect(item).toHaveCount(0);
   expect(remoteRequests).toEqual([]);
 });

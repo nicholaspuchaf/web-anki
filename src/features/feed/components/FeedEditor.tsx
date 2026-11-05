@@ -1,3 +1,5 @@
+import { DeckTagFields } from '../../decks/DeckTagFields';
+import { deckTagPolicy } from '../../decks/tag-policy';
 import type { Deck } from '../../decks/model';
 import { carouselDeckId } from '../decks';
 import { SelectField } from '../../../shared/ui/SelectField';
@@ -201,20 +203,31 @@ export function FeedEditor({
               placeholder="Ao terminar, quero conseguir explicar…"
             />
             <div className="feed-editor-row">
-              <TextField
-                label="Tags (separadas por vírgula)"
-                value={tags}
-                onChange={(e) => {
-                  setTags(e.target.value);
-                  setValue({
-                    ...value,
-                    tags: e.target.value
-                      .split(',')
-                      .map((tag) => tag.trim())
-                      .filter(Boolean),
-                  });
-                }}
-              />
+              {deckTagPolicy(carouselDeckId(value)) ? (
+                <DeckTagFields
+                  deckId={carouselDeckId(value)}
+                  tags={value.tags}
+                  onChange={(next) => {
+                    setTags(next.join(', '));
+                    setValue({ ...value, tags: next });
+                  }}
+                />
+              ) : (
+                <TextField
+                  label="Tags (separadas por vírgula)"
+                  value={tags}
+                  onChange={(e) => {
+                    setTags(e.target.value);
+                    setValue({
+                      ...value,
+                      tags: e.target.value
+                        .split(',')
+                        .map((tag) => tag.trim())
+                        .filter(Boolean),
+                    });
+                  }}
+                />
+              )}
               <TextField
                 label="Reapresentar após (dias)"
                 type="number"

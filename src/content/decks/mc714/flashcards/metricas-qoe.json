@@ -1,0 +1,161 @@
+{
+  "reviewedAt": "2026-11-05",
+  "cards": [
+    {
+      "id": "metricas-qoe-1",
+      "question": "Por que medir somente throughput não garante boa experiência?",
+      "answer": "Porque latência, jitter, perdas e atrasos de processamento podem dominar a interação.",
+      "explanation": "Vazão suficiente é uma condição útil, mas não descreve todo o caminho da tarefa.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-2",
+      "question": "RTT e input-to-photon medem a mesma coisa?",
+      "answer": "Não. RTT mede ida e volta da comunicação; input-to-photon mede da ação à apresentação visual.",
+      "explanation": "Processamento, vídeo, filas e exibição podem ampliar o atraso de interação além da rede.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-3",
+      "question": "O que é jitter?",
+      "answer": "Variação do atraso na entrega das mensagens ou pacotes.",
+      "explanation": "Oscilações podem causar apresentação irregular e exigir buffers que acrescentam latência.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-4",
+      "question": "Por que 30 ms instáveis podem ser piores que 40 ms estáveis?",
+      "answer": "Porque grandes variações podem interromper o ritmo de entrega e apresentação.",
+      "explanation": "A média isolada esconde picos e irregularidade; o efeito concreto depende da aplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-5",
+      "question": "Como perdas de pacotes podem afetar streaming e requisições web?",
+      "answer": "Streaming pode degradar ou interromper a imagem; comunicações confiáveis podem esperar retransmissões.",
+      "explanation": "O resultado depende do protocolo de transporte e dos mecanismos de recuperação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-6",
+      "question": "Por que FPS médio não basta para avaliar fluidez?",
+      "answer": "Porque não revela a regularidade dos intervalos entre quadros nem pausas.",
+      "explanation": "Observe frame times e travamentos; duas sessões de mesma média podem ter ritmos diferentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-7",
+      "question": "Qual é o intervalo médio entre quadros a 60 FPS?",
+      "answer": "Aproximadamente 16,7 ms.",
+      "explanation": "1000 ms ÷ 60. Esse orçamento médio não garante que todo quadro chegue no prazo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-8",
+      "question": "O que o INP procura medir em uma página web?",
+      "answer": "A responsividade de interações qualificadas até a próxima pintura.",
+      "explanation": "Não é, por si só, o tempo até a confirmação de uma tarefa remota como persistência no backend.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-9",
+      "question": "Por que medir carregamento inicial separadamente da responsividade durante o uso?",
+      "answer": "Porque baixar e inicializar recursos pode ser lento mesmo quando as interações posteriores são rápidas.",
+      "explanation": "Transferência, inicialização de código e capacidade do dispositivo afetam a primeira tarefa útil.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-10",
+      "question": "Além de resolução, que sinais ajudam a avaliar qualidade visual de vídeo remoto?",
+      "answer": "Artefatos de compressão, nitidez, estabilidade e regularidade dos quadros.",
+      "explanation": "A avaliação deve considerar se o usuário consegue executar a tarefa com conforto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-11",
+      "question": "Qual é a diferença entre medir watts e joules por tarefa?",
+      "answer": "Watts medem potência; joules medem energia consumida ao longo da tarefa.",
+      "explanation": "Energia = potência média × tempo. Compare duração, qualidade e condições semelhantes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    },
+    {
+      "id": "metricas-qoe-12",
+      "question": "Que métrica de experiência falta se uma avaliação ignora desconexões e retomadas?",
+      "answer": "Disponibilidade e continuidade da sessão/tarefa.",
+      "explanation": "Uma experiência boa enquanto a rede funciona pode esconder perda de trabalho ou retomada ruim.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ]
+    }
+  ]
+}

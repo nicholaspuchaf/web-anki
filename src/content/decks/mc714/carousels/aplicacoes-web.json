@@ -1,0 +1,176 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-mc714-aplicacoes-web",
+      "deckId": "builtin-mc714",
+      "revision": 1,
+      "title": "Aplicações web · Interação local, dados remotos",
+      "scope": "Aplicações web · Interação local, dados remotos",
+      "objective": "Separar resposta local de confirmação remota e explicar banda, distribuição e continuidade offline.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "intervalDays": 3,
+      "template": "aurora",
+      "sourceUrl": "https://web.dev/articles/inp",
+      "slides": [
+        {
+          "id": "aplicacoes-web-1",
+          "title": "O navegador também trabalha",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-0-p",
+              "type": "paragraph",
+              "text": "Uma aplicação web pode baixar HTML, CSS, JavaScript e recursos, executar parte da lógica e renderizar a interface localmente. O servidor continua responsável pelos serviços remotos necessários."
+            },
+            {
+              "id": "aplicacoes-web-0-b",
+              "type": "bullets",
+              "items": [
+                "A divisão exata varia entre aplicações.",
+                "Web não significa que todo processamento seja local ou que não exista backend."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-2",
+          "title": "Uma letra não precisa viajar para aparecer",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-1-p",
+              "type": "paragraph",
+              "text": "Em um editor localmente interativo, digitar pode atualizar o estado e a tela no próprio dispositivo. O salvamento remoto pode acontecer depois."
+            },
+            {
+              "id": "aplicacoes-web-1-b",
+              "type": "bullets",
+              "items": [
+                "Feedback visual imediato não prova que o dado foi persistido remotamente.",
+                "A aplicação deve distinguir estado local, sincronização pendente e confirmação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-3",
+          "title": "Latência para a interação local",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-2-p",
+              "type": "paragraph",
+              "text": "Se a ação usa apenas código e dados já disponíveis, sua resposta depende principalmente do processamento e da renderização locais. Tarefas longas na thread principal ainda podem travar a interface."
+            },
+            {
+              "id": "aplicacoes-web-2-f",
+              "type": "code",
+              "language": "text",
+              "text": "T_local ≈ processamento local + renderização local\nA hipótese exclui dependências remotas para aquela ação."
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-4",
+          "title": "Quando a rede volta ao caminho crítico",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-3-p",
+              "type": "paragraph",
+              "text": "Consultar dados ausentes, executar uma regra remota ou confirmar um salvamento pode exigir o backend. Uma aproximação com uma única ida e volta precisa incluir rede, processamento e trabalho local."
+            },
+            {
+              "id": "aplicacoes-web-3-f",
+              "type": "code",
+              "language": "text",
+              "text": "T_remoto ≈ RTT + processamento remoto + renderização local\nVárias requisições dependentes podem adicionar novas esperas.\nCarregar um menu local não equivale a concluir uma gravação remota."
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-5",
+          "title": "Dados em vez da imagem inteira",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-4-p",
+              "type": "paragraph",
+              "text": "Para listar produtos ou arquivos, uma API pode devolver dados estruturados. O navegador transforma esses dados em interface, sem exigir vídeo contínuo da tela."
+            },
+            {
+              "id": "aplicacoes-web-4-b",
+              "type": "bullets",
+              "items": [
+                "Há custo de carregamento inicial de código e recursos.",
+                "Cache e reutilização podem reduzir transferências posteriores.",
+                "Não é garantia de banda baixa para qualquer aplicação web."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-6",
+          "title": "Distribuir código pode facilitar escala",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-5-p",
+              "type": "paragraph",
+              "text": "Arquivos estáticos podem ser servidos por CDN e cache. Parte do processamento usa os dispositivos dos usuários, enquanto o backend atende APIs, regras, armazenamento e autenticação."
+            },
+            {
+              "id": "aplicacoes-web-5-b",
+              "type": "bullets",
+              "items": [
+                "Não é necessário renderizar remotamente cada quadro de cada usuário.",
+                "Bancos, APIs e algoritmos caros ainda podem limitar a escala."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-7",
+          "title": "Offline precisa ser projetado",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-6-p",
+              "type": "paragraph",
+              "text": "Código e dados em cache podem permitir algumas tarefas sem conexão. O recurso não aparece automaticamente por usar JavaScript: armazenamento, operações pendentes e retomada da sincronização precisam ser planejados."
+            },
+            {
+              "id": "aplicacoes-web-6-b",
+              "type": "bullets",
+              "items": [
+                "Indique o que está apenas local e o que foi confirmado.",
+                "A aplicação pode precisar resolver conflitos ao reconectar."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacoes-web-8",
+          "title": "Exercício: o menu abre, o salvamento demora",
+          "blocks": [
+            {
+              "id": "aplicacoes-web-7-p",
+              "type": "paragraph",
+              "text": "O menu usa apenas estado já carregado, mas o salvamento exige confirmação do servidor. É possível ter excelente resposta visual no primeiro e atraso de rede no segundo."
+            },
+            {
+              "id": "aplicacoes-web-7-b",
+              "type": "bullets",
+              "items": [
+                "Separe métricas de feedback visual das de conclusão da tarefa remota.",
+                "Não use animação imediata como prova de persistência bem-sucedida."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "progress": []
+}

@@ -96,6 +96,25 @@ O material é uma síntese original, sem cópia integral dos artigos ou promessa
 cobertura de 100% do texto. Veja o [índice, a matriz de cobertura e a atribuição](docs/design-patterns/README.md).
 Este baralho também é local, não vai ao DynamoDB e preserva revisões e favoritos.
 
+## Feed de aprendizado
+
+A seção **Feed** (`/#/feed`) ensina temas em carrosséis, com escopo e objetivo de
+aprendizado. Navegue horizontalmente entre cards e verticalmente entre temas; no
+computador, setas laterais passam ao próximo carrossel ou voltam ao anterior.
+O cabeçalho é compacto para priorizar a leitura.
+
+O editor para desktop e celular combina parágrafos, listas e várias imagens,
+permite reordenar e duplicar cards e recupera rascunhos automaticamente. O modelo
+inicial tem três etapas: problema, explicação e aplicação. A conclusão é automática
+após alcançar o fim de todos os cards; o intervalo padrão de reapresentação é de
+três dias, ajustável. Releituras aleatórias continuam disponíveis quando a fila do
+dia termina, sem alterar a próxima data.
+
+Conteúdo, imagens e progresso ficam locais, com backup próprio e uso offline após
+o carregamento inicial. A sincronização via DynamoDB está registrada como melhoria
+futura. Veja [funcionamento e arquitetura do Feed](docs/feed.md), o
+[template JSON](docs/templates/feed-carousel.json) e o [roadmap](docs/roadmap.md).
+
 ## Múltipla escolha
 
 Ao criar um baralho, escolha **Múltipla escolha · 4 alternativas** no campo

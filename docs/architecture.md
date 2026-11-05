@@ -198,3 +198,22 @@ Backups preservam os metadados visuais; eles não incorporam os bytes das imagen
 Os recursos incluídos são distribuídos pela aplicação e precacheados pela PWA.
 O teste de navegador consulta todos os 32 recursos sem rede e verifica revisão,
 favoritos, créditos, ocultação dos versos e convivência com o baralho AWS.
+
+## Feed de aprendizado
+
+`app/use-page.ts` oferece navegação por hash entre Flashcards e Feed, com suporte
+à história do navegador. `App` carrega `feed/FeedPage` sob demanda; a PWA também
+precacheia o chunk. O Feed possui modelo, repositório e backup próprios e não é
+serializado como `Library` nem enviado ao sincronizador existente.
+
+O modelo usa carrosséis versionados, cards e blocos discriminados de texto, lista
+e imagem. O progresso vincula IDs de cards à revisão do conteúdo. A conclusão
+acontece após exposição ao fim de todos os cards; gravações repetidas são idempotentes
+até vencer o próximo prazo. A fila da sessão preserva ocorrências anteriores e
+acrescenta releituras depois dos temas inicialmente pendentes.
+
+`LearningCarousel` compartilha a leitura e a prévia; `FeedEditor` organiza o template
+e autosalva rascunhos. `SlideContent` só renderiza conteúdo estruturado, com imagens
+raster locais ou incorporadas. `repository.ts` usa transações IndexedDB para leitura,
+progresso, publicação e conflitos por revisão. Os detalhes e limites estão em
+[feed.md](feed.md); a integração futura com AWS está em [roadmap.md](roadmap.md).

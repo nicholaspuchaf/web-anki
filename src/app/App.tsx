@@ -1,6 +1,7 @@
 import { useCloudSync } from '../features/sync/use-cloud-sync';
 import { CloudSyncPanel } from '../features/sync/CloudSyncPanel';
-import { useRef, useState } from 'react';
+import { lazy, Suspense, useRef, useState } from 'react';
+import { usePage } from './use-page';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import type { Card } from '../features/library/model';
 import { useLibrary } from '../features/library/hooks/use-library';
@@ -15,7 +16,10 @@ import { DeckPage } from '../features/library/components/DeckPage';
 import { ReviewPage } from '../features/review/ReviewPage';
 import { LibraryEditor } from '../features/library/components/LibraryEditor';
 
+const FeedPage = lazy(() => import('../features/feed/FeedPage'));
+
 export default function App() {
+  const page = usePage();
   const {
     library,
     ready,
@@ -62,8 +66,15 @@ export default function App() {
   }
 
   return (
-    <AppLayout online={online} onHome={() => setView('decks')}>
-      <main>
+    <AppLayout
+      online={online}
+      page={page}
+      onHome={() => {
+        window.location.hash = '/';
+        setView('decks');
+      }}
+    >
+      <main className={page === 'feed' ? 'feed-main' : undefined}>
         {error && (
           <Alert error onDismiss={() => setError('')}>
             {error}
@@ -81,7 +92,11 @@ export default function App() {
             </button>
           </div>
         )}
-        {!ready ? (
+        {page === 'feed' ? (
+          <Suspense fallback={<p role="status">Abrindo o Feed…</p>}>
+            <FeedPage now={now} />
+          </Suspense>
+        ) : !ready ? (
           <div className="empty">
             <p>
               {error

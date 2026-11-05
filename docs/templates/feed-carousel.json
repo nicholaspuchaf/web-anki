@@ -1,0 +1,55 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "progress": [],
+  "carousels": [
+    {
+      "id": "meu-primeiro-carrossel",
+      "revision": 1,
+      "title": "Um conceito, um objetivo",
+      "scope": "Delimite aqui o assunto desta explicação.",
+      "objective": "Ao terminar, explicar a ideia e reconhecer uma aplicação.",
+      "tags": ["estudo"],
+      "intervalDays": 3,
+      "slides": [
+        {
+          "id": "contexto",
+          "title": "Qual problema estamos tentando resolver?",
+          "blocks": [
+            {
+              "id": "texto-contexto",
+              "type": "paragraph",
+              "text": "Substitua este parágrafo pelo contexto e por um exemplo concreto do problema."
+            }
+          ]
+        },
+        {
+          "id": "explicacao",
+          "title": "Como a ideia funciona?",
+          "blocks": [
+            {
+              "id": "pontos-explicacao",
+              "type": "bullets",
+              "items": [
+                "Explique a primeira parte da ideia.",
+                "Mostre como as partes se relacionam.",
+                "Diga qual decisão ou comportamento muda."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aplicacao",
+          "title": "Como aplicar e reconhecer os limites?",
+          "blocks": [
+            {
+              "id": "texto-aplicacao",
+              "type": "paragraph",
+              "text": "Inclua um exemplo, um cuidado e uma pergunta para conectar o conceito a uma situação real."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

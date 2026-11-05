@@ -1,8 +1,14 @@
+import type { AppPage } from './use-page';
 import type { ReactNode } from 'react';
 import { ThemePicker } from '../features/theme/ThemePicker';
 
-type Props = { online: boolean; onHome: () => void; children: ReactNode };
-export function AppLayout({ online, onHome, children }: Props) {
+type Props = {
+  online: boolean;
+  page: AppPage;
+  onHome: () => void;
+  children: ReactNode;
+};
+export function AppLayout({ online, page, onHome, children }: Props) {
   return (
     <div className="app">
       <header className="app-header">
@@ -34,10 +40,18 @@ export function AppLayout({ online, onHome, children }: Props) {
           <ThemePicker />
         </div>
       </header>
+      <nav className="app-section-nav" aria-label="Seções do aplicativo">
+        <a href="#/" aria-current={page === 'flashcards' ? 'page' : undefined}>
+          ▤ <span>Flashcards</span>
+        </a>
+        <a href="#/feed" aria-current={page === 'feed' ? 'page' : undefined}>
+          ✦ <span>Feed</span>
+        </a>
+      </nav>
       {children}
       <footer>
         <span>
-          Folha <span>·</span> Sua biblioteca de problemas resolvidos.
+          Folha <span>·</span> Aprenda com profundidade. Revise no seu ritmo.
         </span>
         <span>Armazenamento local · disponível offline</span>
       </footer>

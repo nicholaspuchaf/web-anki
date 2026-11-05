@@ -48,6 +48,28 @@ Execute manualmente o hook pelo Lefthook com:
 bunx --no-install lefthook run pre-push --force
 ```
 
+### Diagnóstico de falhas
+
+`no_tty: true` mantém a saída dos steps no terminal, sem renderização transitória.
+`output` inclui explicitamente a saída dos comandos e o resumo de falhas. Cada
+step tem `fail_text` com o comando para reproduzir o problema isoladamente, e as
+etapas continuam rodando em paralelo.
+
+O OSV informa lote, página e quantidade de pacotes durante a consulta. Falhas
+mostram o endpoint e a causa original (timeout, código de rede, status HTTP ou JSON
+inválido). O timeout continua sendo 30 segundos por requisição, incluindo a leitura
+da resposta; uma consulta incompleta nunca é considerada aprovada.
+
+```sh
+bun run security:malware
+bunx --no-install lefthook run pre-push --job 'Pacotes maliciosos (OSV)' --force
+```
+
+Se houver `LEFTHOOK_OUTPUT` definido no ambiente, ele sobrescreve `output` do YAML.
+A [documentação de saída](https://lefthook.dev/configuration/output/) descreve essa
+precedência. A mensagem final do Git (`failed to push some refs`) é genérica: o
+diagnóstico está no step e no resumo do Lefthook acima dela.
+
 Para corrigir formatação ou problemas de lint automaticamente:
 
 ```sh

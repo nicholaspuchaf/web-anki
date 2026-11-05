@@ -27,8 +27,10 @@ export function lockedDependencies(text: string): Dependency[] {
 export async function knownMalware(
   dependencies: Dependency[],
   request: Request = fetch,
+  options: { timeoutMs?: number; onProgress?: (message: string) => void } = {},
 ): Promise<MalwareFinding[]> {
   const findings: MalwareFinding[] = [];
+  const timeoutMs = options.timeoutMs ?? 30_000;
   for (let offset = 0; offset < dependencies.length; offset += 100) {
     let pending = dependencies
       .slice(offset, offset + 100)
@@ -36,30 +38,50 @@ export async function knownMalware(
     for (let page = 0; pending.length; page++) {
       if (page > 20)
         throw new Error('Paginação OSV excessiva. Verificação interrompida.');
-      const response = await request('https://api.osv.dev/v1/querybatch', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        signal: AbortSignal.timeout(30_000),
-        body: JSON.stringify({
-          queries: pending.map(({ dependency, token }) => ({
-            package: { ecosystem: 'npm', name: dependency.name },
-            version: dependency.version,
-            ...(token ? { page_token: token } : {}),
-          })),
-        }),
-      });
-      if (!response.ok)
+      const endpoint = 'https://api.osv.dev/v1/querybatch';
+      const context = `lote ${Math.floor(offset / 100) + 1}/${Math.ceil(dependencies.length / 100)}, página ${page + 1}, ${pending.length} pacote(s)`;
+      options.onProgress?.(
+        `OSV: ${context}; limite de ${timeoutMs / 1000} s por requisição.`,
+      );
+      const signal = AbortSignal.timeout(timeoutMs);
+      let data: unknown;
+      try {
+        const response = await request(endpoint, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          signal,
+          body: JSON.stringify({
+            queries: pending.map(({ dependency, token }) => ({
+              package: { ecosystem: 'npm', name: dependency.name },
+              version: dependency.version,
+              ...(token ? { page_token: token } : {}),
+            })),
+          }),
+        });
+        if (!response.ok)
+          throw new Error(
+            `HTTP ${response.status}${response.statusText ? ' ' + response.statusText : ''}`,
+          );
+        data = await response.json();
+      } catch (error) {
+        const timedOut =
+          signal.aborted ||
+          (error instanceof Error && error.name === 'TimeoutError');
+        const reason = timedOut
+          ? `tempo limite de ${timeoutMs / 1000} s excedido`
+          : 'falha na consulta ou leitura da resposta';
         throw new Error(
-          `OSV indisponível (HTTP ${response.status}). O push permanece bloqueado; tente novamente.`,
+          `OSV: ${reason} (${context}). Endpoint: ${endpoint}. Causa: ${errorDetails(error)}`,
+          { cause: error },
         );
-      const data: unknown = await response.json();
+      }
       const results =
         data && typeof data === 'object' && 'results' in data
           ? data.results
           : null;
       if (!Array.isArray(results) || results.length !== pending.length)
         throw new Error(
-          'Resposta OSV incompleta. Não é possível concluir a verificação.',
+          `Resposta OSV incompleta (${context}): esperados ${pending.length} resultados, recebidos ${Array.isArray(results) ? results.length : 'formato inválido'}. Não é possível concluir a verificação.`,
         );
       const next: typeof pending = [];
       for (let index = 0; index < results.length; index++) {
@@ -95,4 +117,27 @@ export async function knownMalware(
     }
   }
   return findings;
+}
+
+function errorDetails(error: unknown): string {
+  const details: string[] = [];
+  const seen = new Set<unknown>();
+  for (
+    let depth = 0;
+    error !== undefined && depth < 4 && !seen.has(error);
+    depth++
+  ) {
+    seen.add(error);
+    if (!(error instanceof Error)) {
+      details.push(String(error));
+      break;
+    }
+    const code =
+      'code' in error && typeof error.code === 'string'
+        ? ` [${error.code}]`
+        : '';
+    details.push(`${error.name}${code}: ${error.message}`);
+    error = error.cause;
+  }
+  return details.join(' → ');
 }

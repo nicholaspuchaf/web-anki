@@ -1,35 +1,56 @@
 # yaml-language-server: $schema=https://lefthook.dev/schema.json
+# Keep command output visible when parallel jobs finish; no transient TTY rendering.
+no_tty: true
+output:
+  - meta
+  - summary
+  - success
+  - failure
+  - execution
+  - execution_out
+  - execution_info
 pre-push:
   parallel: true
   jobs:
     - name: Prettier
       run: bun run format:check
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run format:check'
 
     - name: ESLint
       run: bun run lint
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run lint'
 
     - name: TypeScript
       run: bun run typecheck
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run typecheck'
 
     - name: Testes automatizados
       run: bun test
+      fail_text: 'Veja o erro acima. Para reproduzir: bun test'
     - name: Build frontend
       run: bun run build
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run build'
 
     - name: Build backend
       run: bun run build:backend
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run build:backend'
 
     - name: Terraform formatação
       run: terraform -chdir=infra/terraform fmt -check -recursive
+      fail_text: 'Veja o erro acima. Para reproduzir: terraform -chdir=infra/terraform fmt -check -recursive'
 
     - name: Terraform validação
       run: terraform -chdir=infra/terraform validate -no-color
+      fail_text: 'Veja o erro acima. Para reproduzir: terraform -chdir=infra/terraform validate -no-color'
 
     - name: Trivy
       run: bun run security:trivy
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run security:trivy'
 
     - name: Pacotes maliciosos (OSV)
       run: bun run security:malware
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run security:malware'
 
     - name: Playwright
       run: bun run test:e2e:check
+      fail_text: 'Veja o erro acima. Para reproduzir: bun run test:e2e:check'

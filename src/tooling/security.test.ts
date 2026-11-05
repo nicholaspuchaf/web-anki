@@ -46,3 +46,59 @@ test('falha de rede/resposta incompleta não é tratada como resultado limpo', a
     knownMalware(packages, async () => Response.json({ results: [] })),
   ).rejects.toThrow();
 });
+
+test('erro OSV mostra lote, página, endpoint e código de rede original', async () => {
+  const packages = Array.from({ length: 101 }, (_, i) => ({
+    name: `example-${i}`,
+    version: '1.0.0',
+  }));
+  let calls = 0;
+  const progress: string[] = [];
+  await expect(
+    knownMalware(
+      packages,
+      async () => {
+        calls++;
+        if (calls === 1)
+          return Response.json({
+            results: packages.slice(0, 100).map(() => ({})),
+          });
+        throw new Error('Falha no fetch', {
+          cause: Object.assign(new Error('DNS não resolveu'), {
+            code: 'ENOTFOUND',
+          }),
+        });
+      },
+      { onProgress: (message) => progress.push(message) },
+    ),
+  ).rejects.toThrow(
+    /lote 2\/2, página 1, 1 pacote.*https:\/\/api.osv.dev\/v1\/querybatch.*ENOTFOUND.*DNS não resolveu/,
+  );
+  expect(progress).toHaveLength(2);
+});
+
+test('timeout OSV é explícito e nunca vira verificação aprovada', async () => {
+  await expect(
+    knownMalware(
+      [{ name: 'example', version: '1.0.0' }],
+      async (_url, { signal }) => {
+        return new Promise<Response>((_resolve, reject) => {
+          signal!.addEventListener('abort', () => reject(signal!.reason), {
+            once: true,
+          });
+        });
+      },
+      { timeoutMs: 5 },
+    ),
+  ).rejects.toThrow(/tempo limite de 0.005 s excedido.*lote 1\/1, página 1/);
+});
+
+test('HTTP e JSON inválido preservam a causa e o contexto da consulta', async () => {
+  const packages = [{ name: 'example', version: '1.0.0' }];
+  await expect(
+    knownMalware(packages, async () => new Response('', { status: 429 })),
+  ).rejects.toThrow(/lote 1\/1.*HTTP 429/);
+  await expect(
+    knownMalware(packages, async () => new Response('invalid-json')),
+  ).rejects.toThrow(/lote 1\/1.*SyntaxError/);
+});

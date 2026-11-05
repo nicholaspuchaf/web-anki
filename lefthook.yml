@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://lefthook.dev/schema.json
-# Keep command output visible when parallel jobs finish; no transient TTY rendering.
-no_tty: true
+# Keep the live indicator of running jobs alongside detailed command output.
+no_tty: false
 output:
   - meta
   - summary

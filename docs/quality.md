@@ -50,7 +50,8 @@ bunx --no-install lefthook run pre-push --force
 
 ### Diagnóstico de falhas
 
-`no_tty: true` mantém a saída dos steps no terminal, sem renderização transitória.
+`no_tty: false` mantém o indicador interativo dos steps ainda em execução quando
+o terminal oferece TTY.
 `output` inclui explicitamente a saída dos comandos e o resumo de falhas. Cada
 step tem `fail_text` com o comando para reproduzir o problema isoladamente, e as
 etapas continuam rodando em paralelo.

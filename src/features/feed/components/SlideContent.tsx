@@ -19,6 +19,15 @@ export function SlideContent({
               ))}
             </div>
           );
+        if (block.type === 'code')
+          return (
+            <div className="feed-code" key={block.id}>
+              <span>{block.language}</span>
+              <pre tabIndex={0} aria-label={`Código em ${block.language}`}>
+                <code>{block.text}</code>
+              </pre>
+            </div>
+          );
         if (block.type === 'bullets')
           return (
             <ul key={block.id}>
@@ -45,7 +54,19 @@ export function SlideContent({
                 onLoad={() => onImageLoaded?.(block.id)}
               />
             </a>
-            {block.caption && <figcaption>{block.caption}</figcaption>}
+            {(block.caption || block.credit) && (
+              <figcaption>
+                {block.caption}
+                {block.credit &&
+                  (block.sourceUrl ? (
+                    <a href={block.sourceUrl} target="_blank" rel="noreferrer">
+                      {block.credit} ↗
+                    </a>
+                  ) : (
+                    <span>{block.credit}</span>
+                  ))}
+              </figcaption>
+            )}
           </figure>
         );
       })}

@@ -85,6 +85,15 @@ export function LearningCarousel({
           : 'smooth',
       });
   }
+  const visiblePages = carousel.slides
+    .map((_, index) => index)
+    .filter(
+      (index) =>
+        carousel.slides.length <= 9 ||
+        index === 0 ||
+        index === carousel.slides.length - 1 ||
+        Math.abs(index - active) <= 2,
+    );
   return (
     <article
       className={`learning-carousel${preview ? ' carousel-preview' : ''}`}
@@ -98,6 +107,7 @@ export function LearningCarousel({
         aria-label="Cards do carrossel"
         tabIndex={0}
         onKeyDown={(event) => {
+          if (event.target !== event.currentTarget) return;
           if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
             event.preventDefault();
             go(
@@ -168,14 +178,18 @@ export function LearningCarousel({
           ←
         </button>
         <div className="feed-dots">
-          {carousel.slides.map((slide, index) => (
-            <button
-              key={slide.id}
-              className={index === active ? 'active' : ''}
-              aria-label={`Ir para o card ${index + 1}`}
-              aria-current={index === active ? 'step' : undefined}
-              onClick={() => go(index)}
-            />
+          {visiblePages.map((index, position) => (
+            <span className="feed-page-dot" key={carousel.slides[index].id}>
+              {position > 0 && index - visiblePages[position - 1] > 1 && (
+                <span aria-hidden="true">…</span>
+              )}
+              <button
+                className={index === active ? 'active' : ''}
+                aria-label={`Ir para o card ${index + 1}`}
+                aria-current={index === active ? 'step' : undefined}
+                onClick={() => go(index)}
+              />
+            </span>
           ))}
         </div>
         <button
@@ -187,6 +201,16 @@ export function LearningCarousel({
         </button>
       </nav>
       <footer className="feed-post-footer">
+        {carousel.sourceUrl && (
+          <a
+            className="feed-source"
+            href={carousel.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Fonte e aprofundamento ↗
+          </a>
+        )}
         <div className="feed-tag-list">
           {carousel.tags.map((tag) => (
             <span key={tag}>#{tag}</span>

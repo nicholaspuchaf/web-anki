@@ -42,7 +42,7 @@ Campos do carrossel: título, escopo, objetivo de aprendizado, tags e intervalo 
 reapresentação. O escopo delimita o assunto; o objetivo descreve o que a pessoa
 conseguirá explicar ou aplicar ao terminar.
 
-Cada card aceita blocos ordenados de parágrafo, lista e imagem. É possível
+Cada card aceita blocos ordenados de parágrafo, lista, código e imagem. É possível
 adicionar, remover, reordenar e duplicar cards; os blocos também são reordenáveis.
 Listas usam um item por linha. Texto é renderizado como texto, sem executar HTML.
 Imagens aceitam PNG, JPEG e WebP, inclusive múltiplas seleções; o navegador limita
@@ -55,7 +55,7 @@ Rascunhos incompletos são salvos após uma pausa de 600 ms e recuperados ao rea
 somente essa cópia. Salvar publica o carrossel localmente e limpa o rascunho.
 Editar conteúdo publicado aumenta sua revisão e reinicia o progresso desse tema.
 
-Limites atuais: 500 carrosséis; 1–30 cards por carrossel; 1–40 blocos por card;
+Limites atuais: 500 carrosséis; ao menos um card por carrossel, sem teto de quantidade; 1–40 blocos por card;
 até 60 itens por lista e 20 tags. Arquivos de imagem têm até 8 MB antes da redução,
 com limite de 50 milhões de pixels e até 4 milhões de caracteres na imagem preparada.
 Um carrossel tem até 12 MB na representação JSON; o Feed completo e seus backups,
@@ -64,6 +64,10 @@ armazenamento do navegador. Falhas de gravação mantêm o estado anterior e exi
 
 Um [exemplo JSON de template](templates/feed-carousel.json) pode ser adaptado e
 importado. O editor visual é o fluxo principal; não exige escrever JSON.
+
+Blocos de código usam linguagem selecionada e texto literal, sem execução no navegador.
+As fontes e os créditos das imagens podem acompanhar o conteúdo. A paginação mostra
+uma janela de indicadores para evitar que carrosséis longos ocupem o rodapé inteiro.
 
 ## Persistência e backup
 
@@ -84,6 +88,9 @@ substituir e pede confirmação apenas para o Feed. Backups de flashcards perman
 independentes. Links de imagem executáveis ou remotos não são aceitos.
 
 Dois carrosséis originais de exemplo são gravados somente na primeira inicialização.
+O catálogo de Design Patterns acrescenta 22 carrosséis com 362 cards, também para feeds
+existentes, numa instalação única que preserva edições e exclusões. Veja
+[conteúdo e fontes](design-patterns/feed.md).
 Depois de excluí-los, eles não reaparecem. A PWA inclui o módulo do Feed e a imagem
 local de exemplo no cache; após carregar a aplicação completamente, a leitura e a
 criação funcionam offline. Conteúdo e progresso ficam neste navegador/aparelho.

@@ -1,6 +1,7 @@
 import { openDB } from 'idb';
 import {
   emptyFeed,
+  MAX_FEED_BACKUP_BYTES,
   parseCarousel,
   parseFeed,
   readSlide,
@@ -9,6 +10,10 @@ import {
   type FeedDraft,
 } from './model';
 import { sampleFeed } from './sample';
+import {
+  PATTERN_FEED_INSTALLATION,
+  withPatternCarousels,
+} from './pattern-catalog';
 
 const database = () =>
   openDB('folha-feed', 1, {
@@ -45,8 +50,24 @@ export async function loadFeed(): Promise<FeedData> {
   try {
     const tx = db.transaction('state', 'readwrite');
     const stored = await tx.store.get('current');
-    const current = stored ? parseFeed(stored) : parseFeed(sampleFeed);
-    if (!stored) await tx.store.put(current, 'current');
+    let current = stored ? parseFeed(stored) : parseFeed(sampleFeed);
+    if (!(await tx.store.get(PATTERN_FEED_INSTALLATION))) {
+      const next = withPatternCarousels(current);
+      // Existing libraries remain readable if they cannot fit the new catalog.
+      if (
+        next.carousels.length <= 500 &&
+        new TextEncoder().encode(JSON.stringify(next)).byteLength <=
+          MAX_FEED_BACKUP_BYTES
+      ) {
+        current = parseFeed(next);
+        await tx.store.put(current, 'current');
+        await tx.store.put(true, PATTERN_FEED_INSTALLATION);
+      } else if (!stored) {
+        await tx.store.put(current, 'current');
+      }
+    } else if (!stored) {
+      await tx.store.put(current, 'current');
+    }
     await tx.done;
     return current;
   } finally {

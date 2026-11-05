@@ -1,9 +1,30 @@
+export const feedCodeLanguages = [
+  'typescript',
+  'javascript',
+  'python',
+  'json',
+  'text',
+] as const;
 export const DAY_MS = 86_400_000;
 export const MAX_FEED_BACKUP_BYTES = 30_000_000;
 export type FeedBlock =
   | { id: string; type: 'paragraph'; text: string }
+  | {
+      id: string;
+      type: 'code';
+      text: string;
+      language: (typeof feedCodeLanguages)[number];
+    }
   | { id: string; type: 'bullets'; items: string[] }
-  | { id: string; type: 'image'; src: string; alt: string; caption: string };
+  | {
+      id: string;
+      type: 'image';
+      src: string;
+      alt: string;
+      caption: string;
+      credit?: string;
+      sourceUrl?: string;
+    };
 export type FeedSlide = { id: string; title: string; blocks: FeedBlock[] };
 export type Carousel = {
   id: string;
@@ -14,6 +35,7 @@ export type Carousel = {
   tags: string[];
   intervalDays: number;
   slides: FeedSlide[];
+  sourceUrl?: string;
 };
 export type FeedProgress = {
   carouselId: string;
@@ -78,6 +100,18 @@ function identifier(value: unknown): string {
     throw new Error('Identificador do Feed inválido.');
   return value;
 }
+function httpsSource(value: unknown): string {
+  if (typeof value === 'string') {
+    try {
+      const url = new URL(value);
+      if (url.protocol === 'https:' && !url.username && !url.password)
+        return value;
+    } catch {
+      /* Invalid source. */
+    }
+  }
+  throw new Error('A fonte deve ser um link HTTPS válido.');
+}
 function unique<T extends { id: string }>(items: T[]): T[] {
   if (new Set(items.map((item) => item.id)).size !== items.length)
     throw new Error('Há identificadores duplicados no Feed.');
@@ -103,12 +137,8 @@ export function parseCarousel(value: unknown): Carousel {
     throw new Error('Escolha um intervalo de 1 a 30 dias.');
   if (!Array.isArray(input.tags) || input.tags.length > 20)
     throw new Error('Use até 20 tags.');
-  if (
-    !Array.isArray(input.slides) ||
-    !input.slides.length ||
-    input.slides.length > 30
-  )
-    throw new Error('Use entre 1 e 30 cards por carrossel.');
+  if (!Array.isArray(input.slides) || !input.slides.length)
+    throw new Error('Adicione pelo menos um card ao carrossel.');
   const slides = unique(
     input.slides.map((item): FeedSlide => {
       const slide = record(item);
@@ -127,6 +157,18 @@ export function parseCarousel(value: unknown): Carousel {
               id,
               type: 'paragraph',
               text: string(block.text, 'o parágrafo'),
+            };
+          if (
+            block.type === 'code' &&
+            feedCodeLanguages.includes(
+              block.language as (typeof feedCodeLanguages)[number],
+            )
+          )
+            return {
+              id,
+              type: 'code',
+              text: string(block.text, 'o código'),
+              language: block.language as (typeof feedCodeLanguages)[number],
             };
           if (block.type === 'bullets') {
             if (
@@ -150,6 +192,12 @@ export function parseCarousel(value: unknown): Carousel {
               src: block.src,
               alt: string(block.alt, 'a descrição da imagem'),
               caption: string(block.caption, 'a legenda', false),
+              ...(block.credit !== undefined
+                ? { credit: string(block.credit, 'o crédito') }
+                : {}),
+              ...(block.sourceUrl !== undefined
+                ? { sourceUrl: httpsSource(block.sourceUrl) }
+                : {}),
             };
           throw new Error(
             'Bloco inválido. Use imagens locais, PNG, JPEG ou WebP.',
@@ -176,6 +224,9 @@ export function parseCarousel(value: unknown): Carousel {
     ],
     intervalDays: input.intervalDays as number,
     slides,
+    ...(input.sourceUrl !== undefined
+      ? { sourceUrl: httpsSource(input.sourceUrl) }
+      : {}),
   };
   if (JSON.stringify(carousel).length > 12_000_000)
     throw new Error('O carrossel deve ter até 12 MB. Reduza as imagens.');

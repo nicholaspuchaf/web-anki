@@ -2395,3 +2395,42 @@ main.feed-main {
     max-height: calc(100dvh - 205px);
   }
 }
+
+.feed-code {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow: hidden;
+  background: var(--code-bg);
+}
+.feed-code > span {
+  display: block;
+  padding: 8px 14px;
+  color: var(--muted);
+  font-size: 11px;
+  border-bottom: 1px solid var(--border);
+}
+.feed-code pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.8;
+  tab-size: 2;
+}
+.feed-page-dot {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+.feed-source {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+.feed-slide-content figcaption a,
+.feed-slide-content figcaption > span {
+  display: block;
+  margin-top: 4px;
+}

@@ -217,3 +217,18 @@ e autosalva rascunhos. `SlideContent` só renderiza conteúdo estruturado, com i
 raster locais ou incorporadas. `repository.ts` usa transações IndexedDB para leitura,
 progresso, publicação e conflitos por revisão. Os detalhes e limites estão em
 [feed.md](feed.md); a integração futura com AWS está em [roadmap.md](roadmap.md).
+
+### Conteúdo incluído no Feed
+
+`feed/pattern-catalog.ts` carrega `content/feed-design-patterns.json` e compõe os
+carrosséis ausentes. A instalação no IndexedDB grava conteúdo e marcador na mesma
+transação; sua repetição não substitui edições nem ressuscita exclusões. O catálogo
+é um chunk próprio precacheado. O código dos estudos não é executado pela aplicação:
+os blocos `code` exibem texto literal, com linguagem validada e rolagem própria.
+
+Os exemplos TypeScript em `content/pattern-examples` são compilados e executados nos
+testes; o catálogo contém o mesmo texto para leitura offline. Imagens podem incluir
+crédito e fonte HTTPS. O modelo de Feed preserva esses campos em backups e mantém
+apenas os limites de tamanho e a exigência de pelo menos um card, sem teto de cards
+por carrossel. A paginação visual reduz o número de indicadores, sem restringir a
+navegação ou a quantidade de conteúdo.

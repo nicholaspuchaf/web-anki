@@ -15,7 +15,11 @@ import { readLibrary } from '../../shared/storage/library-repository';
 
 test('Feed inicializa uma vez, mantém exclusões e persiste independentemente da biblioteca de flashcards', async () => {
   const library = await readLibrary();
-  expect((await loadFeed()).carousels.length).toBeGreaterThan(0);
+  expect(
+    (await loadFeed()).carousels.filter((c) =>
+      c.id.startsWith('feed-pattern-'),
+    ),
+  ).toHaveLength(22);
   await replaceFeed(emptyFeed);
   expect((await loadFeed()).carousels).toEqual([]);
   const carousel = structuredClone(sampleFeed.carousels[0]);

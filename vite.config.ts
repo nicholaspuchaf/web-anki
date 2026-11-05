@@ -14,6 +14,8 @@ export default defineConfig({
             id.endsWith('/src/content/design-pattern-assets.json')
           )
             return 'patterns-catalog';
+          if (id.endsWith('/src/content/feed-design-patterns.json'))
+            return 'feed-patterns-catalog';
         },
       },
     },

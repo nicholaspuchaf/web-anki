@@ -103,8 +103,12 @@ aprendizado. Navegue horizontalmente entre cards e verticalmente entre temas; no
 computador, setas laterais passam ao próximo carrossel ou voltam ao anterior.
 O cabeçalho é compacto para priorizar a leitura.
 
-O editor para desktop e celular combina parágrafos, listas e várias imagens,
-permite reordenar e duplicar cards e recupera rascunhos automaticamente. O modelo
+O Feed já inclui **22 carrosséis de Design Patterns, com 362 cards** e exemplos
+TypeScript originais, disponíveis também em feeds existentes. Veja o
+[índice dos carrosséis e fontes](docs/design-patterns/feed.md).
+
+O editor para desktop e celular combina parágrafos, listas, código e várias imagens,
+permite reordenar e duplicar cards sem um teto de quantidade e recupera rascunhos automaticamente. O modelo
 inicial tem três etapas: problema, explicação e aplicação. A conclusão é automática
 após alcançar o fim de todos os cards; o intervalo padrão de reapresentação é de
 três dias, ajustável. Releituras aleatórias continuam disponíveis quando a fila do

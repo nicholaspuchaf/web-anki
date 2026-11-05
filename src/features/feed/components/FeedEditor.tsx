@@ -3,6 +3,7 @@ import { Modal } from '../../../shared/ui/Modal';
 import { TextField } from '../../../shared/ui/TextField';
 import { Alert } from '../../../shared/ui/Alert';
 import {
+  feedCodeLanguages,
   newSlide,
   parseCarousel,
   type Carousel,
@@ -233,7 +234,7 @@ export function FeedEditor({
               ))}
               <button
                 type="button"
-                disabled={busy || value.slides.length >= 30}
+                disabled={busy}
                 onClick={() => {
                   const next = newSlide();
                   setValue({ ...value, slides: [...value.slides, next] });
@@ -271,7 +272,6 @@ export function FeedEditor({
                 </button>
                 <button
                   type="button"
-                  disabled={value.slides.length >= 30}
                   onClick={() => {
                     const copy = {
                       ...structuredClone(slide),
@@ -329,7 +329,9 @@ export function FeedEditor({
                         ? 'Parágrafo'
                         : block.type === 'bullets'
                           ? 'Lista'
-                          : 'Imagem'}
+                          : block.type === 'code'
+                            ? 'Código'
+                            : 'Imagem'}
                     </span>
                     <div className="feed-block-actions">
                       <button
@@ -394,6 +396,41 @@ export function FeedEditor({
                       }
                       placeholder="Primeiro ponto\nSegundo ponto"
                     />
+                  ) : block.type === 'code' ? (
+                    <>
+                      <label>
+                        Linguagem do código {blockIndex + 1}
+                        <select
+                          aria-label={`Linguagem do código ${blockIndex + 1}`}
+                          value={block.language}
+                          onChange={(e) =>
+                            changeBlock(block.id, {
+                              ...block,
+                              language: e.target
+                                .value as (typeof feedCodeLanguages)[number],
+                            })
+                          }
+                        >
+                          {feedCodeLanguages.map((language) => (
+                            <option key={language} value={language}>
+                              {language}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <TextField
+                        label={`Código ${blockIndex + 1}`}
+                        multiline
+                        rows={12}
+                        value={block.text}
+                        onChange={(e) =>
+                          changeBlock(block.id, {
+                            ...block,
+                            text: e.target.value,
+                          })
+                        }
+                      />
+                    </>
                   ) : (
                     <>
                       <img
@@ -450,6 +487,23 @@ export function FeedEditor({
                   }
                 >
                   + Lista
+                </button>
+                <button
+                  type="button"
+                  disabled={slide.blocks.length >= 40}
+                  onClick={() =>
+                    changeBlocks([
+                      ...slide.blocks,
+                      {
+                        id: crypto.randomUUID(),
+                        type: 'code',
+                        text: '',
+                        language: 'typescript',
+                      },
+                    ])
+                  }
+                >
+                  + Código
                 </button>
                 <label className="feed-upload">
                   + Imagens

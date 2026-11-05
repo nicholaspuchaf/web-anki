@@ -6,15 +6,21 @@ acesso direto e botões de voltar/avançar do navegador.
 
 ## Leitura
 
-- O feed rola verticalmente. Deslizar para cima ou voltar a rolagem preserva os
-  carrosséis anteriores da sessão e o card horizontal selecionado em cada um.
+- Apenas um carrossel fica visível, ocupando no mínimo a área de leitura da tela.
+  O conteúdo não tem altura máxima: textos e códigos longos rolam no próprio tema.
+- No mobile, deslize para cima quando já estiver no fim para avançar de tema, ou
+  para baixo no topo para voltar. Um gesto que começa no meio apenas rola o conteúdo.
+  O histórico preserva o card horizontal e a posição vertical de cada carrossel.
 - Cada carrossel possui cards horizontais, com swipe, setas, indicadores e
   navegação por teclado. O conteúdo pode ser longo; a rolagem vertical alcança
   o fim do card antes de passar ao próximo tema.
 - No computador, setas laterais para cima e para baixo levam ao carrossel anterior
-  ou seguinte. A seta para baixo também carrega outro carrossel quando necessário.
+  ou seguinte; somente essas setas trocam temas. Rodinha, teclado e trackpad rolam
+  apenas o conteúdo atual. A seta para baixo carrega outro tema quando necessário.
 - O cabeçalho compacto mantém título, modos, contagem do dia e criação sem tomar
-  a área principal de leitura.
+  a área principal de leitura. No mobile, o cabeçalho global e as abas dão lugar
+  ao menu flutuante no canto superior esquerdo, com navegação, criação, aparência
+  e backup. Exportar/importar ficam nesse menu também no desktop; o Feed não exibe rodapé.
 - Um card é considerado lido quando seu fim permanece visível por 1,5 segundo,
   com a aba visível, o card selecionado e suas imagens carregadas. Não há botão de
   confirmação. Isso é um sinal de exposição ao conteúdo, não prova de compreensão.

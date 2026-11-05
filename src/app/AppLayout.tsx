@@ -10,7 +10,7 @@ type Props = {
 };
 export function AppLayout({ online, page, onHome, children }: Props) {
   return (
-    <div className="app">
+    <div className={`app${page === 'feed' ? ' app-feed' : ''}`}>
       <header className="app-header">
         <div className="header-navigation">
           <a
@@ -49,12 +49,14 @@ export function AppLayout({ online, page, onHome, children }: Props) {
         </a>
       </nav>
       {children}
-      <footer>
-        <span>
-          Folha <span>·</span> Aprenda com profundidade. Revise no seu ritmo.
-        </span>
-        <span>Armazenamento local · disponível offline</span>
-      </footer>
+      {page !== 'feed' && (
+        <footer>
+          <span>
+            Folha <span>·</span> Aprenda com profundidade. Revise no seu ritmo.
+          </span>
+          <span>Armazenamento local · disponível offline</span>
+        </footer>
+      )}
     </div>
   );
 }

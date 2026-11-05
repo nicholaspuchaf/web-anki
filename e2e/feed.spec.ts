@@ -1,3 +1,4 @@
+import { feedAction, feedTheme, swipeFeed } from './feed-actions';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { FeedData } from '../src/features/feed/model';
@@ -6,9 +7,7 @@ async function exportedFeed(
   page: import('@playwright/test').Page,
 ): Promise<FeedData> {
   const download = page.waitForEvent('download');
-  await page
-    .getByRole('button', { name: 'Exportar Feed', exact: true })
-    .click();
+  await feedAction(page, 'Exportar Feed');
   const file = await download;
   return JSON.parse(await readFile((await file.path())!, 'utf8')) as FeedData;
 }
@@ -21,9 +20,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
   await expect(
     page.getByRole('heading', { name: 'Feed', exact: true }),
   ).toBeVisible();
-  await page
-    .getByRole('button', { name: '+ Novo carrossel', exact: true })
-    .click();
+  await feedAction(page, '+ Novo carrossel');
   await page
     .getByLabel('Título do carrossel', { exact: true })
     .fill('Aprendendo filas');
@@ -45,9 +42,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
       .filter({ hasText: 'Rascunho salvo neste aparelho.' }),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Fechar', exact: true }).click();
-  await page
-    .getByRole('button', { name: '+ Novo carrossel', exact: true })
-    .click();
+  await feedAction(page, '+ Novo carrossel');
   await expect(
     page.getByLabel('Título do carrossel', { exact: true }),
   ).toHaveValue('Aprendendo filas');
@@ -106,9 +101,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
   expect(
     backup.progress.find((p) => p.carouselId === own.id)?.completedAt ?? null,
   ).toBeNull();
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   const item = page
     .locator('.feed-manager article')
     .filter({ hasText: 'Aprendendo filas' });
@@ -148,9 +141,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
   });
   await context.setOffline(true);
   await page.reload();
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   await item.getByRole('button', { name: 'Editar', exact: true }).click();
   await page
     .getByRole('button', { name: 'Pré-visualizar carrossel', exact: true })
@@ -204,7 +195,7 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
   };
   await page.goto('/#/feed');
   await expect(
-    page.getByRole('button', { name: 'Importar Feed', exact: true }),
+    page.getByRole('heading', { name: 'Feed', exact: true }),
   ).toBeVisible();
   page.on('dialog', (dialog) => void dialog.accept());
   await page.getByLabel('Arquivo de backup do Feed').setInputFiles({
@@ -212,7 +203,7 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
     mimeType: 'application/json',
     buffer: Buffer.from(JSON.stringify(fixture)),
   });
-  await expect(page.getByText('2 para hoje', { exact: false })).toBeVisible();
+  await expect(page.getByText('2 para hoje', { exact: false })).toHaveCount(1);
   await expect(
     page.locator('.feed-guide, .feed-post-header, .feed-learning-goal'),
   ).toHaveCount(0);
@@ -222,7 +213,7 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
     .locator('.feed-slide:not([inert]) .feed-read-marker')
     .scrollIntoViewIfNeeded();
   await expect(first.getByRole('status')).toContainText('1 de 2 cards lidos');
-  await expect(page.getByText('2 para hoje', { exact: false })).toBeVisible();
+  await expect(page.getByText('2 para hoje', { exact: false })).toHaveCount(1);
   await first
     .getByRole('button', { name: 'Próximo card', exact: true })
     .click();
@@ -244,7 +235,9 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
   await page.locator('.feed-stream').evaluate((element) => {
     element.scrollTop = element.scrollHeight;
   });
-  await expect(posts.nth(1)).toBeAttached();
+  await expect(posts).toHaveCount(1);
+  await swipeFeed(page, 1);
+  await expect(posts.nth(1)).toBeVisible();
   const second = posts.nth(1);
   await second
     .locator('.feed-slide:not([inert]) .feed-read-marker')
@@ -267,7 +260,7 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
     .locator('.feed-slide:not([inert]) .feed-read-marker')
     .scrollIntoViewIfNeeded();
   await expect(second.getByRole('status')).toContainText('Carrossel concluído');
-  await expect(page.getByText('0 para hoje', { exact: false })).toBeVisible();
+  await expect(page.getByText('0 para hoje', { exact: false })).toHaveCount(1);
   const before = await exportedFeed(page);
   expect(before.progress).toHaveLength(2);
   expect(
@@ -278,7 +271,8 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
   await page.locator('.feed-stream').evaluate((element) => {
     element.scrollTop = element.scrollHeight;
   });
-  await expect(posts.nth(2)).toBeAttached();
+  await swipeFeed(page, 1);
+  await expect(posts.nth(2)).toBeVisible();
   await posts
     .nth(2)
     .locator('.feed-slide:not([inert]) .feed-read-marker')
@@ -286,13 +280,15 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
   await expect(posts.nth(2).getByRole('status')).toContainText(
     'Carrossel concluído',
   );
-  await first.scrollIntoViewIfNeeded();
+  await swipeFeed(page, -1);
+  await swipeFeed(page, -1);
+  await expect(first).toBeVisible();
   await expect(
     first.getByRole('button', { name: 'Ir para o card 2' }),
   ).toHaveAttribute('aria-current', 'step');
   const after = await exportedFeed(page);
   expect(after.progress).toEqual(before.progress);
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await feedTheme(page);
   await first.getByRole('button', { name: 'Ir para o card 2' }).click();
   await expect
     .poll(() =>
@@ -364,6 +360,6 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
     new Date(Math.max(...before.progress.map((p) => p.nextDueAt!)) + 1),
   );
   await page.reload();
-  await expect(page.getByText('2 para hoje', { exact: false })).toBeVisible();
+  await expect(page.getByText('2 para hoje', { exact: false })).toHaveCount(1);
   await expect(stream).toHaveCount(1);
 });

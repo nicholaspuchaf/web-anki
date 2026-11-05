@@ -1,3 +1,4 @@
+import { feedAction, feedTheme } from './feed-actions';
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import catalog from '../src/content/feed-design-patterns.json' with { type: 'json' };
@@ -5,9 +6,7 @@ import type { FeedData } from '../src/features/feed/model';
 
 async function exportFeed(page: Page): Promise<FeedData> {
   const waiting = page.waitForEvent('download');
-  await page
-    .getByRole('button', { name: 'Exportar Feed', exact: true })
-    .click();
+  await feedAction(page, 'Exportar Feed');
   return JSON.parse(
     await readFile((await (await waiting).path())!, 'utf8'),
   ) as FeedData;
@@ -84,9 +83,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
       remoteRequests.push(request.url());
   });
   await page.getByRole('link', { name: 'Feed', exact: false }).click();
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   await expect(page.locator('.feed-manager article')).toHaveCount(23);
   for (const carousel of catalog.carousels)
     await expect(
@@ -112,9 +109,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
   await item.getByRole('button', { name: 'Excluir', exact: true }).click();
   await expect(item).toHaveCount(0);
   await page.reload();
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   await expect(page.locator('.feed-manager article')).toHaveCount(22);
   await expect(item).toHaveCount(0);
   expect(remoteRequests).toEqual([]);
@@ -127,7 +122,7 @@ test('editor duplica e adiciona além de 65 cards, código permanece legível e 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/#/feed');
   await expect(
-    page.getByRole('button', { name: 'Importar Feed', exact: true }),
+    page.getByRole('heading', { name: 'Feed', exact: true }),
   ).toBeVisible();
   const original = catalog.carousels[0];
   const long = {
@@ -152,9 +147,7 @@ test('editor duplica e adiciona além de 65 cards, código permanece legível e 
       }),
     ),
   });
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   await expect(
     page.getByRole('heading', { name: long.title, exact: true }),
   ).toBeVisible();
@@ -180,7 +173,7 @@ test('editor duplica e adiciona além de 65 cards, código permanece legível e 
   await expect(page.getByRole('dialog')).toHaveCount(0);
   const backup = await exportFeed(page);
   expect(backup.carousels[0].slides).toHaveLength(67);
-  await page.getByRole('button', { name: 'Aprender', exact: true }).click();
+  await feedAction(page, 'Aprender');
   const post = page.locator('.learning-carousel').first();
   expect(await post.locator('.feed-dots button').count()).toBeLessThan(10);
   await post
@@ -210,7 +203,7 @@ test('editor duplica e adiciona além de 65 cards, código permanece legível e 
       exact: true,
     }),
   ).toHaveAttribute('aria-current', 'step');
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await feedTheme(page);
   await post.evaluate((el) => {
     const parent = el.parentElement!;
     parent.scrollTop +=
@@ -230,9 +223,7 @@ test('editor duplica e adiciona além de 65 cards, código permanece legível e 
   });
   await context.setOffline(true);
   await page.reload();
-  await page
-    .getByRole('button', { name: 'Meus carrosséis', exact: true })
-    .click();
+  await feedAction(page, 'Meus carrosséis');
   await expect(page.getByText('67 CARDS', { exact: false })).toBeVisible();
   const restored = await exportFeed(page);
   expect(restored.carousels[0]).toEqual(backup.carousels[0]);

@@ -5,6 +5,7 @@ import {
   type Carousel,
   type FeedData,
 } from '../model';
+import { carouselGesture, type FeedGesture } from '../gesture';
 import { LearningCarousel } from './LearningCarousel';
 
 export function FeedStream({
@@ -18,53 +19,38 @@ export function FeedStream({
   paused?: boolean;
   onRead: (carousel: Carousel, slideId: string) => void;
 }) {
-  const [session, setSession] = useState(() => startFeedSession(data, now));
-  const [position, setPosition] = useState(0);
-  const sentinel = useRef<HTMLDivElement>(null);
+  const [session, setSession] = useState(() => ({
+    ...startFeedSession(data, now),
+    position: 0,
+  }));
   const stream = useRef<HTMLDivElement>(null);
-  const pendingJump = useRef<number | null>(null);
-  function scrollToPost(index: number) {
-    const root = stream.current;
-    const target = root?.querySelectorAll<HTMLElement>(
-      ':scope > .learning-carousel',
-    )[index];
-    if (root && target)
-      root.scrollTo({
-        top:
-          root.scrollTop +
-          target.getBoundingClientRect().top -
-          root.getBoundingClientRect().top,
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-          ? 'instant'
-          : 'smooth',
-      });
-  }
+  const gesture = useRef<FeedGesture | null>(null);
+  const offsets = useRef(new Map<number, number>());
+  const activeKey = session.items[session.position]?.key;
   function jump(delta: number) {
-    const next = Math.max(0, position + delta);
-    if (next >= session.items.length) {
-      pendingJump.current = next;
-      setSession((current) => appendFeedSession(current, data));
-    } else scrollToPost(next);
+    if (paused) return;
+    if (stream.current && activeKey !== undefined)
+      offsets.current.set(activeKey, stream.current.scrollTop);
+    setSession((current) => {
+      const position = Math.max(0, current.position + delta);
+      if (position === current.position) return current;
+      const next =
+        position >= current.items.length
+          ? appendFeedSession(current, data)
+          : current;
+      return { ...next, position };
+    });
   }
   useEffect(() => {
-    if (pendingJump.current === null) return;
-    const index = pendingJump.current;
-    pendingJump.current = null;
-    const timer = requestAnimationFrame(() => scrollToPost(index));
+    const timer = requestAnimationFrame(() => {
+      stream.current?.scrollTo({
+        top:
+          activeKey !== undefined ? (offsets.current.get(activeKey) ?? 0) : 0,
+        behavior: 'instant',
+      });
+    });
     return () => cancelAnimationFrame(timer);
-  }, [session.items.length]);
-  useEffect(() => {
-    if (!sentinel.current || paused) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting)
-          setSession((current) => appendFeedSession(current, data));
-      },
-      { root: stream.current, rootMargin: '160px' },
-    );
-    observer.observe(sentinel.current);
-    return () => observer.disconnect();
-  }, [data, session.items.length, paused]);
+  }, [activeKey]);
   return (
     <div className="feed-stream-shell">
       <div
@@ -74,48 +60,62 @@ export function FeedStream({
         aria-label="Feed de aprendizado"
         tabIndex={0}
         onScroll={() => {
+          if (stream.current && activeKey !== undefined)
+            offsets.current.set(activeKey, stream.current.scrollTop);
+        }}
+        onTouchStart={(event) => {
           const root = stream.current;
-          if (!root) return;
-          const top = root.getBoundingClientRect().top;
-          const posts = [
-            ...root.querySelectorAll<HTMLElement>(
-              ':scope > .learning-carousel',
-            ),
-          ];
-          const index = posts.findIndex(
-            (post) => post.getBoundingClientRect().bottom > top + 80,
+          if (!root || paused || event.touches.length !== 1) {
+            gesture.current = null;
+            return;
+          }
+          const touch = event.touches[0];
+          gesture.current = {
+            x: touch.clientX,
+            y: touch.clientY,
+            atTop: root.scrollTop <= 2,
+            atBottom:
+              root.scrollHeight - root.clientHeight - root.scrollTop <= 2,
+          };
+        }}
+        onTouchCancel={() => {
+          gesture.current = null;
+        }}
+        onTouchEnd={(event) => {
+          const start = gesture.current;
+          gesture.current = null;
+          const touch = event.changedTouches[0];
+          if (!start || !touch || paused) return;
+          const direction = carouselGesture(
+            start,
+            { x: touch.clientX, y: touch.clientY },
+            window.matchMedia('(max-width: 760px)').matches,
           );
-          if (index >= 0) setPosition(index);
+          if (direction) jump(direction);
         }}
       >
-        {session.items.map((item) => {
+        {session.items.map((item, index) => {
           const carousel = data.carousels.find((c) => c.id === item.carouselId);
           if (!carousel) return null;
           return (
-            <LearningCarousel
+            <div
+              className="feed-entry"
               key={item.key}
-              carousel={carousel}
-              progress={data.progress.find((p) => p.carouselId === carousel.id)}
-              now={now}
-              paused={paused}
-              onRead={(id) => onRead(carousel, id)}
-            />
+              hidden={index !== session.position}
+              inert={index !== session.position}
+            >
+              <LearningCarousel
+                carousel={carousel}
+                progress={data.progress.find(
+                  (p) => p.carouselId === carousel.id,
+                )}
+                now={now}
+                paused={paused || index !== session.position}
+                onRead={(id) => onRead(carousel, id)}
+              />
+            </div>
           );
         })}
-        <div ref={sentinel} className="feed-load-more">
-          <p>
-            {session.pending.length
-              ? 'Continue para o próximo tema.'
-              : 'Você pode continuar com releituras. Seu agendamento será mantido.'}
-          </p>
-          <button
-            onClick={() =>
-              setSession((current) => appendFeedSession(current, data))
-            }
-          >
-            Mostrar outro carrossel ↓
-          </button>
-        </div>
       </div>
       <nav
         className="feed-vertical-controls"
@@ -124,7 +124,7 @@ export function FeedStream({
         <button
           aria-label="Carrossel anterior"
           title="Carrossel anterior"
-          disabled={position === 0 || paused}
+          disabled={session.position === 0 || paused}
           onClick={() => jump(-1)}
         >
           ↑

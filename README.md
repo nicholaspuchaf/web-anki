@@ -101,7 +101,9 @@ Este baralho também é local, não vai ao DynamoDB e preserva revisões e favor
 A seção **Feed** (`/#/feed`) ensina temas em carrosséis, com escopo e objetivo de
 aprendizado. Navegue horizontalmente entre cards e verticalmente entre temas; no
 computador, setas laterais passam ao próximo carrossel ou voltam ao anterior.
-O cabeçalho é compacto para priorizar a leitura.
+Um único carrossel ocupa a área de leitura, com altura livre para textos e código.
+No celular, um menu flutuante reúne navegação e ferramentas; gestos verticais nas
+extremidades trocam temas. No computador, apenas as setas trocam carrosséis.
 
 O Feed já inclui **22 carrosséis de Design Patterns, com 362 cards** e exemplos
 TypeScript originais, disponíveis também em feeds existentes. Veja o

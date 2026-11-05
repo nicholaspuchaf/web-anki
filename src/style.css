@@ -802,6 +802,7 @@ label {
   gap: 8px;
   margin: 18px auto;
   max-width: 760px;
+  align-items: stretch;
 }
 .ratings button {
   text-align: center;
@@ -2433,4 +2434,202 @@ main.feed-main {
 .feed-slide-content figcaption > span {
   display: block;
   margin-top: 4px;
+}
+
+/* Feed reading occupies the available viewport; only the active entry is shown. */
+.app-feed {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.app-feed > .app-header,
+.app-feed > .app-section-nav {
+  flex-shrink: 0;
+}
+.app-feed main.feed-main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  padding: 8px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.feed-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.feed-topbar {
+  flex-shrink: 0;
+  grid-template-columns: auto auto auto minmax(0, 1fr) auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.feed-menu-trigger {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  border: 0;
+  background: transparent;
+}
+.feed-layout {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  max-width: 760px;
+  align-items: stretch;
+}
+.feed-stream-shell {
+  flex: 1;
+  min-height: 0;
+}
+.feed-stream {
+  display: block;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  overflow-y: auto;
+  scroll-snap-type: none;
+  scroll-padding: 0;
+  overscroll-behavior-y: contain;
+}
+.feed-entry {
+  min-height: 100%;
+  display: flex;
+}
+.feed-entry[hidden] {
+  display: none;
+}
+.feed-entry > .learning-carousel {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+}
+.feed-entry .feed-slide-track {
+  flex: 1 0 auto;
+  max-height: none;
+}
+.feed-entry .feed-carousel-nav,
+.feed-entry .feed-post-footer {
+  flex-shrink: 0;
+}
+.feed-entry .feed-post-footer {
+  width: 100%;
+}
+.feed-manager {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  align-content: start;
+  padding-bottom: 16px;
+}
+.feed-menu {
+  position: fixed;
+  top: max(8px, env(safe-area-inset-top));
+  left: 12px;
+  right: auto;
+  margin: 0;
+  width: min(320px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 16px;
+  border-radius: 14px;
+}
+.feed-menu .feed-menu-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 0 0 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.feed-menu-heading h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.feed-menu-heading button {
+  border: 0;
+  background: transparent;
+  min-width: 36px;
+  min-height: 36px;
+  font-size: 20px;
+}
+.feed-menu nav,
+.feed-menu-actions {
+  display: grid;
+  gap: 4px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.feed-menu nav a,
+.feed-menu-actions button {
+  display: block;
+  text-align: left;
+  padding: 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+.feed-menu nav a[aria-current='page'],
+.feed-menu nav a:hover,
+.feed-menu-actions button:hover {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+.feed-menu-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+@media (max-width: 760px) {
+  .app-feed > .app-header,
+  .app-feed > .app-section-nav {
+    display: none;
+  }
+  .app-feed main.feed-main {
+    padding: max(4px, env(safe-area-inset-top)) 8px
+      max(8px, env(safe-area-inset-bottom));
+  }
+  .feed-topbar {
+    display: flex;
+    gap: 4px;
+    padding: 0 0 4px;
+    margin: 0;
+    border: 0;
+  }
+  .feed-topbar h1 {
+    font-size: 17px;
+    margin: 0;
+  }
+  .feed-topbar .feed-mode-switch,
+  .feed-topbar .feed-day-count,
+  .feed-topbar .feed-create {
+    display: none;
+  }
+  .feed-menu-trigger {
+    width: 44px;
+    height: 44px;
+  }
+  .feed-layout {
+    padding-right: 0;
+  }
+  .feed-entry > .learning-carousel {
+    border-radius: 10px;
+  }
 }

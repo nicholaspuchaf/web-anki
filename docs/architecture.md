@@ -212,6 +212,11 @@ acontece após exposição ao fim de todos os cards; gravações repetidas são 
 até vencer o próximo prazo. A fila da sessão preserva ocorrências anteriores e
 acrescenta releituras depois dos temas inicialmente pendentes.
 
+`FeedStream` mantém histórico de ocorrências com apenas uma visível, preservando
+seleção e rolagem. `gesture.ts` decide gestos mobile apenas nas extremidades;
+no desktop, somente botões alteram o tema. `FeedMenu` reúne navegação e ferramentas
+num diálogo e pausa a contabilização de leitura enquanto aberto.
+
 `LearningCarousel` compartilha a leitura e a prévia; `FeedEditor` organiza o template
 e autosalva rascunhos. `SlideContent` só renderiza conteúdo estruturado, com imagens
 raster locais ou incorporadas. `repository.ts` usa transações IndexedDB para leitura,

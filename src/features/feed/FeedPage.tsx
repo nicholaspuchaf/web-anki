@@ -19,9 +19,11 @@ import {
 import { useFeed } from './use-feed';
 import { FeedEditor } from './components/FeedEditor';
 import { FeedStream } from './components/FeedStream';
+import { FeedMenu } from './components/FeedMenu';
 
 export default function FeedPage({ now }: { now: number }) {
   const feed = useFeed();
+  const [menu, setMenu] = useState(false);
   const [mode, setMode] = useState<'feed' | 'manage'>('feed');
   const [editor, setEditor] = useState<{
     initial: FeedDraft;
@@ -76,6 +78,15 @@ export default function FeedPage({ now }: { now: number }) {
   return (
     <section className="feed-page">
       <div className="feed-topbar">
+        <button
+          className="feed-menu-trigger"
+          aria-label="Abrir menu do Feed"
+          aria-haspopup="dialog"
+          aria-expanded={menu}
+          onClick={() => setMenu(true)}
+        >
+          ☰
+        </button>
         <h1>Feed</h1>
         <div className="feed-mode-switch" aria-label="Visualização do Feed">
           <button
@@ -127,7 +138,7 @@ export default function FeedPage({ now }: { now: number }) {
           <FeedStream
             key={`${signature}:${epoch}`}
             data={feed.data}
-            paused={editor !== null || !!feed.error}
+            paused={editor !== null || menu || !!feed.error}
             now={now}
             onRead={(carousel, id) => {
               void feed.perform(() => markSlideRead(carousel, id, Date.now()));
@@ -170,15 +181,6 @@ export default function FeedPage({ now }: { now: number }) {
           ))}
         </div>
       )}
-      {feed.ready && (
-        <div className="feed-backup-tools">
-          <button onClick={download}>Exportar Feed</button>
-          <button onClick={() => file.current?.click()}>Importar Feed</button>
-          <small>
-            Backup separado dos flashcards. Rascunhos não entram na exportação.
-          </small>
-        </div>
-      )}
       <input
         ref={file}
         hidden
@@ -212,6 +214,18 @@ export default function FeedPage({ now }: { now: number }) {
           }
         }}
       />
+      {menu && (
+        <FeedMenu
+          ready={feed.ready}
+          opening={opening}
+          onClose={() => setMenu(false)}
+          onLearn={() => setMode('feed')}
+          onManage={() => setMode('manage')}
+          onCreate={() => void open()}
+          onExport={download}
+          onImport={() => file.current?.click()}
+        />
+      )}
       {editor && (
         <FeedEditor
           key={editor.initial.carousel.id}

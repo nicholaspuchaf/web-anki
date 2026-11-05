@@ -1,3 +1,6 @@
+import { SelectField } from '../../../shared/ui/SelectField';
+import { templateFor, slideStyles, type SlideStyle } from '../presentation';
+import { TemplatePicker } from './TemplatePicker';
 import { useEffect, useState } from 'react';
 import { Modal } from '../../../shared/ui/Modal';
 import { TextField } from '../../../shared/ui/TextField';
@@ -159,6 +162,10 @@ export function FeedEditor({
         )}
         {!preview && (
           <fieldset disabled={busy} className="feed-editor-metadata">
+            <TemplatePicker
+              value={templateFor(value)}
+              onChange={(template) => setValue({ ...value, template })}
+            />
             <TextField
               label="Título do carrossel"
               value={value.title}
@@ -319,6 +326,31 @@ export function FeedEditor({
                     ),
                   })
                 }
+              />
+              <SelectField
+                label={`Estilo do card ${index + 1}`}
+                value={slide.style ?? 'auto'}
+                options={[
+                  {
+                    value: 'auto',
+                    label: 'Automático · variar com o conteúdo',
+                  },
+                  ...slideStyles,
+                ]}
+                onChange={(event) => {
+                  const { style: previousStyle, ...rest } = slide;
+                  void previousStyle;
+                  const updated =
+                    event.target.value === 'auto'
+                      ? rest
+                      : { ...rest, style: event.target.value as SlideStyle };
+                  setValue({
+                    ...value,
+                    slides: value.slides.map((s) =>
+                      s.id === slideId ? updated : s,
+                    ),
+                  });
+                }}
               />
               {slide.blocks.map((block, blockIndex) => (
                 <div className="feed-block-editor" key={block.id}>

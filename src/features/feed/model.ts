@@ -1,3 +1,10 @@
+import {
+  carouselTemplates,
+  slideStyles,
+  type CarouselTemplate,
+  type SlideStyle,
+} from './presentation';
+
 export const feedCodeLanguages = [
   'typescript',
   'javascript',
@@ -25,7 +32,12 @@ export type FeedBlock =
       credit?: string;
       sourceUrl?: string;
     };
-export type FeedSlide = { id: string; title: string; blocks: FeedBlock[] };
+export type FeedSlide = {
+  id: string;
+  title: string;
+  blocks: FeedBlock[];
+  style?: SlideStyle;
+};
 export type Carousel = {
   id: string;
   revision: number;
@@ -36,6 +48,7 @@ export type Carousel = {
   intervalDays: number;
   slides: FeedSlide[];
   sourceUrl?: string;
+  template?: CarouselTemplate;
 };
 export type FeedProgress = {
   carouselId: string;
@@ -127,6 +140,11 @@ export function safeFeedImage(src: unknown): src is string {
 }
 export function parseCarousel(value: unknown): Carousel {
   const input = record(value);
+  if (
+    input.template !== undefined &&
+    !carouselTemplates.some((t) => t.id === input.template)
+  )
+    throw new Error('Template de carrossel inválido.');
   if (!Number.isSafeInteger(input.revision) || (input.revision as number) < 1)
     throw new Error('Versão do carrossel inválida.');
   if (
@@ -142,6 +160,11 @@ export function parseCarousel(value: unknown): Carousel {
   const slides = unique(
     input.slides.map((item): FeedSlide => {
       const slide = record(item);
+      if (
+        slide.style !== undefined &&
+        !slideStyles.some((s) => s.value === slide.style)
+      )
+        throw new Error('Estilo de card inválido.');
       if (
         !Array.isArray(slide.blocks) ||
         !slide.blocks.length ||
@@ -207,6 +230,9 @@ export function parseCarousel(value: unknown): Carousel {
       return {
         id: identifier(slide.id),
         title: string(slide.title, 'o título de cada card'),
+        ...(slide.style !== undefined
+          ? { style: slide.style as SlideStyle }
+          : {}),
         blocks,
       };
     }),
@@ -224,6 +250,9 @@ export function parseCarousel(value: unknown): Carousel {
     ],
     intervalDays: input.intervalDays as number,
     slides,
+    ...(input.template !== undefined
+      ? { template: input.template as CarouselTemplate }
+      : {}),
     ...(input.sourceUrl !== undefined
       ? { sourceUrl: httpsSource(input.sourceUrl) }
       : {}),

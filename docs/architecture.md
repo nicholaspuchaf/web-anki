@@ -217,6 +217,11 @@ seleção e rolagem. `gesture.ts` decide gestos mobile apenas nas extremidades;
 no desktop, somente botões alteram o tema. `FeedMenu` reúne navegação e ferramentas
 num diálogo e pausa a contabilização de leitura enquanto aberto.
 
+`presentation.ts` define dez templates e seis composições de card; resolve valores
+automáticos de forma estável para conteúdo legado. `TemplatePicker` permite escolha
+visual e `carousel-templates.css` mantém paletas e composições isoladas do restante
+do aplicativo. `Carousel.template` e `FeedSlide.style` são opcionais e validados.
+
 `LearningCarousel` compartilha a leitura e a prévia; `FeedEditor` organiza o template
 e autosalva rascunhos. `SlideContent` só renderiza conteúdo estruturado, com imagens
 raster locais ou incorporadas. `repository.ts` usa transações IndexedDB para leitura,

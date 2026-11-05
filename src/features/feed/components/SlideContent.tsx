@@ -10,10 +10,14 @@ export function SlideContent({
   return (
     <div className="feed-slide-content">
       <h3>{slide.title || 'Título do card'}</h3>
-      {slide.blocks.map((block) => {
+      {slide.blocks.map((block, index) => {
         if (block.type === 'paragraph')
           return (
-            <div className="feed-paragraph" key={block.id}>
+            <div
+              className="feed-paragraph"
+              key={block.id}
+              data-step={index + 1}
+            >
               {block.text.split(/\n\s*\n/).map((text, i) => (
                 <p key={i}>{text}</p>
               ))}
@@ -30,7 +34,7 @@ export function SlideContent({
           );
         if (block.type === 'bullets')
           return (
-            <ul key={block.id}>
+            <ul key={block.id} data-step={index + 1}>
               {block.items
                 .filter((item) => item.trim())
                 .map((item, i) => (

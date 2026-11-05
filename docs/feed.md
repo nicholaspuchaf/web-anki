@@ -39,6 +39,26 @@ A leitura mostra apenas os títulos dos cards, sem cabeçalho do carrossel, avat
 objetivo, escopo ou coluna lateral de orientação. Os metadados permanecem no editor
 e na organização dos temas; as setas e o progresso continuam disponíveis.
 
+## Aparência dos carrosséis
+
+O editor oferece dez templates: **Aurora** (lilás e gradiente), **Oceano** (azul e
+faixas), **Botânica** (verde e formas orgânicas), **Âmbar** (dourado e notas),
+**Editorial** (índigo e revista), **Blueprint** (azul e grade), **Grafite** (oliva e
+tipografia técnica), **Sakura** (rosa e curvas), **Terracota** (argila e molduras) e
+**Prisma** (turquesa e geometria). As paletas acompanham o tema claro/escuro.
+
+Cada template combina seis estilos de card: abertura, leitura, destaque, passos,
+laboratório e galeria. O modo automático usa abertura no primeiro card, laboratório
+quando há código, galeria quando há imagens, passos quando há listas e alterna
+leitura/destaque nos demais. A ordem dos blocos permanece a ordem do autor. Cada
+card também permite escolher um estilo manualmente e voltar ao automático.
+
+Carrosséis sem `template` recebem uma escolha estável a partir do ID; cards sem
+`style` usam composição automática. Não há migração nem alteração do progresso ao
+abrir conteúdo antigo. Os campos opcionais são validados e preservados na
+publicação, nos rascunhos e nos backups. A prévia usa o mesmo componente do Feed,
+e todas as composições permitem altura livre e rolagem para código longo.
+
 ## Template e editor
 
 O botão **Novo carrossel** abre um template com três cards: **O problema**,

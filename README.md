@@ -101,6 +101,8 @@ Este baralho também é local, não vai ao DynamoDB e preserva revisões e favor
 A seção **Feed** (`/#/feed`) ensina temas em carrosséis, com escopo e objetivo de
 aprendizado. Navegue horizontalmente entre cards e verticalmente entre temas; no
 computador, setas laterais passam ao próximo carrossel ou voltam ao anterior.
+O editor oferece **10 templates visuais** com paletas próprias e **6 estilos de
+card**, com variação automática ou escolha manual e suporte ao tema escuro.
 Um único carrossel ocupa a área de leitura, com altura livre para textos e código.
 No celular, um menu flutuante reúne navegação e ferramentas; gestos verticais nas
 extremidades trocam temas. No computador, apenas as setas trocam carrosséis.

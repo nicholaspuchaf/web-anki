@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Carousel, FeedProgress } from '../model';
+import { templateFor, styleFor } from '../presentation';
+import './carousel-templates.css';
 import { SlideContent } from './SlideContent';
 
 function ReadMarker({
@@ -97,6 +99,7 @@ export function LearningCarousel({
   return (
     <article
       className={`learning-carousel${preview ? ' carousel-preview' : ''}`}
+      data-template={templateFor(carousel)}
       aria-label={carousel.title || 'Prévia do carrossel'}
     >
       <div
@@ -132,6 +135,7 @@ export function LearningCarousel({
         {carousel.slides.map((slide, index) => (
           <div
             className="feed-slide"
+            data-card-style={styleFor(slide, index)}
             key={slide.id}
             ref={(element) => {
               slides.current[index] = element;

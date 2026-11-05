@@ -1,7 +1,7 @@
 import { feedAction, feedTheme } from './feed-actions';
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import catalog from '../src/content/feed-design-patterns.json' with { type: 'json' };
+import catalog from '../src/content/decks/design-patterns/carousels/index';
 import type { FeedData } from '../src/features/feed/model';
 
 async function exportFeed(page: Page): Promise<FeedData> {
@@ -93,7 +93,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
   expect(
     backup.carousels.filter((c) => c.id.startsWith('feed-pattern-')),
   ).toHaveLength(22);
-  expect(backup.carousels.find((c) => c.id === 'personal-old')).toEqual(
+  expect(backup.carousels.find((c) => c.id === 'personal-old')).toMatchObject(
     legacy.carousels[0],
   );
   expect(backup.progress.find((p) => p.carouselId === 'personal-old')).toEqual(

@@ -1,5 +1,7 @@
-import catalog from '../../content/design-patterns.json';
-import illustrations from '../../content/design-pattern-assets.json';
+import manifest from '../../content/decks/design-patterns/deck.json' with { type: 'json' };
+import { parseDeck } from '../decks/model';
+import catalog from '../../content/decks/design-patterns/flashcards/index';
+import illustrations from '../../content/decks/design-patterns/assets.json' with { type: 'json' };
 import type { Library } from '../library/model';
 import type { StudyFace } from '../standard/model';
 import { PATTERNS_DECK_ID } from './ids';
@@ -52,13 +54,5 @@ export function withBundledPatternsDeck(library: Library): Library {
       };
     }),
   );
-  return mergeBundledDeck(
-    library,
-    {
-      id: PATTERNS_DECK_ID,
-      name: catalog.name,
-      defaultTemplate: 'multi-face',
-    },
-    cards,
-  );
+  return mergeBundledDeck(library, parseDeck(manifest), cards);
 }

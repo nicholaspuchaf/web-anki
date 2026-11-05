@@ -5,7 +5,7 @@ const subscribe = (notify: () => void) => {
   return () => window.removeEventListener('hashchange', notify);
 };
 const currentPage = (): AppPage =>
-  window.location.hash === '#/feed' ? 'feed' : 'flashcards';
+  window.location.hash.split('?')[0] === '#/feed' ? 'feed' : 'flashcards';
 export function usePage() {
   return useSyncExternalStore(
     subscribe,

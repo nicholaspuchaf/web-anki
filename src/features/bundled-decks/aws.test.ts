@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import catalog from '../../content/aws-services.json';
+import catalog from '../../content/decks/aws/flashcards/index';
 import { AWS_CARD_COUNT, withBundledAwsDeck } from './aws';
 import { AWS_DECK_ID, isBundledId } from './ids';
 import { emptyLibrary, type Library } from '../library/model';

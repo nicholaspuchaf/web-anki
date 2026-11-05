@@ -1,0 +1,1157 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-pattern-factory-method",
+      "revision": 1,
+      "title": "Factory Method · Relatórios que aceitam novos formatos",
+      "scope": "Criacionais: Factory Method, aplicação, limites e alternativas.",
+      "objective": "Separar o fluxo de exportação da escolha do codificador e avaliar o custo da herança.",
+      "tags": ["design patterns", "criacionais", "factory-method"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
+      "slides": [
+        {
+          "id": "factory-method-intencao",
+          "title": "Factory Method: Relatórios que aceitam novos formatos",
+          "blocks": [
+            {
+              "id": "factory-method-intencao-0",
+              "type": "paragraph",
+              "text": "A classe concreta do produto; subclasses escolhem a implementação usada pela lógica herdada."
+            },
+            {
+              "id": "factory-method-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai separar o fluxo de exportação da escolha do codificador e avaliar o custo da herança."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "factory-method-cenario-0",
+              "type": "paragraph",
+              "text": "Uma equipe exporta os mesmos registros para consumidores diferentes. A limpeza dos valores não muda, mas o formato de saída varia. Hoje há JSON e texto separado por barras; amanhã pode existir outra integração. Queremos preservar a preparação dos dados enquanto adicionamos formatos."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "factory-method-tentativa-0",
+              "type": "paragraph",
+              "text": "Se cada exportador copiar a limpeza e a validação, um ajuste de regra precisará ser repetido. Se o fluxo central construir todos os codificadores concretos, cada formato novo obriga a editar esse fluxo. O problema é decidir onde a escolha do objeto deve variar."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "factory-method-mecanismo-0",
+              "type": "paragraph",
+              "text": "Extraia a criação para um método substituível, retorne a abstração e faça o fluxo chamá-lo."
+            },
+            {
+              "id": "factory-method-mecanismo-1",
+              "type": "paragraph",
+              "text": "ExportJob mantém a preparação e pede um Encoder pelo método createEncoder. JsonJob e PipeJob só especializam essa escolha. Observe que o produto ainda é criado normalmente; o ponto novo é que o fluxo herdado depende do contrato, não do construtor concreto."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "factory-method-participantes-0",
+              "type": "paragraph",
+              "text": "ConcreteCreator sobrescreve a criação; Creator trabalha com Product; ConcreteProduct cumpre esse contrato."
+            },
+            {
+              "id": "factory-method-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/factory-method-roles.svg",
+              "alt": "Mapa autoral dos participantes de Factory Method",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "factory-method-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "factory-method-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/factory-method-refactoring-guru.png",
+              "alt": "Estrutura de factory method",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/factory-method"
+            }
+          ]
+        },
+        {
+          "id": "factory-method-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "factory-method-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Encoder recebe valores já preparados e devolve uma string.",
+                "ExportJob conserva a ordem: preparar, criar o codificador, codificar.",
+                "Cada subclasse deve respeitar o mesmo significado de encode."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "factory-method-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "factory-method-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O cliente escolhe um tipo de job na composição.",
+                "run normaliza as entradas sem consultar o formato.",
+                "createEncoder fornece o produto e run usa sua interface."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "factory-method-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "factory-method-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Encoder {\n  encode(values: string[]): string;\n}\nabstract class ExportJob {\n  protected abstract createEncoder(): Encoder;\n  run(values: string[]) {\n    const clean = values.map((value) => value.trim());\n    return this.createEncoder().encode(clean);\n  }\n}\nclass JsonJob extends ExportJob {\n  protected createEncoder(): Encoder {\n    return { encode: (values) => JSON.stringify(values) };\n  }\n}\nclass PipeJob extends ExportJob {\n  protected createEncoder(): Encoder {\n    return { encode: (values) => values.join('|') };\n  }\n}\nexport function demo() {\n  return [new JsonJob().run([' A ', 'B']), new PipeJob().run([' A ', 'B'])];\n}"
+            }
+          ]
+        },
+        {
+          "id": "factory-method-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "factory-method-resultado-0",
+              "type": "bullets",
+              "items": [
+                "Ambos os jobs removem os espaços de A.",
+                "JsonJob produz [\"A\",\"B\"].",
+                "PipeJob produz A|B sem duplicar o algoritmo de preparação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "factory-method-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "factory-method-evolucao-0",
+              "type": "paragraph",
+              "text": "Adicione um Encoder para outro formato e uma subclasse que o forneça. O fluxo run permanece igual. Se a única variação for uma função pequena e não existir uma hierarquia útil, experimente injetar essa função: menos classes podem expressar o mesmo requisito."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "factory-method-testes-0",
+              "type": "bullets",
+              "items": [
+                "Compare a normalização em todos os jobs.",
+                "Use entradas vazias e caracteres especiais.",
+                "Verifique se uma nova implementação conserva as regras do contrato."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "factory-method-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "factory-method-limites-0",
+              "type": "paragraph",
+              "text": "O exemplo separado por barras não implementa escape. Um valor contendo a própria barra torna a saída ambígua. O padrão não resolve o protocolo do arquivo: documente codificação, escape e erros. Separar a criação só é útil se os produtos entregam um contrato consistente."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "factory-method-comparacao-0",
+              "type": "paragraph",
+              "text": "Factory Method especializa uma criação por herança; Abstract Factory oferece uma família de produtos compatíveis."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "factory-method-exercicio-0",
+              "type": "paragraph",
+              "text": "Precisamos de um formato com campos entre aspas e delimitador configurável. Onde você colocaria essas regras? Quais partes do fluxo deveriam permanecer iguais?"
+            }
+          ]
+        },
+        {
+          "id": "factory-method-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "factory-method-resposta-0",
+              "type": "paragraph",
+              "text": "As regras de escape pertencem ao codificador. A preparação compartilhada continua em run. A escolha da implementação fica no criador concreto ou numa composição mais simples, dependendo de quanto a hierarquia realmente acrescenta. Teste conteúdo com delimitador, aspas e quebras de linha."
+            }
+          ]
+        },
+        {
+          "id": "factory-method-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "factory-method-criterio-0",
+              "type": "paragraph",
+              "text": "Use a especialização quando uma classe base já oferece um fluxo reutilizável e subclasses precisam escolher seus colaboradores. Evite uma árvore de criadores cujo único propósito seja encaminhar uma opção; antes, compare uma função ou fábrica recebida por parâmetro."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-abstract-factory",
+      "revision": 1,
+      "title": "Abstract Factory · Um kit coerente de documentos",
+      "scope": "Criacionais: Abstract Factory, aplicação, limites e alternativas.",
+      "objective": "Produzir famílias compatíveis de componentes sem espalhar a escolha da variante.",
+      "tags": ["design patterns", "criacionais", "abstract-factory"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/abstract-factory",
+      "slides": [
+        {
+          "id": "abstract-factory-intencao",
+          "title": "Abstract Factory: Um kit coerente de documentos",
+          "blocks": [
+            {
+              "id": "abstract-factory-intencao-0",
+              "type": "paragraph",
+              "text": "A compatibilidade entre produtos de uma mesma família, ocultando suas classes concretas."
+            },
+            {
+              "id": "abstract-factory-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai produzir famílias compatíveis de componentes sem espalhar a escolha da variante."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "abstract-factory-cenario-0",
+              "type": "paragraph",
+              "text": "O mesmo resumo precisa sair como texto simples ou Markdown. Cada versão tem um cabeçalho e um parágrafo com convenções próprias. Misturar um cabeçalho Markdown com corpo de outra variante pode gerar um documento inesperado, mesmo que cada componente funcione isoladamente."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "abstract-factory-tentativa-0",
+              "type": "paragraph",
+              "text": "Escolher cada componente por uma condição separada permite combinações que ninguém pretendia suportar. Além disso, cada cliente precisa lembrar quais pares combinam. Queremos que a escolha de uma variante forneça o conjunto inteiro necessário ao documento."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "abstract-factory-mecanismo-0",
+              "type": "paragraph",
+              "text": "Defina contratos por produto e métodos na fábrica; injete uma fábrica concreta na composição da aplicação."
+            },
+            {
+              "id": "abstract-factory-mecanismo-1",
+              "type": "paragraph",
+              "text": "DocumentKit representa o conjunto de produtos. PlainKit e MarkdownKit criam componentes relacionados, enquanto a função document usa apenas os contratos. O exemplo mantém os produtos pequenos para destacar a decisão: selecionar uma família de uma vez, em vez de selecionar peças sem coordenação."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "abstract-factory-participantes-0",
+              "type": "paragraph",
+              "text": "Cliente usa fábrica e produtos abstratos; cada fábrica concreta entrega uma variante de todos os produtos."
+            },
+            {
+              "id": "abstract-factory-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/abstract-factory-roles.svg",
+              "alt": "Mapa autoral dos participantes de Abstract Factory",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "abstract-factory-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Todo kit fornece heading e paragraph.",
+                "Os dois produtos do kit obedecem à mesma convenção de saída.",
+                "O cliente não precisa conhecer classes de produtos concretos."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "abstract-factory-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "Selecione o kit na entrada do fluxo.",
+                "Peça os componentes necessários ao mesmo kit.",
+                "Monte o documento usando a interface comum de cada componente."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "abstract-factory-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Part {\n  render(text: string): string;\n}\ninterface DocumentKit {\n  heading(): Part;\n  paragraph(): Part;\n}\nclass PlainKit implements DocumentKit {\n  heading() {\n    return { render: (text: string) => text.toUpperCase() };\n  }\n  paragraph() {\n    return { render: (text: string) => text };\n  }\n}\nclass MarkdownKit implements DocumentKit {\n  heading() {\n    return { render: (text: string) => `# ${text}` };\n  }\n  paragraph() {\n    return { render: (text: string) => `> ${text}` };\n  }\n}\nfunction document(kit: DocumentKit) {\n  return [kit.heading().render('Resumo'), kit.paragraph().render('Tudo certo')];\n}\nexport function demo() {\n  return [document(new PlainKit()), document(new MarkdownKit())];\n}"
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "abstract-factory-resultado-0",
+              "type": "bullets",
+              "items": [
+                "PlainKit transforma o título em RESUMO e mantém o corpo simples.",
+                "MarkdownKit acrescenta os marcadores # e >.",
+                "A função document não testa qual kit recebeu."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "abstract-factory-evolucao-0",
+              "type": "paragraph",
+              "text": "Uma terceira família pode implementar DocumentKit sem alterar document. Já um novo produto obrigatório, como tabela, muda o contrato do kit e exige atualizar todas as famílias. Essa assimetria importa para escolher o padrão: qual dimensão cresce mais no seu domínio?"
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "abstract-factory-testes-0",
+              "type": "bullets",
+              "items": [
+                "Execute o mesmo cliente com todas as famílias.",
+                "Verifique combinações suportadas por família.",
+                "Ao acrescentar produto, identifique todos os kits afetados antes do release."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "abstract-factory-limites-0",
+              "type": "paragraph",
+              "text": "Em um renderer real, texto externo precisa ser escapado segundo o formato. O exemplo não é um sanitizador. Também não deixe o consumidor buscar metade do kit em outro lugar: a compatibilidade prometida depende de manter coerente a composição dos componentes."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "abstract-factory-comparacao-0",
+              "type": "paragraph",
+              "text": "Abstract Factory entrega produtos relacionados; Builder coordena etapas para construir uma representação complexa."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "abstract-factory-exercicio-0",
+              "type": "paragraph",
+              "text": "Agora cada documento precisa de uma tabela. É uma nova família ou um novo tipo de produto? Liste quais contratos e implementações precisariam mudar."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "abstract-factory-resposta-0",
+              "type": "paragraph",
+              "text": "Tabela é um novo produto da família. DocumentKit passa a expor esse produto e PlainKit e MarkdownKit devem produzi-lo. Uma nova família seria outra convenção completa de saída. O esforço dessa alteração revela se a direção provável de crescimento favorece o desenho escolhido."
+            }
+          ]
+        },
+        {
+          "id": "abstract-factory-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "abstract-factory-criterio-0",
+              "type": "paragraph",
+              "text": "Escolha um kit quando a compatibilidade entre vários produtos é uma restrição importante. Para apenas uma string formatada, uma função pode bastar. Não crie uma família artificial quando as peças não compartilham uma regra que precise ser preservada."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-builder",
+      "revision": 1,
+      "title": "Builder · Construir um pedido válido por etapas",
+      "scope": "Criacionais: Builder, aplicação, limites e alternativas.",
+      "objective": "Distinguir configuração gradual de objeto pronto e impedir vazamento de estado entre construções.",
+      "tags": ["design patterns", "criacionais", "builder"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/builder",
+      "slides": [
+        {
+          "id": "builder-intencao",
+          "title": "Builder: Construir um pedido válido por etapas",
+          "blocks": [
+            {
+              "id": "builder-intencao-0",
+              "type": "paragraph",
+              "text": "O processo de montagem de um objeto complexo e as representações produzidas por esse processo."
+            },
+            {
+              "id": "builder-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai distinguir configuração gradual de objeto pronto e impedir vazamento de estado entre construções."
+            }
+          ]
+        },
+        {
+          "id": "builder-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "builder-cenario-0",
+              "type": "paragraph",
+              "text": "Uma exportação precisa de campos selecionados e um destino. A tela reúne essas decisões em momentos diferentes. O restante do sistema, porém, só deveria receber um pedido completo. A construção pode ser gradual; o contrato publicado não deve depender de etapas ainda não realizadas."
+            }
+          ]
+        },
+        {
+          "id": "builder-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "builder-tentativa-0",
+              "type": "paragraph",
+              "text": "Um construtor com muitos argumentos posicionais é difícil de ler. Um objeto mutável liberado imediatamente permite executar uma exportação antes de selecionar o destino. Precisamos separar o estado temporário de configuração do valor que representa um pedido pronto."
+            }
+          ]
+        },
+        {
+          "id": "builder-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "builder-mecanismo-0",
+              "type": "paragraph",
+              "text": "Defina etapas, builders concretos e obtenção do resultado; reinicie estado quando necessário e valide invariantes ao concluir."
+            },
+            {
+              "id": "builder-mecanismo-1",
+              "type": "paragraph",
+              "text": "ExportBuilder acumula a seleção e o destino. build valida o conjunto, produz um objeto independente e reinicia o builder. O exemplo não usa um director porque a sequência é simples. Se várias telas repetirem a mesma receita, uma função coordenadora pode expressá-la sem misturar o resultado com a montagem."
+            }
+          ]
+        },
+        {
+          "id": "builder-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "builder-participantes-0",
+              "type": "paragraph",
+              "text": "Não. Ele reutiliza sequências; o cliente pode chamar o builder diretamente e obter seu produto."
+            },
+            {
+              "id": "builder-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/builder-roles.svg",
+              "alt": "Mapa autoral dos participantes de Builder",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "builder-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "builder-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/builder-refactoring-guru.png",
+              "alt": "Estrutura de builder",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/builder"
+            }
+          ]
+        },
+        {
+          "id": "builder-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "builder-contrato-0",
+              "type": "bullets",
+              "items": [
+                "build exige ao menos um campo e um destino.",
+                "O resultado recebe uma cópia da lista de campos.",
+                "A próxima construção começa sem as escolhas anteriores."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "builder-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "builder-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "select acumula a configuração desejada.",
+                "to define o destino para o pedido atual.",
+                "build valida, entrega o pedido e limpa o estado temporário."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "builder-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "builder-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "type Request = { fields: string[]; destination: string };\nclass ExportBuilder {\n  private fields: string[] = [];\n  private destination = '';\n  select(...fields: string[]) {\n    this.fields.push(...fields);\n    return this;\n  }\n  to(destination: string) {\n    this.destination = destination;\n    return this;\n  }\n  build(): Request {\n    if (!this.fields.length || !this.destination)\n      throw new Error('Pedido incompleto');\n    const request = { fields: [...this.fields], destination: this.destination };\n    this.fields = [];\n    this.destination = '';\n    return request;\n  }\n}\nexport function demo() {\n  const builder = new ExportBuilder();\n  const first = builder.select('nome', 'email').to('arquivo').build();\n  const second = builder.select('id').to('memoria').build();\n  return [first, second];\n}"
+            }
+          ]
+        },
+        {
+          "id": "builder-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "builder-resultado-0",
+              "type": "bullets",
+              "items": [
+                "O primeiro pedido contém nome e email para arquivo.",
+                "O segundo contém apenas id para memoria.",
+                "A reutilização do builder não acrescenta campos ao pedido anterior."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "builder-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "builder-evolucao-0",
+              "type": "paragraph",
+              "text": "Ao adicionar filtros, decida quais combinações são válidas e coloque a verificação na fronteira de publicação do pedido. Ter setters legíveis não garante um objeto coerente. Para fluxos mais complexos, tipos que representam etapas podem impedir certas construções inválidas antes mesmo da execução."
+            }
+          ]
+        },
+        {
+          "id": "builder-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "builder-testes-0",
+              "type": "bullets",
+              "items": [
+                "Tente construir sem destino ou sem campos.",
+                "Construa dois pedidos com o mesmo builder.",
+                "Modifique uma construção posterior e confirme que a anterior permanece independente."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "builder-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "builder-limites-0",
+              "type": "paragraph",
+              "text": "Compartilhar um builder mutável entre duas requisições pode misturar configurações. Prefira uma instância por construção ou um mecanismo imutável apropriado. O reset do exemplo é sequencial; não transforma o objeto em seguro para uso concorrente."
+            }
+          ]
+        },
+        {
+          "id": "builder-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "builder-comparacao-0",
+              "type": "paragraph",
+              "text": "Não. Encadeamento é sintaxe opcional; o padrão trata construção gradual e pode gerar produtos sem interface comum."
+            }
+          ]
+        },
+        {
+          "id": "builder-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "builder-exercicio-0",
+              "type": "paragraph",
+              "text": "O segundo pedido herdou campos do primeiro. Qual teste reproduz isso? Que cópia precisa existir para a correção não alterar também um resultado já entregue?"
+            }
+          ]
+        },
+        {
+          "id": "builder-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "builder-resposta-0",
+              "type": "paragraph",
+              "text": "Crie um pedido com dois campos, depois outro com um campo, e compare ambos. Reinicie a configuração depois de build e copie a coleção no resultado. Se os campos forem objetos mutáveis, revise também a profundidade de cópia necessária, em vez de presumir que copiar o array resolve tudo."
+            }
+          ]
+        },
+        {
+          "id": "builder-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "builder-criterio-0",
+              "type": "paragraph",
+              "text": "Builder compensa quando montagem, validação conjunta ou receitas reutilizáveis trazem clareza. Para poucos campos independentes, um objeto de opções validado pode ser mais simples. Encadear métodos não é uma justificativa suficiente para introduzir estado intermediário."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-prototype",
+      "revision": 1,
+      "title": "Prototype · Duplicar um formulário sem compartilhar acidentes",
+      "scope": "Criacionais: Prototype, aplicação, limites e alternativas.",
+      "objective": "Definir uma política de cópia que preserve independência e identidade no domínio.",
+      "tags": ["design patterns", "criacionais", "prototype"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/prototype",
+      "slides": [
+        {
+          "id": "prototype-intencao",
+          "title": "Prototype: Duplicar um formulário sem compartilhar acidentes",
+          "blocks": [
+            {
+              "id": "prototype-intencao-0",
+              "type": "paragraph",
+              "text": "Criar objetos copiando instâncias existentes, sem conhecer suas classes concretas."
+            },
+            {
+              "id": "prototype-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai definir uma política de cópia que preserve independência e identidade no domínio."
+            }
+          ]
+        },
+        {
+          "id": "prototype-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "prototype-cenario-0",
+              "type": "paragraph",
+              "text": "Um organizador usa um formulário pronto como ponto de partida para outra inscrição. Ele quer conservar a estrutura, mas mudar o título e o nome de um campo. A cópia não pode alterar o formulário usado por outros eventos."
+            }
+          ]
+        },
+        {
+          "id": "prototype-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "prototype-tentativa-0",
+              "type": "paragraph",
+              "text": "Copiar apenas a referência cria dois nomes para o mesmo objeto. Copiar só o array ainda mantém os objetos de campo compartilhados. Uma aparente duplicação pode funcionar para o título e falhar justamente quando alguém edita um campo aninhado."
+            }
+          ]
+        },
+        {
+          "id": "prototype-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "prototype-mecanismo-0",
+              "type": "paragraph",
+              "text": "Definir o que será copiado ou compartilhado, incluindo referências, identidade e ciclos no grafo de objetos."
+            },
+            {
+              "id": "prototype-mecanismo-1",
+              "type": "paragraph",
+              "text": "FormTemplate conhece a estrutura que precisa copiar. clone cria outro objeto e copia cada campo do exemplo. Essa política é suficiente aqui porque os campos contêm apenas uma string. Não é uma promessa de cópia profunda universal: o formato do domínio determina o trabalho necessário."
+            }
+          ]
+        },
+        {
+          "id": "prototype-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "prototype-participantes-0",
+              "type": "paragraph",
+              "text": "O próprio protótipo concreto implementa clone(); um registro opcional organiza modelos prontos por chave."
+            },
+            {
+              "id": "prototype-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/prototype-roles.svg",
+              "alt": "Mapa autoral dos participantes de Prototype",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "prototype-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "prototype-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Título e coleção da cópia podem mudar independentemente.",
+                "Campos mutáveis não devem ser compartilhados sem intenção.",
+                "Recursos externos e identificadores exigem política explícita."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prototype-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "prototype-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "Obtenha um modelo confiável.",
+                "Peça a ele uma cópia segundo sua política.",
+                "Altere a nova instância e mantenha o modelo original intacto."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prototype-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "prototype-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "class FormTemplate {\n  constructor(\n    public title: string,\n    public fields: { label: string }[],\n  ) {}\n  clone() {\n    return new FormTemplate(\n      this.title,\n      this.fields.map((field) => ({ ...field })),\n    );\n  }\n}\nexport function demo() {\n  const original = new FormTemplate('Cadastro', [{ label: 'Nome' }]);\n  const copy = original.clone();\n  copy.title = 'Inscrição';\n  copy.fields[0].label = 'Participante';\n  return {\n    original: original.fields[0].label,\n    copy: copy.fields[0].label,\n    independent: original.fields !== copy.fields,\n  };\n}"
+            }
+          ]
+        },
+        {
+          "id": "prototype-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "prototype-resultado-0",
+              "type": "bullets",
+              "items": [
+                "O campo original continua Nome.",
+                "A cópia passa a usar Participante.",
+                "Os arrays são referências diferentes e cada campo também foi copiado."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prototype-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "prototype-evolucao-0",
+              "type": "paragraph",
+              "text": "Se um campo ganhar regras aninhadas, revise clone e seus testes. Se passar a referenciar um recurso compartilhado imutável, copiá-lo talvez seja desnecessário. Escreva quais partes são duplicadas, reutilizadas ou regeneradas; uma política explícita é melhor que uma operação genérica que ninguém consegue explicar."
+            }
+          ]
+        },
+        {
+          "id": "prototype-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "prototype-testes-0",
+              "type": "bullets",
+              "items": [
+                "Altere cada nível mutável da cópia.",
+                "Verifique se o modelo original permanece igual.",
+                "Teste vínculos cíclicos ou compartilhados se forem permitidos no domínio."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prototype-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "prototype-limites-0",
+              "type": "paragraph",
+              "text": "Copiar um ID de negócio pode fazer duas instâncias parecerem a mesma entidade. Copiar uma conexão pode ser impossível ou sem sentido. Em grafos com ciclos, recursão ingênua não termina; o algoritmo precisa registrar objetos já visitados e preservar relações conforme a intenção."
+            }
+          ]
+        },
+        {
+          "id": "prototype-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "prototype-comparacao-0",
+              "type": "paragraph",
+              "text": "Factories podem usar protótipos internamente; Builder monta em etapas, enquanto Prototype parte de uma instância pronta."
+            }
+          ]
+        },
+        {
+          "id": "prototype-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "prototype-exercicio-0",
+              "type": "paragraph",
+              "text": "O formulário ganhou uma regra {validacao: {minimo: 3}} em cada campo. Por que o spread usado no exemplo deixou de ser suficiente? Como demonstrar o defeito?"
+            }
+          ]
+        },
+        {
+          "id": "prototype-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "prototype-resposta-0",
+              "type": "paragraph",
+              "text": "O spread copia a propriedade validacao como referência. Altere minimo na cópia e observe o original. A correção deve copiar esse estado ou torná-lo imutável e compartilhado por decisão. Inclua um teste do novo nível para que a evolução do modelo não invalide silenciosamente a política de cópia."
+            }
+          ]
+        },
+        {
+          "id": "prototype-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "prototype-criterio-0",
+              "type": "paragraph",
+              "text": "Clonar ajuda quando configurações prontas são úteis e o dono do objeto conhece a cópia correta. Não use clonagem para esconder regras de criação, autorização ou nova identidade. Uma nova entidade pode exigir uma operação de domínio diferente de duplicar estado."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-singleton",
+      "revision": 1,
+      "title": "Singleton · Uma configuração compartilhada, com escopo claro",
+      "scope": "Criacionais: Singleton, aplicação, limites e alternativas.",
+      "objective": "Reconhecer o que a unicidade local garante e quando injeção explícita oferece melhor controle.",
+      "tags": ["design patterns", "criacionais", "singleton"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/singleton",
+      "slides": [
+        {
+          "id": "singleton-intencao",
+          "title": "Singleton: Uma configuração compartilhada, com escopo claro",
+          "blocks": [
+            {
+              "id": "singleton-intencao-0",
+              "type": "paragraph",
+              "text": "Controlar uma instância e oferecer acesso global a ela."
+            },
+            {
+              "id": "singleton-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai reconhecer o que a unicidade local garante e quando injeção explícita oferece melhor controle."
+            }
+          ]
+        },
+        {
+          "id": "singleton-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "singleton-cenario-0",
+              "type": "paragraph",
+              "text": "Várias partes de uma aplicação precisam ler seu nome e configurações estáveis. O exemplo quer demonstrar uma identidade compartilhada dentro do módulo em execução. Não existe aqui coordenação entre servidores ou armazenamento de configurações distribuído."
+            }
+          ]
+        },
+        {
+          "id": "singleton-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "singleton-tentativa-0",
+              "type": "paragraph",
+              "text": "Variáveis globais mutáveis são fáceis de alcançar, mas tornam dependências invisíveis. Criar uma instância em cada chamada também pode contrariar a intenção de compartilhar uma configuração. Antes da solução, defina exatamente quem precisa compartilhar o quê e durante quanto tempo."
+            }
+          ]
+        },
+        {
+          "id": "singleton-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "singleton-mecanismo-0",
+              "type": "paragraph",
+              "text": "Concorrência pode criar duas instâncias; use o mecanismo seguro da linguagem e considere também o estado compartilhado."
+            },
+            {
+              "id": "singleton-mecanismo-1",
+              "type": "paragraph",
+              "text": "Configuration restringe a construção no sistema de tipos e guarda uma referência estática. current devolve a mesma instância local. A demonstração é síncrona: não envolve inicialização assíncrona, múltiplos processos nem bloqueios de threads. Essas diferenças fazem parte do contrato, não de um detalhe de sintaxe."
+            }
+          ]
+        },
+        {
+          "id": "singleton-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "singleton-participantes-0",
+              "type": "paragraph",
+              "text": "Construtor restrito, referência estática e um método de acesso que devolve a instância guardada."
+            },
+            {
+              "id": "singleton-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/singleton-roles.svg",
+              "alt": "Mapa autoral dos participantes de Singleton",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "singleton-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "singleton-contrato-0",
+              "type": "bullets",
+              "items": [
+                "current devolve a mesma referência no escopo mostrado.",
+                "O nome da aplicação não muda após a construção.",
+                "A classe não promete unicidade fora desse runtime."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "singleton-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "singleton-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "A primeira consulta encontra o campo estático vazio.",
+                "Uma configuração é criada e guardada.",
+                "Consultas posteriores reutilizam a referência guardada."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "singleton-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "singleton-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "class Configuration {\n  private static instance: Configuration | undefined;\n  private constructor(readonly applicationName: string) {}\n  static current() {\n    return (this.instance ??= new Configuration('Estudos'));\n  }\n}\nexport function demo() {\n  const first = Configuration.current();\n  const second = Configuration.current();\n  return { same: first === second, name: second.applicationName };\n}"
+            }
+          ]
+        },
+        {
+          "id": "singleton-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "singleton-resultado-0",
+              "type": "bullets",
+              "items": [
+                "first e second apontam para o mesmo objeto.",
+                "Ambos observam o nome Estudos.",
+                "Não foi necessário construir uma segunda configuração para o consumidor."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "singleton-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "singleton-evolucao-0",
+              "type": "paragraph",
+              "text": "Se a aplicação passar a atender clientes com configurações diferentes, uma referência global única pode ser o escopo errado. Um container ou uma fábrica pode fornecer instâncias por requisição ou tenant. Expresse esse ciclo de vida sem transformar uma exceção em dezenas de condições no acesso global."
+            }
+          ]
+        },
+        {
+          "id": "singleton-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "singleton-testes-0",
+              "type": "bullets",
+              "items": [
+                "Compare identidade entre duas consultas.",
+                "Execute testes em ordens diferentes para encontrar estado residual.",
+                "Verifique se consumidores podem receber uma configuração substituta nos testes."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "singleton-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "singleton-limites-0",
+              "type": "paragraph",
+              "text": "Uma propriedade private do TypeScript ajuda o compilador, mas não estabelece uma fronteira de segurança. Inicialização assíncrona pode precisar compartilhar a própria promessa e tratar falha. Em outro processo haverá outro estado estático; usar Singleton como trava distribuída é um erro de escopo."
+            }
+          ]
+        },
+        {
+          "id": "singleton-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "singleton-comparacao-0",
+              "type": "paragraph",
+              "text": "Não. Unicidade depende do processo ou escopo; múltiplos processos podem manter instâncias próprias."
+            }
+          ]
+        },
+        {
+          "id": "singleton-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "singleton-exercicio-0",
+              "type": "paragraph",
+              "text": "Uma execução de teste muda configuração global e a próxima falha isoladamente sem reproduzir o erro. Que dependência foi escondida? Como redesenhar o consumidor?"
+            }
+          ]
+        },
+        {
+          "id": "singleton-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "singleton-resposta-0",
+              "type": "paragraph",
+              "text": "O consumidor depende de estado que sobrevive entre testes. Receber uma interface de configuração torna essa dependência explícita e permite criar uma instância por teste. O requisito de compartilhar em produção pode ser atendido na composição sem obrigar cada consumidor a buscar um objeto global."
+            }
+          ]
+        },
+        {
+          "id": "singleton-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "singleton-criterio-0",
+              "type": "paragraph",
+              "text": "Comece pelo ciclo de vida necessário. Uma instância compartilhada pode ser correta, mas acesso global não é a única forma de fornecê-la. Evite introduzir Singleton só para economizar parâmetros: isso pode dificultar exatamente o isolamento que a aplicação precisará depois."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    }
+  ],
+  "progress": []
+}

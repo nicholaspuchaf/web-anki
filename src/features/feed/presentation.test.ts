@@ -2,7 +2,7 @@ import { expect, test } from 'bun:test';
 import { carouselTemplates, templateFor, styleFor } from './presentation';
 import { parseCarousel, parseFeed, type FeedSlide } from './model';
 import { sampleFeed } from './sample';
-import catalog from '../../content/feed-design-patterns.json';
+import catalog from '../../content/decks/design-patterns/carousels/index';
 
 test('dez templates distribuídos de forma estável no catálogo existente, sem mutar dados', () => {
   expect(carouselTemplates).toHaveLength(10);

@@ -1,4 +1,6 @@
-import catalog from '../../content/aws-services.json';
+import manifest from '../../content/decks/aws/deck.json' with { type: 'json' };
+import { parseDeck } from '../decks/model';
+import catalog from '../../content/decks/aws/flashcards/index';
 import type { Library } from '../library/model';
 import { mergeBundledDeck } from './merge';
 import { AWS_DECK_ID } from './ids';
@@ -42,13 +44,5 @@ export function withBundledAwsDeck(library: Library): Library {
       syncEnabled: false,
     };
   });
-  return mergeBundledDeck(
-    library,
-    {
-      id: AWS_DECK_ID,
-      name: catalog.name,
-      defaultTemplate: 'multi-face',
-    },
-    cards,
-  );
+  return mergeBundledDeck(library, parseDeck(manifest), cards);
 }

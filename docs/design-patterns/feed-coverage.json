@@ -7,7 +7,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
       "carouselId": "feed-pattern-factory-method",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/factory-method.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/factory-method.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -33,7 +33,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/abstract-factory",
       "carouselId": "feed-pattern-abstract-factory",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/abstract-factory.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/abstract-factory.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -58,7 +58,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/builder",
       "carouselId": "feed-pattern-builder",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/builder.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/builder.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -84,7 +84,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/prototype",
       "carouselId": "feed-pattern-prototype",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/prototype.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/prototype.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -109,7 +109,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/singleton",
       "carouselId": "feed-pattern-singleton",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/singleton.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/singleton.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -134,7 +134,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
       "carouselId": "feed-pattern-adapter",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/adapter.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/adapter.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -160,7 +160,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
       "carouselId": "feed-pattern-bridge",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/bridge.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/bridge.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -186,7 +186,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/composite",
       "carouselId": "feed-pattern-composite",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/composite.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/composite.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -212,7 +212,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
       "carouselId": "feed-pattern-decorator",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/decorator.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/decorator.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -238,7 +238,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/facade",
       "carouselId": "feed-pattern-facade",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/facade.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/facade.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -263,7 +263,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/flyweight",
       "carouselId": "feed-pattern-flyweight",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/flyweight.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/flyweight.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -288,7 +288,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/proxy",
       "carouselId": "feed-pattern-proxy",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/proxy.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/proxy.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -313,7 +313,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/chain-of-responsibility",
       "carouselId": "feed-pattern-chain-of-responsibility",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/chain-of-responsibility.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/chain-of-responsibility.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -339,7 +339,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/command",
       "carouselId": "feed-pattern-command",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/command.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/command.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -364,7 +364,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/iterator",
       "carouselId": "feed-pattern-iterator",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/iterator.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/iterator.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -389,7 +389,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/mediator",
       "carouselId": "feed-pattern-mediator",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/mediator.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/mediator.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -414,7 +414,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/memento",
       "carouselId": "feed-pattern-memento",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/memento.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/memento.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -439,7 +439,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/observer",
       "carouselId": "feed-pattern-observer",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/observer.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/observer.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -465,7 +465,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/state",
       "carouselId": "feed-pattern-state",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/state.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/state.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -491,7 +491,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/strategy",
       "carouselId": "feed-pattern-strategy",
       "slides": 17,
-      "examplePath": "src/content/pattern-examples/strategy.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/strategy.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -517,7 +517,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/template-method",
       "carouselId": "feed-pattern-template-method",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/template-method.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/template-method.ts",
       "topics": [
         "intencao",
         "cenario",
@@ -542,7 +542,7 @@
       "sourceUrl": "https://refactoring.guru/design-patterns/visitor",
       "carouselId": "feed-pattern-visitor",
       "slides": 16,
-      "examplePath": "src/content/pattern-examples/visitor.ts",
+      "examplePath": "src/content/decks/design-patterns/carousels/examples/visitor.ts",
       "topics": [
         "intencao",
         "cenario",

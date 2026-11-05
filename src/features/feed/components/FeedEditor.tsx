@@ -1,3 +1,5 @@
+import type { Deck } from '../../decks/model';
+import { carouselDeckId } from '../decks';
 import { SelectField } from '../../../shared/ui/SelectField';
 import { templateFor, slideStyles, type SlideStyle } from '../presentation';
 import { TemplatePicker } from './TemplatePicker';
@@ -26,12 +28,14 @@ function move<T>(items: T[], index: number, delta: number): T[] {
 }
 export function FeedEditor({
   initial,
+  decks,
   draftKey,
   recovered,
   onSave,
   onClose,
 }: {
   initial: FeedDraft;
+  decks: Deck[];
   draftKey: string;
   recovered: boolean;
   onSave: (value: Carousel, expectedRevision: number | null) => Promise<void>;
@@ -162,6 +166,12 @@ export function FeedEditor({
         )}
         {!preview && (
           <fieldset disabled={busy} className="feed-editor-metadata">
+            <SelectField
+              label="Baralho do carrossel"
+              value={carouselDeckId(value)}
+              options={decks.map((d) => ({ value: d.id, label: d.name }))}
+              onChange={(e) => setValue({ ...value, deckId: e.target.value })}
+            />
             <TemplatePicker
               value={templateFor(value)}
               onChange={(template) => setValue({ ...value, template })}

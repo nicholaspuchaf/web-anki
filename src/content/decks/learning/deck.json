@@ -1,0 +1,6 @@
+{
+  "id": "local-learning",
+  "name": "Aprendizado geral",
+  "syncEnabled": false,
+  "content": { "flashcards": [], "carousels": ["carousels/intro.json"] }
+}

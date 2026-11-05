@@ -1,4 +1,6 @@
-import { openDB } from 'idb';
+import { feedDatabase as database } from '../../shared/storage/feed-database';
+import { withCarouselDecks } from './decks';
+import type { Deck } from '../decks/model';
 import {
   emptyFeed,
   MAX_FEED_BACKUP_BYTES,
@@ -10,17 +12,8 @@ import {
   type FeedDraft,
 } from './model';
 import { sampleFeed } from './sample';
-import {
-  PATTERN_FEED_INSTALLATION,
-  withPatternCarousels,
-} from './pattern-catalog';
+import { bundledCarouselDecks, addBundledCarousels } from './bundled-catalog';
 
-const database = () =>
-  openDB('folha-feed', 1, {
-    upgrade(db) {
-      db.createObjectStore('state');
-    },
-  });
 async function mutate(change: (data: FeedData) => FeedData): Promise<FeedData> {
   const db = await database();
   try {
@@ -51,32 +44,68 @@ export async function loadFeed(): Promise<FeedData> {
     const tx = db.transaction('state', 'readwrite');
     const stored = await tx.store.get('current');
     let current = stored ? parseFeed(stored) : parseFeed(sampleFeed);
-    if (!(await tx.store.get(PATTERN_FEED_INSTALLATION))) {
-      const next = withPatternCarousels(current);
-      // Existing libraries remain readable if they cannot fit the new catalog.
+    for (const bundle of bundledCarouselDecks) {
+      const installed = await tx.store.get(bundle.installation);
+      const sourceIds = bundle.data.carousels.map((c) => c.id);
+      // Old boolean markers mean these resources were already offered, including deletions.
+      if (
+        installed === true ||
+        (!installed && stored && bundle.seedOnly) ||
+        (!installed &&
+          bundle.legacyInstallation &&
+          (await tx.store.get(bundle.legacyInstallation)))
+      ) {
+        await tx.store.put(sourceIds, bundle.installation);
+        continue;
+      }
+      const knownIds: string[] = Array.isArray(installed) ? installed : [];
+      const additions = bundle.data.carousels.filter(
+        (c) => !knownIds.includes(c.id),
+      );
+      if (!additions.length && installed) continue;
+      const next = withCarouselDecks(
+        addBundledCarousels(current, { ...bundle.data, carousels: additions }),
+      );
       if (
         next.carousels.length <= 500 &&
         new TextEncoder().encode(JSON.stringify(next)).byteLength <=
           MAX_FEED_BACKUP_BYTES
       ) {
         current = parseFeed(next);
-        await tx.store.put(current, 'current');
-        await tx.store.put(true, PATTERN_FEED_INSTALLATION);
-      } else if (!stored) {
-        await tx.store.put(current, 'current');
+        await tx.store.put(
+          [...knownIds, ...additions.map((c) => c.id)],
+          bundle.installation,
+        );
       }
-    } else if (!stored) {
-      await tx.store.put(current, 'current');
     }
+    if (!stored || JSON.stringify(current) !== JSON.stringify(stored))
+      await tx.store.put(current, 'current');
+    const organized = withCarouselDecks(current);
+    if (JSON.stringify(organized) !== JSON.stringify(current))
+      await tx.store.put(organized, 'current');
     await tx.done;
-    return current;
+    return organized;
   } finally {
     db.close();
   }
 }
+function learningContent(carousel: Carousel) {
+  return JSON.stringify({
+    title: carousel.title,
+    scope: carousel.scope,
+    objective: carousel.objective,
+    intervalDays: carousel.intervalDays,
+    slides: carousel.slides.map((slide) => ({
+      id: slide.id,
+      title: slide.title,
+      blocks: slide.blocks,
+    })),
+  });
+}
 export function saveCarousel(
   value: Carousel,
   expectedRevision: number | null,
+  deck?: Deck,
 ): Promise<FeedData> {
   const parsed = parseCarousel(value);
   return mutate((data) => {
@@ -86,13 +115,23 @@ export function saveCarousel(
         'Este carrossel mudou em outra aba. Feche e abra o editor para revisar a versão atual. Seu rascunho foi preservado.',
       );
     const carousel = { ...parsed, revision: (old?.revision ?? 0) + 1 };
-    return {
+    return withCarouselDecks({
       ...data,
+      decks: deck
+        ? [...(data.decks ?? []).filter((d) => d.id !== deck.id), deck]
+        : data.decks,
       carousels: old
         ? data.carousels.map((c) => (c.id === carousel.id ? carousel : c))
         : [carousel, ...data.carousels],
-      progress: data.progress.filter((p) => p.carouselId !== carousel.id),
-    };
+      progress:
+        old && learningContent(old) === learningContent(carousel)
+          ? data.progress.map((p) =>
+              p.carouselId === carousel.id
+                ? { ...p, contentRevision: carousel.revision }
+                : p,
+            )
+          : data.progress.filter((p) => p.carouselId !== carousel.id),
+    });
   });
 }
 export function markSlideRead(
@@ -122,7 +161,7 @@ export function deleteCarousel(
 }
 export function replaceFeed(value: unknown): Promise<FeedData> {
   const parsed = parseFeed(value);
-  return mutate(() => parsed);
+  return mutate(() => withCarouselDecks(parsed));
 }
 export async function loadDraft(key: string): Promise<FeedDraft | undefined> {
   const db = await database();

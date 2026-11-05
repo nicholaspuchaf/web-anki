@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-11-04",
+  "name": "Design Patterns · Conceitos e decisões",
+  "syncEnabled": false,
+  "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
+  "patterns": [
+    {
+      "id": "factory-method",
+      "name": "Factory Method",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/factory-method",
+      "diagram": [
+        ["Creator", "create(): Product"],
+        ["ConcreteCreator", "sobrescreve create()"],
+        ["Product", "contrato comum"],
+        ["ConcreteProduct", "implementa Product"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual decisão o Factory Method adia?",
+          "answer": "A classe concreta do produto; subclasses escolhem a implementação usada pela lógica herdada."
+        },
+        {
+          "id": "problema",
+          "question": "Que acoplamento ele reduz?",
+          "answer": "O fluxo principal deixa de construir diretamente produtos específicos, evitando alterações espalhadas para cada variante."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem cria e quem usa?",
+          "answer": "ConcreteCreator sobrescreve a criação; Creator trabalha com Product; ConcreteProduct cumpre esse contrato."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir o ponto de extensão?",
+          "answer": "Extraia a criação para um método substituível, retorne a abstração e faça o fluxo chamá-lo."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo simples representa a ideia?",
+          "answer": "Exportacao.executar() chama criarFormato(); ExportacaoCsv fornece Csv. O algoritmo herdado não conhece esse formato concreto."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando usar esse mecanismo?",
+          "answer": "Quando subclasses precisam especializar produtos de um fluxo reutilizável. O método também pode reaproveitar instâncias."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo merece atenção?",
+          "answer": "Criar subclasses só para escolher objetos aumenta complexidade; uma função injetada pode bastar num caso simples."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Abstract Factory?",
+          "answer": "Factory Method especializa uma criação por herança; Abstract Factory oferece uma família de produtos compatíveis."
+        }
+      ]
+    },
+    {
+      "id": "abstract-factory",
+      "name": "Abstract Factory",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/abstract-factory",
+      "diagram": [
+        ["Client", "usa contratos"],
+        ["Factory", "createA() / createB()"],
+        ["FactoryX", "produz AX e BX"],
+        ["FactoryY", "produz AY e BY"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que uma Abstract Factory preserva?",
+          "answer": "A compatibilidade entre produtos de uma mesma família, ocultando suas classes concretas."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema pede famílias?",
+          "answer": "Variações combinadas podem misturar componentes incompatíveis quando cada objeto é escolhido isoladamente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais papéis colaboram?",
+          "answer": "Cliente usa fábrica e produtos abstratos; cada fábrica concreta entrega uma variante de todos os produtos."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como organizar a implementação?",
+          "answer": "Defina contratos por produto e métodos na fábrica; injete uma fábrica concreta na composição da aplicação."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo evita mistura de variantes?",
+          "answer": "TemaClaro cria BotaoClaro e MenuClaro; TemaEscuro cria ambos escuros, sem decisões dispersas no cliente."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando faz sentido adotá-la?",
+          "answer": "Quando várias famílias precisam ser intercambiáveis e seus produtos devem funcionar juntos."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Onde a extensão fica cara?",
+          "answer": "Adicionar uma família é simples; adicionar um novo tipo de produto exige mudar todas as fábricas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Builder?",
+          "answer": "Abstract Factory entrega produtos relacionados; Builder coordena etapas para construir uma representação complexa."
+        }
+      ]
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/builder",
+      "diagram": [
+        ["Client", "escolhe construção"],
+        ["Director", "ordena etapas"],
+        ["Builder", "define etapas"],
+        ["Product", "resultado final"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Builder separa?",
+          "answer": "O processo de montagem de um objeto complexo e as representações produzidas por esse processo."
+        },
+        {
+          "id": "problema",
+          "question": "Qual sintoma sugere seu uso?",
+          "answer": "Construtores enormes ou subclasses para todas as combinações de configuração tornam a criação difícil de compreender."
+        },
+        {
+          "id": "estrutura",
+          "question": "O Director é obrigatório?",
+          "answer": "Não. Ele reutiliza sequências; o cliente pode chamar o builder diretamente e obter seu produto."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como manter a montagem segura?",
+          "answer": "Defina etapas, builders concretos e obtenção do resultado; reinicie estado quando necessário e valide invariantes ao concluir."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra representações diferentes?",
+          "answer": "As etapas titulo() e secao() produzem um RelatorioPdf ou RelatorioHtml conforme o builder escolhido."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando esse padrão agrega valor?",
+          "answer": "Quando construção possui várias etapas, opções ou representações que compartilham uma sequência."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual armadilha aparece em produção?",
+          "answer": "Reutilizar um builder mutável sem reset pode vazar configuração entre construções; produtos incompletos não devem escapar."
+        },
+        {
+          "id": "comparacao",
+          "question": "Builder equivale a métodos encadeados?",
+          "answer": "Não. Encadeamento é sintaxe opcional; o padrão trata construção gradual e pode gerar produtos sem interface comum."
+        }
+      ]
+    },
+    {
+      "id": "prototype",
+      "name": "Prototype",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/prototype",
+      "diagram": [
+        ["Client", "solicita cópia"],
+        ["Prototype", "clone()"],
+        ["ConcretePrototype", "controla cópia"],
+        ["Registry", "protótipos por chave"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Prototype permite?",
+          "answer": "Criar objetos copiando instâncias existentes, sem conhecer suas classes concretas."
+        },
+        {
+          "id": "problema",
+          "question": "Por que copiar externamente pode falhar?",
+          "answer": "O cliente pode desconhecer o tipo concreto ou não acessar estado privado necessário à cópia."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem conhece a lógica de cópia?",
+          "answer": "O próprio protótipo concreto implementa clone(); um registro opcional organiza modelos prontos por chave."
+        },
+        {
+          "id": "implementacao",
+          "question": "Qual decisão vem antes de implementar clone()?",
+          "answer": "Definir o que será copiado ou compartilhado, incluindo referências, identidade e ciclos no grafo de objetos."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo usa configurações prontas?",
+          "answer": "Um editor clona um bloco configurado e muda seu texto, preservando o estilo do modelo."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando clonar pode ajudar?",
+          "answer": "Quando inicialização é trabalhosa ou existem muitas configurações reutilizáveis sem necessidade de uma subclasse por combinação."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual risco exige teste específico?",
+          "answer": "Cópia rasa compartilha objetos internos; cópia profunda mal planejada pode duplicar recursos ou entrar em recursão."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com outros criacionais?",
+          "answer": "Factories podem usar protótipos internamente; Builder monta em etapas, enquanto Prototype parte de uma instância pronta."
+        }
+      ]
+    },
+    {
+      "id": "singleton",
+      "name": "Singleton",
+      "category": "Criacionais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/singleton",
+      "diagram": [
+        ["Client A", "pede instância"],
+        ["Singleton", "getInstance()"],
+        ["Client B", "pede instância"],
+        ["Instance", "referência compartilhada"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Quais responsabilidades o Singleton combina?",
+          "answer": "Controlar uma instância e oferecer acesso global a ela."
+        },
+        {
+          "id": "problema",
+          "question": "Qual necessidade ele pretende atender?",
+          "answer": "Compartilhar um recurso cuja multiplicidade precisa ser controlada, evitando criação independente pelos clientes."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como sua estrutura restringe criação?",
+          "answer": "Construtor restrito, referência estática e um método de acesso que devolve a instância guardada."
+        },
+        {
+          "id": "implementacao",
+          "question": "Que cuidado vale na inicialização tardia?",
+          "answer": "Concorrência pode criar duas instâncias; use o mecanismo seguro da linguagem e considere também o estado compartilhado."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo ilustra identidade compartilhada?",
+          "answer": "Duas chamadas a Configuracao.getInstance() devolvem a mesma referência dentro do escopo definido."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando questionar sua adoção?",
+          "answer": "Quando a necessidade real é só compartilhar uma dependência; injeção explícita pode controlar o ciclo de vida."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo aparece nos testes?",
+          "answer": "Dependência global oculta e estado persistente dificultam isolamento, paralelismo e substituição de colaboradores."
+        },
+        {
+          "id": "comparacao",
+          "question": "Uma instância significa unicidade distribuída?",
+          "answer": "Não. Unicidade depende do processo ou escopo; múltiplos processos podem manter instâncias próprias."
+        }
+      ]
+    }
+  ]
+}

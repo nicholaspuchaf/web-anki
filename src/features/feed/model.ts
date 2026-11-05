@@ -1,3 +1,4 @@
+import { parseDeck, type Deck } from '../decks/model';
 import {
   carouselTemplates,
   slideStyles,
@@ -40,6 +41,7 @@ export type FeedSlide = {
 };
 export type Carousel = {
   id: string;
+  deckId?: string;
   revision: number;
   title: string;
   scope: string;
@@ -61,6 +63,7 @@ export type FeedProgress = {
 export type FeedData = {
   format: 'folha-feed';
   version: 1;
+  decks?: Deck[];
   carousels: Carousel[];
   progress: FeedProgress[];
 };
@@ -239,6 +242,7 @@ export function parseCarousel(value: unknown): Carousel {
   );
   const carousel: Carousel = {
     id: identifier(input.id),
+    ...(input.deckId !== undefined ? { deckId: identifier(input.deckId) } : {}),
     revision: input.revision as number,
     title: string(input.title, 'o título do carrossel'),
     scope: string(input.scope, 'o escopo'),
@@ -321,7 +325,26 @@ export function parseFeed(value: unknown): FeedData {
       completions: p.completions as number,
     };
   });
-  return { format: 'folha-feed', version: 1, carousels, progress };
+  const decks =
+    input.decks === undefined
+      ? undefined
+      : Array.isArray(input.decks) && input.decks.length <= 500
+        ? unique(input.decks.map(parseDeck))
+        : (() => {
+            throw new Error('Baralhos do Feed inválidos.');
+          })();
+  if (
+    decks &&
+    carousels.some((c) => c.deckId && !decks.some((d) => d.id === c.deckId))
+  )
+    throw new Error('Baralho do carrossel não encontrado no backup.');
+  return {
+    format: 'folha-feed',
+    version: 1,
+    carousels,
+    progress,
+    ...(decks ? { decks } : {}),
+  };
 }
 export function dueCarousels(data: FeedData, now: number): Carousel[] {
   return data.carousels.filter((carousel) => {

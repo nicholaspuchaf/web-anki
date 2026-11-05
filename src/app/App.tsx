@@ -94,7 +94,13 @@ export default function App() {
         )}
         {page === 'feed' ? (
           <Suspense fallback={<p role="status">Abrindo o Feed…</p>}>
-            <FeedPage now={now} />
+            <FeedPage
+              now={now}
+              library={library}
+              libraryReady={ready}
+              saveLibrary={save}
+              libraryBusy={busy}
+            />
           </Suspense>
         ) : !ready ? (
           <div className="empty">

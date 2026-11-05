@@ -7,14 +7,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.endsWith('/src/content/aws-services.json'))
+          if (id.includes('/src/content/decks/aws/flashcards/'))
             return 'aws-catalog';
           if (
-            id.endsWith('/src/content/design-patterns.json') ||
-            id.endsWith('/src/content/design-pattern-assets.json')
+            id.includes('/src/content/decks/design-patterns/flashcards/') ||
+            id.endsWith('/src/content/decks/design-patterns/assets.json')
           )
             return 'patterns-catalog';
-          if (id.endsWith('/src/content/feed-design-patterns.json'))
+          if (id.includes('/src/content/decks/design-patterns/carousels/'))
             return 'feed-patterns-catalog';
         },
       },

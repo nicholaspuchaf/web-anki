@@ -49,7 +49,15 @@
             }
           ]
         }
-      ]
+      ],
+      "deckId": "example-learning"
+    }
+  ],
+  "decks": [
+    {
+      "id": "example-learning",
+      "name": "Aprendizado de exemplo",
+      "syncEnabled": false
     }
   ]
 }

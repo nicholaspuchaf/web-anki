@@ -1,0 +1,196 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "progress": [],
+  "carousels": [
+    {
+      "id": "feed-composicao",
+      "revision": 1,
+      "title": "Mude o comportamento. Preserve o desenho.",
+      "scope": "Composição de objetos e variações de comportamento.",
+      "objective": "Reconhecer quando delegar uma responsabilidade simplifica a evolução do código.",
+      "tags": ["arquitetura", "design patterns"],
+      "intervalDays": 3,
+      "slides": [
+        {
+          "id": "composicao-1",
+          "title": "Uma classe para cada combinação?",
+          "blocks": [
+            {
+              "id": "c1",
+              "type": "paragraph",
+              "text": "Imagine um exportador de relatórios. Ele pode produzir CSV ou PDF, e cada resultado pode ser enviado por e-mail ou salvo em disco. Uma classe para cada combinação parece simples até aparecerem novos formatos, destinos e regras."
+            },
+            {
+              "id": "c2",
+              "type": "bullets",
+              "items": [
+                "A quantidade de combinações cresce mais rápido que a quantidade de capacidades.",
+                "Uma mudança em envio não deveria obrigar a revisar toda a geração do relatório.",
+                "Procure responsabilidades que variam de forma independente."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composicao-2",
+          "title": "Troque combinações por colaboradores",
+          "blocks": [
+            {
+              "id": "c3",
+              "type": "paragraph",
+              "text": "O exportador recebe um gerador e um destino. Ele coordena a jornada: produzir o conteúdo e entregá-lo. Cada colaborador implementa um contrato pequeno. Um gerador CSV não precisa conhecer um servidor de e-mail."
+            },
+            {
+              "id": "c4",
+              "type": "bullets",
+              "items": [
+                "Exportador → Gerador: produzir dados no formato escolhido.",
+                "Exportador → Destino: entregar o resultado.",
+                "A composição acontece num lugar explícito, perto da inicialização da aplicação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composicao-3",
+          "title": "Um algoritmo por contrato",
+          "blocks": [
+            {
+              "id": "c5",
+              "type": "paragraph",
+              "text": "Strategy é uma forma de aplicar essa separação quando o que varia é o algoritmo. O contexto delega uma tarefa para um contrato, e a implementação escolhida fornece o comportamento. O mapa abaixo ajuda a localizar cada responsabilidade."
+            },
+            {
+              "id": "c6",
+              "type": "image",
+              "src": "/study-assets/design-patterns/strategy-roles.svg",
+              "alt": "Mapa autoral dos participantes de Strategy",
+              "caption": "Contexto e algoritmo podem evoluir separadamente."
+            }
+          ]
+        },
+        {
+          "id": "composicao-4",
+          "title": "A decisão que importa",
+          "blocks": [
+            {
+              "id": "c7",
+              "type": "paragraph",
+              "text": "Não extraia uma interface só porque uma variação talvez apareça no futuro. Observe mudanças reais e a dificuldade dos testes. A separação é útil quando reduz o conhecimento necessário para mudar uma parte sem quebrar as demais."
+            },
+            {
+              "id": "c8",
+              "type": "bullets",
+              "items": [
+                "O contrato preserva entradas, resultados e falhas esperadas?",
+                "Consigo testar um colaborador sem construir o sistema inteiro?",
+                "Uma função recebida como parâmetro já resolveria o problema?"
+              ]
+            },
+            {
+              "id": "c9",
+              "type": "paragraph",
+              "text": "Experimento: escolha uma classe que varia em duas dimensões. Desenhe os colaboradores e compare o que precisaria mudar para adicionar uma opção em apenas uma delas."
+            }
+          ]
+        }
+      ],
+      "deckId": "local-learning"
+    },
+    {
+      "id": "feed-cache",
+      "revision": 1,
+      "title": "Cache rápido. Recuperação pensada.",
+      "scope": "Cache de leitura e comportamento durante falhas.",
+      "objective": "Explicar por que expiração e recuperação fazem parte do desenho de um cache.",
+      "tags": ["sistemas distribuídos", "performance"],
+      "intervalDays": 3,
+      "slides": [
+        {
+          "id": "cache-1",
+          "title": "Uma resposta pode viajar menos",
+          "blocks": [
+            {
+              "id": "k1",
+              "type": "paragraph",
+              "text": "Um cache guarda um resultado para reutilizá-lo. Evitar repetir uma consulta cara reduz trabalho e latência. Mas o resultado guardado representa um momento: entre a gravação e a leitura, a fonte pode mudar."
+            },
+            {
+              "id": "k2",
+              "type": "bullets",
+              "items": [
+                "Identifique a fonte de verdade.",
+                "Defina quanto atraso o usuário pode aceitar.",
+                "Escolha a chave usando todos os fatores que mudam a resposta."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cache-2",
+          "title": "A chave também separa pessoas",
+          "blocks": [
+            {
+              "id": "k3",
+              "type": "paragraph",
+              "text": "Se o resultado depende do cliente, idioma ou permissão, a chave precisa preservar a separação necessária. Reutilizar uma resposta personalizada como se fosse pública pode expor dados. Por outro lado, incluir valores irrelevantes cria muitas entradas sem reaproveitamento."
+            },
+            {
+              "id": "k4",
+              "type": "paragraph",
+              "text": "Faça um teste com duas identidades e a mesma URL. Pergunte se elas deveriam receber exatamente o mesmo resultado e se uma revogação de acesso alcança também as cópias guardadas."
+            }
+          ]
+        },
+        {
+          "id": "cache-3",
+          "title": "E quando tudo expira junto?",
+          "blocks": [
+            {
+              "id": "k5",
+              "type": "paragraph",
+              "text": "Depois de uma queda ou expiração concentrada, muitos clientes podem tentar recalcular o mesmo valor. O cache vazio passa a pressionar justamente a fonte que costumava proteger."
+            },
+            {
+              "id": "k6",
+              "type": "bullets",
+              "items": [
+                "Espalhe expirações quando isso fizer sentido.",
+                "Coordene recomputações concorrentes para a mesma chave.",
+                "Limite a carga que pode chegar à fonte.",
+                "Teste recuperação com cache frio, não apenas o cenário aquecido."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cache-4",
+          "title": "Escolha o comportamento de falha",
+          "blocks": [
+            {
+              "id": "k7",
+              "type": "paragraph",
+              "text": "Servir um valor antigo pode ser aceitável para um catálogo e inadequado para uma decisão de acesso. A política precisa partir da jornada, e não de um padrão técnico aplicado a tudo."
+            },
+            {
+              "id": "k8",
+              "type": "bullets",
+              "items": [
+                "Frescor: quão antiga a resposta pode ser?",
+                "Disponibilidade: qual degradação ainda ajuda o usuário?",
+                "Recuperação: quanto tempo leva para voltar sem sobrecarregar a fonte?"
+              ]
+            },
+            {
+              "id": "k9",
+              "type": "paragraph",
+              "text": "Experimento: descreva o que seu sistema faria se todas as entradas de uma chave importante sumissem agora. Se a resposta depender de capacidade infinita no banco, o desenho ainda precisa de um limite."
+            }
+          ]
+        }
+      ],
+      "deckId": "local-learning"
+    }
+  ]
+}

@@ -68,6 +68,13 @@ export function DeckPage({
       <CardFilters value={filters} onChange={setFilters} tags={tags} />
       <div className="toolbar">
         <button
+          onClick={() => {
+            window.location.hash = `/feed?deck=${encodeURIComponent(deck.id)}`;
+          }}
+        >
+          Carrosséis deste baralho
+        </button>
+        <button
           className="primary"
           disabled={busy || !due.length}
           onClick={() => begin(deck.id, { ids: filtered.map((c) => c.id) })}

@@ -145,7 +145,7 @@ precisam ser publicados juntos para preservar o novo template na nuvem.
 
 ## Baralhos incluídos no repositório
 
-`content/aws-services.json` contém o catálogo de estudo, sem estado de revisão.
+`content/decks/aws/flashcards/index` contém o catálogo de estudo, sem estado de revisão.
 `bundled-decks/aws.ts` converte-o em cartões com IDs estáveis, quatro versos e
 `syncEnabled: false`. `withBundledAwsDeck` atualiza apenas o conteúdo reservado e
 preserva agendamento, revisões, favoritos e todos os cartões pessoais.
@@ -182,7 +182,7 @@ preservando os outros baralhos, cartões pessoais e estado de revisão. A relaç
 entre IDs de deck e prefixos fica em `ids.ts`, sem importar conteúdo na Lambda.
 `bundledDeckReviewedAt` fornece a data correspondente ao catálogo da tela.
 
-`content/design-patterns.json` contém 22 padrões com oito perguntas cada. O conteúdo
+`content/decks/design-patterns/flashcards/index` contém 22 padrões com oito perguntas cada. O conteúdo
 é uma síntese original; o índice e a matriz editorial ficam em
 `docs/design-patterns`. `design-pattern-assets.json` rastreia as dez ilustrações
 permitidas pelo fornecedor; 22 mapas SVG autorais complementam o material.
@@ -198,6 +198,26 @@ Backups preservam os metadados visuais; eles não incorporam os bytes das imagen
 Os recursos incluídos são distribuídos pela aplicação e precacheados pela PWA.
 O teste de navegador consulta todos os 32 recursos sem rede e verifica revisão,
 favoritos, créditos, ocultação dos versos e convivência com o baralho AWS.
+
+## Baralhos e formatos de aprendizado
+
+`features/decks/model.ts` define a identidade compartilhada `Deck`; o modelo da
+biblioteca reexporta os tipos para compatibilidade. Flashcards e carrosséis apontam
+para o mesmo `deckId`, e novos formatos podem usar essa referência sem adicionar
+campos de conteúdo a `Deck`. Cada recurso mantém seu repositório e progresso.
+
+`feed/decks.ts` resolve legado, compõe metadados e seleciona o escopo de estudo.
+`bootstrapLibrary` lê apenas metadados existentes do Feed e combina baralhos ausentes
+sem instalar o catálogo do Feed. A tela do Feed registra baralhos importados na
+biblioteca. Nomes da biblioteca têm prioridade sobre snapshots de backup; excluir
+um baralho ainda referenciado pelo Feed é recusado em `writeLibrary`.
+
+Os conteúdos incluídos ficam em `content/decks/<pasta>/deck.json`, `flashcards/` e
+`carousels/`. Os índices compõem múltiplos JSONs; o manifesto registra formatos e
+arquivos. O catálogo de carrosséis usa marcadores por baralho com os IDs já
+oferecidos, instalando novos recursos e preservando edições e exclusões anteriores.
+A migração reconhece o marcador legado de Design Patterns. Veja o
+[guia de conteúdo](../src/content/decks/README.md).
 
 ## Feed de aprendizado
 
@@ -230,7 +250,7 @@ progresso, publicação e conflitos por revisão. Os detalhes e limites estão e
 
 ### Conteúdo incluído no Feed
 
-`feed/pattern-catalog.ts` carrega `content/feed-design-patterns.json` e compõe os
+`feed/pattern-catalog.ts` carrega `content/decks/design-patterns/carousels/index` e compõe os
 carrosséis ausentes. A instalação no IndexedDB grava conteúdo e marcador na mesma
 transação; sua repetição não substitui edições nem ressuscita exclusões. O catálogo
 é um chunk próprio precacheado. O código dos estudos não é executado pela aplicação:

@@ -1,4 +1,13 @@
-import { useRef, useState } from 'react';
+import type { Library } from '../library/model';
+import type { SaveLibrary } from '../library/hooks/use-library';
+import {
+  feedDecks,
+  carouselDeckId,
+  GENERAL_DECK,
+  selectDeckFeed,
+} from './decks';
+import { CarouselLibrary } from './components/CarouselLibrary';
+import { useEffect, useRef, useState } from 'react';
 import { Alert } from '../../shared/ui/Alert';
 import {
   dueCarousels,
@@ -21,10 +30,29 @@ import { FeedEditor } from './components/FeedEditor';
 import { FeedStream } from './components/FeedStream';
 import { FeedMenu } from './components/FeedMenu';
 
-export default function FeedPage({ now }: { now: number }) {
+export default function FeedPage({
+  now,
+  library,
+  libraryReady,
+  libraryBusy,
+  saveLibrary,
+}: {
+  now: number;
+  library: Library;
+  libraryReady: boolean;
+  libraryBusy: boolean;
+  saveLibrary: SaveLibrary;
+}) {
   const feed = useFeed();
   const [menu, setMenu] = useState(false);
-  const [mode, setMode] = useState<'feed' | 'manage'>('feed');
+  const [selectedDeck, setSelectedDeck] = useState(
+    () =>
+      new URLSearchParams(window.location.hash.split('?')[1]).get('deck') ?? '',
+  );
+  const [initialCarouselId, setInitialCarouselId] = useState<string>();
+  const [mode, setMode] = useState<'feed' | 'manage'>(() =>
+    selectedDeck ? 'manage' : 'feed',
+  );
   const [editor, setEditor] = useState<{
     initial: FeedDraft;
     draftKey: string;
@@ -34,7 +62,23 @@ export default function FeedPage({ now }: { now: number }) {
   const [epoch, setEpoch] = useState(0);
   const [notice, setNotice] = useState('');
   const file = useRef<HTMLInputElement>(null);
-  const due = dueCarousels(feed.data, now).length;
+  const decks = feedDecks(feed.data, library.decks);
+  const studyData = selectDeckFeed(feed.data, selectedDeck);
+  const due = dueCarousels(studyData, now).length;
+  useEffect(() => {
+    if (!feed.ready || !libraryReady || libraryBusy) return;
+    const missing = decks.filter(
+      (d) => !library.decks.some((existing) => existing.id === d.id),
+    );
+    if (missing.length)
+      void saveLibrary({ ...library, decks: [...library.decks, ...missing] });
+  }, [feed.ready, libraryReady, libraryBusy, decks, library, saveLibrary]);
+  function study(carousel?: Carousel) {
+    if (carousel) setSelectedDeck(carouselDeckId(carousel));
+    setInitialCarouselId(carousel?.id);
+    setEpoch((value) => value + 1);
+    setMode('feed');
+  }
   async function open(carousel?: Carousel) {
     setOpening(true);
     try {
@@ -42,7 +86,9 @@ export default function FeedPage({ now }: { now: number }) {
       const draft = await loadDraft(key);
       setEditor({
         initial: draft ?? {
-          carousel: carousel ? structuredClone(carousel) : newCarousel(),
+          carousel: carousel
+            ? structuredClone(carousel)
+            : { ...newCarousel(), deckId: selectedDeck || GENERAL_DECK.id },
           expectedRevision: carousel?.revision ?? null,
         },
         draftKey: key,
@@ -55,7 +101,7 @@ export default function FeedPage({ now }: { now: number }) {
     }
   }
   function download() {
-    const blob = new Blob([JSON.stringify(feed.data)], {
+    const blob = new Blob([JSON.stringify({ ...feed.data, decks })], {
       type: 'application/json',
     });
     if (blob.size > MAX_FEED_BACKUP_BYTES) {
@@ -72,7 +118,7 @@ export default function FeedPage({ now }: { now: number }) {
     window.setTimeout(() => URL.revokeObjectURL(url), 30_000);
     setNotice('Backup do Feed exportado com carrosséis, imagens e progresso.');
   }
-  const signature = feed.data.carousels
+  const signature = studyData.carousels
     .map((c) => `${c.id}:${c.revision}`)
     .join('|');
   return (
@@ -103,7 +149,7 @@ export default function FeedPage({ now }: { now: number }) {
           </button>
         </div>
         <span className="feed-day-count">
-          {due} para hoje · {feed.data.carousels.length} temas
+          {due} para hoje · {studyData.carousels.length} temas
         </span>
         <button
           className="primary feed-create"
@@ -121,7 +167,7 @@ export default function FeedPage({ now }: { now: number }) {
       {notice && <Alert onDismiss={() => setNotice('')}>{notice}</Alert>}
       {!feed.ready ? (
         <p role="status">Abrindo seu Feed…</p>
-      ) : !feed.data.carousels.length ? (
+      ) : mode === 'feed' && !studyData.carousels.length ? (
         <div className="feed-empty">
           <span aria-hidden="true">✦</span>
           <h2>Um novo espaço para suas ideias</h2>
@@ -136,8 +182,9 @@ export default function FeedPage({ now }: { now: number }) {
       ) : mode === 'feed' ? (
         <div className="feed-layout">
           <FeedStream
-            key={`${signature}:${epoch}`}
-            data={feed.data}
+            key={`${selectedDeck}:${signature}:${epoch}`}
+            data={studyData}
+            initialCarouselId={initialCarouselId}
             paused={editor !== null || menu || !!feed.error}
             now={now}
             onRead={(carousel, id) => {
@@ -146,40 +193,33 @@ export default function FeedPage({ now }: { now: number }) {
           />
         </div>
       ) : (
-        <div className="feed-manager">
-          {feed.data.carousels.map((carousel) => (
-            <article key={carousel.id}>
-              <div>
-                <span className="eyebrow">
-                  {carousel.slides.length} CARDS · A CADA{' '}
-                  {carousel.intervalDays} DIA(S)
-                </span>
-                <h2>{carousel.title}</h2>
-                <p>{carousel.objective}</p>
-              </div>
-              <div>
-                <button onClick={() => void open(carousel)} disabled={opening}>
-                  Editar
-                </button>
-                <button
-                  className="danger"
-                  onClick={async () => {
-                    if (
-                      window.confirm(
-                        `Excluir o carrossel “${carousel.title}” e seu progresso?`,
-                      )
-                    )
-                      await feed.perform(() =>
-                        deleteCarousel(carousel.id, carousel.revision),
-                      );
-                  }}
-                >
-                  Excluir
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
+        <CarouselLibrary
+          data={feed.data}
+          decks={
+            decks.some((d) => d.id === GENERAL_DECK.id)
+              ? decks
+              : [...decks, GENERAL_DECK]
+          }
+          cards={library.cards}
+          selected={selectedDeck}
+          onSelect={(id) => {
+            setSelectedDeck(id);
+            setInitialCarouselId(undefined);
+          }}
+          onStudy={study}
+          onEdit={(carousel) => void open(carousel)}
+          busy={opening}
+          onDelete={(carousel) => {
+            if (
+              window.confirm(
+                `Excluir o carrossel “${carousel.title}” e seu progresso?`,
+              )
+            )
+              void feed.perform(() =>
+                deleteCarousel(carousel.id, carousel.revision),
+              );
+          }}
+        />
       )}
       <input
         ref={file}
@@ -202,6 +242,8 @@ export default function FeedPage({ now }: { now: number }) {
             )
               return;
             if (await feed.perform(() => replaceFeed(next))) {
+              setSelectedDeck('');
+              setInitialCarouselId(undefined);
               setEpoch((value) => value + 1);
               setNotice('Feed restaurado. Seus flashcards foram preservados.');
             }
@@ -230,9 +272,18 @@ export default function FeedPage({ now }: { now: number }) {
         <FeedEditor
           key={editor.initial.carousel.id}
           {...editor}
+          decks={
+            decks.some((d) => d.id === GENERAL_DECK.id)
+              ? decks
+              : [...decks, GENERAL_DECK]
+          }
           onClose={() => setEditor(null)}
           onSave={async (value, expected) => {
-            const next = await saveCarousel(value, expected);
+            const next = await saveCarousel(
+              value,
+              expected,
+              decks.find((d) => d.id === carouselDeckId(value)),
+            );
             feed.setData(next);
             feed.setError('');
             try {

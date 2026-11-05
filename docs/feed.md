@@ -4,6 +4,34 @@ O Feed é uma página separada em `/#/feed`, dedicada a aprender conceitos. Flas
 continuam na seção de revisão. A navegação entre seções usa o hash da URL, incluindo
 acesso direto e botões de voltar/avançar do navegador.
 
+## Baralhos compartilhados
+
+Flashcards e carrosséis usam a mesma identidade de `Deck`, definida em
+`features/decks/model.ts`. “Design Patterns” reúne 176 flashcards e 22 carrosséis.
+No Feed, **Meus carrosséis** permite escolher o baralho, consultar a contagem de
+flashcards e carrosséis, iniciar **Estudar baralho** ou escolher **Estudar carrossel**.
+A fila fica restrita ao baralho escolhido, incluindo suas releituras aleatórias;
+a escolha de um carrossel específico inicia por ele, mesmo se já estiver em dia.
+“Todos os baralhos” permite voltar ao estudo global.
+
+O editor permite atribuir/mover o carrossel a qualquer baralho existente. Baralhos
+pessoais criados na biblioteca de flashcards aparecem na seleção. A página de um
+baralho oferece **Carrosséis deste baralho**, com link direto
+`/#/feed?deck=ID`. Os conteúdos do repositório ficam em
+[`src/content/decks/`](../src/content/decks/README.md), separados em arquivos por formato.
+
+O carregamento organiza carrosséis antigos sem alterar IDs, slides ou progresso:
+recursos de Design Patterns vão ao baralho existente; outros conteúdos antigos
+vão a “Aprendizado geral”. Mover de baralho ou trocar somente a aparência conserva
+o progresso; mudar o conteúdo de aprendizagem inicia uma nova revisão.
+
+Os backups do Feed incluem metadados `decks` e `deckId` dos carrosséis. Backups
+antigos continuam aceitos; nomes de baralhos existentes na biblioteca têm prioridade
+sobre snapshots importados. Baralhos referenciados pelo Feed são recuperados pela
+biblioteca ao abrir o aplicativo. A exclusão de um baralho com carrosséis é recusada
+até que estes sejam movidos ou excluídos. Backup de flashcards e backup do Feed
+continuam separados; conteúdo de carrosséis permanece somente local.
+
 ## Leitura
 
 - Apenas um carrossel fica visível, ocupando no mínimo a área de leitura da tela.

@@ -73,7 +73,7 @@ em 20 categorias, incluindo 45 recursos de Bedrock e AgentCore. Cada cartão tem
 **Visão de pleno** (decisões de arquitetura, limitações e cuidados práticos específicos do serviço), além de
 **Visão de sênior** (cenários de falha, fronteiras das garantias, recuperação e trade-offs de produção).
 O [índice completo e as fontes](docs/aws-catalog.md) ficam no repositório; o conteúdo
-editável está em [src/content/aws-services.json](src/content/aws-services.json).
+editável está em [src/content/decks/aws/flashcards/index.ts](src/content/decks/aws/flashcards/index.ts).
 
 Esse baralho usa `syncEnabled: false` e IDs reservados que o backend também recusa.
 Não é enviado ao DynamoDB, inclusive progresso e favoritos. Ele funciona offline
@@ -95,6 +95,13 @@ primeiro carregamento completo da PWA.
 O material é uma síntese original, sem cópia integral dos artigos ou promessa de
 cobertura de 100% do texto. Veja o [índice, a matriz de cobertura e a atribuição](docs/design-patterns/README.md).
 Este baralho também é local, não vai ao DynamoDB e preserva revisões e favoritos.
+
+## Organização por conteúdo
+
+Um mesmo baralho pode reunir flashcards e carrosséis. No Feed, abra **Meus
+carrosséis**, escolha o baralho e estude sua sequência ou um carrossel específico.
+Os conteúdos incluídos estão em pastas por baralho, com vários arquivos dentro de
+`flashcards/` e `carousels/`: veja o [guia de organização](src/content/decks/README.md).
 
 ## Feed de aprendizado
 

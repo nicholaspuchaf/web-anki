@@ -1,3 +1,4 @@
+import { readFeedDecks } from './feed-decks';
 import { parseBackup } from '../../features/backup/parse-backup';
 import { openDB } from 'idb';
 import { emptyLibrary, type Library } from '../../features/library/model';
@@ -28,6 +29,7 @@ export async function writeLibrary(
   library: Library,
   expected?: Library,
 ): Promise<void> {
+  const { referencedIds } = await readFeedDecks();
   const db = await database();
   try {
     const tx = db.transaction('library', 'readwrite');
@@ -40,6 +42,19 @@ export async function writeLibrary(
       await tx.done.catch(() => {});
       throw new LibraryConflictError(
         'Os dados mudaram em outra aba. Recarregue antes de salvar.',
+      );
+    }
+    if (
+      current.decks.some(
+        (d) =>
+          !library.decks.some((next) => next.id === d.id) &&
+          referencedIds.has(d.id),
+      )
+    ) {
+      tx.abort();
+      await tx.done.catch(() => {});
+      throw new Error(
+        'Este baralho contém carrosséis. Mova ou exclua os carrosséis antes de excluir o baralho.',
       );
     }
     await tx.store.put(library, 'current');

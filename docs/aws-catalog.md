@@ -2,7 +2,7 @@
 
 Catálogo revisado em **2026-11-04**: **326 cartões**, em **20 categorias**, incluindo **45 recursos de Bedrock e AgentCore**.
 
-O conteúdo está em [src/content/aws-services.json](../src/content/aws-services.json). Cada entrada tem nome, categoria, definição curta, caso de uso, comentários de nível pleno (`intermediateComment`) e sênior (`seniorComment`) e fonte oficial. As definições têm até 150 caracteres e no máximo quatro linhas; o teste de navegador também verifica o limite visual no layout de celular.
+O conteúdo está em [src/content/decks/aws/flashcards/index.ts](../src/content/decks/aws/flashcards/index.ts). Cada entrada tem nome, categoria, definição curta, caso de uso, comentários de nível pleno (`intermediateComment`) e sênior (`seniorComment`) e fonte oficial. As definições têm até 150 caracteres e no máximo quatro linhas; o teste de navegador também verifica o limite visual no layout de celular.
 
 O catálogo reúne serviços, funcionalidades importantes e ferramentas da AWS. Não é uma enumeração de todas as APIs, modelos de IA, SKUs ou combinações de recursos. Os exemplos são didáticos e originais, não instruções para provisionar infraestrutura.
 

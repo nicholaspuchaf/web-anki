@@ -21,8 +21,8 @@ Os IDs dos cartões usam esses oito temas. Eles são identificadores editoriais 
 
 ## Conteúdo e operação
 
-- [Conteúdo editável](../../src/content/design-patterns.json): perguntas, respostas, categorias e fontes por padrão.
-- [Manifesto das ilustrações](../../src/content/design-pattern-assets.json): origem, crédito, data e SHA-256 dos arquivos obtidos do Refactoring.Guru.
+- [Conteúdo editável](../../src/content/decks/design-patterns/flashcards/index.ts): perguntas, respostas, categorias e fontes por padrão.
+- [Manifesto das ilustrações](../../src/content/decks/design-patterns/assets.json): origem, crédito, data e SHA-256 dos arquivos obtidos do Refactoring.Guru.
 - [Arquivos visuais locais](../../public/study-assets/design-patterns): dez ilustrações do site e 22 mapas autorais de responsabilidades. Os mapas não são diagramas UML nem cópias das ilustrações originais.
 - `patterns.ts` converte o catálogo para o template de vários versos. O cartão de estrutura mostra o mapa autoral na pergunta; nos dez padrões com imagem do site, o verso “Estrutura ilustrada” pode ser revelado separadamente. Clique numa imagem para ampliá-la.
 - Baralho e cartões usam `syncEnabled: false` e IDs `builtin-patterns-*`, protegidos pelo cliente e pelo backend. Não há gravação deste conteúdo ou progresso no DynamoDB.

@@ -10,19 +10,36 @@ import { LearningCarousel } from './LearningCarousel';
 
 export function FeedStream({
   data,
+  initialCarouselId,
   now,
   onRead,
   paused = false,
 }: {
   data: FeedData;
+  initialCarouselId?: string;
   now: number;
   paused?: boolean;
   onRead: (carousel: Carousel, slideId: string) => void;
 }) {
-  const [session, setSession] = useState(() => ({
-    ...startFeedSession(data, now),
-    position: 0,
-  }));
+  const [session, setSession] = useState(() => {
+    const start = startFeedSession(data, now);
+    if (
+      initialCarouselId &&
+      data.carousels.some((c) => c.id === initialCarouselId)
+    ) {
+      const rest = [
+        ...start.items.map((i) => i.carouselId),
+        ...start.pending,
+      ].filter((id) => id !== initialCarouselId);
+      return {
+        ...start,
+        items: [{ key: 0, carouselId: initialCarouselId, repeat: false }],
+        pending: rest,
+        position: 0,
+      };
+    }
+    return { ...start, position: 0 };
+  });
   const stream = useRef<HTMLDivElement>(null);
   const gesture = useRef<FeedGesture | null>(null);
   const offsets = useRef(new Map<number, number>());

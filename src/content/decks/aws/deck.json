@@ -1,0 +1,10 @@
+{
+  "id": "builtin-aws-services",
+  "name": "AWS · Serviços e aplicações",
+  "defaultTemplate": "multi-face",
+  "syncEnabled": false,
+  "content": {
+    "flashcards": ["flashcards/part-01.json", "flashcards/part-02.json"],
+    "carousels": []
+  }
+}

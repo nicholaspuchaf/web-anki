@@ -1,0 +1,1635 @@
+{
+  "format": "folha-feed",
+  "version": 1,
+  "carousels": [
+    {
+      "id": "feed-pattern-adapter",
+      "revision": 1,
+      "title": "Adapter · Integrar um pagamento legado sem espalhar conversões",
+      "scope": "Estruturais: Adapter, aplicação, limites e alternativas.",
+      "objective": "Conservar o contrato do cliente ao traduzir representação, unidades e falhas de uma dependência.",
+      "tags": ["design patterns", "estruturais", "adapter"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
+      "slides": [
+        {
+          "id": "adapter-intencao",
+          "title": "Adapter: Integrar um pagamento legado sem espalhar conversões",
+          "blocks": [
+            {
+              "id": "adapter-intencao-0",
+              "type": "paragraph",
+              "text": "Interfaces incompatíveis, preservando o contrato que o cliente espera."
+            },
+            {
+              "id": "adapter-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai conservar o contrato do cliente ao traduzir representação, unidades e falhas de uma dependência."
+            }
+          ]
+        },
+        {
+          "id": "adapter-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "adapter-cenario-0",
+              "type": "paragraph",
+              "text": "O sistema trabalha com valores inteiros em centavos. Um gateway legado recebe uma string decimal. O restante da aplicação não deveria precisar conhecer esse detalhe, nem repetir a conversão em cada ponto de cobrança."
+            }
+          ]
+        },
+        {
+          "id": "adapter-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "adapter-tentativa-0",
+              "type": "paragraph",
+              "text": "Alterar todos os consumidores para usar a assinatura do gateway espalha uma decisão externa pelo domínio. Só renomear o método também não resolve: uma chamada com 1590 pode representar valores diferentes nas duas interfaces. Compatibilizar inclui o significado dos parâmetros."
+            }
+          ]
+        },
+        {
+          "id": "adapter-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "adapter-mecanismo-0",
+              "type": "paragraph",
+              "text": "Adapter de objeto encapsula a dependência; adapter de classe depende dos mecanismos de herança disponíveis na linguagem."
+            },
+            {
+              "id": "adapter-mecanismo-1",
+              "type": "paragraph",
+              "text": "Payments é o contrato esperado. PaymentAdapter o implementa e contém LegacyGateway. A tradução fica numa fronteira única. O gateway do exemplo apenas devolve texto; não existe transação financeira real nem promessa de que converter uma unidade resolva autorização ou repetição de cobranças."
+            }
+          ]
+        },
+        {
+          "id": "adapter-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "adapter-participantes-0",
+              "type": "paragraph",
+              "text": "Cliente usa Target; Adapter implementa esse contrato e traduz chamadas para o Adaptee encapsulado."
+            },
+            {
+              "id": "adapter-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/adapter-roles.svg",
+              "alt": "Mapa autoral dos participantes de Adapter",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "adapter-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "adapter-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/adapter-refactoring-guru.png",
+              "alt": "Estrutura de adapter",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/adapter"
+            }
+          ]
+        },
+        {
+          "id": "adapter-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "adapter-contrato-0",
+              "type": "bullets",
+              "items": [
+                "charge recebe um inteiro seguro não negativo em centavos.",
+                "O legado recebe uma string com duas casas decimais.",
+                "Valores inválidos são recusados antes da delegação."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "adapter-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "adapter-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O cliente chama charge com 1590.",
+                "O adapter valida e converte a representação.",
+                "O gateway recebe 15.90 e devolve seu resultado."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "adapter-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "adapter-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Payments {\n  charge(cents: number): string;\n}\nclass LegacyGateway {\n  bill(decimalAmount: string) {\n    return `cobrado:${decimalAmount}`;\n  }\n}\nclass PaymentAdapter implements Payments {\n  constructor(private gateway: LegacyGateway) {}\n  charge(cents: number) {\n    if (!Number.isSafeInteger(cents) || cents < 0)\n      throw new Error('Centavos inválidos');\n    return this.gateway.bill((cents / 100).toFixed(2));\n  }\n}\nexport function demo() {\n  const payments: Payments = new PaymentAdapter(new LegacyGateway());\n  return payments.charge(1590);\n}"
+            }
+          ]
+        },
+        {
+          "id": "adapter-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "adapter-resultado-0",
+              "type": "bullets",
+              "items": [
+                "O cliente só depende de Payments.",
+                "O resultado didático é cobrado:15.90.",
+                "O legado continua com sua própria interface bill."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "adapter-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "adapter-evolucao-0",
+              "type": "paragraph",
+              "text": "Para outro fornecedor, implemente Payments novamente e mude a composição. Compare também estados, erros e semântica de confirmação: retornar uma string parecida não torna duas APIs equivalentes. Uma integração real precisa traduzir essas diferenças ou expô-las claramente no contrato."
+            }
+          ]
+        },
+        {
+          "id": "adapter-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "adapter-testes-0",
+              "type": "bullets",
+              "items": [
+                "Teste zero e valores próximos dos limites aceitos.",
+                "Recuse números fracionários ou não seguros.",
+                "Verifique a tradução dos erros e a ausência de chamada após validação negativa."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "adapter-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "adapter-limites-0",
+              "type": "paragraph",
+              "text": "O arredondamento do exemplo serve à demonstração, não substitui um contrato monetário completo. Moedas têm regras próprias. Além disso, timeout não informa se o efeito externo aconteceu: um adapter que repete uma operação sem idempotência pode criar um defeito invisível ao cliente."
+            }
+          ]
+        },
+        {
+          "id": "adapter-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "adapter-comparacao-0",
+              "type": "paragraph",
+              "text": "Adapter compatibiliza interfaces; Facade simplifica um subsistema. Decorator preserva a interface para acrescentar comportamento."
+            }
+          ]
+        },
+        {
+          "id": "adapter-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "adapter-exercicio-0",
+              "type": "paragraph",
+              "text": "O novo gateway devolve pendente, enquanto o antigo confirmava imediatamente. Você pode retornar sucesso para manter a interface igual? Que informação falta?"
+            }
+          ]
+        },
+        {
+          "id": "adapter-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "adapter-resposta-0",
+              "type": "paragraph",
+              "text": "Não esconda um estado ainda não concluído como sucesso definitivo. O contrato deve representar a etapa alcançada e permitir acompanhamento quando necessário. Adapter traduz interfaces; não pode inventar uma garantia que a dependência não fornece. Revise os consumidores que dependiam de confirmação imediata."
+            }
+          ]
+        },
+        {
+          "id": "adapter-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "adapter-criterio-0",
+              "type": "paragraph",
+              "text": "Adapte a fronteira quando ela preserva uma abstração útil do domínio. Evite camadas que apenas copiam nomes sem reduzir acoplamento. Quanto maior a diferença semântica, mais importante é explicitar o limite, mesmo que isso obrigue a evoluir o contrato."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-bridge",
+      "revision": 1,
+      "title": "Bridge · Variar a mensagem e o canal independentemente",
+      "scope": "Estruturais: Bridge, aplicação, limites e alternativas.",
+      "objective": "Separar duas dimensões reais de mudança sem criar uma classe para cada combinação.",
+      "tags": ["design patterns", "estruturais", "bridge"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
+      "slides": [
+        {
+          "id": "bridge-intencao",
+          "title": "Bridge: Variar a mensagem e o canal independentemente",
+          "blocks": [
+            {
+              "id": "bridge-intencao-0",
+              "type": "paragraph",
+              "text": "Abstração e implementação, permitindo evolução independente por composição."
+            },
+            {
+              "id": "bridge-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai separar duas dimensões reais de mudança sem criar uma classe para cada combinação."
+            }
+          ]
+        },
+        {
+          "id": "bridge-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "bridge-cenario-0",
+              "type": "paragraph",
+              "text": "Um sistema possui avisos normais e urgentes. Eles podem ir por e-mail ou para um diário de operação. A urgência muda o conteúdo; o canal muda a entrega. Essas decisões devem poder ser combinadas sem multiplicar classes para todos os pares."
+            }
+          ]
+        },
+        {
+          "id": "bridge-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "bridge-tentativa-0",
+              "type": "paragraph",
+              "text": "NormalEmail, UrgenteEmail, NormalLog e UrgenteLog parecem administráveis. Quando surgem mais canais e políticas de mensagem, cada combinação vira outro lugar para manter regras. A repetição revela duas responsabilidades que não precisam evoluir juntas."
+            }
+          ]
+        },
+        {
+          "id": "bridge-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "bridge-mecanismo-0",
+              "type": "paragraph",
+              "text": "Identifique dimensões independentes, extraia o contrato da implementação e injete uma implementação na abstração."
+            },
+            {
+              "id": "bridge-mecanismo-1",
+              "type": "paragraph",
+              "text": "Notice mantém o comportamento de alto nível e possui um Channel. UrgentNotice especializa o aviso; Email e Journal especializam o canal. A referência entre eles permite combinar as duas variações. O exemplo devolve strings para tornar visível a delegação sem depender de rede."
+            }
+          ]
+        },
+        {
+          "id": "bridge-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "bridge-participantes-0",
+              "type": "paragraph",
+              "text": "A abstração guarda uma referência à interface de implementação e delega operações necessárias."
+            },
+            {
+              "id": "bridge-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/bridge-roles.svg",
+              "alt": "Mapa autoral dos participantes de Bridge",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "bridge-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "bridge-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/bridge-refactoring-guru.png",
+              "alt": "Estrutura de bridge",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/bridge"
+            }
+          ]
+        },
+        {
+          "id": "bridge-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "bridge-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Channel recebe uma mensagem pronta para entregar.",
+                "Notice decide o conteúdo e delega o transporte.",
+                "Urgência não exige conhecer classes concretas de canal."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bridge-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "bridge-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "A composição escolhe o tipo de aviso e o canal.",
+                "send aplica a política da abstração.",
+                "deliver usa a implementação escolhida para o transporte."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bridge-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "bridge-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Channel {\n  deliver(text: string): string;\n}\nclass Email implements Channel {\n  deliver(text: string) {\n    return `email:${text}`;\n  }\n}\nclass Journal implements Channel {\n  deliver(text: string) {\n    return `log:${text}`;\n  }\n}\nclass Notice {\n  constructor(protected channel: Channel) {}\n  send(text: string) {\n    return this.channel.deliver(text);\n  }\n}\nclass UrgentNotice extends Notice {\n  override send(text: string) {\n    return this.channel.deliver(`URGENTE ${text}`);\n  }\n}\nexport function demo() {\n  return [\n    new Notice(new Email()).send('A'),\n    new UrgentNotice(new Journal()).send('B'),\n  ];\n}"
+            }
+          ]
+        },
+        {
+          "id": "bridge-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "bridge-resultado-0",
+              "type": "bullets",
+              "items": [
+                "O aviso normal por e-mail retorna email:A.",
+                "O aviso urgente no diário retorna log:URGENTE B.",
+                "Trocar o canal não exige outra subclasse de aviso."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bridge-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "bridge-evolucao-0",
+              "type": "paragraph",
+              "text": "Acrescente um canal e execute os avisos existentes nele. Depois acrescente uma política de aviso sem alterar os canais. Se uma capacidade só existe em certos canais, decida se o contrato precisa de negociação de capacidade; não force uma independência que o domínio não possui."
+            }
+          ]
+        },
+        {
+          "id": "bridge-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "bridge-testes-0",
+              "type": "bullets",
+              "items": [
+                "Teste a matriz de combinações realmente suportadas.",
+                "Confirme que o conteúdo urgente é preservado em cada canal.",
+                "Verifique falhas e limites do contrato de entrega."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bridge-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "bridge-limites-0",
+              "type": "paragraph",
+              "text": "Canais reais podem ter limites de tamanho, entrega assíncrona e diferentes garantias. Uma interface pequena não elimina essas diferenças. Defina se deliver confirma aceitação ou entrega final e mantenha o tratamento de falhas no nível que possui contexto para decidir."
+            }
+          ]
+        },
+        {
+          "id": "bridge-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "bridge-comparacao-0",
+              "type": "paragraph",
+              "text": "Bridge organiza variações desde o desenho; Adapter normalmente reconcilia interfaces existentes que não combinam."
+            }
+          ]
+        },
+        {
+          "id": "bridge-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "bridge-exercicio-0",
+              "type": "paragraph",
+              "text": "Agora existe um aviso resumido e um canal de aplicativo. Quantas novas classes são necessárias? O que muda se o canal só suporta texto curto?"
+            }
+          ]
+        },
+        {
+          "id": "bridge-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "bridge-resposta-0",
+              "type": "paragraph",
+              "text": "Uma abstração de resumo e uma implementação de canal cobrem novas combinações quando os contratos forem compatíveis. Se o canal impõe tamanho, a restrição precisa aparecer no desenho: dividir, rejeitar ou resumir são decisões de produto. Não esconda truncamento silencioso dentro de um canal."
+            }
+          ]
+        },
+        {
+          "id": "bridge-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "bridge-criterio-0",
+              "type": "paragraph",
+              "text": "Use a separação quando duas dimensões mudam de maneira independente e combinável. Se há uma única implementação estável, pode ser abstração prematura. Avalie a história de mudanças e as restrições antes de investir em duas hierarquias."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-composite",
+      "revision": 1,
+      "title": "Composite · Somar um plano de trabalho sem conhecer cada nível",
+      "scope": "Estruturais: Composite, aplicação, limites e alternativas.",
+      "objective": "Modelar relações parte-todo com operações coerentes para folhas e grupos.",
+      "tags": ["design patterns", "estruturais", "composite"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/composite",
+      "slides": [
+        {
+          "id": "composite-intencao",
+          "title": "Composite: Somar um plano de trabalho sem conhecer cada nível",
+          "blocks": [
+            {
+              "id": "composite-intencao-0",
+              "type": "paragraph",
+              "text": "Árvores de objetos tratadas uniformemente por um contrato comum."
+            },
+            {
+              "id": "composite-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai modelar relações parte-todo com operações coerentes para folhas e grupos."
+            }
+          ]
+        },
+        {
+          "id": "composite-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "composite-cenario-0",
+              "type": "paragraph",
+              "text": "Um plano reúne tarefas de preparação e execução. A preparação também contém tarefas menores. A tela precisa apresentar a duração estimada de qualquer parte sem escrever um algoritmo diferente para cada nível da estrutura."
+            }
+          ]
+        },
+        {
+          "id": "composite-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "composite-tentativa-0",
+              "type": "paragraph",
+              "text": "O consumidor poderia testar se recebeu tarefa ou grupo e abrir cada coleção manualmente. Isso espalha a navegação e a regra de soma por várias telas. Uma nova camada de agrupamento exigiria revisar todos esses percursos."
+            }
+          ]
+        },
+        {
+          "id": "composite-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "composite-mecanismo-0",
+              "type": "paragraph",
+              "text": "Defina operações comuns, coleção de filhos nos compostos e regras de combinação; proteja a estrutura contra ciclos indevidos."
+            },
+            {
+              "id": "composite-mecanismo-1",
+              "type": "paragraph",
+              "text": "Task e WorkGroup implementam Work. A tarefa fornece sua duração; o grupo solicita minutes aos filhos e soma. Um grupo pode receber outro grupo sem tratamento especial. O exemplo pressupõe uma árvore pequena e estimativas sequenciais; não modela paralelismo nem dependências de cronograma."
+            }
+          ]
+        },
+        {
+          "id": "composite-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "composite-participantes-0",
+              "type": "paragraph",
+              "text": "Leaf executa o trabalho; Composite delega aos filhos e combina resultados conforme a operação."
+            },
+            {
+              "id": "composite-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/composite-roles.svg",
+              "alt": "Mapa autoral dos participantes de Composite",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "composite-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "composite-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/composite-refactoring-guru.png",
+              "alt": "Estrutura de composite",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/composite"
+            }
+          ]
+        },
+        {
+          "id": "composite-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "composite-contrato-0",
+              "type": "bullets",
+              "items": [
+                "minutes possui o mesmo significado em folha e grupo.",
+                "O grupo combina os resultados de seus filhos.",
+                "A estrutura admitida não contém ciclos."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composite-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "composite-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O cliente pede a duração do plano.",
+                "Cada grupo consulta seus filhos.",
+                "As folhas respondem e as somas voltam até a raiz."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composite-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "composite-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Work {\n  minutes(): number;\n}\nclass Task implements Work {\n  constructor(private duration: number) {}\n  minutes() {\n    return this.duration;\n  }\n}\nclass WorkGroup implements Work {\n  constructor(private children: Work[]) {}\n  minutes(): number {\n    return this.children.reduce((total, child) => total + child.minutes(), 0);\n  }\n}\nexport function demo() {\n  const preparation = new WorkGroup([new Task(10), new Task(15)]);\n  const plan = new WorkGroup([preparation, new Task(20)]);\n  return plan.minutes();\n}"
+            }
+          ]
+        },
+        {
+          "id": "composite-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "composite-resultado-0",
+              "type": "bullets",
+              "items": [
+                "A preparação soma 10 e 15 minutos.",
+                "O plano acrescenta uma tarefa de 20 minutos.",
+                "O total é 45, sem o cliente conhecer a profundidade."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composite-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "composite-evolucao-0",
+              "type": "paragraph",
+              "text": "Uma tarefa especializada pode continuar oferecendo Work. Se precisar de paralelismo, a combinação já não será uma simples soma: modele a regra explicitamente. Reutilizar a interface não autoriza misturar significados incompatíveis sob o mesmo nome de operação."
+            }
+          ]
+        },
+        {
+          "id": "composite-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "composite-testes-0",
+              "type": "bullets",
+              "items": [
+                "Teste folha isolada e grupo vazio.",
+                "Compare estruturas com vários níveis.",
+                "Defina e teste rejeição de ciclos se a montagem permitir referências arbitrárias."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "composite-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "composite-limites-0",
+              "type": "paragraph",
+              "text": "Um grafo com referências compartilhadas pode contar uma tarefa duas vezes. Isso talvez seja correto para ocorrências ou errado para identidade única. Defina o significado antes de adicionar deduplicação. Estruturas muito profundas também podem exigir um percurso iterativo para evitar estouro de pilha."
+            }
+          ]
+        },
+        {
+          "id": "composite-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "composite-comparacao-0",
+              "type": "paragraph",
+              "text": "Iterator percorre a árvore; Visitor adiciona operações; Decorator normalmente envolve um componente, em vez de agregar filhos."
+            }
+          ]
+        },
+        {
+          "id": "composite-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "composite-exercicio-0",
+              "type": "paragraph",
+              "text": "A mesma tarefa foi inserida em dois grupos e o total dobrou. Isso é necessariamente um bug? Que pergunta de domínio decide a resposta?"
+            }
+          ]
+        },
+        {
+          "id": "composite-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "composite-resposta-0",
+              "type": "paragraph",
+              "text": "Pergunte se os grupos contêm duas execuções independentes ou referências à mesma execução. No primeiro caso, somar duas vezes pode ser correto. No segundo, o modelo precisa representar compartilhamento e identidade, deixando de ser uma árvore simples. Não corrija a soma sem esclarecer o significado."
+            }
+          ]
+        },
+        {
+          "id": "composite-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "composite-criterio-0",
+              "type": "paragraph",
+              "text": "A interface comum é útil quando as operações fazem sentido para folhas e grupos. Evite obrigar folhas a implementar edição de filhos sem significado. A simplicidade para o consumidor deve vir de um modelo coerente, não de métodos vazios que escondem contratos quebrados."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-decorator",
+      "revision": 1,
+      "title": "Decorator · Cache e métricas: a ordem conta uma história",
+      "scope": "Estruturais: Decorator, aplicação, limites e alternativas.",
+      "objective": "Combinar capacidades por composição e interpretar o efeito da ordem dos wrappers.",
+      "tags": ["design patterns", "estruturais", "decorator"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
+      "slides": [
+        {
+          "id": "decorator-intencao",
+          "title": "Decorator: Cache e métricas: a ordem conta uma história",
+          "blocks": [
+            {
+              "id": "decorator-intencao-0",
+              "type": "paragraph",
+              "text": "Responsabilidades a um objeto por wrappers combináveis, sem alterar sua interface principal."
+            },
+            {
+              "id": "decorator-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai combinar capacidades por composição e interpretar o efeito da ordem dos wrappers."
+            }
+          ]
+        },
+        {
+          "id": "decorator-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "decorator-cenario-0",
+              "type": "paragraph",
+              "text": "Uma leitura de conteúdo precisa de cache e contagem de chamadas. Há duas perguntas diferentes: quantas solicitações o cliente fez e quantas leituras chegaram à origem? A posição do medidor define qual delas será respondida."
+            }
+          ]
+        },
+        {
+          "id": "decorator-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "decorator-tentativa-0",
+              "type": "paragraph",
+              "text": "Criar uma subclasse para cada combinação de cache, métricas e outras capacidades mistura escolhas independentes. Copiar o código em versões diferentes também permite divergências. Queremos compor as capacidades e tornar explícita a ordem de execução."
+            }
+          ]
+        },
+        {
+          "id": "decorator-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "decorator-mecanismo-0",
+              "type": "paragraph",
+              "text": "Encapsule o componente e execute a lógica adicional antes ou depois da chamada delegada."
+            },
+            {
+              "id": "decorator-mecanismo-1",
+              "type": "paragraph",
+              "text": "Reader é o contrato comum. Cached e Metered contêm outro Reader, por isso podem ser empilhados. O cache do exemplo guarda apenas um valor porque a operação não recebe parâmetros. Ele é propositalmente pequeno para mostrar como o caminho das chamadas muda com a composição."
+            }
+          ]
+        },
+        {
+          "id": "decorator-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "decorator-participantes-0",
+              "type": "paragraph",
+              "text": "Componente e decorators compartilham interface; cada decorator guarda outro componente e delega a ele."
+            },
+            {
+              "id": "decorator-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/decorator-roles.svg",
+              "alt": "Mapa autoral dos participantes de Decorator",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "decorator-diagrama",
+          "title": "Observe a estrutura do padrão",
+          "blocks": [
+            {
+              "id": "decorator-diagrama-0",
+              "type": "image",
+              "src": "/study-assets/design-patterns/decorator-refactoring-guru.png",
+              "alt": "Estrutura de decorator",
+              "caption": "Estrutura do padrão — Refactoring.Guru",
+              "credit": "Refactoring.Guru · ilustração: Dmitry Zhart",
+              "sourceUrl": "https://refactoring.guru/design-patterns/decorator"
+            }
+          ]
+        },
+        {
+          "id": "decorator-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "decorator-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Todos os wrappers oferecem read.",
+                "Cada camada decide o trabalho anterior ou posterior à delegação.",
+                "A ordem deve representar o significado desejado da métrica."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "decorator-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "decorator-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O cliente chama a camada externa.",
+                "Ela pode responder ou encaminhar à próxima.",
+                "O resultado volta pelas camadas que participaram da chamada."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "decorator-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "decorator-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Reader {\n  read(): string;\n}\nclass Cached implements Reader {\n  private value: string | undefined;\n  constructor(private inner: Reader) {}\n  read() {\n    return (this.value ??= this.inner.read());\n  }\n}\nclass Metered implements Reader {\n  calls = 0;\n  constructor(private inner: Reader) {}\n  read() {\n    this.calls++;\n    return this.inner.read();\n  }\n}\nexport function demo() {\n  const source = { read: () => 'conteudo' };\n  const inside = new Metered(source);\n  const cached = new Cached(inside);\n  cached.read();\n  cached.read();\n  const outside = new Metered(new Cached(source));\n  outside.read();\n  outside.read();\n  return { inside: inside.calls, outside: outside.calls };\n}"
+            }
+          ]
+        },
+        {
+          "id": "decorator-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "decorator-resultado-0",
+              "type": "bullets",
+              "items": [
+                "Cached(Metered(origem)) mede uma leitura após duas solicitações.",
+                "Metered(Cached(origem)) mede duas solicitações.",
+                "As contagens 1 e 2 são ambas corretas para perguntas diferentes."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "decorator-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "decorator-evolucao-0",
+              "type": "paragraph",
+              "text": "Ao adicionar outro wrapper, desenhe o caminho completo. Uma camada de autorização antes do cache pode ser indispensável dependendo do contrato; um log externo ou interno registra eventos diferentes. Não pense no empilhamento como uma lista de capacidades cuja ordem é indiferente."
+            }
+          ]
+        },
+        {
+          "id": "decorator-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "decorator-testes-0",
+              "type": "bullets",
+              "items": [
+                "Conte solicitações e acessos reais separadamente.",
+                "Teste acerto e ausência no cache.",
+                "Compare combinações com falhas na camada interna."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "decorator-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "decorator-limites-0",
+              "type": "paragraph",
+              "text": "Um cache real precisa de chave, validade e política de erro. Uma métrica que só conta acessos à origem não pode ser apresentada como quantidade total de usuários. A composição preserva uma interface, mas ainda exige documentar como cada camada altera tempo, efeitos e observabilidade."
+            }
+          ]
+        },
+        {
+          "id": "decorator-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "decorator-comparacao-0",
+              "type": "paragraph",
+              "text": "Decorator compõe capacidades; Proxy controla acesso ou ciclo de vida. Ambos podem delegar preservando uma interface."
+            }
+          ]
+        },
+        {
+          "id": "decorator-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "decorator-exercicio-0",
+              "type": "paragraph",
+              "text": "Você quer medir a latência percebida pelo usuário e também a duração da leitura na origem. Onde colocaria os dois medidores e que nomes daria às métricas?"
+            }
+          ]
+        },
+        {
+          "id": "decorator-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "decorator-resposta-0",
+              "type": "paragraph",
+              "text": "Um medidor externo cobre a jornada completa, incluindo o cache; outro junto da origem mede apenas as consultas que chegam até ela. Nomeie as séries conforme esse escopo e compare as duas. A diferença ajuda a entender tanto o benefício do cache quanto o comportamento da dependência."
+            }
+          ]
+        },
+        {
+          "id": "decorator-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "decorator-criterio-0",
+              "type": "paragraph",
+              "text": "Wrappers são úteis quando capacidades opcionais precisam ser combinadas. Evite uma cadeia tão longa que só possa ser entendida no debugger. Centralize a composição e documente as poucas ordens suportadas, em vez de permitir qualquer combinação acidental."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-facade",
+      "revision": 1,
+      "title": "Facade · Publicar conteúdo por uma entrada compreensível",
+      "scope": "Estruturais: Facade, aplicação, limites e alternativas.",
+      "objective": "Simplificar uma jornada sem esconder falhas parciais nem concentrar todas as regras.",
+      "tags": ["design patterns", "estruturais", "facade"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/facade",
+      "slides": [
+        {
+          "id": "facade-intencao",
+          "title": "Facade: Publicar conteúdo por uma entrada compreensível",
+          "blocks": [
+            {
+              "id": "facade-intencao-0",
+              "type": "paragraph",
+              "text": "Oferecer uma entrada simples para capacidades de um subsistema complexo."
+            },
+            {
+              "id": "facade-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai simplificar uma jornada sem esconder falhas parciais nem concentrar todas as regras."
+            }
+          ]
+        },
+        {
+          "id": "facade-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "facade-cenario-0",
+              "type": "paragraph",
+              "text": "Publicar um material exige validar o texto, armazená-lo e registrá-lo na busca. A interface da tela quer expressar essa jornada, em vez de conhecer cada classe interna e a ordem correta das chamadas."
+            }
+          ]
+        },
+        {
+          "id": "facade-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "facade-tentativa-0",
+              "type": "paragraph",
+              "text": "Se cada cliente coordena armazenamento e índice, a regra de publicação se repete. Um cliente pode esquecer a validação ou inverter a ordem. A dificuldade aqui não é compatibilizar duas assinaturas; é oferecer uma operação útil sobre um conjunto de colaboradores."
+            }
+          ]
+        },
+        {
+          "id": "facade-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "facade-mecanismo-0",
+              "type": "paragraph",
+              "text": "Escolha jornadas relevantes e esconda a coordenação; separe fachadas quando responsabilidades crescerem demais."
+            },
+            {
+              "id": "facade-mecanismo-1",
+              "type": "paragraph",
+              "text": "Publisher fornece publish e coordena MaterialStore e SearchIndex. Os colaboradores continuam com responsabilidades pequenas. A fachada expressa a sequência esperada, mas o exemplo em memória não fornece atomicidade entre sistemas. Em produção, essa fronteira precisa de tratamento explícito."
+            }
+          ]
+        },
+        {
+          "id": "facade-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "facade-participantes-0",
+              "type": "paragraph",
+              "text": "A fachada coordena o subsistema; seus componentes não precisam conhecer a existência da fachada."
+            },
+            {
+              "id": "facade-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/facade-roles.svg",
+              "alt": "Mapa autoral dos participantes de Facade",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "facade-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "facade-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Material vazio é recusado antes de salvar.",
+                "O índice recebe a identidade devolvida pelo armazenamento.",
+                "O resultado identifica o material publicado pela jornada."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "facade-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "facade-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "Valide e normalize o texto.",
+                "Salve e obtenha a identidade persistida.",
+                "Registre essa identidade no índice e devolva o resultado."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "facade-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "facade-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "class MaterialStore {\n  save(text: string) {\n    return { id: 'material-1', text };\n  }\n}\nclass SearchIndex {\n  indexed: string[] = [];\n  add(id: string) {\n    this.indexed.push(id);\n  }\n}\nclass Publisher {\n  constructor(\n    private store: MaterialStore,\n    private index: SearchIndex,\n  ) {}\n  publish(text: string) {\n    if (!text.trim()) throw new Error('Material vazio');\n    const saved = this.store.save(text.trim());\n    this.index.add(saved.id);\n    return saved.id;\n  }\n}\nexport function demo() {\n  const index = new SearchIndex();\n  const publisher = new Publisher(new MaterialStore(), index);\n  return { id: publisher.publish(' Conceito '), indexed: index.indexed };\n}"
+            }
+          ]
+        },
+        {
+          "id": "facade-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "facade-resultado-0",
+              "type": "bullets",
+              "items": [
+                "O texto é normalizado antes de chegar ao store.",
+                "O resultado é material-1.",
+                "A lista do índice contém a mesma identidade, sem a tela coordenar duas APIs."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "facade-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "facade-evolucao-0",
+              "type": "paragraph",
+              "text": "Ao trocar a tecnologia de busca, mantenha a jornada pública e adapte o colaborador. Se aparecer outra jornada, como agendar uma publicação, não presuma que ela cabe no mesmo método cheio de flags. Modele operações com contratos e falhas compreensíveis."
+            }
+          ]
+        },
+        {
+          "id": "facade-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "facade-testes-0",
+              "type": "bullets",
+              "items": [
+                "Confirme que texto inválido não produz efeitos.",
+                "Verifique a identidade encaminhada ao índice.",
+                "Simule falha na indexação depois de salvar."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "facade-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "facade-limites-0",
+              "type": "paragraph",
+              "text": "Se armazenar funciona e indexar falha, não houve rollback mágico. Uma nova tentativa pode duplicar conteúdo se o fluxo não identifica a operação. Registre o estado necessário para reconciliar ou escolha publicação assíncrona com as garantias adequadas. Simplicidade da interface não transforma a jornada numa transação."
+            }
+          ]
+        },
+        {
+          "id": "facade-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "facade-comparacao-0",
+              "type": "paragraph",
+              "text": "Mediator organiza comunicação entre colegas; Adapter compatibiliza contratos; Facade simplifica o acesso a um subsistema."
+            }
+          ]
+        },
+        {
+          "id": "facade-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "facade-exercicio-0",
+              "type": "paragraph",
+              "text": "O usuário recebeu erro, mas o material está no banco e não aparece na busca. Que observação e mecanismo de recuperação faltam?"
+            }
+          ]
+        },
+        {
+          "id": "facade-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "facade-resposta-0",
+              "type": "paragraph",
+              "text": "Falta distinguir etapas concluídas e um resultado ambíguo da jornada. Uma identidade de operação e um estado de publicação permitem consultar ou repetir só o necessário. Reconciliar o índice com a fonte de verdade evita depender de o usuário clicar novamente e esperar que tudo dê certo."
+            }
+          ]
+        },
+        {
+          "id": "facade-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "facade-criterio-0",
+              "type": "paragraph",
+              "text": "Uma fachada deve reduzir o conhecimento exigido do cliente. Se ela acumula regras de todos os domínios ou oferece centenas de combinações, divida as jornadas. Esconder complexidade de uso é útil; esconder informações necessárias para tratar falhas é perigoso."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-flyweight",
+      "revision": 1,
+      "title": "Flyweight · Um mapa de assentos com estilo compartilhado",
+      "scope": "Estruturais: Flyweight, aplicação, limites e alternativas.",
+      "objective": "Separar dados comuns de cada ocorrência e verificar se o compartilhamento vale o custo.",
+      "tags": ["design patterns", "estruturais", "flyweight"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/flyweight",
+      "slides": [
+        {
+          "id": "flyweight-intencao",
+          "title": "Flyweight: Um mapa de assentos com estilo compartilhado",
+          "blocks": [
+            {
+              "id": "flyweight-intencao-0",
+              "type": "paragraph",
+              "text": "Memória ao compartilhar estado repetido entre muitos objetos lógicos."
+            },
+            {
+              "id": "flyweight-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai separar dados comuns de cada ocorrência e verificar se o compartilhamento vale o custo."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "flyweight-cenario-0",
+              "type": "paragraph",
+              "text": "Um mapa possui milhares de assentos. Muitos compartilham setor e cor, mas cada um tem posição própria. Repetir o mesmo conjunto de dados visuais por assento pode ser desnecessário; compartilhar posição, porém, faria assentos distintos se confundirem."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "flyweight-tentativa-0",
+              "type": "paragraph",
+              "text": "Guardar tudo em cada objeto desperdiça dados repetidos. Guardar tudo num objeto comum faz alterações de um assento atingirem os demais. O desenho precisa distinguir dados de categoria e dados da ocorrência, em vez de escolher entre duplicar tudo e compartilhar tudo."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "flyweight-mecanismo-0",
+              "type": "paragraph",
+              "text": "Uma fábrica localiza o flyweight por chave; mantenha o estado compartilhado imutável e passe o contexto às operações."
+            },
+            {
+              "id": "flyweight-mecanismo-1",
+              "type": "paragraph",
+              "text": "Styles mantém valores imutáveis por uma chave composta de setor e cor. Cada assento guarda sua posição e uma referência ao estilo. A demonstração compara identidades, não promete uma economia de memória específica. Medir a carga real continua necessário."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "flyweight-participantes-0",
+              "type": "paragraph",
+              "text": "Intrínseco pertence ao flyweight compartilhado; extrínseco varia por ocorrência e vem do contexto."
+            },
+            {
+              "id": "flyweight-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/flyweight-roles.svg",
+              "alt": "Mapa autoral dos participantes de Flyweight",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "flyweight-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "flyweight-contrato-0",
+              "type": "bullets",
+              "items": [
+                "A chave representa todo o estado compartilhado relevante.",
+                "O estilo retornado não deve ser modificado.",
+                "Posição e estado particular ficam na ocorrência do assento."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "flyweight-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "flyweight-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O assento pede um estilo por setor e cor.",
+                "A fábrica devolve um valor existente ou cria outro.",
+                "Renderização combina o estilo compartilhado com a posição individual."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "flyweight-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "flyweight-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "type Style = Readonly<{ sector: string; color: string }>;\nclass Styles {\n  private values = new Map<string, Style>();\n  get(sector: string, color: string) {\n    const key = JSON.stringify([sector, color]);\n    if (!this.values.has(key))\n      this.values.set(key, Object.freeze({ sector, color }));\n    return this.values.get(key)!;\n  }\n}\nexport function demo() {\n  const styles = new Styles();\n  const a = { row: 1, seat: 1, style: styles.get('A', 'azul') };\n  const b = { row: 1, seat: 2, style: styles.get('A', 'azul') };\n  return { shared: a.style === b.style, positions: [a.seat, b.seat] };\n}"
+            }
+          ]
+        },
+        {
+          "id": "flyweight-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "flyweight-resultado-0",
+              "type": "bullets",
+              "items": [
+                "Os dois assentos possuem posições 1 e 2.",
+                "As referências de estilo são iguais.",
+                "JSON.stringify da chave evita ambiguidades de concatenação simples."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "flyweight-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "flyweight-evolucao-0",
+              "type": "paragraph",
+              "text": "Uma nova propriedade comum, como textura, precisa participar da identidade do estilo quando alterar seu significado. Uma propriedade particular, como seleção do usuário, permanece no contexto. Reclassificar um campo sem revisar a chave pode reutilizar um flyweight errado."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "flyweight-testes-0",
+              "type": "bullets",
+              "items": [
+                "Compare identidade para chaves iguais.",
+                "Verifique distinção para estilos diferentes.",
+                "Meça memória e custo de busca com o volume esperado."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "flyweight-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "flyweight-limites-0",
+              "type": "paragraph",
+              "text": "Um cache de estilos sem política de ciclo de vida pode crescer indefinidamente se as chaves forem livres. Object.freeze é raso; um estilo com objetos internos precisaria de proteção adicional. Compartilhar valores só é seguro quando sua imutabilidade e identidade realmente correspondem ao contrato."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "flyweight-comparacao-0",
+              "type": "paragraph",
+              "text": "Pode haver vários flyweights por chave; o objetivo é compartilhar estado, não impor unicidade global ou apenas acelerar leitura."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "flyweight-exercicio-0",
+              "type": "paragraph",
+              "text": "A seleção de um assento foi colocada no estilo e passou a selecionar o setor inteiro. Qual classificação estava errada?"
+            }
+          ]
+        },
+        {
+          "id": "flyweight-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "flyweight-resposta-0",
+              "type": "paragraph",
+              "text": "Seleção é estado da ocorrência ou da sessão, não do estilo comum. Mantenha-a no contexto associado ao assento e preserve o flyweight para dados compartilháveis. O teste deve selecionar uma posição e confirmar que outras com o mesmo estilo não mudam."
+            }
+          ]
+        },
+        {
+          "id": "flyweight-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "flyweight-criterio-0",
+              "type": "paragraph",
+              "text": "Antes de adicionar uma fábrica e indireção, meça onde a memória é consumida. Compartilhamento ajuda com repetição significativa e fronteiras claras. Se quase todas as combinações são únicas, a estrutura de busca pode custar mais que o estado que tentou economizar."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    },
+    {
+      "id": "feed-pattern-proxy",
+      "revision": 1,
+      "title": "Proxy · Carregar uma prévia somente quando permitido",
+      "scope": "Estruturais: Proxy, aplicação, limites e alternativas.",
+      "objective": "Controlar acesso e inicialização sem confundir transparência com ausência de custo.",
+      "tags": ["design patterns", "estruturais", "proxy"],
+      "intervalDays": 3,
+      "sourceUrl": "https://refactoring.guru/design-patterns/proxy",
+      "slides": [
+        {
+          "id": "proxy-intencao",
+          "title": "Proxy: Carregar uma prévia somente quando permitido",
+          "blocks": [
+            {
+              "id": "proxy-intencao-0",
+              "type": "paragraph",
+              "text": "O acesso a outro objeto, preservando a interface esperada pelo cliente."
+            },
+            {
+              "id": "proxy-intencao-1",
+              "type": "paragraph",
+              "text": "Neste estudo de caso, você vai controlar acesso e inicialização sem confundir transparência com ausência de custo."
+            }
+          ]
+        },
+        {
+          "id": "proxy-cenario",
+          "title": "O problema que vamos resolver",
+          "blocks": [
+            {
+              "id": "proxy-cenario-0",
+              "type": "paragraph",
+              "text": "Uma prévia de documento é cara de preparar. Quem não tem acesso não deveria disparar sua criação. Quem tem acesso pode reutilizar o objeto preparado, sem exigir que cada consumidor saiba quando inicializá-lo."
+            }
+          ]
+        },
+        {
+          "id": "proxy-tentativa",
+          "title": "Por que a primeira solução começa a pesar",
+          "blocks": [
+            {
+              "id": "proxy-tentativa-0",
+              "type": "paragraph",
+              "text": "Criar a prévia antes de verificar a permissão desperdiça trabalho e pode acessar dados indevidamente. Repetir a validação e o cache em todos os clientes também facilita desvios. Queremos um caminho que medeie o acesso antes da delegação."
+            }
+          ]
+        },
+        {
+          "id": "proxy-mecanismo",
+          "title": "A mudança de desenho",
+          "blocks": [
+            {
+              "id": "proxy-mecanismo-0",
+              "type": "paragraph",
+              "text": "Extraia o contrato comum, encapsule o serviço e substitua o ponto de composição sem alterar os consumidores."
+            },
+            {
+              "id": "proxy-mecanismo-1",
+              "type": "paragraph",
+              "text": "ProtectedPreview oferece o contrato Document. Ele verifica a condição didática e só então cria o objeto real, guardando-o para consultas posteriores. O booleano representa uma decisão já obtida; num sistema real, não aceite do usuário uma afirmação livre de que ele está autorizado."
+            }
+          ]
+        },
+        {
+          "id": "proxy-participantes",
+          "title": "Localize as responsabilidades",
+          "blocks": [
+            {
+              "id": "proxy-participantes-0",
+              "type": "paragraph",
+              "text": "Ambos implementam o contrato; o proxy decide quando inicializar, validar ou encaminhar ao serviço real."
+            },
+            {
+              "id": "proxy-participantes-1",
+              "type": "image",
+              "src": "/study-assets/design-patterns/proxy-roles.svg",
+              "alt": "Mapa autoral dos participantes de Proxy",
+              "caption": "Use os papéis para localizar as responsabilidades no exemplo.",
+              "credit": "Mapa autoral · Folha"
+            }
+          ]
+        },
+        {
+          "id": "proxy-contrato",
+          "title": "O contrato antes das classes",
+          "blocks": [
+            {
+              "id": "proxy-contrato-0",
+              "type": "bullets",
+              "items": [
+                "Uma chamada negada não inicializa o recurso.",
+                "Chamadas permitidas podem reutilizar a instância criada.",
+                "Toda leitura passa pelo controle previsto."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proxy-sequencia",
+          "title": "Siga uma execução",
+          "blocks": [
+            {
+              "id": "proxy-sequencia-0",
+              "type": "bullets",
+              "items": [
+                "O cliente solicita read.",
+                "O proxy valida antes de buscar ou criar o serviço real.",
+                "Com acesso permitido, ele delega e devolve o resultado."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proxy-codigo",
+          "title": "Experimente a implementação",
+          "blocks": [
+            {
+              "id": "proxy-codigo-0",
+              "type": "code",
+              "language": "typescript",
+              "text": "interface Document {\n  read(allowed: boolean): string;\n}\nclass ProtectedPreview implements Document {\n  private real: { read(): string } | undefined;\n  constructor(private create: () => { read(): string }) {}\n  read(allowed: boolean) {\n    if (!allowed) throw new Error('Acesso negado');\n    this.real ??= this.create();\n    return this.real.read();\n  }\n}\nexport function demo() {\n  let loads = 0;\n  const preview = new ProtectedPreview(() => {\n    loads++;\n    return { read: () => 'texto' };\n  });\n  try {\n    preview.read(false);\n  } catch {\n    /* Rejeição esperada. */\n  }\n  const deniedLoads = loads;\n  preview.read(true);\n  preview.read(true);\n  return { deniedLoads, loads };\n}"
+            }
+          ]
+        },
+        {
+          "id": "proxy-resultado",
+          "title": "Explique o resultado, não apenas a sintaxe",
+          "blocks": [
+            {
+              "id": "proxy-resultado-0",
+              "type": "bullets",
+              "items": [
+                "A tentativa negada deixa deniedLoads igual a zero.",
+                "Duas leituras permitidas resultam em uma criação.",
+                "loads mede criação da dependência, não quantidade total de leituras."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proxy-evolucao",
+          "title": "O que acontece quando o requisito muda",
+          "blocks": [
+            {
+              "id": "proxy-evolucao-0",
+              "type": "paragraph",
+              "text": "Se a permissão muda, o cache do objeto não pode eliminar a reavaliação necessária. Se o recurso passa a ser remoto, o contrato precisa tratar latência, cancelamento e erro. A mesma assinatura não obriga o consumidor a fingir que uma chamada de rede é local."
+            }
+          ]
+        },
+        {
+          "id": "proxy-testes",
+          "title": "Como procurar uma implementação incorreta",
+          "blocks": [
+            {
+              "id": "proxy-testes-0",
+              "type": "bullets",
+              "items": [
+                "Negação não cria nem acessa o recurso.",
+                "Uso repetido não inicializa duas vezes no cenário suportado.",
+                "Mudança de acesso não reutiliza uma autorização ultrapassada."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proxy-limites",
+          "title": "O cuidado que o exemplo não elimina",
+          "blocks": [
+            {
+              "id": "proxy-limites-0",
+              "type": "paragraph",
+              "text": "Controlar apenas o proxy é insuficiente se o cliente também consegue alcançar o serviço real com a mesma autoridade. Defina uma fronteira obrigatória e derive identidade de uma fonte confiável. Em inicialização assíncrona, duas chamadas simultâneas podem exigir compartilhar a promessa para evitar duplicação."
+            }
+          ]
+        },
+        {
+          "id": "proxy-comparacao",
+          "title": "Compare pela decisão de projeto",
+          "blocks": [
+            {
+              "id": "proxy-comparacao-0",
+              "type": "paragraph",
+              "text": "Proxy prioriza mediação de acesso e ciclo de vida; Decorator combina capacidades adicionais escolhidas pelo cliente."
+            }
+          ]
+        },
+        {
+          "id": "proxy-exercicio",
+          "title": "Agora tome a decisão",
+          "blocks": [
+            {
+              "id": "proxy-exercicio-0",
+              "type": "paragraph",
+              "text": "A implementação começou a retornar imediatamente o valor em cache antes de conferir a permissão. A otimização preserva o contrato?"
+            }
+          ]
+        },
+        {
+          "id": "proxy-resposta",
+          "title": "Uma resposta comentada",
+          "blocks": [
+            {
+              "id": "proxy-resposta-0",
+              "type": "paragraph",
+              "text": "Não, se o contrato exige autorização em cada leitura. O cache pode guardar conteúdo ou um objeto preparado, mas a decisão de acesso segue seu ciclo próprio. Uma consulta negada depois de uma permitida é um teste importante para encontrar esse desvio."
+            }
+          ]
+        },
+        {
+          "id": "proxy-criterio",
+          "title": "Quando a complexidade se justifica",
+          "blocks": [
+            {
+              "id": "proxy-criterio-0",
+              "type": "paragraph",
+              "text": "Use mediação quando acesso, criação ou localização precisam de controle consistente. Documente efeitos e falhas observáveis. Evite esconder uma dependência remota sob uma aparência de acesso trivial que induz clientes a repetir chamadas caras ou não idempotentes."
+            }
+          ]
+        }
+      ],
+      "deckId": "builtin-patterns-design"
+    }
+  ],
+  "progress": []
+}

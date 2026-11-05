@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-11-04",
+  "name": "Design Patterns · Conceitos e decisões",
+  "syncEnabled": false,
+  "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
+  "patterns": [
+    {
+      "id": "adapter",
+      "name": "Adapter",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/adapter",
+      "diagram": [
+        ["Client", "espera Target"],
+        ["Target", "contrato esperado"],
+        ["Adapter", "traduz chamadas"],
+        ["Adaptee", "API incompatível"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Adapter reconcilia?",
+          "answer": "Interfaces incompatíveis, preservando o contrato que o cliente espera."
+        },
+        {
+          "id": "problema",
+          "question": "Quando a incompatibilidade vira problema?",
+          "answer": "Ao integrar código existente ou externo cuja interface não pode ser alterada convenientemente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como os participantes colaboram?",
+          "answer": "Cliente usa Target; Adapter implementa esse contrato e traduz chamadas para o Adaptee encapsulado."
+        },
+        {
+          "id": "implementacao",
+          "question": "Composição ou herança?",
+          "answer": "Adapter de objeto encapsula a dependência; adapter de classe depende dos mecanismos de herança disponíveis na linguagem."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo simples representa a tradução?",
+          "answer": "Um adaptador implementa pagar(centavos) e chama a API externa cobrar(valorDecimal), convertendo valores cuidadosamente."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando vale introduzir essa camada?",
+          "answer": "Quando reaproveitar uma implementação exige compatibilizá-la com uma abstração já usada pelo sistema."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual risco a tradução esconde?",
+          "answer": "Nomes compatíveis não garantem semântica equivalente; preserve unidades, erros e garantias esperadas pelo cliente."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como distinguir Adapter de Facade?",
+          "answer": "Adapter compatibiliza interfaces; Facade simplifica um subsistema. Decorator preserva a interface para acrescentar comportamento."
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "name": "Bridge",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/bridge",
+      "diagram": [
+        ["Abstraction", "API de alto nível"],
+        ["RefinedAbstraction", "variação de controle"],
+        ["Implementation", "operações delegadas"],
+        ["ConcreteImplementation", "variação de plataforma"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Quais variações o Bridge separa?",
+          "answer": "Abstração e implementação, permitindo evolução independente por composição."
+        },
+        {
+          "id": "problema",
+          "question": "Qual explosão ele evita?",
+          "answer": "Uma subclasse para cada combinação de duas dimensões que variam independentemente."
+        },
+        {
+          "id": "estrutura",
+          "question": "O que conecta as duas hierarquias?",
+          "answer": "A abstração guarda uma referência à interface de implementação e delega operações necessárias."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir a separação?",
+          "answer": "Identifique dimensões independentes, extraia o contrato da implementação e injete uma implementação na abstração."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra duas dimensões?",
+          "answer": "Alertas simples ou agrupados usam saída por e-mail ou arquivo, sem uma classe para cada par."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando planejar esse padrão?",
+          "answer": "Quando plataformas e funcionalidades precisam combinar-se e crescer separadamente, inclusive com troca de implementação."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo pode não compensar?",
+          "answer": "Mais indireção e contratos para manter; dimensões apenas hipotéticas não justificam generalizar o desenho."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Adapter?",
+          "answer": "Bridge organiza variações desde o desenho; Adapter normalmente reconcilia interfaces existentes que não combinam."
+        }
+      ]
+    },
+    {
+      "id": "composite",
+      "name": "Composite",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/composite",
+      "diagram": [
+        ["Client", "usa Component"],
+        ["Component", "operação comum"],
+        ["Leaf", "executa diretamente"],
+        ["Composite", "agrega filhos"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual estrutura o Composite representa?",
+          "answer": "Árvores de objetos tratadas uniformemente por um contrato comum."
+        },
+        {
+          "id": "problema",
+          "question": "Que distinção o cliente deixa de repetir?",
+          "answer": "Não precisa verificar a cada operação se está diante de um elemento simples ou de um grupo."
+        },
+        {
+          "id": "estrutura",
+          "question": "Como folha e composto respondem?",
+          "answer": "Leaf executa o trabalho; Composite delega aos filhos e combina resultados conforme a operação."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como implementar a recursão?",
+          "answer": "Defina operações comuns, coleção de filhos nos compostos e regras de combinação; proteja a estrutura contra ciclos indevidos."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo representa uma árvore?",
+          "answer": "Uma pasta calcula tamanho somando arquivos e subpastas; cada filho oferece a mesma operação tamanho()."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando o padrão faz sentido?",
+          "answer": "Quando o domínio contém relações parte-todo hierárquicas e o tratamento uniforme simplifica os consumidores."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual limite da uniformidade?",
+          "answer": "Uma interface ampla pode exigir operações sem sentido nas folhas; preserve contratos coerentes e controle profundidade."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como se relaciona com outros padrões?",
+          "answer": "Iterator percorre a árvore; Visitor adiciona operações; Decorator normalmente envolve um componente, em vez de agregar filhos."
+        }
+      ]
+    },
+    {
+      "id": "decorator",
+      "name": "Decorator",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/decorator",
+      "diagram": [
+        ["Client", "usa Component"],
+        ["Component", "contrato preservado"],
+        ["Decorator", "encapsula componente"],
+        ["ConcreteComponent", "comportamento base"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Decorator acrescenta?",
+          "answer": "Responsabilidades a um objeto por wrappers combináveis, sem alterar sua interface principal."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema da herança ele evita?",
+          "answer": "Subclasses para cada combinação de capacidades opcionais, escolhidas rigidamente antes da execução."
+        },
+        {
+          "id": "estrutura",
+          "question": "Qual contrato sustenta o empilhamento?",
+          "answer": "Componente e decorators compartilham interface; cada decorator guarda outro componente e delega a ele."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como implementar uma capacidade?",
+          "answer": "Encapsule o componente e execute a lógica adicional antes ou depois da chamada delegada."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra composição dinâmica?",
+          "answer": "LeitorComMetricas(LeitorComCache(LeitorArquivo)) combina observação e cache sem criar uma subclasse para cada combinação."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando é uma boa escolha?",
+          "answer": "Quando responsabilidades precisam ser combinadas em execução ou herança não oferece flexibilidade suficiente."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Que detalhe altera o resultado?",
+          "answer": "A ordem dos wrappers pode mudar comportamento, erros e efeitos; teste combinações e evite dependência oculta entre camadas."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Proxy?",
+          "answer": "Decorator compõe capacidades; Proxy controla acesso ou ciclo de vida. Ambos podem delegar preservando uma interface."
+        }
+      ]
+    },
+    {
+      "id": "facade",
+      "name": "Facade",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/facade",
+      "diagram": [
+        ["Client", "jornada simples"],
+        ["Facade", "coordena subsistema"],
+        ["Subsystem A", "operações internas"],
+        ["Subsystem B", "operações internas"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "Qual é a intenção de Facade?",
+          "answer": "Oferecer uma entrada simples para capacidades de um subsistema complexo."
+        },
+        {
+          "id": "problema",
+          "question": "Qual acoplamento ela reduz?",
+          "answer": "Clientes deixam de coordenar diretamente diversas classes, inicializações e sequências internas da biblioteca."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quem conhece os detalhes internos?",
+          "answer": "A fachada coordena o subsistema; seus componentes não precisam conhecer a existência da fachada."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como desenhar a interface pública?",
+          "answer": "Escolha jornadas relevantes e esconda a coordenação; separe fachadas quando responsabilidades crescerem demais."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo representa simplificação?",
+          "answer": "Publicador.publicar() coordena validação, armazenamento e indexação, oferecendo uma operação orientada à jornada."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando vale usar uma fachada?",
+          "answer": "Para fornecer acesso restrito e conveniente, isolar bibliotecas ou definir fronteiras entre camadas."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual degradação deve ser evitada?",
+          "answer": "Uma fachada que acumula todas as regras vira objeto central difícil de manter; não esconda falhas parciais relevantes."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Mediator e Adapter?",
+          "answer": "Mediator organiza comunicação entre colegas; Adapter compatibiliza contratos; Facade simplifica o acesso a um subsistema."
+        }
+      ]
+    },
+    {
+      "id": "flyweight",
+      "name": "Flyweight",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/flyweight",
+      "diagram": [
+        ["Context", "estado extrínseco"],
+        ["Flyweight", "estado compartilhado"],
+        ["Factory", "reúso por chave"],
+        ["Client", "fornece contexto"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que o Flyweight economiza?",
+          "answer": "Memória ao compartilhar estado repetido entre muitos objetos lógicos."
+        },
+        {
+          "id": "problema",
+          "question": "Qual cenário motiva compartilhamento?",
+          "answer": "Um volume grande de objetos repete dados que poderiam existir uma única vez."
+        },
+        {
+          "id": "estrutura",
+          "question": "Quais estados precisam ser separados?",
+          "answer": "Intrínseco pertence ao flyweight compartilhado; extrínseco varia por ocorrência e vem do contexto."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como controlar reutilização?",
+          "answer": "Uma fábrica localiza o flyweight por chave; mantenha o estado compartilhado imutável e passe o contexto às operações."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra os dois estados?",
+          "answer": "Vários caracteres compartilham dados de glifo; posição e seleção permanecem em cada ocorrência do editor."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quando adotar esse padrão?",
+          "answer": "Após medir pressão de memória causada por grande repetição de estado que pode ser separado."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Qual custo acompanha a economia?",
+          "answer": "Mais lógica de contexto e busca; alterar estado compartilhado indevidamente afeta muitas ocorrências ao mesmo tempo."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Singleton e cache?",
+          "answer": "Pode haver vários flyweights por chave; o objetivo é compartilhar estado, não impor unicidade global ou apenas acelerar leitura."
+        }
+      ]
+    },
+    {
+      "id": "proxy",
+      "name": "Proxy",
+      "category": "Estruturais",
+      "sourceUrl": "https://refactoring.guru/design-patterns/proxy",
+      "diagram": [
+        ["Client", "usa Service"],
+        ["Service", "contrato comum"],
+        ["Proxy", "controla delegação"],
+        ["RealService", "executa trabalho"]
+      ],
+      "cards": [
+        {
+          "id": "conceito",
+          "question": "O que um Proxy controla?",
+          "answer": "O acesso a outro objeto, preservando a interface esperada pelo cliente."
+        },
+        {
+          "id": "problema",
+          "question": "Qual problema pode motivá-lo?",
+          "answer": "Um serviço caro, remoto ou protegido precisa de controle antes de ser utilizado diretamente."
+        },
+        {
+          "id": "estrutura",
+          "question": "Qual relação existe entre proxy e serviço?",
+          "answer": "Ambos implementam o contrato; o proxy decide quando inicializar, validar ou encaminhar ao serviço real."
+        },
+        {
+          "id": "implementacao",
+          "question": "Como introduzir um proxy?",
+          "answer": "Extraia o contrato comum, encapsule o serviço e substitua o ponto de composição sem alterar os consumidores."
+        },
+        {
+          "id": "exemplo",
+          "question": "Qual exemplo mostra criação tardia?",
+          "answer": "ImagemLazy guarda o caminho e carrega a imagem real apenas na primeira solicitação de renderização."
+        },
+        {
+          "id": "aplicabilidade",
+          "question": "Quais aplicações são frequentes?",
+          "answer": "Acesso remoto, proteção, inicialização tardia, cache e registro de chamadas, conforme a necessidade."
+        },
+        {
+          "id": "trade-offs",
+          "question": "Que transparência merece cautela?",
+          "answer": "Uma chamada remota tem latência e falhas diferentes de uma local; não esconda esses limites do contrato."
+        },
+        {
+          "id": "comparacao",
+          "question": "Como difere de Decorator?",
+          "answer": "Proxy prioriza mediação de acesso e ciclo de vida; Decorator combina capacidades adicionais escolhidas pelo cliente."
+        }
+      ]
+    }
+  ]
+}

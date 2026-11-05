@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import catalog from '../src/content/design-patterns.json' with { type: 'json' };
-import assets from '../src/content/design-pattern-assets.json' with { type: 'json' };
+import catalog from '../src/content/decks/design-patterns/flashcards/index';
+import assets from '../src/content/decks/design-patterns/assets.json' with { type: 'json' };
 
 test('baralho de padrões tem oito cartões por padrão, imagens com crédito, revisão e todos os recursos offline', async ({
   page,

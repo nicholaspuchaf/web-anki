@@ -1,4 +1,4 @@
-import catalog from '../../content/feed-design-patterns.json';
+import catalog from '../../content/decks/design-patterns/carousels/index';
 import { parseFeed, type FeedData } from './model';
 
 export const PATTERN_FEED_INSTALLATION = 'catalog:design-patterns:v1';

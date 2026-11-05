@@ -1,8 +1,8 @@
 import { expect, test } from 'bun:test';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import catalog from '../../content/design-patterns.json';
-import assets from '../../content/design-pattern-assets.json';
+import catalog from '../../content/decks/design-patterns/flashcards/index';
+import assets from '../../content/decks/design-patterns/assets.json' with { type: 'json' };
 import { withBundledDecks } from './catalog';
 import { withBundledPatternsDeck, PATTERNS_CARD_COUNT } from './patterns';
 import { withBundledAwsDeck, AWS_CARD_COUNT } from './aws';

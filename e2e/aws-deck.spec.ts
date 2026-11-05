@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import catalog from '../src/content/aws-services.json' with { type: 'json' };
+import catalog from '../src/content/decks/aws/flashcards/index';
 import { cloudFixture } from '../tests/helpers/cloud';
 
 const endpoint = process.env.VITE_API_URL;

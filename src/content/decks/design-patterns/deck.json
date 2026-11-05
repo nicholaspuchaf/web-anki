@@ -1,0 +1,18 @@
+{
+  "id": "builtin-patterns-design",
+  "name": "Design Patterns · Conceitos e decisões",
+  "defaultTemplate": "multi-face",
+  "syncEnabled": false,
+  "content": {
+    "flashcards": [
+      "flashcards/behavioral.json",
+      "flashcards/creational.json",
+      "flashcards/structural.json"
+    ],
+    "carousels": [
+      "carousels/behavioral.json",
+      "carousels/creational.json",
+      "carousels/structural.json"
+    ]
+  }
+}

@@ -2,22 +2,8 @@ import type { StudyImage } from '../standard/image';
 import type { LeetCode } from '../leetcode/model';
 import type { MultipleChoice } from '../multiple-choice/model';
 import type { StudyFace } from '../standard/model';
-export type CardTemplate =
-  'basic' | 'leetcode' | 'multiple-choice' | 'multi-face';
-export type Deck = {
-  id: string;
-  name: string;
-  defaultTemplate?: CardTemplate;
-  syncEnabled?: boolean;
-};
-export function isCardTemplate(value: unknown): value is CardTemplate {
-  return (
-    value === 'basic' ||
-    value === 'leetcode' ||
-    value === 'multiple-choice' ||
-    value === 'multi-face'
-  );
-}
+import type { Deck } from '../decks/model';
+export { isCardTemplate, type CardTemplate, type Deck } from '../decks/model';
 export type Card = {
   id: string;
   deckId: string;

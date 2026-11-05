@@ -1,3 +1,4 @@
+import { readFeedDecks } from '../../shared/storage/feed-decks';
 import {
   readLibrary,
   writeLibrary,
@@ -8,7 +9,12 @@ import { withBundledDecks } from './catalog';
 export async function bootstrapLibrary() {
   for (let attempt = 0; attempt < 5; attempt++) {
     const current = await readLibrary();
-    const next = withBundledDecks(current);
+    const shared = await readFeedDecks();
+    const ids = new Set(current.decks.map((d) => d.id));
+    const next = withBundledDecks({
+      ...current,
+      decks: [...current.decks, ...shared.decks.filter((d) => !ids.has(d.id))],
+    });
     if (JSON.stringify(current) === JSON.stringify(next)) return current;
     try {
       await writeLibrary(next, current);

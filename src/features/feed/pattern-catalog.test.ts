@@ -1,8 +1,8 @@
 import { expect, test } from 'bun:test';
 import { readFileSync, existsSync } from 'node:fs';
 import { patternFeed, withPatternCarousels } from './pattern-catalog';
-import patterns from '../../content/design-patterns.json';
-import assets from '../../content/design-pattern-assets.json';
+import patterns from '../../content/decks/design-patterns/flashcards/index';
+import assets from '../../content/decks/design-patterns/assets.json' with { type: 'json' };
 import { emptyFeed, parseCarousel, parseFeed } from './model';
 import { sampleFeed } from './sample';
 
@@ -47,7 +47,7 @@ test.each(expected)(
   'exemplo publicado de %s executa com o resultado ensinado',
   async (slug, result) => {
     const module = (await import(
-      `../../content/pattern-examples/${slug}.ts`
+      `../../content/decks/design-patterns/carousels/examples/${slug}.ts`
     )) as { demo: () => unknown };
     expect(module.demo()).toEqual(result);
     const carousel = patternFeed.carousels.find(
@@ -57,7 +57,10 @@ test.each(expected)(
       .flatMap((s) => s.blocks)
       .find((b) => b.type === 'code');
     expect(code?.type === 'code' ? code.text : '').toBe(
-      readFileSync(`src/content/pattern-examples/${slug}.ts`, 'utf8').trim(),
+      readFileSync(
+        `src/content/decks/design-patterns/carousels/examples/${slug}.ts`,
+        'utf8',
+      ).trim(),
     );
   },
 );

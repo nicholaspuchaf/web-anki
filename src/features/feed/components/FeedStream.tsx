@@ -11,14 +11,12 @@ export function FeedStream({
   data,
   now,
   onRead,
-  onEdit,
   paused = false,
 }: {
   data: FeedData;
   now: number;
   paused?: boolean;
   onRead: (carousel: Carousel, slideId: string) => void;
-  onEdit: (carousel: Carousel) => void;
 }) {
   const [session, setSession] = useState(() => startFeedSession(data, now));
   const [position, setPosition] = useState(0);
@@ -99,10 +97,8 @@ export function FeedStream({
               carousel={carousel}
               progress={data.progress.find((p) => p.carouselId === carousel.id)}
               now={now}
-              repeat={item.repeat}
               paused={paused}
               onRead={(id) => onRead(carousel, id)}
-              onEdit={() => onEdit(carousel)}
             />
           );
         })}

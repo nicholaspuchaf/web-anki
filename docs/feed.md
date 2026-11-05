@@ -27,8 +27,11 @@ acesso direto e botões de voltar/avançar do navegador.
   uma repetição não é imediatamente vizinha do mesmo tema.
 - Releituras antes do prazo não mudam a próxima data nem aumentam o contador de
   conclusões. Quando vence, uma nova passagem exige ler todos os cards novamente.
-- “Atualizar fila”, na orientação lateral do desktop, ou reabrir a página inicia
-  outra seleção com as pendências atuais.
+- Reabrir a página inicia outra seleção com as pendências atuais.
+
+A leitura mostra apenas os títulos dos cards, sem cabeçalho do carrossel, avatar,
+objetivo, escopo ou coluna lateral de orientação. Os metadados permanecem no editor
+e na organização dos temas; as setas e o progresso continuam disponíveis.
 
 ## Template e editor
 

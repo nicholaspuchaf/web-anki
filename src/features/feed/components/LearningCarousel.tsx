@@ -44,20 +44,16 @@ export function LearningCarousel({
   carousel,
   progress,
   now,
-  repeat = false,
   preview = false,
   paused = false,
   onRead,
-  onEdit,
 }: {
   carousel: Carousel;
   progress?: FeedProgress;
   now: number;
-  repeat?: boolean;
   preview?: boolean;
   paused?: boolean;
   onRead?: (slideId: string) => void;
-  onEdit?: () => void;
 }) {
   const [active, setActive] = useState(0);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
@@ -94,34 +90,6 @@ export function LearningCarousel({
       className={`learning-carousel${preview ? ' carousel-preview' : ''}`}
       aria-label={carousel.title || 'Prévia do carrossel'}
     >
-      <header className="feed-post-header">
-        <div className="feed-avatar" aria-hidden="true">
-          {carousel.title.slice(0, 1) || 'F'}
-        </div>
-        <div>
-          <span className="eyebrow">
-            {repeat || scheduled ? 'RELEITURA' : 'PARA APRENDER'}
-          </span>
-          <h2>{carousel.title || 'Título do carrossel'}</h2>
-        </div>
-        {onEdit && (
-          <button
-            className="feed-edit"
-            aria-label={`Editar carrossel: ${carousel.title}`}
-            onClick={onEdit}
-          >
-            ···
-          </button>
-        )}
-      </header>
-      <div className="feed-learning-goal">
-        <span>OBJETIVO DE APRENDIZADO</span>
-        <p>
-          {carousel.objective ||
-            'Descreva o que a pessoa conseguirá explicar ao terminar.'}
-        </p>
-        <small>{carousel.scope || 'Defina o escopo do tema.'}</small>
-      </div>
       <div
         className="feed-slide-track"
         style={height ? { height } : undefined}
@@ -162,7 +130,6 @@ export function LearningCarousel({
             inert={index !== active}
           >
             <div className="feed-slide-number">
-              <span>{String(index + 1).padStart(2, '0')}</span>
               <span>
                 {index + 1} / {carousel.slides.length}
               </span>

@@ -1840,34 +1840,12 @@ main.feed-main {
 }
 .feed-layout {
   display: grid;
-  grid-template-columns: minmax(200px, 280px) minmax(0, 640px);
+  grid-template-columns: minmax(0, 680px);
+  max-width: 732px;
+  margin-inline: auto;
   justify-content: center;
   gap: 36px;
   align-items: start;
-}
-.feed-guide {
-  padding-top: 24px;
-}
-.feed-guide-icon {
-  display: block;
-  color: var(--blue);
-  font-size: 34px;
-  margin-bottom: 14px;
-}
-.feed-guide h2 {
-  font-size: 26px;
-  line-height: 1.25;
-  max-width: 220px;
-}
-.feed-guide p {
-  font-size: 14px;
-  line-height: 1.8;
-}
-.feed-guide small {
-  display: block;
-  color: var(--faint);
-  margin-top: 20px;
-  font-size: 11px;
 }
 .feed-stream {
   display: grid;
@@ -1891,66 +1869,6 @@ main.feed-main {
   scroll-snap-align: start;
   align-self: start;
 }
-.feed-post-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 20px;
-}
-.feed-avatar {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  background: var(--blue-soft);
-  color: var(--blue);
-  font-weight: 700;
-  font-size: 20px;
-}
-.feed-post-header > div:nth-child(2) {
-  min-width: 0;
-  flex: 1;
-}
-.feed-post-header h2 {
-  margin: 3px 0 0;
-  font-size: 16px;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
-}
-.feed-post-header .eyebrow {
-  font-size: 9px;
-  color: var(--blue);
-}
-.feed-edit {
-  font-size: 22px;
-  line-height: 1;
-  background: transparent;
-  border: 0;
-  min-width: 44px;
-  min-height: 44px;
-}
-.feed-learning-goal {
-  padding: 0 20px 20px;
-  border-bottom: 1px solid var(--border);
-}
-.feed-learning-goal > span {
-  font-size: 9px;
-  font-weight: 650;
-  letter-spacing: 1px;
-  color: var(--faint);
-}
-.feed-learning-goal p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 6px 0;
-  color: var(--text);
-}
-.feed-learning-goal small {
-  font-size: 11px;
-  color: var(--muted);
-}
 .feed-slide-track {
   display: flex;
   overflow-x: auto;
@@ -1972,17 +1890,9 @@ main.feed-main {
 }
 .feed-slide-number {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  justify-content: flex-end;
+  margin-bottom: 12px;
   color: var(--faint);
-}
-.feed-slide-number > span:first-child {
-  font-size: 36px;
-  line-height: 1;
-  letter-spacing: -2px;
-  font-weight: 650;
-  color: var(--blue);
 }
 .feed-slide-number > span:last-child {
   font-size: 11px;
@@ -2327,9 +2237,6 @@ main.feed-main {
   .feed-layout {
     display: block;
   }
-  .feed-guide {
-    display: none;
-  }
   .feed-stream {
     padding-right: 0;
     max-height: calc(100dvh - 240px);
@@ -2338,12 +2245,6 @@ main.feed-main {
   }
   .learning-carousel {
     border-radius: 12px;
-  }
-  .feed-post-header {
-    padding: 16px;
-  }
-  .feed-learning-goal {
-    padding-inline: 16px;
   }
   .feed-slide {
     padding: 24px 20px 18px;
@@ -2428,7 +2329,7 @@ main.feed-main {
 }
 .feed-layout {
   padding-right: 52px;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 640px);
+  grid-template-columns: minmax(0, 680px);
   gap: 28px;
 }
 .feed-stream-shell {
@@ -2455,14 +2356,7 @@ main.feed-main {
 main.feed-main {
   padding-top: 12px;
 }
-@media (max-width: 960px) {
-  .feed-layout {
-    grid-template-columns: minmax(0, 640px);
-  }
-  .feed-guide {
-    display: none;
-  }
-}
+
 @media (max-width: 760px) {
   .feed-topbar {
     grid-template-columns: minmax(0, 1fr) auto;

@@ -124,30 +124,6 @@ export default function FeedPage({ now }: { now: number }) {
         </div>
       ) : mode === 'feed' ? (
         <div className="feed-layout">
-          <aside className="feed-guide">
-            <span className="feed-guide-icon" aria-hidden="true">
-              ✦
-            </span>
-            <h2>Aprender tem seu ritmo.</h2>
-            <p>
-              Deslize para o lado para continuar uma ideia. Role para baixo para
-              descobrir outro tema.
-            </p>
-            <p>
-              Ao chegar ao fim de todos os cards, o carrossel volta depois do
-              intervalo escolhido.
-            </p>
-            {due === 0 && (
-              <p>
-                Temas do dia concluídos. Agora você pode reler aleatoriamente,
-                sem mudar suas próximas datas.
-              </p>
-            )}
-            <button onClick={() => setEpoch((value) => value + 1)}>
-              Atualizar fila
-            </button>
-            <small>Seu conteúdo e progresso ficam neste aparelho.</small>
-          </aside>
           <FeedStream
             key={`${signature}:${epoch}`}
             data={feed.data}
@@ -156,7 +132,6 @@ export default function FeedPage({ now }: { now: number }) {
             onRead={(carousel, id) => {
               void feed.perform(() => markSlideRead(carousel, id, Date.now()));
             }}
-            onEdit={(carousel) => void open(carousel)}
           />
         </div>
       ) : (

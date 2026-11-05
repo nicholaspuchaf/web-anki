@@ -81,7 +81,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
     .click();
   const dialog = page.getByRole('dialog');
   await expect(
-    dialog.getByRole('heading', { name: 'Aprendendo filas', exact: true }),
+    dialog.getByRole('heading', { name: 'O problema', exact: true }),
   ).toBeVisible();
   await dialog
     .getByRole('img', { name: 'Primeiro exemplo de imagem local' })
@@ -213,6 +213,9 @@ test('Feed exige todos os cards, agenda retorno, permite rolagem vertical e rele
     buffer: Buffer.from(JSON.stringify(fixture)),
   });
   await expect(page.getByText('2 para hoje', { exact: false })).toBeVisible();
+  await expect(
+    page.locator('.feed-guide, .feed-post-header, .feed-learning-goal'),
+  ).toHaveCount(0);
   const posts = page.locator('.feed-stream .learning-carousel');
   const first = posts.nth(0);
   await first

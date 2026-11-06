@@ -1,0 +1,198 @@
+{
+  "reviewedAt": "2026-11-06",
+  "cards": [
+    {
+      "id": "transparencia-middleware-1",
+      "question": "O que a transparência de localização esconde do cliente de um serviço?",
+      "answer": "A necessidade de conhecer a localização concreta do recurso, permitindo usar uma identificação lógica.",
+      "explanation": "Algum mecanismo ainda resolve ou encaminha o acesso a um endereço; isso não significa que a rede deixe de usar endereços.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "transparencia",
+        "localizacao",
+        "nomes-logicos"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-2",
+      "question": "O que a transparência de migração permite quando um serviço muda de servidor?",
+      "answer": "Manter a forma lógica de acesso sem exigir que o cliente seja reconfigurado para a nova localização.",
+      "explanation": "Esconder a mudança não garante, sozinho, preservar conexões abertas ou operações em andamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "transparencia",
+        "migracao",
+        "mobilidade"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-3",
+      "question": "O que a transparência de replicação esconde?",
+      "answer": "A existência de várias instâncias ou cópias por trás da interface de um serviço.",
+      "explanation": "Esconder quantas réplicas existem não garante que todas estejam atualizadas ou que forneçam a consistência esperada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "transparencia",
+        "replicacao",
+        "consistencia"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-4",
+      "question": "Qual é o papel de um stub de cliente em RPC?",
+      "answer": "Representar localmente a interface de uma operação remota, ocultando detalhes de comunicação e codificação.",
+      "explanation": "A sintaxe pode lembrar uma chamada local, mas a operação remota ainda está sujeita a latência e falhas parciais.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "rpc",
+        "stub",
+        "middleware"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-5",
+      "question": "Quais transformações um stub pode realizar entre a chamada e o resultado?",
+      "answer": "Serializar argumentos, resolver/localizar o destino, enviar a requisição, receber e desserializar a resposta.",
+      "explanation": "As responsabilidades concretas podem ser distribuídas entre stub, transporte e descoberta de serviços.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "stub",
+        "serializacao",
+        "rpc"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-6",
+      "question": "Um stub, sozinho, garante transparência de localização?",
+      "answer": "Não. Ele precisa usar ou integrar um mecanismo de resolução/descoberta que o desvincule de um destino fixo.",
+      "explanation": "Ocultar o formato da mensagem é diferente de permitir localizar instâncias sem reconfigurar a aplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "stub",
+        "descoberta-de-servicos",
+        "localizacao"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-7",
+      "question": "Como um proxy ajuda a ocultar múltiplas réplicas?",
+      "answer": "O cliente envia requisições a um ponto de acesso, e o proxy seleciona o servidor que as atenderá.",
+      "explanation": "O cliente não precisa enumerar as instâncias; o sistema ainda precisa manter roteamento e estado coerentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "proxy",
+        "replicacao",
+        "roteamento"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-8",
+      "question": "Se o proxy troca o destino de A para B, o que ainda precisa estar correto para a troca ser transparente?",
+      "answer": "B precisa atender à operação com o estado, a sessão e as garantias de consistência exigidos.",
+      "explanation": "Redirecionar uma mensagem não basta para tornar uma réplica desatualizada equivalente à anterior.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "proxy",
+        "estado-de-sessao",
+        "consistencia"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-9",
+      "question": "Redirecionar novas requisições após uma falha garante recuperar uma requisição que já estava em andamento?",
+      "answer": "Não. A requisição anterior pode ter sido executada sem que sua resposta tenha chegado.",
+      "explanation": "Recuperação de uma operação incerta exige mecanismos adicionais; apenas mudar o destino não decide o que aconteceu.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "proxy",
+        "falhas-parciais",
+        "recuperacao"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-10",
+      "question": "Como um cache local reduz custo de acesso remoto?",
+      "answer": "Reutilizando dados já obtidos, pode reduzir requisições, uso de banda e espera pela rede.",
+      "explanation": "O benefício depende de acertos no cache; entradas ausentes ou inválidas ainda podem exigir acesso ao servidor.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "cache",
+        "latencia",
+        "banda"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-11",
+      "question": "Qual é o principal risco de servir dados de um cache local?",
+      "answer": "Retornar uma cópia desatualizada em relação às garantias que a aplicação precisa cumprir.",
+      "explanation": "TTL, invalidação e validação de versão são escolhas de política; a existência de cache não implica que o dado esteja atual.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "cache",
+        "dados-desatualizados",
+        "consistencia"
+      ]
+    },
+    {
+      "id": "transparencia-middleware-12",
+      "question": "Como diferem as contribuições de stub, proxy e cache para uma aplicação distribuída?",
+      "answer": "Stub abstrai a chamada remota; proxy intermedeia o destino; cache reutiliza uma cópia de dados.",
+      "explanation": "Os mecanismos podem ser combinados, mas nenhum elimina por si só latência, incerteza de execução ou exigências de consistência.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "transparencia-middleware",
+        "middleware",
+        "stub",
+        "proxy",
+        "cache"
+      ]
+    }
+  ]
+}

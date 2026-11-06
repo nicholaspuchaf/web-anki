@@ -1,7 +1,7 @@
 # Sistemas Distribuidos - MC714
 
 Baralho local baseado nas notas fornecidas pelo usuário, organizado para **P2**.
-São **66 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
+São **132 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
 flashcards têm uma resposta direta e um verso de justificativa/atenção. Os
 carrosséis desenvolvem explicações, percursos, contas e exercícios; não há cópia
 integral de uma fonte externa. Três diagramas SVG são autorais e ficam em
@@ -16,6 +16,37 @@ integral de uma fonte externa. Três diagramas SVG são autorais e ficam em
 | `aplicacoes-web.json`       |       8 |          8 | Interação local/remota, fórmulas, confirmação de salvamento, dados, cache, CDN, escala e offline             |
 | `metricas-qoe.json`         |      12 |         12 | Throughput, latência, RTT, jitter, perdas, FPS/frame time, INP, carregamento, imagem, energia e continuidade |
 | `escolha-arquitetural.json` |      10 |         10 | Custos por sessão, CPU/GPU, bateria, heterogeneidade, adaptações, matriz de decisão e argumentação           |
+
+## Ampliação — questões 3 e 4
+
+O material de `gerarFlashs.txt` acrescenta **66 flashcards**, sem alterar os
+carrosséis ou os 66 flashcards anteriores. Cada cartão mantém uma pergunta,
+resposta direta e justificativa/atenção; exemplos incluem saída de código e
+situações de falha/consistência. O arquivo de entrada permanece preservado.
+
+| Arquivo em `flashcards/`          | Novos cartões | Cobertura                                                                                                   |
+| --------------------------------- | ------------: | ----------------------------------------------------------------------------------------------------------- |
+| `navegadores-processos.json`      |            12 | Isolamento de falhas/memória, SOP, sandbox, multicore, RAM, IPC, threads e pipeline gráfico                 |
+| `javascript-concorrencia.json`    |            16 | Event Loop, timers, fetch, Promises/microtarefas, CPU-bound, async, Workers, transferência de dados e JIT   |
+| `transparencia-middleware.json`   |            12 | Localização, migração, replicação, stubs/RPC, descoberta, proxies, cache e limites das abstrações           |
+| `mobilidade-recuperacao.json`     |            10 | Wi-Fi/celular, reconexão, escolha de réplica, sessão, timeout incerto, idempotência e deduplicação          |
+| `consistencia-transparencia.json` |            16 | Linearizabilidade, RYW, Monotonic Reads, consistência eventual, CAP, falhas parciais e transparência segura |
+
+Além das tags fixas, cada cartão usa tags específicas como `ipc`, `sandbox`,
+`event-loop`, `workers`, `jit`, `reconexao`, `deduplicacao`, `linearizabilidade`,
+`read-your-writes`, `monotonic-reads` e `cap`. A revisão dessa ampliação é de
+2026-11-06. Questões de consistência explicitam condições importantes, como ausência
+de outra escrita no exemplo de Read Your Writes e sobreposição temporal no exemplo
+de linearizabilidade.
+
+Fontes de apoio às distinções de implementação, além do texto de entrada:
+
+- [Arquitetura multiprocesso — Chrome](https://developer.chrome.com/blog/inside-browser-part1).
+- [Pipeline de renderização — Chrome](https://developer.chrome.com/blog/inside-browser-part3).
+- [Event Loops — HTML Standard](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops).
+- [Compilação otimizadora — V8](https://v8.dev/docs/turbofan).
+- [Consistência eventual e garantias de sessão — Werner Vogels](https://www.allthingsdistributed.com/2008/12/eventually_consistent.html).
+- [CAP — artigo de Gilbert e Lynch](https://cs.nyu.edu/~apanda/classes/sp25/papers/gilbert02brewers.pdf).
 
 ## Tags obrigatórias
 

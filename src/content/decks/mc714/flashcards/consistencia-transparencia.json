@@ -1,0 +1,262 @@
+{
+  "reviewedAt": "2026-11-06",
+  "cards": [
+    {
+      "id": "consistencia-transparencia-1",
+      "question": "Qual é a ideia central da linearizabilidade?",
+      "answer": "Cada operação deve parecer ocorrer atomicamente em algum ponto entre sua invocação e sua resposta, respeitando a ordem real entre operações não sobrepostas.",
+      "explanation": "Essa ordem exige mais que réplicas eventualmente convergirem. É uma propriedade observável do histórico de operações.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "linearizabilidade",
+        "consistencia-forte",
+        "ordem-temporal"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-2",
+      "question": "A confirma saldo de R$ 800 após um débito; depois, uma leitura em B retorna R$ 1000. Isso respeita linearizabilidade?",
+      "answer": "Não, supondo o mesmo dado e nenhuma atualização posterior que justifique o valor antigo.",
+      "explanation": "Uma leitura iniciada após a confirmação precisa ser compatível com essa escrita ou com uma escrita posterior na ordem válida.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "linearizabilidade",
+        "replicas-desatualizadas",
+        "cenarios"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-3",
+      "question": "Uma leitura simultânea a uma escrita pode retornar o valor anterior sem necessariamente violar linearizabilidade?",
+      "answer": "Sim. Se as operações se sobrepõem, uma ordem válida pode colocar a leitura antes da escrita.",
+      "explanation": "Não confunda esse caso com uma leitura que começa somente depois da confirmação da escrita.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "linearizabilidade",
+        "concorrencia",
+        "cenarios"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-4",
+      "question": "Sem outra escrita que sobrescreva a alteração, o cliente muda o nome para Carlos, recebe confirmação e depois lê o nome antigo. Que garantia de sessão foi violada?",
+      "answer": "Read Your Writes: o cliente deixou de observar sua própria escrita anterior.",
+      "explanation": "O problema pode surgir ao encaminhar a leitura para uma réplica ou cache que ainda não incorporou a escrita.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "read-your-writes",
+        "consistencia-de-sessao",
+        "cenarios"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-5",
+      "question": "Read Your Writes equivale à linearizabilidade global do serviço?",
+      "answer": "Não. É uma garantia de sessão sobre observar as próprias escritas, não uma ordem global em tempo real para todos os clientes.",
+      "explanation": "Um sistema pode oferecer garantias de sessão sem oferecer linearizabilidade para todas as operações.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "read-your-writes",
+        "linearizabilidade",
+        "comparacao"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-6",
+      "question": "O cliente lê a versão 5 e, após mudar de réplica, lê a versão 3. Qual garantia foi violada?",
+      "answer": "Monotonic Reads: a sessão regrediu para um estado mais antigo.",
+      "explanation": "A versão 5 pode ter sido escrita por outro cliente; não é necessário haver uma escrita do próprio cliente para ocorrer a regressão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "monotonic-reads",
+        "mobilidade",
+        "cenarios"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-7",
+      "question": "Como diferenciar Read Your Writes de Monotonic Reads?",
+      "answer": "Read Your Writes exige observar suas escritas; Monotonic Reads impede voltar a versões anteriores às já observadas.",
+      "explanation": "As garantias tratam históricos diferentes: escrever algo e depois ler versus ler e depois não regredir.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "read-your-writes",
+        "monotonic-reads",
+        "comparacao"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-8",
+      "question": "Que condição de convergência caracteriza consistência eventual?",
+      "answer": "Sem novas atualizações e com a propagação/resolução funcionando, as cópias devem convergir.",
+      "explanation": "A definição, sozinha, não estabelece um prazo fixo nem garante que toda leitura intermediária mostre o valor mais recente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "consistencia-eventual",
+        "replicacao",
+        "convergencia"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-9",
+      "question": "Toda leitura desatualizada é necessariamente uma falha do sistema?",
+      "answer": "Não. Depende das garantias prometidas e do histórico da operação.",
+      "explanation": "Uma leitura antiga pode ser permitida por consistência eventual, mas violar linearizabilidade ou uma garantia de sessão específica.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "consistencia",
+        "contrato",
+        "dados-desatualizados"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-10",
+      "question": "Como a troca de réplica pode comprometer garantias de leitura mesmo com conexão restabelecida?",
+      "answer": "O novo destino pode não ter a escrita do cliente ou a versão que ele já observou.",
+      "explanation": "Reconexão precisa ser acompanhada de políticas compatíveis com a sessão, como versões mínimas e encaminhamento apropriado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "consistencia-de-sessao",
+        "mobilidade",
+        "reconexao"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-11",
+      "question": "Qual é o conflito central de CAP durante uma partição de rede?",
+      "answer": "Não se pode garantir simultaneamente linearizabilidade e disponibilidade no sentido de CAP para todas as requisições enquanto a comunicação necessária está particionada.",
+      "explanation": "A escolha aparece sob a falha de comunicação; não é uma afirmação de que todo sistema deve ser lento ou indisponível em condições normais.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "cap",
+        "particionamento",
+        "linearizabilidade"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-12",
+      "question": "Recusar uma operação para preservar consistência durante uma partição satisfaz a disponibilidade de CAP?",
+      "answer": "Não no sentido exigido pelo teorema para aquela operação.",
+      "explanation": "Receber uma mensagem de erro não equivale a obter a resposta da operação conforme o serviço deveria atender.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "cap",
+        "disponibilidade",
+        "particionamento"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-13",
+      "question": "Por que resumir CAP a “escolha quaisquer dois de três” pode induzir a erro?",
+      "answer": "Porque a impossibilidade relevante trata a coexistência de consistência e disponibilidade quando há partição; não é uma escolha arbitrária que elimina falhas de rede.",
+      "explanation": "É preciso explicar o cenário de falha e o significado das garantias, não apenas listar três letras.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "cap",
+        "trade-offs",
+        "modelos-de-falha"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-14",
+      "question": "Um timeout distingue com certeza servidor morto, servidor lento e rede congestionada?",
+      "answer": "Não. Diferentes falhas ou atrasos podem produzir a mesma ausência de resposta no prazo.",
+      "explanation": "Essa incerteza é um aspecto de falhas parciais e explica por que recuperação remota difere de uma chamada local comum.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "falhas-parciais",
+        "timeout",
+        "incerteza"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-15",
+      "question": "Por que transparência não significa que uma chamada remota tenha os mesmos custos de uma chamada local?",
+      "answer": "Porque comunicação, sincronização e recuperação ainda consomem tempo e recursos, mesmo com uma interface uniforme.",
+      "explanation": "Stubs e proxies podem esconder detalhes, mas não eliminam latência física, nem tornam coordenação e replicação gratuitas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "transparencia",
+        "latencia",
+        "overhead"
+      ]
+    },
+    {
+      "id": "consistencia-transparencia-16",
+      "question": "Quando expor a distribuição ao usuário é preferível a ocultar tudo?",
+      "answer": "Quando a correção depende de informar que um resultado é incerto ou que os dados estão em cache e podem estar desatualizados.",
+      "explanation": "Uma transferência sem confirmação não deve ser apresentada como fracasso certo nem repetida cegamente; transparência deve facilitar uso sem ocultar informação necessária.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "consistencia-transparencia",
+        "transparencia",
+        "resultado-incerto",
+        "cache",
+        "correcao"
+      ]
+    }
+  ]
+}

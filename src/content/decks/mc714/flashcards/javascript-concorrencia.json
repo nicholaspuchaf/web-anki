@@ -1,0 +1,261 @@
+{
+  "reviewedAt": "2026-11-06",
+  "cards": [
+    {
+      "id": "javascript-concorrencia-1",
+      "question": "O que significa dizer que o JavaScript principal de uma página executa uma tarefa por vez?",
+      "answer": "Naquele contexto de execução, uma tarefa JavaScript não é executada simultaneamente com outra na mesma thread.",
+      "explanation": "O navegador ainda pode usar outros processos e threads; Workers têm contextos de execução separados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "javascript",
+        "event-loop",
+        "main-thread"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-2",
+      "question": "Qual é a ordem da saída? console.log('Início'); setTimeout(() => console.log('Timer'), 1000); console.log('Fim');",
+      "answer": "Início → Fim → Timer.",
+      "explanation": "Registrar o temporizador não bloqueia a continuação do código; o callback será executado posteriormente quando puder ser atendido.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "javascript",
+        "event-loop",
+        "timers"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-3",
+      "question": "setTimeout(callback, 1000) garante que o callback execute exatamente após um segundo?",
+      "answer": "Não. O atraso solicitado não é um prazo exato de execução; o callback ainda depende do agendamento e da disponibilidade do contexto.",
+      "explanation": "Se a thread principal estiver ocupada, a execução pode ocorrer depois. Outras políticas do navegador também podem atrasar timers.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "event-loop",
+        "timers",
+        "agendamento"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-4",
+      "question": "No código console.log('Início'); fetch('/api/usuarios').then(r => r.json()).then(console.log); console.log('Fim');, o que aparece antes dos dados?",
+      "answer": "Início e depois Fim aparecem antes da continuação que mostra os dados.",
+      "explanation": "A espera pela rede não interrompe esse trecho síncrono. Não se deve presumir um tempo exato de chegada dos dados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "fetch",
+        "javascript",
+        "assincronismo"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-5",
+      "question": "Callbacks de Promise são executados automaticamente em outra thread?",
+      "answer": "Não. No contexto principal, suas continuações são atendidas como microtarefas pelo mesmo contexto de execução.",
+      "explanation": "Assincronismo de rede não implica que o código do callback tenha sido transferido para uma thread de cálculo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "promises",
+        "microtarefas",
+        "event-loop"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-6",
+      "question": "Se um loop de cálculo ocupa continuamente a main thread, por que cliques demoram a responder?",
+      "answer": "Porque seus handlers e outras tarefas JavaScript aguardam a liberação da thread.",
+      "explanation": "A rede pode continuar progredindo em outros componentes, mas o código da página responsável por reagir permanece bloqueado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "main-thread",
+        "cpu-bound",
+        "responsividade"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-7",
+      "question": "Colocar um cálculo pesado dentro de setTimeout faz esse cálculo executar em paralelo à main thread?",
+      "answer": "Não. Isso adia o cálculo, que ainda ocupará a main thread quando seu callback executar.",
+      "explanation": "Adiar trabalho e transferi-lo para outra thread são estratégias diferentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "timers",
+        "paralelismo",
+        "cpu-bound"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-8",
+      "question": "Declarar uma função como async desloca automaticamente seu cálculo para um Worker?",
+      "answer": "Não. O trabalho síncrono dessa função continua no contexto em que ela é executada.",
+      "explanation": "async/await organiza continuações; não é uma instrução para criar outra thread nem torna um loop pesado não bloqueante.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "async-await",
+        "cpu-bound",
+        "workers"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-9",
+      "question": "Que problema um Web Worker pode resolver em um cálculo CPU-bound?",
+      "answer": "Executar esse trabalho fora da thread principal, preservando espaço para ela atender a interface.",
+      "explanation": "Threads distintas permitem progresso concorrente; execução física simultânea depende de recursos e escalonamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "workers",
+        "paralelismo",
+        "responsividade"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-10",
+      "question": "Um Web Worker pode atualizar diretamente o DOM da página?",
+      "answer": "Não. Ele normalmente devolve o resultado por mensagens para que o contexto da página atualize a interface.",
+      "explanation": "Separar cálculo de acesso ao DOM faz parte da organização do trabalho entre Worker e main thread.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "workers",
+        "dom",
+        "mensagens"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-11",
+      "question": "Qual é o fluxo básico de uma tarefa delegada a um Web Worker?",
+      "answer": "Main thread envia os dados → Worker calcula → Worker envia o resultado → main thread atualiza a interface.",
+      "explanation": "O cálculo pode progredir enquanto a thread principal atende eventos; o processamento das mensagens e a atualização final também têm custo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "workers",
+        "mensagens",
+        "concorrencia"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-12",
+      "question": "Por que o tamanho dos dados importa ao usar postMessage com um Worker?",
+      "answer": "Porque a comunicação pode envolver clonagem de dados e custo de entrega das mensagens.",
+      "explanation": "Mover um cálculo pequeno com um conjunto enorme de dados pode custar mais que o ganho obtido com a delegação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "workers",
+        "postmessage",
+        "overhead"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-13",
+      "question": "Qual é a diferença entre transferir um ArrayBuffer e compartilhar memória entre threads?",
+      "answer": "Na transferência, a posse do buffer muda e o remetente perde seu acesso ao buffer transferido; compartilhamento permite acesso a uma região comum sob condições próprias.",
+      "explanation": "Transferíveis podem evitar cópia. Memória compartilhada exige suporte, requisitos de segurança e sincronização apropriada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "workers",
+        "transferiveis",
+        "memoria-compartilhada"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-14",
+      "question": "O que a compilação Just-in-Time procura melhorar em JavaScript?",
+      "answer": "A eficiência da execução, compilando e otimizando código durante a execução conforme as estratégias do motor.",
+      "explanation": "O motor pode combinar interpretação e compilação e escolher otimizações conforme a frequência e os tipos observados. Nem toda função recebe a mesma otimização.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "javascript",
+        "jit",
+        "v8"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-15",
+      "question": "Por que JIT e Web Workers não são substitutos?",
+      "answer": "JIT tenta tornar o código mais eficiente; Workers permitem executar trabalho em outro contexto/thread.",
+      "explanation": "Uma função otimizada pelo JIT ainda pode bloquear a main thread se continuar executando nela por muito tempo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "jit",
+        "workers",
+        "responsividade"
+      ]
+    },
+    {
+      "id": "javascript-concorrencia-16",
+      "question": "Uma requisição de 800 ms feita de forma assíncrona passa a ter latência de rede menor?",
+      "answer": "Não necessariamente. O navegador pode sobrepor a espera com outras atividades, reduzindo seu impacto sobre a responsividade.",
+      "explanation": "O resultado remoto continua sujeito à rede. Assincronismo evita manter a main thread parada esperando, sem apagar a distância.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "javascript-concorrencia",
+        "assincronismo",
+        "latencia",
+        "redes"
+      ]
+    }
+  ]
+}

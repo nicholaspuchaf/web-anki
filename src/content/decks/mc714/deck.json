@@ -3,7 +3,7 @@
   "name": "Sistemas Distribuidos - MC714",
   "defaultTemplate": "multi-face",
   "syncEnabled": false,
-  "reviewedAt": "2026-11-05",
+  "reviewedAt": "2026-11-06",
   "tagPolicy": {
     "required": ["sistemas-distribuidos", "unicamp", "mc714"],
     "oneOf": ["p1", "p2", "p3"],
@@ -17,7 +17,12 @@
       "flashcards/cloud-gaming.json",
       "flashcards/aplicacoes-web.json",
       "flashcards/metricas-qoe.json",
-      "flashcards/escolha-arquitetural.json"
+      "flashcards/escolha-arquitetural.json",
+      "flashcards/navegadores-processos.json",
+      "flashcards/javascript-concorrencia.json",
+      "flashcards/transparencia-middleware.json",
+      "flashcards/mobilidade-recuperacao.json",
+      "flashcards/consistencia-transparencia.json"
     ],
     "carousels": [
       "carousels/x-window.json",

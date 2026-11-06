@@ -13,14 +13,14 @@ import { pendingIds } from '../sync/model';
 import { emptySyncState } from '../sync/model';
 import { isBundledId } from './ids';
 
-test('MC714 cobre sete temas, 66 flashcards, 66 páginas e diagramas locais válidos', () => {
+test('MC714 cobre 132 flashcards, sete carrosséis com 66 páginas e diagramas locais válidos', () => {
   const library = withBundledMc714Deck(emptyLibrary);
   const feed = parseFeed(courses);
-  expect(library.cards).toHaveLength(66);
+  expect(library.cards).toHaveLength(132);
   expect(feed.carousels).toHaveLength(7);
   expect(feed.carousels.flatMap((c) => c.slides)).toHaveLength(66);
-  expect(new Set(library.cards.map((c) => c.id)).size).toBe(66);
-  expect(new Set(library.cards.map((c) => c.front)).size).toBe(66);
+  expect(new Set(library.cards.map((c) => c.id)).size).toBe(132);
+  expect(new Set(library.cards.map((c) => c.front)).size).toBe(132);
   for (const item of [...library.cards, ...feed.carousels]) {
     expect(item.deckId).toBe(manifest.id);
     expect(item.tags).toEqual(
@@ -150,4 +150,34 @@ test('atualizações do catálogo preservam revisões, favoritos e cartões pess
   );
   expect(withBundledMc714Deck(result)).toEqual(result);
   expect(pendingIds(result, emptySyncState())).toEqual([]);
+});
+
+test('questões 3 e 4 ampliam o catálogo anterior sem perder revisões ou cartões pessoais', () => {
+  const complete = withBundledMc714Deck(emptyLibrary);
+  const previous = { ...complete, cards: complete.cards.slice(0, 66) };
+  Object.assign(previous.cards[0], {
+    due: 450,
+    interval: 12,
+    reviews: 5,
+    favorite: true,
+  });
+  const old = structuredClone(previous.cards);
+  const withPersonal = putCard(previous, {
+    id: 'mc714-personal-before-q3',
+    deckId: manifest.id,
+    front: 'Minha anotação anterior',
+    back: 'Resposta',
+    tags: ['p1'],
+    due: 10,
+    interval: 3,
+    reviews: 2,
+  });
+  const upgraded = withBundledMc714Deck(withPersonal);
+  expect(upgraded.cards).toHaveLength(133);
+  for (const card of old)
+    expect(upgraded.cards.find((c) => c.id === card.id)).toEqual(card);
+  expect(
+    upgraded.cards.find((c) => c.id === 'mc714-personal-before-q3'),
+  ).toEqual(withPersonal.cards.at(-1)!);
+  expect(pendingIds(upgraded, emptySyncState())).toEqual([]);
 });

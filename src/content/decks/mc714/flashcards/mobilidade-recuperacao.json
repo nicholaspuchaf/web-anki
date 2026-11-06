@@ -1,0 +1,165 @@
+{
+  "reviewedAt": "2026-11-06",
+  "cards": [
+    {
+      "id": "mobilidade-recuperacao-1",
+      "question": "Que problema uma troca de Wi-Fi para rede celular pode causar a uma conexão existente?",
+      "answer": "A mudança de caminho e de endereço pode interromper a conexão usada pela aplicação.",
+      "explanation": "A continuidade depende dos protocolos e mecanismos de mobilidade; não se deve presumir que toda conexão sobreviverá à mudança.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "mobilidade",
+        "tcp",
+        "reconexao"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-2",
+      "question": "Por que usar o mesmo nome lógico não garante manter uma conexão ativa durante a troca de rede?",
+      "answer": "Porque identificar o serviço e preservar o estado da conexão são problemas diferentes.",
+      "explanation": "O nome pode continuar válido enquanto a aplicação precisa resolver o destino e estabelecer uma nova conexão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "nomes-logicos",
+        "mobilidade",
+        "conexoes"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-3",
+      "question": "Quais etapas básicas ajudam a retomar o acesso após uma mudança de rede?",
+      "answer": "Detectar a interrupção, reconectar, localizar uma instância adequada e recuperar o contexto necessário da sessão.",
+      "explanation": "Retomar o transporte não decide automaticamente o resultado de uma operação anterior.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "reconexao",
+        "middleware",
+        "estado-de-sessao"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-4",
+      "question": "Por que a réplica de menor latência nem sempre é uma escolha válida após a reconexão?",
+      "answer": "Ela pode não possuir o estado ou a versão necessários para respeitar as garantias da sessão.",
+      "explanation": "A seleção deve considerar acessibilidade e desempenho junto de correção e consistência.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "replicacao",
+        "latencia",
+        "consistencia-de-sessao"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-5",
+      "question": "Como tokens de sessão independentes da conexão ajudam na mobilidade?",
+      "answer": "Permitem apresentar a identidade/contexto lógico da sessão em uma nova conexão.",
+      "explanation": "A réplica de destino ainda precisa validar o token e acessar o estado necessário; token não transfere automaticamente todo o estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "tokens",
+        "estado-de-sessao",
+        "mobilidade"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-6",
+      "question": "Uma transferência bancária sofreu timeout. O cliente pode concluir que ela não foi executada?",
+      "answer": "Não. A operação pode não ter chegado, pode estar em execução ou pode ter sido concluída sem a resposta chegar ao cliente.",
+      "explanation": "Timeout indica ausência de resposta no prazo, não prova de ausência do efeito.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "timeout",
+        "falhas-parciais",
+        "resultado-incerto"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-7",
+      "question": "Por que reenviar cegamente uma transferência após um timeout é perigoso?",
+      "answer": "Porque a primeira tentativa pode ter sido aplicada, e uma nova execução pode repetir o débito.",
+      "explanation": "A recuperação deve tratar a identidade da operação e verificar ou deduplicar tentativas, em vez de apenas reenviar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "retries",
+        "duplicacao",
+        "operacoes-financeiras"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-8",
+      "question": "O que significa uma operação ser idempotente para fins de repetição?",
+      "answer": "Repeti-la com a mesma intenção produz o mesmo efeito final relevante que aplicá-la uma vez.",
+      "explanation": "Isso não exige respostas byte a byte iguais em todas as tentativas; o foco é evitar efeitos adicionais indevidos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "idempotencia",
+        "retries",
+        "correcao"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-9",
+      "question": "O identificador de uma operação lógica deve mudar a cada retry?",
+      "answer": "Não, se ele é a chave usada para reconhecer novas tentativas da mesma operação.",
+      "explanation": "Gerar um identificador diferente em cada tentativa faz o sistema enxergar operações distintas e pode inutilizar a deduplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "idempotencia",
+        "deduplicacao",
+        "identificadores"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-10",
+      "question": "Que condição torna a deduplicação útil ao mudar de réplica?",
+      "answer": "O novo destino precisa reconhecer a identidade da operação e coordenar o registro do resultado com seu efeito.",
+      "explanation": "Um ID isolado não evita duplicação se a segunda réplica desconhece o histórico ou se duas tentativas aplicam o efeito sem coordenação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "deduplicacao",
+        "replicacao",
+        "recuperacao"
+      ]
+    }
+  ]
+}

@@ -27,6 +27,7 @@ pre-push:
     - name: Testes automatizados
       run: bun test
       fail_text: 'Veja o erro acima. Para reproduzir: bun test'
+
     - name: Build frontend
       run: bun run build
       fail_text: 'Veja o erro acima. Para reproduzir: bun run build'

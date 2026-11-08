@@ -96,6 +96,14 @@ O material é uma síntese original, sem cópia integral dos artigos ou promessa
 cobertura de 100% do texto. Veja o [índice, a matriz de cobertura e a atribuição](docs/design-patterns/README.md).
 Este baralho também é local, não vai ao DynamoDB e preserva revisões e favoritos.
 
+## Administração dos flashcards
+
+Em **Administração** (`/#/admin`), acompanhe os cartões por intervalo e as revisões
+dos últimos 30 dias, com filtro por baralho. O gráfico distingue cartões únicos de
+quantidade de avaliações e mostra o histórico anterior em **Sem data**, à esquerda.
+As novas datas ficam salvas localmente, com cópia no localStorage, sem alterar o
+espaçamento ou perder o progresso existente. Veja [detalhes](docs/review-dashboard.md).
+
 ## Organização por conteúdo
 
 Um mesmo baralho pode reunir flashcards e carrosséis. No Feed, abra **Meus

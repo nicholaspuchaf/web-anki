@@ -1,11 +1,17 @@
 import { useSyncExternalStore } from 'react';
-export type AppPage = 'flashcards' | 'feed';
+export type AppPage = 'flashcards' | 'feed' | 'admin';
 const subscribe = (notify: () => void) => {
   window.addEventListener('hashchange', notify);
   return () => window.removeEventListener('hashchange', notify);
 };
-const currentPage = (): AppPage =>
-  window.location.hash.split('?')[0] === '#/feed' ? 'feed' : 'flashcards';
+const currentPage = (): AppPage => {
+  const path = window.location.hash.split('?')[0];
+  return path === '#/feed'
+    ? 'feed'
+    : path === '#/admin'
+      ? 'admin'
+      : 'flashcards';
+};
 export function usePage() {
   return useSyncExternalStore(
     subscribe,

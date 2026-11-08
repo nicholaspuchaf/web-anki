@@ -28,7 +28,11 @@ export function AppLayout({ online, page, onHome, children }: Props) {
               Folha<span className="brand-caption">LeetCode review</span>
             </span>
           </a>
-          <button className="header-home" onClick={onHome}>
+          <button
+            className="header-home"
+            aria-label="Meus baralhos"
+            onClick={onHome}
+          >
             ▤ <span>Meus baralhos</span>
           </button>
         </div>
@@ -46,6 +50,9 @@ export function AppLayout({ online, page, onHome, children }: Props) {
         </a>
         <a href="#/feed" aria-current={page === 'feed' ? 'page' : undefined}>
           ✦ <span>Feed</span>
+        </a>
+        <a href="#/admin" aria-current={page === 'admin' ? 'page' : undefined}>
+          ▥ <span>Administração</span>
         </a>
       </nav>
       {children}

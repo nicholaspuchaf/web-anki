@@ -1,17 +1,13 @@
 import { readFeedDecks } from './feed-decks';
 import { parseBackup } from '../../features/backup/parse-backup';
-import { openDB } from 'idb';
+import { libraryDatabase as database } from './library-database';
+import { persistHistory, publishHistory } from './review-history-repository';
+import type { ReviewEvent } from '../../features/review-history/model';
 import { emptyLibrary, type Library } from '../../features/library/model';
 import { emptySyncState, type SyncState } from '../../features/sync/model';
 
 export class LibraryConflictError extends Error {}
 
-const database = () =>
-  openDB('folha', 1, {
-    upgrade(db) {
-      db.createObjectStore('library');
-    },
-  });
 function parseLibrary(stored: unknown): Library {
   return stored
     ? parseBackup(JSON.stringify(stored))
@@ -28,6 +24,7 @@ export async function readLibrary(): Promise<Library> {
 export async function writeLibrary(
   library: Library,
   expected?: Library,
+  reviewEvent?: ReviewEvent,
 ): Promise<void> {
   const { referencedIds } = await readFeedDecks();
   const db = await database();
@@ -57,11 +54,20 @@ export async function writeLibrary(
         'Este baralho contém carrosséis. Mova ou exclua os carrosséis antes de excluir o baralho.',
       );
     }
+    let history;
+    try {
+      history = await persistHistory(tx.store, current, library, reviewEvent);
+    } catch (error) {
+      tx.abort();
+      await tx.done.catch(() => {});
+      throw error;
+    }
     await tx.store.put(library, 'current');
     const revision =
       ((await tx.store.get('revision')) as number | undefined) ?? 0;
     await tx.store.put(revision + 1, 'revision');
     await tx.done;
+    publishHistory(history, reviewEvent);
   } finally {
     db.close();
   }
@@ -107,10 +113,20 @@ export function createSyncRepository(apiUrl: string) {
           await tx.done;
           return false;
         }
+        const current = parseLibrary(await tx.store.get('current'));
+        let history;
+        try {
+          history = await persistHistory(tx.store, current, library);
+        } catch (error) {
+          tx.abort();
+          await tx.done.catch(() => {});
+          throw error;
+        }
         await tx.store.put(library, 'current');
         await tx.store.put(state, key);
         await tx.store.put(revision + 1, 'revision');
         await tx.done;
+        publishHistory(history);
         return true;
       } finally {
         db.close();

@@ -57,6 +57,9 @@ export function FeedMenu({
         <a href="#/feed" aria-current="page" onClick={() => action(onLearn)}>
           ✦ Feed
         </a>
+        <a href="#/admin" onClick={onClose}>
+          ▥ Administração
+        </a>
       </nav>
       <div className="feed-menu-actions">
         <button onClick={() => action(onLearn)}>Aprender</button>

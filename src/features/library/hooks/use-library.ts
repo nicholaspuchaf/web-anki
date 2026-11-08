@@ -1,10 +1,14 @@
+import type { ReviewEvent } from '../../review-history/model';
 import { useEffect, useRef, useState } from 'react';
 import { bootstrapLibrary } from '../../bundled-decks/bootstrap';
 import { withBundledDecks } from '../../bundled-decks/catalog';
 import { emptyLibrary, type Library } from '../model';
 import { writeLibrary } from '../../../shared/storage/library-repository';
 
-export type SaveLibrary = (next: Library) => Promise<boolean>;
+export type SaveLibrary = (
+  next: Library,
+  event?: ReviewEvent,
+) => Promise<boolean>;
 
 export function useLibrary() {
   const [library, setLibrary] = useState<Library>(emptyLibrary);
@@ -33,14 +37,14 @@ export function useLibrary() {
     };
   }, []);
 
-  const save: SaveLibrary = async (next) => {
+  const save: SaveLibrary = async (next, event) => {
     if (!ready || lock.current) return false;
     lock.current = true;
     setBusy(true);
     setError('');
     try {
       const seeded = withBundledDecks(next);
-      await writeLibrary(seeded, library);
+      await writeLibrary(seeded, library, event);
       setLibrary(seeded);
       return true;
     } catch (cause) {

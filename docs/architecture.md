@@ -262,3 +262,14 @@ crédito e fonte HTTPS. O modelo de Feed preserva esses campos em backups e mant
 apenas os limites de tamanho e a exigência de pelo menos um card, sem teto de cards
 por carrossel. A paginação visual reduz o número de indicadores, sem restringir a
 navegação ou a quantidade de conteúdo.
+
+## Administração e histórico local
+
+`review-history` oferece a rota `/#/admin`, agregações de intervalos/atividade e
+componentes de gráficos acessíveis, sem biblioteca de gráficos adicional.
+`library-database.ts` centraliza a abertura do banco existente;
+`review-history-repository.ts` grava metadados e eventos na mesma transação do
+progresso e espelha os registros no localStorage após o commit. A migração recupera
+contadores sem inferir datas e mantém registros conhecidos em importações e
+remoções. O diário permanece separado do formato `Library` enviado à nuvem ou
+exportado nos backups atuais. Veja [contrato e recuperação](review-dashboard.md).

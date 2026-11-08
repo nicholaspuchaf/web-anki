@@ -16,6 +16,7 @@ import { DeckPage } from '../features/library/components/DeckPage';
 import { ReviewPage } from '../features/review/ReviewPage';
 import { LibraryEditor } from '../features/library/components/LibraryEditor';
 
+const AdminPage = lazy(() => import('../features/review-history/AdminPage'));
 const FeedPage = lazy(() => import('../features/feed/FeedPage'));
 
 export default function App() {
@@ -110,6 +111,10 @@ export default function App() {
                 : 'Abrindo seus cartões…'}
             </p>
           </div>
+        ) : page === 'admin' ? (
+          <Suspense fallback={<p role="status">Abrindo a administração…</p>}>
+            <AdminPage library={library} now={now} />
+          </Suspense>
         ) : (
           <>
             {view === 'decks' && (

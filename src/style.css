@@ -2689,3 +2689,20 @@ main.feed-main {
   color: var(--text);
   font-weight: 500;
 }
+
+@media (max-width: 760px) {
+  .app-section-nav a {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-section-nav a span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "reviewedAt": "2026-11-08",
+  "cards": [
+    {
+      "id": "estado-compartilhado-1",
+      "question": "Como funciona uma sessão externa acessível por diferentes instâncias?",
+      "answer": "A cria a sessão no armazenamento compartilhado e entrega um identificador ao cliente; B usa esse identificador para recuperar a sessão depois.",
+      "explanation": "O identificador pode ser transportado em cookie. O estado não precisa viajar completo com a requisição nem ficar só na memória de A.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "estado-compartilhado",
+        "sessoes",
+        "redis"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-2",
+      "question": "Por que servidores de aplicação podem continuar stateless ao usar Redis para sessões?",
+      "answer": "Porque o contexto da sessão está fora de uma instância de processamento específica e pode ser recuperado por outras.",
+      "explanation": "A arquitetura separa processamento e armazenamento; a aplicação como um todo continua possuindo estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "redis",
+        "estado-compartilhado"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-3",
+      "question": "O que acontece com a disponibilidade da aplicação se o armazenamento central de sessões ficar indisponível?",
+      "answer": "Requisições que dependam dele podem ficar impedidas de recuperar ou validar o contexto necessário.",
+      "explanation": "Replicar apenas as instâncias de aplicação não protege essa dependência; o armazenamento precisa de estratégia de disponibilidade própria.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "disponibilidade",
+        "dependencias",
+        "estado-compartilhado"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-4",
+      "question": "Que custo de latência o armazenamento externo de sessões pode acrescentar?",
+      "answer": "Consultas e coordenação com outro serviço podem entrar no caminho de atendimento da requisição.",
+      "explanation": "Caches e reutilização podem reduzir acessos, mas exigem considerar atualização e consistência das informações.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "latencia",
+        "sessoes",
+        "consistencia"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-5",
+      "question": "Por que centralizar sessões pode facilitar revogação sem garantir que ela seja instantânea em toda arquitetura?",
+      "answer": "Porque há um ponto lógico onde invalidar a sessão, mas réplicas, caches e requisições em andamento podem ainda exigir tratamento.",
+      "explanation": "O efeito observável depende de quando e como as instâncias consultam ou validam esse estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "revogacao",
+        "estado-compartilhado",
+        "consistencia"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-6",
+      "question": "Adicionar servidores stateless resolve um gargalo no armazenamento de sessões?",
+      "answer": "Não necessariamente. O serviço compartilhado pode continuar limitando o atendimento de todas as instâncias.",
+      "explanation": "O escalonamento da camada de processamento precisa ser acompanhado da capacidade e dos requisitos da camada de estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "gargalos",
+        "escalabilidade-horizontal",
+        "estado-compartilhado"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-7",
+      "question": "Armazenar sessões no Redis torna sua recuperação automaticamente garantida?",
+      "answer": "Não. Persistência, replicação, disponibilidade e recuperação dependem da configuração e da operação escolhidas.",
+      "explanation": "O estado saiu da memória exclusiva da aplicação, mas agora precisa ser protegido no serviço que o armazena.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "redis",
+        "persistencia",
+        "recuperacao-de-falhas"
+      ]
+    },
+    {
+      "id": "estado-compartilhado-8",
+      "question": "Como escolher entre sessão local, token no cliente e sessão compartilhada?",
+      "answer": "Compare latência, escala, revogação, consistência, custo e recuperação exigidos pela aplicação.",
+      "explanation": "Sessão local favorece acesso em memória; tokens distribuem validação; armazenamento compartilhado desacopla instâncias do estado. Cada opção desloca dependências e custos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "trade-offs",
+        "stateful",
+        "stateless",
+        "sessoes"
+      ]
+    }
+  ]
+}

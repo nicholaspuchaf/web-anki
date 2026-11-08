@@ -1,7 +1,7 @@
 # Sistemas Distribuidos - MC714
 
 Baralho local baseado nas notas fornecidas pelo usuário, organizado para **P2**.
-São **132 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
+São **168 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
 flashcards têm uma resposta direta e um verso de justificativa/atenção. Os
 carrosséis desenvolvem explicações, percursos, contas e exercícios; não há cópia
 integral de uma fonte externa. Três diagramas SVG são autorais e ficam em
@@ -47,6 +47,27 @@ Fontes de apoio às distinções de implementação, além do texto de entrada:
 - [Compilação otimizadora — V8](https://v8.dev/docs/turbofan).
 - [Consistência eventual e garantias de sessão — Werner Vogels](https://www.allthingsdistributed.com/2008/12/eventually_consistent.html).
 - [CAP — artigo de Gilbert e Lynch](https://cs.nyu.edu/~apanda/classes/sp25/papers/gilbert02brewers.pdf).
+
+## Questão 5 — Stateless, Stateful e estado de sessão
+
+O texto fornecido acrescenta **36 flashcards**, todos com `p2`, `arquiteturas`,
+`sistemas distribuidos` (grafia solicitada) e a tag padrão `sistemas-distribuidos`,
+além de `unicamp`, `mc714`, `questao-5` e tags específicas por cartão. Os carrosséis
+permanecem com 66 páginas; os 132 flashcards anteriores mantêm IDs e conteúdo.
+
+| Arquivo em `flashcards/`      | Novos cartões | Cobertura                                                                                                    |
+| ----------------------------- | ------------: | ------------------------------------------------------------------------------------------------------------ |
+| `stateless-stateful.json`     |            10 | Fronteira de estado, sessões, dados de negócio, memória volátil, transações e usos de estado local           |
+| `escalabilidade-sessoes.json` |             8 | Scale-out, balanceamento, Round Robin/Least Connections, autoscaling, sticky sessions e falhas               |
+| `tokens-jwt.json`             |            10 | Cookies, claims, validação, assinatura/confidencialidade, revogação, roubo, desatualização e custo de tokens |
+| `estado-compartilhado.json`   |             8 | Sessão por identificador, Redis, latência, gargalos, disponibilidade, consistência e critérios de escolha    |
+
+As respostas distinguem falha de instância de resultado de uma operação em voo,
+assinatura de criptografia e afinidade de replicação. Revogação central e recuperação
+com Redis dependem da estratégia real, em vez de serem garantias automáticas.
+O texto fornecido é a fonte principal; as distinções sobre JWT foram verificadas na
+[RFC 7519](https://www.rfc-editor.org/rfc/rfc7519) e nas
+[boas práticas da RFC 8725](https://www.rfc-editor.org/rfc/rfc8725).
 
 ## Tags obrigatórias
 

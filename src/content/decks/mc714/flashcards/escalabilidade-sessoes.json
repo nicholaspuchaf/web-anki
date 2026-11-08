@@ -1,0 +1,147 @@
+{
+  "reviewedAt": "2026-11-08",
+  "cards": [
+    {
+      "id": "escalabilidade-sessoes-1",
+      "question": "O que significa escalabilidade horizontal, ou scale-out?",
+      "answer": "Aumentar a capacidade adicionando instâncias ao sistema.",
+      "explanation": "É diferente de ampliar CPU ou memória de uma única máquina; o ganho real depende dos demais gargalos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "escalabilidade-horizontal",
+        "scale-out"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-2",
+      "question": "Por que instâncias stateless simplificam o balanceamento de carga?",
+      "answer": "Porque o balanceador não precisa preservar uma associação de sessão exclusiva entre cliente e instância.",
+      "explanation": "Qualquer destino apto pode atender, desde que disponha do contexto e das dependências necessários.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "balanceamento-de-carga"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-3",
+      "question": "Como Round Robin difere de Least Connections no balanceamento?",
+      "answer": "Round Robin alterna destinos em uma sequência; Least Connections considera a quantidade de conexões ativas para escolher um destino.",
+      "explanation": "Nenhum desses critérios, sozinho, mede perfeitamente o custo de cada requisição ou elimina todos os desequilíbrios.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "balanceamento-de-carga",
+        "round-robin",
+        "least-connections"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-4",
+      "question": "Por que stateless costuma facilitar autoscaling?",
+      "answer": "Novas instâncias podem participar do atendimento sem receber previamente uma sessão exclusiva de cada usuário.",
+      "explanation": "Instâncias ainda precisam estar prontas e acessar suas dependências; remover uma instância também exige tratar requisições em andamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "autoscaling",
+        "elasticidade"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-5",
+      "question": "O que são sticky sessions, ou afinidade de sessão?",
+      "answer": "Uma política que procura encaminhar as requisições de um cliente ao mesmo servidor.",
+      "explanation": "É útil quando aquele destino mantém o contexto necessário, mas não cria cópias desse estado em outros servidores.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "afinidade-de-sessao",
+        "stateful"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-6",
+      "question": "Por que sticky sessions podem desequilibrar a carga?",
+      "answer": "Porque usuários com cargas distintas ficam associados a instâncias específicas, limitando a redistribuição de suas requisições.",
+      "explanation": "Ter o mesmo número de sessões em dois servidores não garante o mesmo volume ou custo de trabalho.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "balanceamento-de-carga",
+        "gargalos"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-7",
+      "question": "Sticky sessions resolvem a perda de estado quando o servidor associado falha?",
+      "answer": "Não. Afinidade de roteamento não é persistência nem replicação do estado.",
+      "explanation": "O novo destino precisa recuperar o contexto por outro mecanismo; manter a associação com o servidor que falhou não o restaura.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "recuperacao-de-falhas",
+        "replicacao"
+      ]
+    },
+    {
+      "id": "escalabilidade-sessoes-8",
+      "question": "Se uma instância stateless falhar, o que outra instância pode assumir e o que permanece incerto?",
+      "answer": "Outra instância apta pode atender às próximas requisições; isso não determina o resultado de uma operação que estava em andamento.",
+      "explanation": "Não há sessão local exclusiva a recuperar, mas um retry de uma operação com efeitos ainda exige cuidado com duplicação e resultado incerto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "disponibilidade",
+        "retries"
+      ]
+    }
+  ]
+}

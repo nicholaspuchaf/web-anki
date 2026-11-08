@@ -3,7 +3,7 @@
   "name": "Sistemas Distribuidos - MC714",
   "defaultTemplate": "multi-face",
   "syncEnabled": false,
-  "reviewedAt": "2026-11-06",
+  "reviewedAt": "2026-11-08",
   "tagPolicy": {
     "required": ["sistemas-distribuidos", "unicamp", "mc714"],
     "oneOf": ["p1", "p2", "p3"],
@@ -22,7 +22,11 @@
       "flashcards/javascript-concorrencia.json",
       "flashcards/transparencia-middleware.json",
       "flashcards/mobilidade-recuperacao.json",
-      "flashcards/consistencia-transparencia.json"
+      "flashcards/consistencia-transparencia.json",
+      "flashcards/stateless-stateful.json",
+      "flashcards/escalabilidade-sessoes.json",
+      "flashcards/tokens-jwt.json",
+      "flashcards/estado-compartilhado.json"
     ],
     "carousels": [
       "carousels/x-window.json",

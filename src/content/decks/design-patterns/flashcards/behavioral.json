@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-11-04",
+  "reviewedAt": "2026-11-08",
   "name": "Design Patterns · Conceitos e decisões",
   "syncEnabled": false,
   "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
@@ -20,44 +20,54 @@
         {
           "id": "conceito",
           "question": "O que a cadeia desacopla?",
-          "answer": "Quem envia uma solicitação e os handlers que podem tratá-la, encadeados em ordem configurável."
+          "answer": "Quem envia uma solicitação e os handlers que podem tratá-la, encadeados em ordem configurável.",
+          "rationale": "O remetente conhece a entrada da cadeia, não cada possível tratador. Os elos decidem o encaminhamento conforme um contrato comum. Isso permite mudar participantes e ordem sem espalhar essas escolhas pelo código que envia o pedido."
         },
         {
           "id": "problema",
           "question": "Qual problema evita?",
-          "answer": "Acoplar o remetente a todos os possíveis tratadores e suas condições de execução."
+          "answer": "Acoplar o remetente a todos os possíveis tratadores e suas condições de execução.",
+          "rationale": "Sem a cadeia, o remetente pode acumular condições para todos os tratamentos possíveis. Delegar esse encaminhamento reduz seu conhecimento dos tratadores concretos, embora a composição ainda precise configurar uma sequência correta."
         },
         {
           "id": "estrutura",
           "question": "O que cada handler decide?",
-          "answer": "Executar sua parte, interromper ou encaminhar ao próximo; o contrato deve definir a semântica adotada."
+          "answer": "Executar sua parte, interromper ou encaminhar ao próximo; o contrato deve definir a semântica adotada.",
+          "rationale": "Um handler precisa saber o que executar e quando passar adiante. Algumas cadeias acumulam etapas; outras param no primeiro atendimento. Definir essa semântica evita que dois elos tenham expectativas incompatíveis sobre a continuação."
         },
         {
           "id": "implementacao",
           "question": "Como construir a cadeia?",
-          "answer": "Padronize a operação, armazene o próximo elo e configure a ordem no ponto de composição."
+          "answer": "Padronize a operação, armazene o próximo elo e configure a ordem no ponto de composição.",
+          "rationale": "O contrato comum permite conectar os elos, e a referência ao próximo permite encaminhar. Montar a ordem fora dos handlers separa a composição do tratamento. A ordem escolhida ainda precisa respeitar dependências entre etapas."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo permite interrupção?",
-          "answer": "Uma requisição passa por autenticação, quota e validação; uma reprovação encerra o processamento."
+          "answer": "Uma requisição passa por autenticação, quota e validação; uma reprovação encerra o processamento.",
+          "rationale": "Uma reprovação interrompe o percurso e impede etapas posteriores. O exemplo mostra por que a cadeia não é apenas uma lista de chamadas obrigatórias: cada elo pode decidir não continuar, conforme a política definida."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando usar esse encadeamento?",
-          "answer": "Quando tratadores e ordem variam ou mais de um objeto pode receber a solicitação."
+          "answer": "Quando tratadores e ordem variam ou mais de um objeto pode receber a solicitação.",
+          "rationale": "O padrão agrega valor quando o conjunto de tratadores ou sua ordem varia, ou quando o remetente não deve escolher quem resolverá. Para uma sequência fixa e trivial, chamadas diretas podem ser mais claras."
         },
         {
           "id": "trade-offs",
           "question": "Qual falha não pode ficar implícita?",
-          "answer": "Uma solicitação pode terminar sem tratamento. Defina fallback, efeitos parciais e regras claras de interrupção."
+          "answer": "Uma solicitação pode terminar sem tratamento. Defina fallback, efeitos parciais e regras claras de interrupção.",
+          "rationale": "Chegar ao fim não garante que alguém tenha atendido o pedido. Também pode haver efeitos produzidos por elos anteriores antes de uma falha. Fallback e regras de interrupção tornam esses resultados previsíveis."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Decorator?",
-          "answer": "A cadeia pode parar ou escolher tratadores; decorators normalmente combinam comportamento ao redor de um componente."
+          "answer": "A cadeia pode parar ou escolher tratadores; decorators normalmente combinam comportamento ao redor de um componente.",
+          "rationale": "Na cadeia, interromper ou selecionar quem atende é parte importante do contrato. Decorators normalmente envolvem um componente para somar capacidades. A aparência de delegação é parecida, mas o controle do encaminhamento é a diferença central."
         }
-      ]
+      ],
+      "explanation": "Chain of Responsibility organiza uma solicitação como uma passagem por uma sequência de tratadores. Cada elo recebe o pedido e, conforme o contrato, trata, interrompe ou encaminha ao próximo. O remetente não precisa conhecer todos os participantes.\n\nUma cadeia de validação pode executar várias etapas até uma reprovação; outra cadeia pode parar no primeiro tratador capaz de resolver o pedido. Essas duas formas precisam de regras explícitas. A ordem também é parte do comportamento: autenticar antes de autorizar faz diferença. Ao final, deve estar claro o que acontece se ninguém assumir a solicitação.",
+      "background": "Contexto: uma API recebe pedidos que precisam passar por autenticação, verificação de quota e validação de campos.\n\nA aplicação monta a cadeia nessa ordem. A autenticação rejeita credenciais inválidas sem consultar as demais etapas. Se aprovar, encaminha à quota; depois, à validação. Só então o pedido chega à operação principal. A composição pode trocar a ordem ou os participantes, mas precisa garantir que nenhuma rota pule controles obrigatórios. O último elo define o resultado de uma solicitação que chegou ao fim sem ser atendida."
     },
     {
       "id": "command",
@@ -74,44 +84,54 @@
         {
           "id": "conceito",
           "question": "O que Command transforma em objeto?",
-          "answer": "Uma solicitação, com dados e comportamento suficientes para ser executada por uma interface comum."
+          "answer": "Uma solicitação, com dados e comportamento suficientes para ser executada por uma interface comum.",
+          "rationale": "A solicitação passa a ter identidade e dados próprios em um objeto com uma operação comum. Isso permite tratá-la independentemente do controle que a dispara. Não é necessário colocar toda a regra de negócio dentro do comando."
         },
         {
           "id": "problema",
           "question": "Que acoplamento ele reduz?",
-          "answer": "O componente que dispara a ação deixa de conhecer detalhes do objeto que realiza o trabalho."
+          "answer": "O componente que dispara a ação deixa de conhecer detalhes do objeto que realiza o trabalho.",
+          "rationale": "O botão precisa apenas invocar executar(), sem conhecer a API de gravação ou seus parâmetros internos. O comando reúne essa informação e delega ao objeto adequado, reduzindo o acoplamento do disparador."
         },
         {
           "id": "estrutura",
           "question": "Quais são os papéis principais?",
-          "answer": "Invoker aciona Command; o comando concreto guarda parâmetros e delega ao Receiver. Cliente configura esses objetos."
+          "answer": "Invoker aciona Command; o comando concreto guarda parâmetros e delega ao Receiver. Cliente configura esses objetos.",
+          "rationale": "Invoker decide quando acionar; Command apresenta o contrato; o comando concreto guarda dados e chama Receiver, que realiza o trabalho de domínio. O cliente monta essas relações. Separar os papéis evita concentrar tudo na interface gráfica."
         },
         {
           "id": "implementacao",
           "question": "Como preparar comandos para desfazer?",
-          "answer": "Registre informações necessárias antes do efeito e defina undo; nem toda operação possui inversão segura."
+          "answer": "Registre informações necessárias antes do efeito e defina undo; nem toda operação possui inversão segura.",
+          "rationale": "Para desfazer, muitas vezes é preciso guardar o estado anterior antes de executar. Uma operação externa irreversível pode não ter undo verdadeiro. O padrão facilita representar ações, mas não cria uma inversão segura para todo efeito."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra reutilização da ação?",
-          "answer": "Botão e atalho executam o mesmo SalvarDocumento, sem duplicar a lógica de gravação."
+          "answer": "Botão e atalho executam o mesmo SalvarDocumento, sem duplicar a lógica de gravação.",
+          "rationale": "Botão e atalho diferem no modo de disparar, mas podem apontar para a mesma ação. O comando evita duplicar a coordenação da gravação nos controles. O serviço receptor continua responsável pelo trabalho de salvar."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando um objeto de ação ajuda?",
-          "answer": "Para filas, histórico, agendamento, macros ou troca de ações sem alterar quem as invoca."
+          "answer": "Para filas, histórico, agendamento, macros ou troca de ações sem alterar quem as invoca.",
+          "rationale": "Uma ação representada como objeto pode ser armazenada, ordenada ou combinada com outras. Filas e histórico ainda exigem políticas próprias de persistência, falha e execução; o padrão fornece a forma de representar o pedido."
         },
         {
           "id": "trade-offs",
           "question": "Qual cuidado vale para replay?",
-          "answer": "Comandos com efeitos externos podem precisar de idempotência; repetir execute() não garante repetir apenas a intenção."
+          "answer": "Comandos com efeitos externos podem precisar de idempotência; repetir execute() não garante repetir apenas a intenção.",
+          "rationale": "Reexecutar um comando de cobrança pode cobrar duas vezes. Idempotência ou identificação única da operação ajudam a evitar duplicação de efeitos. Guardar o objeto do comando não garante que repetir sua execução seja seguro."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Strategy?",
-          "answer": "Command representa uma solicitação executável; Strategy representa uma maneira intercambiável de executar um algoritmo."
+          "answer": "Command representa uma solicitação executável; Strategy representa uma maneira intercambiável de executar um algoritmo.",
+          "rationale": "Command representa o que será solicitado, como salvar este documento. Strategy representa como realizar um cálculo ou algoritmo. Um comando pode usar uma estratégia internamente, mas a intenção de cada objeto continua diferente."
         }
-      ]
+      ],
+      "explanation": "Command transforma um pedido em um objeto. Em vez de um botão conhecer todos os detalhes para salvar um documento, ele recebe uma ação com executar(). O objeto da ação guarda os parâmetros necessários e sabe a quem delegar o trabalho.\n\nIsso permite disparar a mesma ação por botão ou atalho, colocá-la numa fila ou registrar um histórico. O pedido se torna algo que pode ser guardado e passado adiante. Desfazer e repetir não aparecem automaticamente: desfazer exige informações e uma inversão válida; repetir uma operação externa pode duplicar seus efeitos se não houver proteção adequada.",
+      "background": "Contexto: um editor permite salvar por botão, menu e atalho. Repetir a lógica de gravação em cada lugar facilitaria divergências.\n\nSalvarDocumento guarda a referência ao documento e implementa executar(), delegando a gravação ao serviço apropriado. Os três controles recebem o mesmo tipo de comando. Mais tarde, comandos de edição podem guardar o conteúdo anterior para desfazer. Já um comando que envia um pagamento não pode ser repetido como se fosse uma edição local: precisa considerar duplicação e confirmação do efeito externo."
     },
     {
       "id": "iterator",
@@ -128,44 +148,54 @@
         {
           "id": "conceito",
           "question": "O que o Iterator esconde?",
-          "answer": "A representação da coleção enquanto fornece acesso sequencial aos seus elementos."
+          "answer": "A representação da coleção enquanto fornece acesso sequencial aos seus elementos.",
+          "rationale": "O consumidor vê uma sequência de elementos, não os detalhes de armazenamento. A estrutura interna continua existindo, mas o algoritmo de uso pode percorrê-la sem conhecer seus vínculos e nós."
         },
         {
           "id": "problema",
           "question": "Qual mistura de responsabilidades ele evita?",
-          "answer": "Colocar todos os algoritmos de navegação e o estado de cada percurso dentro da coleção."
+          "answer": "Colocar todos os algoritmos de navegação e o estado de cada percurso dentro da coleção.",
+          "rationale": "A coleção deve organizar dados; cada percurso precisa de posição e regras de navegação próprias. Colocar tudo num cursor único da coleção mistura responsabilidades e atrapalha percursos simultâneos."
         },
         {
           "id": "estrutura",
           "question": "Onde fica a posição do percurso?",
-          "answer": "No iterador concreto; a coleção fornece um modo de criar iteradores independentes."
+          "answer": "No iterador concreto; a coleção fornece um modo de criar iteradores independentes.",
+          "rationale": "O iterador mantém o progresso de sua navegação. Criar dois iteradores independentes permite duas posições diferentes sobre a mesma coleção, sem que um avanço desloque o outro."
         },
         {
           "id": "implementacao",
           "question": "Como separar navegação e armazenamento?",
-          "answer": "Defina contrato de iteração, implemente percurso e exponha a criação sem revelar a estrutura interna."
+          "answer": "Defina contrato de iteração, implemente percurso e exponha a criação sem revelar a estrutura interna.",
+          "rationale": "O contrato fornece operações de navegação, enquanto a implementação decide como encontrar os próximos elementos. A coleção disponibiliza iteradores sem obrigar o cliente a manipular diretamente seus nós internos."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra percursos distintos?",
-          "answer": "Uma árvore oferece iterador em profundidade e outro em largura, mantendo o cliente no mesmo contrato."
+          "answer": "Uma árvore oferece iterador em profundidade e outro em largura, mantendo o cliente no mesmo contrato.",
+          "rationale": "Largura e profundidade visitam a mesma árvore em ordens diferentes. O contrato comum deixa o consumidor reutilizar seu processamento; a diferença de percurso fica encapsulada no iterador escolhido."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando vale introduzir um iterador?",
-          "answer": "Quando há estruturas complexas, vários percursos ou necessidade de múltiplas navegações simultâneas."
+          "answer": "Quando há estruturas complexas, vários percursos ou necessidade de múltiplas navegações simultâneas.",
+          "rationale": "O padrão ajuda quando navegar é uma responsabilidade relevante: estruturas complexas, ordens alternativas ou percursos simultâneos. Em coleções comuns, a linguagem frequentemente já oferece a abstração necessária."
         },
         {
           "id": "trade-offs",
           "question": "O que definir para mutações?",
-          "answer": "Decida se o percurso usa snapshot, reflete mudanças ou falha; não deixe invalidação e concorrência ambíguas."
+          "answer": "Decida se o percurso usa snapshot, reflete mudanças ou falha; não deixe invalidação e concorrência ambíguas.",
+          "rationale": "Uma remoção pode tornar inválida a posição guardada pelo iterador. Snapshot, acompanhamento de alterações e falha explícita são políticas diferentes. A escolha deve ser documentada para evitar saltos, repetições ou resultados inesperados."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com Composite?",
-          "answer": "Iterator percorre uma estrutura; Composite modela a árvore. A mesma árvore pode oferecer vários iteradores."
+          "answer": "Iterator percorre uma estrutura; Composite modela a árvore. A mesma árvore pode oferecer vários iteradores.",
+          "rationale": "Composite descreve a relação entre folhas e grupos. Iterator define como visitar os elementos dessa estrutura. Modelar uma árvore não obriga um único percurso, e um iterador pode existir sobre outras coleções além de árvores."
         }
-      ]
+      ],
+      "explanation": "Iterator separa o percurso de uma coleção da forma como ela armazena seus dados. O cliente pede o próximo elemento sem precisar saber se há uma lista, árvore ou outra estrutura por trás.\n\nCada iterador guarda a posição de seu próprio percurso. Assim, duas pessoas podem navegar pela mesma coleção sem compartilhar o mesmo marcador. Uma árvore também pode oferecer percursos em largura ou profundidade pelo mesmo contrato de uso. O comportamento diante de alterações precisa ser definido: o iterador pode trabalhar com uma fotografia dos dados, acompanhar mudanças permitidas ou detectar que seu percurso foi invalidado.",
+      "background": "Contexto: um sistema organiza categorias em uma árvore e precisa listá-las tanto por níveis quanto descendo por cada ramo.\n\nA coleção fornece um iterador em largura e outro em profundidade. O consumidor usa a mesma ideia de avançar e obter o elemento, enquanto cada iterador guarda sua fila ou pilha de navegação. Dois percursos podem coexistir sem alterar um cursor global na árvore. Se uma categoria for removida durante a navegação, o contrato determina se o percurso continua, usa uma cópia ou informa invalidação."
     },
     {
       "id": "mediator",
@@ -182,44 +212,54 @@
         {
           "id": "conceito",
           "question": "O que o Mediator centraliza?",
-          "answer": "Regras de comunicação entre componentes que deixam de depender diretamente uns dos outros."
+          "answer": "Regras de comunicação entre componentes que deixam de depender diretamente uns dos outros.",
+          "rationale": "O padrão centraliza regras de comunicação, não necessariamente todos os dados e cálculos. Os componentes deixam de chamar diretamente muitos colegas, e o mediador passa a conhecer as relações específicas daquele contexto."
         },
         {
           "id": "problema",
           "question": "Qual sintoma sugere mediação?",
-          "answer": "Mudanças em um componente exigem conhecer e ajustar muitos colegas conectados diretamente."
+          "answer": "Mudanças em um componente exigem conhecer e ajustar muitos colegas conectados diretamente.",
+          "rationale": "Quando cada componente chama vários outros, uma mudança pode exigir ajustes em toda a rede. Extrair a coordenação reduz o conhecimento mútuo e torna mais visíveis as regras que conectam os participantes."
         },
         {
           "id": "estrutura",
           "question": "Como os colegas interagem?",
-          "answer": "Notificam o mediador; ele decide quais participantes devem reagir conforme o contexto."
+          "answer": "Notificam o mediador; ele decide quais participantes devem reagir conforme o contexto.",
+          "rationale": "Os colegas informam acontecimentos ao mediador. Ele interpreta o contexto e coordena as reações. O fluxo pode usar callbacks ou notificações; o ponto central é quem possui as regras de interação."
         },
         {
           "id": "implementacao",
           "question": "Como extrair essa coordenação?",
-          "answer": "Identifique interações, defina notificações e mova a coordenação para um mediador com responsabilidade delimitada."
+          "answer": "Identifique interações, defina notificações e mova a coordenação para um mediador com responsabilidade delimitada.",
+          "rationale": "É necessário identificar quais regras conectam componentes e extraí-las para uma responsabilidade delimitada. Regras puramente locais não precisam migrar. Isso evita trocar muitos acoplamentos pequenos por um coordenador excessivamente grande."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo reduz dependências?",
-          "answer": "Um formulário avisa sobre mudança de seleção; o mediador habilita campos e atualiza a validação."
+          "answer": "Um formulário avisa sobre mudança de seleção; o mediador habilita campos e atualiza a validação.",
+          "rationale": "A seleção não precisa chamar diretamente cada campo e botão. O mediador conhece a regra da tela e coordena habilitação e validação. Essa mudança permite reutilizar componentes sem carregar toda a interação original."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando esse arranjo ajuda?",
-          "answer": "Quando componentes precisam ser reutilizados sem carregar todas as relações particulares da tela ou fluxo original."
+          "answer": "Quando componentes precisam ser reutilizados sem carregar todas as relações particulares da tela ou fluxo original.",
+          "rationale": "Um componente reutilizável não deveria depender de todos os colegas de uma tela específica. Separar a mediação permite trocar o contexto de interação sem reimplementar o componente inteiro."
         },
         {
           "id": "trade-offs",
           "question": "Qual concentração deve ser evitada?",
-          "answer": "O mediador pode virar objeto onisciente; separe jornadas e mantenha regras locais nos componentes apropriados."
+          "answer": "O mediador pode virar objeto onisciente; separe jornadas e mantenha regras locais nos componentes apropriados.",
+          "rationale": "Centralizar comunicação demais pode criar um ponto com conhecimento excessivo e manutenção difícil. Dividir jornadas e manter regras locais nos donos apropriados limita esse crescimento sem perder a coordenação necessária."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Observer?",
-          "answer": "Mediator define coordenação entre colegas; Observer define assinatura de notificações. Podem colaborar no mesmo sistema."
+          "answer": "Mediator define coordenação entre colegas; Observer define assinatura de notificações. Podem colaborar no mesmo sistema.",
+          "rationale": "Observer organiza assinaturas e notificações; Mediator organiza regras de colaboração. Um mediador pode receber eventos por Observer e decidir ações, mas apenas transmitir eventos não representa necessariamente mediação de uma jornada."
         }
-      ]
+      ],
+      "explanation": "Mediator concentra regras de interação entre componentes. Em vez de um campo de formulário conhecer vários outros campos e botões, ele avisa a um coordenador que algo aconteceu. O mediador decide quem deve reagir.\n\nIsso reduz a rede de dependências diretas: cada componente conhece a mediação necessária, e não todos os colegas. A coordenação pertence ao contexto da tela ou jornada, enquanto regras locais continuam nos componentes. O cuidado é não transformar o mediador num objeto que sabe e faz tudo. Separar jornadas distintas ajuda a manter sua responsabilidade compreensível.",
+      "background": "Contexto: um formulário de entrega possui tipo de retirada, endereço e botão de confirmação. Ao escolher retirada na loja, os campos de endereço devem ser desabilitados e a validação precisa mudar.\n\nO seletor notifica o mediador da tela. O mediador atualiza os campos e solicita nova validação. O seletor não precisa conhecer o botão nem os detalhes do endereço, podendo ser reutilizado em outra tela. A validação de um CEP continua no componente ou serviço apropriado; o mediador organiza quando cada participante deve agir."
     },
     {
       "id": "memento",
@@ -236,44 +276,54 @@
         {
           "id": "conceito",
           "question": "Qual é a intenção de Memento?",
-          "answer": "Capturar e restaurar estado anterior sem expor detalhes internos do objeto."
+          "answer": "Capturar e restaurar estado anterior sem expor detalhes internos do objeto.",
+          "rationale": "O próprio objeto captura e restaura seu estado, mantendo o conhecimento de sua representação. O histórico guarda a versão sem precisar acessar diretamente todos os campos internos. Assim, restauração e encapsulamento podem coexistir."
         },
         {
           "id": "problema",
           "question": "Que problema do histórico ele evita?",
-          "answer": "Fazer o gerenciador de undo conhecer e manipular campos privados do objeto restaurado."
+          "answer": "Fazer o gerenciador de undo conhecer e manipular campos privados do objeto restaurado.",
+          "rationale": "Se o gerenciador de undo copiar campos privados por conta própria, passa a depender da representação do objeto. Qualquer mudança interna exige alterar o histórico. Memento mantém essa interpretação com quem conhece o estado."
         },
         {
           "id": "estrutura",
           "question": "Quem pode interpretar o snapshot?",
-          "answer": "Originator cria e restaura; Memento guarda estado; Caretaker organiza o histórico sem depender de sua representação interna."
+          "answer": "Originator cria e restaura; Memento guarda estado; Caretaker organiza o histórico sem depender de sua representação interna.",
+          "rationale": "Originator sabe criar e restaurar; Memento representa a versão guardada; Caretaker administra a coleção dessas versões. Essa separação permite ordenar e selecionar snapshots sem dar ao histórico controle sobre sua estrutura interna."
         },
         {
           "id": "implementacao",
           "question": "Como preservar encapsulamento?",
-          "answer": "Ofereça acesso restrito ao estado e uma interface limitada de metadados para quem organiza os snapshots."
+          "answer": "Ofereça acesso restrito ao estado e uma interface limitada de metadados para quem organiza os snapshots.",
+          "rationale": "O histórico pode precisar de metadados como nome ou horário, mas não do conteúdo interno completo. Expor apenas o necessário preserva encapsulamento. As ferramentas da linguagem determinam como restringir efetivamente esse acesso."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo representa restauração?",
-          "answer": "Um editor captura o estado antes de uma edição e restaura esse memento ao desfazer."
+          "answer": "Um editor captura o estado antes de uma edição e restaura esse memento ao desfazer.",
+          "rationale": "A captura ocorre antes da mudança para que exista um estado ao qual retornar. Ao desfazer, quem restaura é o editor ou documento que entende aquele registro. Guardar uma referência ao objeto mutável atual não basta para preservar o passado."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando esse mecanismo ajuda?",
-          "answer": "Quando rollback local e histórico precisam preservar o encapsulamento de objetos cujo estado é complexo."
+          "answer": "Quando rollback local e histórico precisam preservar o encapsulamento de objetos cujo estado é complexo.",
+          "rationale": "O padrão ajuda quando o estado é complexo e sua restauração não deve exigir conhecimento externo dos detalhes. É especialmente útil para histórico local; não substitui automaticamente transações entre vários serviços."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo cresce com o histórico?",
-          "answer": "Snapshots podem consumir muita memória; defina retenção e isolamento das referências mutáveis para preservar versões antigas."
+          "answer": "Snapshots podem consumir muita memória; defina retenção e isolamento das referências mutáveis para preservar versões antigas.",
+          "rationale": "Cada snapshot pode guardar uma parcela grande do estado. Retenção limita crescimento, e isolamento das referências impede alterações retroativas. A política precisa equilibrar memória, custo de cópia e quantidade de passos disponíveis para desfazer."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com Command?",
-          "answer": "Command pode usar Memento para desfazer; snapshots de estado não desfazem automaticamente efeitos em sistemas externos."
+          "answer": "Command pode usar Memento para desfazer; snapshots de estado não desfazem automaticamente efeitos em sistemas externos.",
+          "rationale": "Command registra a ação; Memento registra estado. Um comando pode guardar um memento antes de agir e restaurá-lo ao desfazer. Efeitos externos precisam de compensação ou protocolos próprios, pois restaurar um objeto local não os reverte."
         }
-      ]
+      ],
+      "explanation": "Memento permite guardar uma versão anterior de um objeto e restaurá-la sem entregar seus detalhes internos ao gerenciador do histórico. Imagine salvar um ponto de retorno antes de editar um documento.\n\nO objeto que conhece seu próprio estado, chamado Originator, cria e interpreta o memento. O Caretaker guarda e organiza esses registros, mas não precisa manipular seus campos internos. O registro deve preservar a versão capturada: compartilhar uma lista mutável com o objeto atual pode fazer o passado mudar junto com o presente. Restaurar memória local também não desfaz automaticamente mensagens ou pagamentos já enviados.",
+      "background": "Contexto: um editor oferece desfazer alterações. Antes de uma edição, Documento.criarMemento() captura o estado necessário. O histórico guarda o registro.\n\nAo desfazer, o histórico entrega esse memento ao documento, que restaura seu conteúdo. O histórico não precisa saber como fontes, blocos e seleção são representados internamente. Para limitar memória, a aplicação pode manter apenas uma quantidade definida de versões. Se uma edição também publicou conteúdo num serviço externo, restaurar o documento não apaga essa publicação; esse efeito precisa de uma política separada."
     },
     {
       "id": "observer",
@@ -290,44 +340,54 @@
         {
           "id": "conceito",
           "question": "O que Observer oferece?",
-          "answer": "Assinatura de notificações para objetos interessados em mudanças de um publicador."
+          "answer": "Assinatura de notificações para objetos interessados em mudanças de um publicador.",
+          "rationale": "O publicador permite inscrição e avisa mudanças sem depender das classes específicas dos interessados. Esse vínculo por contrato permite variar os assinantes durante a execução."
         },
         {
           "id": "problema",
           "question": "Qual problema evita?",
-          "answer": "Polling constante ou dependência do publicador em uma lista fixa de classes consumidoras."
+          "answer": "Polling constante ou dependência do publicador em uma lista fixa de classes consumidoras.",
+          "rationale": "Consultar repetidamente para descobrir mudanças desperdiça trabalho e pode atrasar reações. Notificar interessados reduz essa necessidade. Ao usar um contrato comum, o publicador também evita conhecer uma lista fixa de consumidores concretos."
         },
         {
           "id": "estrutura",
           "question": "Qual contrato conecta os participantes?",
-          "answer": "O publicador mantém assinaturas e notifica uma interface comum implementada pelos assinantes."
+          "answer": "O publicador mantém assinaturas e notifica uma interface comum implementada pelos assinantes.",
+          "rationale": "A interface de notificação permite tratar diferentes assinantes do mesmo modo. O publicador administra as inscrições e usa esse contrato para avisar; cada interessado decide como reagir."
         },
         {
           "id": "implementacao",
           "question": "Como gerenciar inscrições?",
-          "answer": "Disponibilize assinatura e cancelamento e defina dados do evento e momento de notificação."
+          "answer": "Disponibilize assinatura e cancelamento e defina dados do evento e momento de notificação.",
+          "rationale": "Assinar sem poder cancelar deixa o ciclo de vida incompleto. Também é preciso definir o conteúdo do evento e se ele representa uma mudança já concluída, para que assinantes não observem um estado inconsistente."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra múltiplos interessados?",
-          "answer": "Ao publicar PedidoConfirmado, a tela e o relatório reagem por assinaturas independentes."
+          "answer": "Ao publicar PedidoConfirmado, a tela e o relatório reagem por assinaturas independentes.",
+          "rationale": "Tela e relatório têm objetivos diferentes, mas reagem ao mesmo acontecimento. Assinaturas independentes permitem acrescentar ou remover um deles sem colocar sua classe concreta dentro da lógica do pedido."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando usar notificações?",
-          "answer": "Quando interessados variam em execução e mudanças de um objeto precisam informar outros sem acoplamento concreto."
+          "answer": "Quando interessados variam em execução e mudanças de um objeto precisam informar outros sem acoplamento concreto.",
+          "rationale": "O padrão é útil quando o conjunto de interessados varia e uma mudança precisa ser divulgada sem dependências concretas. Para uma chamada obrigatória a um único colaborador, delegação direta pode ser mais clara."
         },
         {
           "id": "trade-offs",
           "question": "Qual risco surge no ciclo de vida?",
-          "answer": "Inscrições esquecidas retêm objetos; ordem, falhas e reentrância das notificações precisam de contrato explícito."
+          "answer": "Inscrições esquecidas retêm objetos; ordem, falhas e reentrância das notificações precisam de contrato explícito.",
+          "rationale": "O publicador pode guardar referências aos assinantes e impedir sua liberação. Além disso, um assinante pode emitir novas notificações durante uma chamada, causando reentrância. Cancelamento, falhas e ordem precisam de regras explícitas."
         },
         {
           "id": "comparacao",
           "question": "Observer garante mensageria durável?",
-          "answer": "Não. O padrão descreve colaboração; persistência, entrega e retries exigem mecanismos adicionais."
+          "answer": "Não. O padrão descreve colaboração; persistência, entrega e retries exigem mecanismos adicionais.",
+          "rationale": "Uma colaboração de notificação não define armazenamento dos eventos nem recuperação após queda. Entrega durável e retries exigem infraestrutura e políticas adicionais. Um callback em memória pode desaparecer junto com o processo."
         }
-      ]
+      ],
+      "explanation": "Observer permite que interessados assinem notificações de um publicador. Quando algo relevante muda, ele avisa os assinantes por um contrato comum. O publicador não precisa conhecer as classes concretas de cada interessado.\n\nPense numa mudança de pedido que atualiza a tela e um resumo ao mesmo tempo. Cada interessado pode entrar ou sair da lista de assinaturas. Isso reduz consultas repetidas e ligações fixas, mas exige cuidar do ciclo de vida. Uma assinatura esquecida pode manter objetos em memória. O padrão, por si só, também não promete entrega durável, ordem ou repetição após falhas.",
+      "background": "Contexto: quando um pedido é confirmado, a tela de acompanhamento e o painel de relatórios precisam reagir.\n\nAmbos assinam PedidoConfirmado. O publicador emite a notificação; a tela atualiza a exibição e o relatório atualiza sua visão. Ao fechar a tela, sua inscrição é cancelada. A aplicação define o que ocorre se um assinante falhar e se os demais ainda devem ser avisados. Se perder um evento puder causar prejuízo, é necessário acrescentar mecanismos de confiabilidade, em vez de presumir que uma lista de callbacks oferece entrega garantida."
     },
     {
       "id": "state",
@@ -344,44 +404,54 @@
         {
           "id": "conceito",
           "question": "O que State encapsula?",
-          "answer": "Comportamentos que variam conforme o estado atual de um objeto."
+          "answer": "Comportamentos que variam conforme o estado atual de um objeto.",
+          "rationale": "O estado representa uma fase com regras próprias, e não apenas um valor enumerado. Ao delegar operações a essa representação, o contexto muda de comportamento conforme a fase atual."
         },
         {
           "id": "problema",
           "question": "Qual sintoma sugere a extração?",
-          "answer": "Condicionais repetidas de estado espalhadas por várias operações do mesmo contexto."
+          "answer": "Condicionais repetidas de estado espalhadas por várias operações do mesmo contexto.",
+          "rationale": "Condicionais semelhantes em vários métodos espalham as regras de uma mesma fase. Extrair cada estado reúne essas decisões, reduzindo o risco de atualizar um método e esquecer os demais."
         },
         {
           "id": "estrutura",
           "question": "Quem recebe as ações do contexto?",
-          "answer": "O objeto State atual implementa o comportamento; contexto ou estados coordenam transições conforme o desenho."
+          "answer": "O objeto State atual implementa o comportamento; contexto ou estados coordenam transições conforme o desenho.",
+          "rationale": "O contexto encaminha a ação ao State atual. A responsabilidade pelas transições pode ficar no contexto ou nos estados, conforme o desenho. O essencial é que essa escolha seja explícita e preserve as condições do domínio."
         },
         {
           "id": "implementacao",
           "question": "Como transformar os condicionais?",
-          "answer": "Defina o contrato dos estados, extraia os comportamentos e explicite transições e acesso ao contexto."
+          "answer": "Defina o contrato dos estados, extraia os comportamentos e explicite transições e acesso ao contexto.",
+          "rationale": "O contrato comum identifica as ações que variam. Cada estado implementa sua resposta, e as transições precisam definir quando a troca é permitida. Mover os ifs para classes sem definir essas regras não resolve a consistência."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra comportamento variável?",
-          "answer": "Uma assinatura Ativa libera acesso; Suspensa recusa e orienta regularização para a mesma solicitação."
+          "answer": "Uma assinatura Ativa libera acesso; Suspensa recusa e orienta regularização para a mesma solicitação.",
+          "rationale": "O pedido de acesso é igual, mas seu resultado depende da fase da assinatura. Delegar a Ativa ou Suspensa demonstra comportamento dependente de estado, e a regularização representa uma mudança no ciclo de vida."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando State ajuda?",
-          "answer": "Quando existem vários estados com comportamento relevante e o fluxo evolui frequentemente."
+          "answer": "Quando existem vários estados com comportamento relevante e o fluxo evolui frequentemente.",
+          "rationale": "Se vários estados alteram várias operações, reunir regras por estado pode facilitar evolução e leitura. Se há apenas um teste simples, a quantidade adicional de classes pode não compensar."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo pode ser excessivo?",
-          "answer": "Poucos estados simples podem não justificar várias classes. Teste transições inválidas e efeitos para preservar invariantes."
+          "answer": "Poucos estados simples podem não justificar várias classes. Teste transições inválidas e efeitos para preservar invariantes.",
+          "rationale": "Classes de estado acrescentam estrutura, mas não eliminam a necessidade de validar transições. Testes devem verificar caminhos como liberar acesso sem regularização, pois esses erros violam regras mesmo com o padrão implementado."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Strategy?",
-          "answer": "State acompanha ciclo de vida e transições; Strategy escolhe um algoritmo intercambiável sem exigir esse ciclo."
+          "answer": "State acompanha ciclo de vida e transições; Strategy escolhe um algoritmo intercambiável sem exigir esse ciclo.",
+          "rationale": "State modela fases e transições de um ciclo de vida. Strategy modela alternativas para executar uma tarefa. A estrutura de delegação é semelhante, mas trocar uma estratégia não precisa representar uma evolução de estado do domínio."
         }
-      ]
+      ],
+      "explanation": "State organiza comportamentos que mudam conforme a fase de vida de um objeto. A mesma ação pode ser aceita num estado e recusada em outro. Em vez de repetir testes de estado em vários métodos, o contexto delega ao objeto que representa seu estado atual.\n\nUma assinatura ativa libera conteúdo; uma suspensa orienta regularização. Quando ocorre uma transição, o contexto passa a usar outro estado. Essa organização torna regras e transições mais visíveis, mas não garante automaticamente que todas sejam válidas. É preciso definir quem pode mudar o estado e testar caminhos proibidos e seus efeitos.",
+      "background": "Contexto: uma assinatura pode estar Ativa ou Suspensa. O usuário pede acesso ao conteúdo usando a mesma operação acessar().\n\nAssinatura delega ao estado atual. Ativa libera; Suspensa recusa e informa como regularizar. Quando a regularização é confirmada, a transição troca o estado para Ativa. A regra de transição deve verificar as condições necessárias: apenas trocar um campo não confirma que o pagamento ocorreu. O padrão ajuda quando várias operações mudam por estado; para uma única condição simples, um if pode ser suficiente."
     },
     {
       "id": "strategy",
@@ -398,44 +468,54 @@
         {
           "id": "conceito",
           "question": "O que Strategy torna intercambiável?",
-          "answer": "Algoritmos que cumprem um mesmo contrato, isolados do contexto que os utiliza."
+          "answer": "Algoritmos que cumprem um mesmo contrato, isolados do contexto que os utiliza.",
+          "rationale": "O contrato comum permite substituir um algoritmo por outro sem alterar o contexto. A tarefa continua a mesma; varia a forma de realizá-la. Alternativas com significados incompatíveis não se tornam intercambiáveis só por terem a mesma assinatura."
         },
         {
           "id": "problema",
           "question": "Qual problema costuma motivá-lo?",
-          "answer": "Um contexto acumula condicionais ou variantes que mudam apenas a maneira de executar uma tarefa."
+          "answer": "Um contexto acumula condicionais ou variantes que mudam apenas a maneira de executar uma tarefa.",
+          "rationale": "Quando os condicionais escolhem apenas modos de executar uma tarefa, separar esses modos pode reduzir o crescimento do contexto. Regras compartilhadas continuam no contexto ou em colaboradores apropriados, evitando duplicação entre estratégias."
         },
         {
           "id": "estrutura",
           "question": "Como contexto e estratégia colaboram?",
-          "answer": "O contexto recebe uma Strategy e delega a ela; implementações concretas oferecem alternativas."
+          "answer": "O contexto recebe uma Strategy e delega a ela; implementações concretas oferecem alternativas.",
+          "rationale": "O contexto mantém uma referência à estratégia e delega o cálculo. Cada implementação concreta oferece uma alternativa pelo mesmo contrato. O contexto não precisa herdar de uma classe diferente para trocar o algoritmo."
         },
         {
           "id": "implementacao",
           "question": "Como extrair uma estratégia?",
-          "answer": "Defina entradas e resultados comuns, separe algoritmos e selecione a implementação na composição ou em execução."
+          "answer": "Defina entradas e resultados comuns, separe algoritmos e selecione a implementação na composição ou em execução.",
+          "rationale": "Entradas e resultados comuns permitem substituição real. Depois de extrair as fórmulas ou procedimentos, alguém precisa selecionar a estratégia. Essa escolha pode ficar na composição, numa regra de negócio ou numa ação do usuário."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra troca de algoritmo?",
-          "answer": "CalculadoraFrete recebe FreteExpresso ou FreteEconomico e mantém o fluxo de cotação."
+          "answer": "CalculadoraFrete recebe FreteExpresso ou FreteEconomico e mantém o fluxo de cotação.",
+          "rationale": "A calculadora mantém o fluxo e usa a modalidade escolhida para realizar o cálculo. Frete expresso e econômico são alternativas da mesma tarefa, em vez de fases de um ciclo de vida do pedido."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando aplicar esse padrão?",
-          "answer": "Quando algoritmos precisam variar independentemente, ser testados isoladamente ou escolhidos em execução."
+          "answer": "Quando algoritmos precisam variar independentemente, ser testados isoladamente ou escolhidos em execução.",
+          "rationale": "O padrão ajuda quando algoritmos variam de forma independente e merecem testes isolados ou seleção dinâmica. Não é necessário trocar em execução para usar Strategy; receber uma implementação na inicialização já pode ser útil."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo é fácil ignorar?",
-          "answer": "O cliente precisa escolher a estratégia correta; contratos mal definidos fazem variações aparentemente equivalentes quebrar expectativas."
+          "answer": "O cliente precisa escolher a estratégia correta; contratos mal definidos fazem variações aparentemente equivalentes quebrar expectativas.",
+          "rationale": "O cliente ainda precisa saber qual alternativa é adequada. Além disso, contratos vagos podem produzir resultados inconsistentes, como moedas ou impostos diferentes. Extrair classes não substitui definir uma semântica comum."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Template Method?",
-          "answer": "Strategy usa composição e pode trocar instâncias; Template Method fixa um esqueleto e varia etapas por herança."
+          "answer": "Strategy usa composição e pode trocar instâncias; Template Method fixa um esqueleto e varia etapas por herança.",
+          "rationale": "Strategy recebe um colaborador por composição e pode substituí-lo. Template Method mantém uma sequência na classe base e permite especializar etapas por herança. A diferença prática está em como a variação é fornecida e no que permanece fixo."
         }
-      ]
+      ],
+      "explanation": "Strategy separa maneiras diferentes de realizar uma mesma tarefa. O contexto recebe um algoritmo por um contrato comum e delega a ele. Assim, calcular frete continua sendo uma operação, mas o cálculo pode ser econômico ou expresso.\n\nA escolha pode acontecer na montagem da aplicação ou durante o uso. Cada algoritmo pode ser testado e alterado sem reescrever o fluxo que o chama. O contrato precisa explicar entradas, resultados e expectativas compartilhadas. Não basta que todas as estratégias tenham um método com o mesmo nome se calculam valores com unidades ou regras incompatíveis.",
+      "background": "Contexto: um checkout precisa cotar entrega econômica ou expressa sem duplicar o restante do fluxo de compra.\n\nCalculadoraFrete recebe uma estratégia com calcular(pedido). FreteEconomico e FreteExpresso implementam suas regras e retornam o mesmo tipo de cotação. A composição escolhe a opção solicitada pelo usuário. O checkout não precisa conhecer a fórmula de cada modalidade. A equipe define se a cotação inclui impostos, moeda e prazo para que a troca de estratégia preserve as expectativas de quem usa o resultado."
     },
     {
       "id": "template-method",
@@ -452,44 +532,54 @@
         {
           "id": "conceito",
           "question": "O que Template Method mantém fixo?",
-          "answer": "O esqueleto de um algoritmo, delegando certas etapas a subclasses."
+          "answer": "O esqueleto de um algoritmo, delegando certas etapas a subclasses.",
+          "rationale": "O método principal preserva a ordem das etapas, enquanto subclasses fornecem partes variáveis. A reutilização está na sequência comum. Se cada subclasse reescrever livremente o algoritmo inteiro, esse benefício se perde."
         },
         {
           "id": "problema",
           "question": "Qual duplicação ele reduz?",
-          "answer": "Fluxos quase iguais repetem a mesma sequência, mas diferem em alguns passos."
+          "answer": "Fluxos quase iguais repetem a mesma sequência, mas diferem em alguns passos.",
+          "rationale": "Fluxos quase iguais podem divergir quando uma correção é aplicada em um e esquecida nos outros. Extrair a sequência compartilhada centraliza essa coordenação, mantendo as diferenças em etapas explícitas."
         },
         {
           "id": "estrutura",
           "question": "Quais pontos de extensão existem?",
-          "answer": "Etapas abstratas obrigatórias, operações com implementação padrão e hooks opcionais na classe base."
+          "answer": "Etapas abstratas obrigatórias, operações com implementação padrão e hooks opcionais na classe base.",
+          "rationale": "Uma etapa abstrata exige implementação, uma operação padrão pode ser reutilizada e um hook permite intervenção opcional. Diferenciar esses papéis ajuda a subclasse a entender o que é obrigatório e o que pode personalizar."
         },
         {
           "id": "implementacao",
           "question": "Como preservar o fluxo definido?",
-          "answer": "Extraia a sequência comum e limite sobrescrita do método principal conforme os recursos da linguagem."
+          "answer": "Extraia a sequência comum e limite sobrescrita do método principal conforme os recursos da linguagem.",
+          "rationale": "A base precisa manter autoridade sobre a sequência que promete. Recursos como métodos não sobrescrevíveis, quando disponíveis, ajudam a impedir que subclasses burlem etapas obrigatórias. O contrato das etapas também deve ser claro."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo separa sequência e etapas?",
-          "answer": "Importador executa ler, validar e persistir; subclasses especializam leitura para formatos diferentes."
+          "answer": "Importador executa ler, validar e persistir; subclasses especializam leitura para formatos diferentes.",
+          "rationale": "Ler CSV ou JSON varia, mas validar e persistir seguem a receita comum. Retornar uma representação compartilhada permite que as etapas seguintes não dependam do formato de entrada."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando esse desenho ajuda?",
-          "answer": "Quando variantes compartilham uma sequência estável e precisam substituir poucas etapas, não o algoritmo inteiro."
+          "answer": "Quando variantes compartilham uma sequência estável e precisam substituir poucas etapas, não o algoritmo inteiro.",
+          "rationale": "O desenho funciona quando a ordem permanece estável e poucas etapas mudam. Se cada variante precisa reorganizar toda a sequência, uma receita herdada pode gerar muitos hooks ou condições artificiais."
         },
         {
           "id": "trade-offs",
           "question": "Qual acoplamento merece atenção?",
-          "answer": "Subclasses dependem das decisões da base; muitos hooks e efeitos laterais tornam a ordem difícil de manter."
+          "answer": "Subclasses dependem das decisões da base; muitos hooks e efeitos laterais tornam a ordem difícil de manter.",
+          "rationale": "Uma alteração na base pode mudar o momento em que a subclasse é chamada e os dados disponíveis. Muitos hooks ampliam essas dependências. Testar a ordem e os efeitos compartilhados ajuda a controlar esse acoplamento."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com Factory Method?",
-          "answer": "Uma etapa pode ser um Factory Method. Strategy varia o algoritmo por composição, sem exigir subclasses do contexto."
+          "answer": "Uma etapa pode ser um Factory Method. Strategy varia o algoritmo por composição, sem exigir subclasses do contexto.",
+          "rationale": "Um ponto da receita pode criar um produto por um método redefinível, funcionando como Factory Method. Já Strategy fornece uma implementação por composição. Os padrões podem coexistir porque organizam partes diferentes da variação."
         }
-      ]
+      ],
+      "explanation": "Template Method guarda a receita de um algoritmo numa classe base e deixa algumas etapas para subclasses. A receita determina a ordem, como ler, validar e persistir. Cada variante pode especializar uma etapa sem reescrever a sequência inteira.\n\nAlgumas etapas são obrigatórias; outras têm uma implementação padrão. Hooks são pontos opcionais de intervenção previstos pela base. O ganho é compartilhar um fluxo estável, mas a herança cria dependência das decisões da classe base. Muitos pontos de extensão tornam difícil prever a ordem e os efeitos. Se o fluxo inteiro precisa variar, esse desenho pode ser restritivo demais.",
+      "background": "Contexto: um importador recebe arquivos CSV e JSON. Nos dois casos, precisa ler, validar e persistir os registros nessa ordem.\n\nImportador.executar() mantém a sequência. ImportadorCsv e ImportadorJson implementam a leitura específica, retornando uma representação comum para validação e persistência. A base pode oferecer um hook opcional após concluir. Se uma subclasse puder pular a validação redefinindo executar(), o contrato fica ameaçado; por isso, o desenho limita essa sobrescrita quando possível e testa a sequência compartilhada."
     },
     {
       "id": "visitor",
@@ -506,44 +596,54 @@
         {
           "id": "conceito",
           "question": "O que Visitor separa?",
-          "answer": "Operações de uma estrutura de objetos das classes que representam seus elementos."
+          "answer": "Operações de uma estrutura de objetos das classes que representam seus elementos.",
+          "rationale": "As classes dos elementos mantêm sua representação e um ponto de aceitação; as operações ficam em visitantes separados. Isso facilita acrescentar operações sem reabrir repetidamente todas as classes estáveis do modelo."
         },
         {
           "id": "problema",
           "question": "Qual problema costuma motivá-lo?",
-          "answer": "Novas operações sobre muitos tipos exigiriam alterar repetidamente classes estáveis do modelo."
+          "answer": "Novas operações sobre muitos tipos exigiriam alterar repetidamente classes estáveis do modelo.",
+          "rationale": "Se cada operação nova exigir um método em todos os tipos, o modelo acumula responsabilidades e alterações. Visitor desloca essas operações para classes próprias, ao custo de tornar a lista de tipos conhecida pelos visitantes."
         },
         {
           "id": "estrutura",
           "question": "Como funciona o double dispatch?",
-          "answer": "O elemento recebe o visitor em accept() e chama visitTipo(this), selecionando comportamento pelo elemento e visitante."
+          "answer": "O elemento recebe o visitor em accept() e chama visitTipo(this), selecionando comportamento pelo elemento e visitante.",
+          "rationale": "O tipo do visitante determina a operação concreta, e accept() do elemento chama o método adequado ao seu tipo. Esse segundo encaminhamento permite escolher o comportamento pela combinação dos dois participantes, sem depender apenas de um teste externo de tipos."
         },
         {
           "id": "implementacao",
           "question": "Como organizar a implementação?",
-          "answer": "Defina métodos de visita por tipo, adicione accept aos elementos e crie um visitor por operação."
+          "answer": "Defina métodos de visita por tipo, adicione accept aos elementos e crie um visitor por operação.",
+          "rationale": "A interface do visitante prevê uma visita para cada tipo de elemento. accept() faz o encaminhamento apropriado. Cada visitante concreto implementa uma operação completa sobre esses tipos, como imprimir ou auditar."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra operação adicional?",
-          "answer": "Um visitor de auditoria percorre nós de uma expressão e produz avisos sem colocar essa lógica em cada nó."
+          "answer": "Um visitor de auditoria percorre nós de uma expressão e produz avisos sem colocar essa lógica em cada nó.",
+          "rationale": "Auditar é uma operação adicional sobre nós que já existem. O visitante concentra suas regras por tipo sem transformar cada nó num acumulador de análises. O percurso dos nós ainda precisa ser organizado por algum participante."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando tende a funcionar melhor?",
-          "answer": "Quando os tipos de elementos são estáveis e novas operações surgem com frequência."
+          "answer": "Quando os tipos de elementos são estáveis e novas operações surgem com frequência.",
+          "rationale": "Quando os tipos permanecem estáveis, novos visitantes podem ser acrescentados para novas operações. Se novos tipos surgem constantemente, atualizar todos os visitantes pode custar mais do que a separação economiza."
         },
         {
           "id": "trade-offs",
           "question": "Qual mudança fica mais cara?",
-          "answer": "Adicionar um novo tipo pode exigir atualizar todos os visitors; acesso excessivo ao estado ameaça encapsulamento."
+          "answer": "Adicionar um novo tipo pode exigir atualizar todos os visitors; acesso excessivo ao estado ameaça encapsulamento.",
+          "rationale": "Um tipo novo amplia o conjunto de casos que cada operação deve tratar. Isso exige revisar visitantes e pode expor necessidades de acesso aos dados internos. O desenho precisa equilibrar operações externas e encapsulamento."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com Iterator?",
-          "answer": "Iterator organiza percurso; Visitor executa operações por tipo. A travessia pode ficar fora do visitor."
+          "answer": "Iterator organiza percurso; Visitor executa operações por tipo. A travessia pode ficar fora do visitor.",
+          "rationale": "Iterator responde quais elementos serão visitados e em que ordem. Visitor responde qual operação executar para cada tipo. Separar essas responsabilidades permite combinar percursos e operações sem obrigar que o visitante controle toda a travessia."
         }
-      ]
+      ],
+      "explanation": "Visitor separa operações das classes dos elementos sobre os quais elas trabalham. Imagine uma estrutura com tipos de nós estáveis, mas novas necessidades de auditoria, impressão ou análise. Em vez de adicionar cada operação a todos os nós, você cria um visitante por operação.\n\nCada elemento recebe o visitante em accept() e chama o método correspondente ao seu próprio tipo. Essa colaboração seleciona tanto a operação quanto o tipo de elemento: é a ideia de double dispatch. O custo aparece quando os tipos de elemento mudam, pois os visitantes precisam aprender a tratar o novo tipo. Visitor também não define obrigatoriamente quem percorre a estrutura.",
+      "background": "Contexto: um analisador representa expressões com nós de número, soma e divisão. Os tipos são relativamente estáveis, mas surgem novas análises.\n\nVisitorAuditoria oferece visitarNumero(), visitarSoma() e visitarDivisao(). Divisao.accept(visitor) chama visitarDivisao(this), permitindo verificar denominadores problemáticos sem colocar a auditoria dentro de cada classe do modelo. Outro visitante pode imprimir a expressão. Se surgir um nó Potencia, os visitantes precisarão considerar esse novo tipo. A travessia dos filhos pode ficar no visitante ou em outro colaborador, desde que essa escolha seja explícita."
     }
   ]
 }

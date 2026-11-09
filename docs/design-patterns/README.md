@@ -61,3 +61,13 @@ Não foi obtida autorização para reproduzir integralmente os artigos nem para 
 | Comportamentais | [Strategy](https://refactoring.guru/design-patterns/strategy)                               | 8       | [PNG](../../public/study-assets/design-patterns/strategy-refactoring-guru.png)                | [SVG](../../public/study-assets/design-patterns/strategy-roles.svg)                |
 | Comportamentais | [Template Method](https://refactoring.guru/design-patterns/template-method)                 | 8       | —                                                                                             | [SVG](../../public/study-assets/design-patterns/template-method-roles.svg)         |
 | Comportamentais | [Visitor](https://refactoring.guru/design-patterns/visitor)                                 | 8       | —                                                                                             | [SVG](../../public/study-assets/design-patterns/visitor-roles.svg)                 |
+
+## Apoio didático nos flashcards
+
+Os 176 cartões mantêm a resposta curta e recebem três versos adicionais:
+
+- **Entenda o padrão:** explicação acessível do mecanismo e de seus limites.
+- **Contexto e aplicação:** cenário concreto, participantes e consequências da escolha.
+- **Por que a resposta está certa?:** justificativa própria para a pergunta, aprofundando o raciocínio sem apenas repetir a resposta.
+
+A explicação e o contexto são compartilhados pelas oito perguntas do mesmo padrão; cada pergunta possui sua própria justificativa no JSON. O adaptador materializa esses textos em versos com IDs estáveis. Respostas e ilustrações anteriores permanecem disponíveis. A atualização do catálogo preserva IDs, revisões, intervalos, vencimentos e favoritos, continua disponível offline e não envia o baralho ao DynamoDB.

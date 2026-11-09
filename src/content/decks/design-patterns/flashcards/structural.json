@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-11-04",
+  "reviewedAt": "2026-11-08",
   "name": "Design Patterns · Conceitos e decisões",
   "syncEnabled": false,
   "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
@@ -20,44 +20,54 @@
         {
           "id": "conceito",
           "question": "O que o Adapter reconcilia?",
-          "answer": "Interfaces incompatíveis, preservando o contrato que o cliente espera."
+          "answer": "Interfaces incompatíveis, preservando o contrato que o cliente espera.",
+          "rationale": "O cliente mantém a interface que já sabe usar, enquanto o adaptador conversa com a interface incompatível. A tradução permite colaboração sem exigir que os dois lados sejam reescritos."
         },
         {
           "id": "problema",
           "question": "Quando a incompatibilidade vira problema?",
-          "answer": "Ao integrar código existente ou externo cuja interface não pode ser alterada convenientemente."
+          "answer": "Ao integrar código existente ou externo cuja interface não pode ser alterada convenientemente.",
+          "rationale": "Uma biblioteca externa ou um legado pode não estar sob seu controle. Concentrar a adaptação numa fronteira permite reutilizá-lo sem propagar suas chamadas particulares por todos os consumidores."
         },
         {
           "id": "estrutura",
           "question": "Como os participantes colaboram?",
-          "answer": "Cliente usa Target; Adapter implementa esse contrato e traduz chamadas para o Adaptee encapsulado."
+          "answer": "Cliente usa Target; Adapter implementa esse contrato e traduz chamadas para o Adaptee encapsulado.",
+          "rationale": "Target é o contrato esperado pelo cliente. Adapter o implementa e usa Adaptee para executar o trabalho real. O cliente depende de Target, enquanto a tradução conhece os detalhes da implementação adaptada."
         },
         {
           "id": "implementacao",
           "question": "Composição ou herança?",
-          "answer": "Adapter de objeto encapsula a dependência; adapter de classe depende dos mecanismos de herança disponíveis na linguagem."
+          "answer": "Adapter de objeto encapsula a dependência; adapter de classe depende dos mecanismos de herança disponíveis na linguagem.",
+          "rationale": "Composição permite envolver uma instância e traduzir chamadas por delegação. A alternativa por herança depende de como a linguagem permite combinar os contratos. Herdar não é requisito para reconhecer um adaptador."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo simples representa a tradução?",
-          "answer": "Um adaptador implementa pagar(centavos) e chama a API externa cobrar(valorDecimal), convertendo valores cuidadosamente."
+          "answer": "Um adaptador implementa pagar(centavos) e chama a API externa cobrar(valorDecimal), convertendo valores cuidadosamente.",
+          "rationale": "O exemplo traduz uma operação e sua unidade de valor. Converter centavos para a representação do provedor é parte da compatibilidade. Apenas renomear pagar para cobrar, preservando uma unidade errada, produziria uma integração incorreta."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando vale introduzir essa camada?",
-          "answer": "Quando reaproveitar uma implementação exige compatibilizá-la com uma abstração já usada pelo sistema."
+          "answer": "Quando reaproveitar uma implementação exige compatibilizá-la com uma abstração já usada pelo sistema.",
+          "rationale": "A camada agrega valor quando existe código útil cujo contrato difere daquele usado pela aplicação. Se os dois lados já são compatíveis, uma tradução sem propósito só acrescenta indireção."
         },
         {
           "id": "trade-offs",
           "question": "Qual risco a tradução esconde?",
-          "answer": "Nomes compatíveis não garantem semântica equivalente; preserve unidades, erros e garantias esperadas pelo cliente."
+          "answer": "Nomes compatíveis não garantem semântica equivalente; preserve unidades, erros e garantias esperadas pelo cliente.",
+          "rationale": "Uma assinatura de método compatível não garante a mesma regra. Unidades, exceções e efeitos precisam respeitar o que o cliente espera; caso contrário, a adaptação esconde um defeito em vez de resolver a incompatibilidade."
         },
         {
           "id": "comparacao",
           "question": "Como distinguir Adapter de Facade?",
-          "answer": "Adapter compatibiliza interfaces; Facade simplifica um subsistema. Decorator preserva a interface para acrescentar comportamento."
+          "answer": "Adapter compatibiliza interfaces; Facade simplifica um subsistema. Decorator preserva a interface para acrescentar comportamento.",
+          "rationale": "Adapter responde como usar uma interface incompatível. Facade responde como oferecer uma entrada mais simples. Decorator mantém o contrato para acrescentar capacidades. A estrutura de delegação pode parecer igual, mas a intenção muda."
         }
-      ]
+      ],
+      "explanation": "Adapter é um tradutor entre duas interfaces. Seu código espera uma operação conhecida, mas uma biblioteca oferece outra forma de pedir o mesmo trabalho. O adaptador apresenta o contrato esperado e converte a chamada para a biblioteca.\n\nIsso envolve mais do que trocar nomes: unidades, formatos, resultados e erros precisam continuar fazendo sentido para o cliente. A implementação adaptada pode permanecer intacta. O objetivo é reaproveitar algo existente sem espalhar suas particularidades pelo sistema. Se a biblioteca não oferece uma garantia necessária, o adaptador precisa implementá-la ou deixar explícita essa limitação.",
+      "background": "Contexto: uma loja representa dinheiro em centavos, mas um provedor de pagamentos recebe valores decimais. O checkout conhece pagar(centavos).\n\nAdaptadorPagamento implementa essa operação, converte a representação com precisão adequada e chama cobrar() no provedor. Também transforma o retorno e os erros no contrato da loja. Assim, trocar de provedor afeta a integração, sem obrigar todas as telas a conhecer sua API. Uma divisão descuidada usando ponto flutuante pode introduzir erros: traduzir a interface inclui preservar o significado monetário."
     },
     {
       "id": "bridge",
@@ -74,44 +84,54 @@
         {
           "id": "conceito",
           "question": "Quais variações o Bridge separa?",
-          "answer": "Abstração e implementação, permitindo evolução independente por composição."
+          "answer": "Abstração e implementação, permitindo evolução independente por composição.",
+          "rationale": "O comportamento de alto nível e a implementação usada para realizá-lo ficam em estruturas distintas. Como uma referencia a outra por contrato, novas variantes podem surgir de cada lado sem exigir uma classe para cada combinação."
         },
         {
           "id": "problema",
           "question": "Qual explosão ele evita?",
-          "answer": "Uma subclasse para cada combinação de duas dimensões que variam independentemente."
+          "answer": "Uma subclasse para cada combinação de duas dimensões que variam independentemente.",
+          "rationale": "Com dois tipos de alerta e três canais, subclasses por combinação poderiam exigir seis variantes. Separar as dimensões permite combinar instâncias, reduzindo essa multiplicação. O ganho depende de as variações serem de fato independentes."
         },
         {
           "id": "estrutura",
           "question": "O que conecta as duas hierarquias?",
-          "answer": "A abstração guarda uma referência à interface de implementação e delega operações necessárias."
+          "answer": "A abstração guarda uma referência à interface de implementação e delega operações necessárias.",
+          "rationale": "A referência guardada pela abstração conecta as duas partes. Ela delega operações ao contrato de implementação e não a uma classe concreta. Sem essa colaboração, ter duas hierarquias isoladas não caracteriza a ponte."
         },
         {
           "id": "implementacao",
           "question": "Como introduzir a separação?",
-          "answer": "Identifique dimensões independentes, extraia o contrato da implementação e injete uma implementação na abstração."
+          "answer": "Identifique dimensões independentes, extraia o contrato da implementação e injete uma implementação na abstração.",
+          "rationale": "Primeiro é preciso encontrar o que varia de cada lado. O contrato de implementação deve oferecer operações suficientes para a abstração sem carregar regras específicas dela. Depois, a composição fornece a implementação escolhida."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra duas dimensões?",
-          "answer": "Alertas simples ou agrupados usam saída por e-mail ou arquivo, sem uma classe para cada par."
+          "answer": "Alertas simples ou agrupados usam saída por e-mail ou arquivo, sem uma classe para cada par.",
+          "rationale": "Alerta simples ou agrupado descreve a funcionalidade; e-mail ou arquivo descreve a forma de entrega. Combinar esses eixos por referência demonstra a separação, sem criar AlertaSimplesEmail, AlertaSimplesArquivo e todas as demais combinações."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando planejar esse padrão?",
-          "answer": "Quando plataformas e funcionalidades precisam combinar-se e crescer separadamente, inclusive com troca de implementação."
+          "answer": "Quando plataformas e funcionalidades precisam combinar-se e crescer separadamente, inclusive com troca de implementação.",
+          "rationale": "O padrão ajuda quando as duas dimensões crescem separadamente ou precisam ser combinadas em execução. Criar uma ponte para uma possibilidade remota acrescenta contratos antes de existir uma necessidade concreta."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo pode não compensar?",
-          "answer": "Mais indireção e contratos para manter; dimensões apenas hipotéticas não justificam generalizar o desenho."
+          "answer": "Mais indireção e contratos para manter; dimensões apenas hipotéticas não justificam generalizar o desenho.",
+          "rationale": "Cada interface e delegação aumenta o caminho que o leitor precisa acompanhar. Se uma dimensão nunca varia, esse custo pode superar o benefício. É melhor apoiar a separação em mudanças observadas ou requisitos claros."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Adapter?",
-          "answer": "Bridge organiza variações desde o desenho; Adapter normalmente reconcilia interfaces existentes que não combinam."
+          "answer": "Bridge organiza variações desde o desenho; Adapter normalmente reconcilia interfaces existentes que não combinam.",
+          "rationale": "Bridge organiza variações como parte do desenho da solução. Adapter normalmente conecta contratos existentes que não se encaixam. Ambos podem usar composição, mas resolvem problemas diferentes: independência de evolução e compatibilidade de uso."
         }
-      ]
+      ],
+      "explanation": "Bridge separa duas dimensões que podem variar independentemente. Imagine que um alerta possa ser simples ou agrupado, e que sua saída possa ser e-mail ou arquivo. Criar uma classe para cada combinação faz o número de classes crescer rapidamente.\n\nEm vez disso, o alerta recebe um objeto responsável pela saída. Uma hierarquia define o tipo de alerta; outra define como enviá-lo. A referência entre elas é a ponte. Aqui, abstração significa a funcionalidade de alto nível, não apenas uma classe declarada abstract. O desenho ajuda quando as duas dimensões realmente existem e precisam evoluir separadamente.",
+      "background": "Contexto: um monitoramento oferece alertas simples e resumos agrupados. Hoje entrega por e-mail; amanhã também deve escrever arquivos.\n\nAlertaSimples e AlertaAgrupado usam o contrato Saida.enviar(texto). SaidaEmail e SaidaArquivo implementam a entrega. Adicionar um novo tipo de alerta não exige duplicar todos os canais, e adicionar um canal não exige recriar todos os alertas. A composição escolhe a combinação desejada. Se só existe uma dimensão estável, separar duas hierarquias pode ser trabalho sem benefício."
     },
     {
       "id": "composite",
@@ -128,44 +148,54 @@
         {
           "id": "conceito",
           "question": "Qual estrutura o Composite representa?",
-          "answer": "Árvores de objetos tratadas uniformemente por um contrato comum."
+          "answer": "Árvores de objetos tratadas uniformemente por um contrato comum.",
+          "rationale": "O contrato comum permite tratar folhas e grupos uniformemente. A relação hierárquica é essencial: um grupo contém componentes que podem ser outros grupos. Uma lista de objetos sem composição recursiva não expressa toda essa ideia."
         },
         {
           "id": "problema",
           "question": "Que distinção o cliente deixa de repetir?",
-          "answer": "Não precisa verificar a cada operação se está diante de um elemento simples ou de um grupo."
+          "answer": "Não precisa verificar a cada operação se está diante de um elemento simples ou de um grupo.",
+          "rationale": "Sem o contrato comum, cada consumidor precisaria perguntar se recebeu arquivo ou pasta e implementar seu próprio percurso. A decisão fica dentro dos objetos, permitindo ao cliente chamar a operação sem repetir essa distinção."
         },
         {
           "id": "estrutura",
           "question": "Como folha e composto respondem?",
-          "answer": "Leaf executa o trabalho; Composite delega aos filhos e combina resultados conforme a operação."
+          "answer": "Leaf executa o trabalho; Composite delega aos filhos e combina resultados conforme a operação.",
+          "rationale": "A folha resolve a operação diretamente; o composto a aplica aos filhos e combina o resultado. A forma de combinar depende do domínio: somar tamanhos é diferente de desenhar elementos ou calcular permissões."
         },
         {
           "id": "implementacao",
           "question": "Como implementar a recursão?",
-          "answer": "Defina operações comuns, coleção de filhos nos compostos e regras de combinação; proteja a estrutura contra ciclos indevidos."
+          "answer": "Defina operações comuns, coleção de filhos nos compostos e regras de combinação; proteja a estrutura contra ciclos indevidos.",
+          "rationale": "A operação comum permite a recursão, e a coleção de filhos fornece a estrutura. Regras contra ciclos protegem a hipótese de árvore. Sem essa proteção, uma chamada pode retornar ao mesmo composto indefinidamente."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo representa uma árvore?",
-          "answer": "Uma pasta calcula tamanho somando arquivos e subpastas; cada filho oferece a mesma operação tamanho()."
+          "answer": "Uma pasta calcula tamanho somando arquivos e subpastas; cada filho oferece a mesma operação tamanho().",
+          "rationale": "Arquivo e pasta respondem a tamanho(), mas a pasta calcula por delegação recursiva. O exemplo mostra tanto a relação parte-todo quanto o tratamento uniforme; o consumidor não precisa achatar a estrutura antes de pedir o resultado."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando o padrão faz sentido?",
-          "answer": "Quando o domínio contém relações parte-todo hierárquicas e o tratamento uniforme simplifica os consumidores."
+          "answer": "Quando o domínio contém relações parte-todo hierárquicas e o tratamento uniforme simplifica os consumidores.",
+          "rationale": "O domínio precisa conter uma hierarquia em que o grupo possa responder de forma coerente a operações dos seus elementos. Forçar uniformidade em objetos sem essa relação pode deixar o contrato artificial."
         },
         {
           "id": "trade-offs",
           "question": "Qual limite da uniformidade?",
-          "answer": "Uma interface ampla pode exigir operações sem sentido nas folhas; preserve contratos coerentes e controle profundidade."
+          "answer": "Uma interface ampla pode exigir operações sem sentido nas folhas; preserve contratos coerentes e controle profundidade.",
+          "rationale": "Exigir que uma folha aceite filhos produz métodos sem significado ou erros inesperados. Separar operações de composição das operações comuns preserva contratos úteis. Estruturas muito profundas também podem exigir um percurso que evite estouro de pilha."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com outros padrões?",
-          "answer": "Iterator percorre a árvore; Visitor adiciona operações; Decorator normalmente envolve um componente, em vez de agregar filhos."
+          "answer": "Iterator percorre a árvore; Visitor adiciona operações; Decorator normalmente envolve um componente, em vez de agregar filhos.",
+          "rationale": "Composite define a organização da árvore. Iterator pode percorrê-la, e Visitor pode realizar operações sobre seus tipos. Decorator normalmente envolve um único componente para ampliar comportamento; não representa, por si só, um grupo de filhos."
         }
-      ]
+      ],
+      "explanation": "Composite permite tratar um item e um grupo de itens por uma mesma operação. Pense em arquivos e pastas: um arquivo informa seu tamanho; uma pasta soma os tamanhos dos filhos, que também podem ser pastas. O consumidor chama tamanho() sem repetir testes sobre cada tipo.\n\nUma folha faz o trabalho diretamente. Um composto possui filhos e combina seus resultados. Essa recursão representa relações parte-todo. O contrato comum precisa fazer sentido para os dois; operações como adicionarFilho não precisam ser impostas a arquivos. Uma árvore bem formada também precisa impedir ciclos que tornariam a recursão infinita.",
+      "background": "Contexto: um explorador mostra o espaço ocupado por uma seleção de arquivos e diretórios.\n\nArquivo.tamanho() retorna seus bytes. Pasta.tamanho() percorre os filhos e soma filho.tamanho(). Uma subpasta faz a mesma coisa com seus próprios filhos. O cálculo externo não precisa descobrir todos os níveis da estrutura. Ao permitir mover pastas, o sistema impede colocar uma pasta dentro de si mesma ou de um descendente. Isso preserva a árvore e evita chamadas recursivas sem fim."
     },
     {
       "id": "decorator",
@@ -182,44 +212,54 @@
         {
           "id": "conceito",
           "question": "O que o Decorator acrescenta?",
-          "answer": "Responsabilidades a um objeto por wrappers combináveis, sem alterar sua interface principal."
+          "answer": "Responsabilidades a um objeto por wrappers combináveis, sem alterar sua interface principal.",
+          "rationale": "A responsabilidade adicional fica no wrapper, enquanto o objeto original continua responsável por seu trabalho. Preservar a interface permite substituição e empilhamento, sem exigir que o consumidor conheça todas as camadas."
         },
         {
           "id": "problema",
           "question": "Qual problema da herança ele evita?",
-          "answer": "Subclasses para cada combinação de capacidades opcionais, escolhidas rigidamente antes da execução."
+          "answer": "Subclasses para cada combinação de capacidades opcionais, escolhidas rigidamente antes da execução.",
+          "rationale": "Combinar cache, métricas e outras opções por herança pode gerar muitas subclasses. Decorator permite montar combinações de instâncias conforme a necessidade, sem fixar todas as combinações antecipadamente na hierarquia."
         },
         {
           "id": "estrutura",
           "question": "Qual contrato sustenta o empilhamento?",
-          "answer": "Componente e decorators compartilham interface; cada decorator guarda outro componente e delega a ele."
+          "answer": "Componente e decorators compartilham interface; cada decorator guarda outro componente e delega a ele.",
+          "rationale": "Cada camada recebe e expõe o mesmo contrato do componente. Por isso, ela pode conter tanto o objeto original quanto outro decorator. A delegação mantém o caminho até o trabalho principal."
         },
         {
           "id": "implementacao",
           "question": "Como implementar uma capacidade?",
-          "answer": "Encapsule o componente e execute a lógica adicional antes ou depois da chamada delegada."
+          "answer": "Encapsule o componente e execute a lógica adicional antes ou depois da chamada delegada.",
+          "rationale": "A lógica extra envolve a delegação: pode verificar cache antes, medir o tempo ao redor ou transformar um resultado depois. É necessário preservar erros e efeitos esperados pelo contrato, além de simplesmente chamar o componente."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra composição dinâmica?",
-          "answer": "LeitorComMetricas(LeitorComCache(LeitorArquivo)) combina observação e cache sem criar uma subclasse para cada combinação."
+          "answer": "LeitorComMetricas(LeitorComCache(LeitorArquivo)) combina observação e cache sem criar uma subclasse para cada combinação.",
+          "rationale": "O exemplo combina capacidades sem criar um tipo específico para cada conjunto. Cada wrapper atende ao contrato Leitor e conhece apenas o componente interno. Isso permite reutilizar as mesmas camadas em configurações diferentes."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando é uma boa escolha?",
-          "answer": "Quando responsabilidades precisam ser combinadas em execução ou herança não oferece flexibilidade suficiente."
+          "answer": "Quando responsabilidades precisam ser combinadas em execução ou herança não oferece flexibilidade suficiente.",
+          "rationale": "O ganho surge quando capacidades opcionais precisam ser combinadas com flexibilidade. Se o comportamento é sempre obrigatório e não varia, colocá-lo numa camada separada pode apenas dificultar a leitura."
         },
         {
           "id": "trade-offs",
           "question": "Que detalhe altera o resultado?",
-          "answer": "A ordem dos wrappers pode mudar comportamento, erros e efeitos; teste combinações e evite dependência oculta entre camadas."
+          "answer": "A ordem dos wrappers pode mudar comportamento, erros e efeitos; teste combinações e evite dependência oculta entre camadas.",
+          "rationale": "Os wrappers observam momentos diferentes da operação. Um cache externo pode evitar que a camada interna seja chamada; métricas internas deixam de contar essas chamadas. Testar cada camada isolada não basta para validar todas as combinações importantes."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Proxy?",
-          "answer": "Decorator compõe capacidades; Proxy controla acesso ou ciclo de vida. Ambos podem delegar preservando uma interface."
+          "answer": "Decorator compõe capacidades; Proxy controla acesso ou ciclo de vida. Ambos podem delegar preservando uma interface.",
+          "rationale": "Decorator acrescenta capacidades combináveis; Proxy medeia o acesso ou o ciclo de vida do objeto. Ambos podem manter a mesma interface e delegar. Para diferenciá-los, observe a intenção da camada, não apenas sua forma."
         }
-      ]
+      ],
+      "explanation": "Decorator é uma camada que envolve um objeto e oferece a mesma interface. Ao receber uma chamada, a camada acrescenta trabalho antes ou depois de delegar ao objeto interno. Como mantém o contrato, outra camada pode envolvê-la também.\n\nPense em um leitor de arquivos ao qual você adiciona cache e métricas. Não é necessário criar uma subclasse para cada combinação possível. Você monta a combinação de objetos desejada. A ordem importa: medir por fora do cache conta todas as leituras solicitadas; medir por dentro pode contar apenas acessos reais ao arquivo. A composição precisa preservar as expectativas de quem usa o componente.",
+      "background": "Contexto: vários módulos usam Leitor.ler(caminho). Alguns precisam de cache; outros também precisam medir duração.\n\nLeitorComCache envolve LeitorArquivo. LeitorComMetricas pode envolver esse conjunto, formando LeitorComMetricas(LeitorComCache(LeitorArquivo)). O cliente continua chamando ler(). A equipe precisa decidir se quer medir a experiência completa, incluindo acertos de cache, ou apenas a leitura física. Essa decisão determina onde colocar a camada de métricas e mostra por que wrappers não são intercambiáveis em qualquer ordem."
     },
     {
       "id": "facade",
@@ -236,44 +276,54 @@
         {
           "id": "conceito",
           "question": "Qual é a intenção de Facade?",
-          "answer": "Oferecer uma entrada simples para capacidades de um subsistema complexo."
+          "answer": "Oferecer uma entrada simples para capacidades de um subsistema complexo.",
+          "rationale": "A fachada apresenta operações orientadas à tarefa do consumidor e esconde a coordenação interna. O objetivo é tornar o subsistema mais fácil de usar, não necessariamente substituir ou modificar todas as suas interfaces."
         },
         {
           "id": "problema",
           "question": "Qual acoplamento ela reduz?",
-          "answer": "Clientes deixam de coordenar diretamente diversas classes, inicializações e sequências internas da biblioteca."
+          "answer": "Clientes deixam de coordenar diretamente diversas classes, inicializações e sequências internas da biblioteca.",
+          "rationale": "Sem a fachada, cada cliente pode repetir a ordem de inicialização e chamadas de várias classes. Concentrar essa coordenação reduz os pontos que precisam mudar quando o subsistema evolui."
         },
         {
           "id": "estrutura",
           "question": "Quem conhece os detalhes internos?",
-          "answer": "A fachada coordena o subsistema; seus componentes não precisam conhecer a existência da fachada."
+          "answer": "A fachada coordena o subsistema; seus componentes não precisam conhecer a existência da fachada.",
+          "rationale": "A fachada conhece os componentes para organizar o fluxo. Os componentes podem continuar funcionando independentemente dela. Essa direção de dependência evita que o subsistema inteiro precise ser reescrito para receber uma entrada simplificada."
         },
         {
           "id": "implementacao",
           "question": "Como desenhar a interface pública?",
-          "answer": "Escolha jornadas relevantes e esconda a coordenação; separe fachadas quando responsabilidades crescerem demais."
+          "answer": "Escolha jornadas relevantes e esconda a coordenação; separe fachadas quando responsabilidades crescerem demais.",
+          "rationale": "Uma boa operação pública corresponde a uma jornada compreensível, com entradas e resultados claros. Se a fachada começar a coordenar assuntos sem relação, separar suas responsabilidades mantém o contrato fácil de entender."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo representa simplificação?",
-          "answer": "Publicador.publicar() coordena validação, armazenamento e indexação, oferecendo uma operação orientada à jornada."
+          "answer": "Publicador.publicar() coordena validação, armazenamento e indexação, oferecendo uma operação orientada à jornada.",
+          "rationale": "Publicar expressa a intenção do usuário; validar, salvar e indexar são detalhes da execução. O exemplo mostra simplificação da coordenação, mas exige definir o resultado de falhas parciais em vez de apenas juntar chamadas."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando vale usar uma fachada?",
-          "answer": "Para fornecer acesso restrito e conveniente, isolar bibliotecas ou definir fronteiras entre camadas."
+          "answer": "Para fornecer acesso restrito e conveniente, isolar bibliotecas ou definir fronteiras entre camadas.",
+          "rationale": "A fachada é útil para estabelecer uma fronteira conveniente entre cliente e subsistema. Ela pode reduzir dependência de uma biblioteca e oferecer um subconjunto das suas capacidades sem impedir usos especializados quando necessários."
         },
         {
           "id": "trade-offs",
           "question": "Qual degradação deve ser evitada?",
-          "answer": "Uma fachada que acumula todas as regras vira objeto central difícil de manter; não esconda falhas parciais relevantes."
+          "answer": "Uma fachada que acumula todas as regras vira objeto central difícil de manter; não esconda falhas parciais relevantes.",
+          "rationale": "Concentrar coordenação não significa concentrar toda regra de negócio. Uma fachada enorme passa a conhecer assuntos demais. Além disso, ocultar falhas parciais cria uma promessa enganosa sobre o resultado da operação."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Mediator e Adapter?",
-          "answer": "Mediator organiza comunicação entre colegas; Adapter compatibiliza contratos; Facade simplifica o acesso a um subsistema."
+          "answer": "Mediator organiza comunicação entre colegas; Adapter compatibiliza contratos; Facade simplifica o acesso a um subsistema.",
+          "rationale": "Mediator organiza a comunicação entre participantes; Adapter traduz um contrato incompatível; Facade oferece uma entrada simplificada. Uma fachada pode usar adaptadores internamente, pois as intenções são complementares."
         }
-      ]
+      ],
+      "explanation": "Facade é uma porta de entrada simples para um conjunto de operações mais complicado. Em vez de cada consumidor conhecer várias classes e a ordem correta de chamá-las, ele pede uma tarefa de alto nível à fachada.\n\nUma operação publicar() pode coordenar validação, armazenamento e indexação. As classes internas continuam existindo e não precisam saber que há uma fachada. A simplificação deve preservar informações relevantes: se parte da tarefa falha, não basta esconder o problema e devolver sucesso. Também convém limitar a responsabilidade da fachada para que ela não vire o lugar de todas as regras da aplicação.",
+      "background": "Contexto: publicar um documento exige validar conteúdo, salvar o arquivo e atualizar o índice de busca. Várias telas precisariam repetir essa sequência.\n\nPublicador.publicar(documento) organiza as chamadas e oferece um resultado compreensível. Se o arquivo for salvo, mas a indexação falhar, a operação precisa definir se informa publicação pendente, tenta novamente ou compensa o salvamento. A fachada facilita o uso, mas não transforma automaticamente várias operações em uma transação atômica. Seu contrato precisa explicar o que significa concluir a publicação."
     },
     {
       "id": "flyweight",
@@ -290,44 +340,54 @@
         {
           "id": "conceito",
           "question": "O que o Flyweight economiza?",
-          "answer": "Memória ao compartilhar estado repetido entre muitos objetos lógicos."
+          "answer": "Memória ao compartilhar estado repetido entre muitos objetos lógicos.",
+          "rationale": "A economia surge porque dados iguais deixam de ser repetidos em cada objeto lógico. Ainda existem contextos individuais para cada ocorrência. Compartilhar a referência só ajuda se a parte compartilhada representar uma parcela relevante da memória."
         },
         {
           "id": "problema",
           "question": "Qual cenário motiva compartilhamento?",
-          "answer": "Um volume grande de objetos repete dados que poderiam existir uma única vez."
+          "answer": "Um volume grande de objetos repete dados que poderiam existir uma única vez.",
+          "rationale": "O padrão faz sentido quando muitas ocorrências repetem um conjunto separável de dados. Poucos objetos ou dados quase todos diferentes podem não compensar a fábrica, as buscas e a separação de estado."
         },
         {
           "id": "estrutura",
           "question": "Quais estados precisam ser separados?",
-          "answer": "Intrínseco pertence ao flyweight compartilhado; extrínseco varia por ocorrência e vem do contexto."
+          "answer": "Intrínseco pertence ao flyweight compartilhado; extrínseco varia por ocorrência e vem do contexto.",
+          "rationale": "Intrínseco é o que pode ser compartilhado independentemente da ocorrência. Extrínseco inclui posição e seleção, por exemplo. Colocar estado individual no flyweight faria uma mudança atingir várias ocorrências indevidamente."
         },
         {
           "id": "implementacao",
           "question": "Como controlar reutilização?",
-          "answer": "Uma fábrica localiza o flyweight por chave; mantenha o estado compartilhado imutável e passe o contexto às operações."
+          "answer": "Uma fábrica localiza o flyweight por chave; mantenha o estado compartilhado imutável e passe o contexto às operações.",
+          "rationale": "A chave identifica quais dados intrínsecos podem ser reutilizados. A fábrica devolve a instância correspondente, enquanto a operação recebe o contexto variável. Imutabilidade reduz o risco de uma ocorrência corromper o estado de todas as outras."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra os dois estados?",
-          "answer": "Vários caracteres compartilham dados de glifo; posição e seleção permanecem em cada ocorrência do editor."
+          "answer": "Vários caracteres compartilham dados de glifo; posição e seleção permanecem em cada ocorrência do editor.",
+          "rationale": "As formas dos glifos se repetem, mas cada letra ocupa uma posição e pode ter seleção própria. Essa divisão mostra concretamente o que compartilhar e o que preservar por ocorrência."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando adotar esse padrão?",
-          "answer": "Após medir pressão de memória causada por grande repetição de estado que pode ser separado."
+          "answer": "Após medir pressão de memória causada por grande repetição de estado que pode ser separado.",
+          "rationale": "Medir primeiro confirma se o problema está em estado repetido e se a economia supera os custos adicionais. O padrão é uma otimização de representação, não uma obrigação para todo conjunto grande de objetos."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo acompanha a economia?",
-          "answer": "Mais lógica de contexto e busca; alterar estado compartilhado indevidamente afeta muitas ocorrências ao mesmo tempo."
+          "answer": "Mais lógica de contexto e busca; alterar estado compartilhado indevidamente afeta muitas ocorrências ao mesmo tempo.",
+          "rationale": "A economia de memória exige carregar contexto e localizar objetos compartilhados. Uma alteração indevida no estado comum afeta muitos usuários da mesma instância. Por isso, a política de mutação faz parte da correção."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Singleton e cache?",
-          "answer": "Pode haver vários flyweights por chave; o objetivo é compartilhar estado, não impor unicidade global ou apenas acelerar leitura."
+          "answer": "Pode haver vários flyweights por chave; o objetivo é compartilhar estado, não impor unicidade global ou apenas acelerar leitura.",
+          "rationale": "Flyweight pode ter muitas instâncias, uma por combinação de estado intrínseco. Singleton controla quantidade em um escopo; cache costuma buscar reutilização de resultados por desempenho. Uma fábrica de flyweights pode usar cache, mas sua intenção é compartilhar representação."
         }
-      ]
+      ],
+      "explanation": "Flyweight economiza memória compartilhando dados repetidos entre muitas ocorrências. Imagine milhares de letras num editor: cada ocorrência precisa de posição própria, mas várias podem compartilhar a mesma descrição visual do glifo.\n\nO estado compartilhável é chamado intrínseco. O estado que depende de cada ocorrência é extrínseco e fica fora do objeto compartilhado. Uma fábrica pode localizar o objeto comum por chave. Para funcionar com segurança, os dados compartilhados devem ser imutáveis ou ter mutação rigorosamente controlada. O padrão acrescenta complexidade, então vale medir se a repetição realmente causa pressão de memória.",
+      "background": "Contexto: um editor precisa representar milhares de caracteres com as mesmas fontes e formas. Guardar toda a descrição do glifo em cada ocorrência desperdiçaria memória.\n\nA fábrica busca o glifo por uma chave como fonte, tamanho e caractere. Cada ocorrência guarda posição e seleção, passando esses dados ao desenhar. Alterar a seleção de uma letra não deve selecionar todas as que compartilham o glifo. A economia vem de compartilhar a parte repetida, mantendo as diferenças por ocorrência fora dela."
     },
     {
       "id": "proxy",
@@ -344,44 +404,54 @@
         {
           "id": "conceito",
           "question": "O que um Proxy controla?",
-          "answer": "O acesso a outro objeto, preservando a interface esperada pelo cliente."
+          "answer": "O acesso a outro objeto, preservando a interface esperada pelo cliente.",
+          "rationale": "O proxy fica entre cliente e objeto real para mediar o uso. Preservar a interface permite colocá-lo no lugar esperado pelo consumidor. O controle de acesso ou de ciclo de vida é sua motivação principal."
         },
         {
           "id": "problema",
           "question": "Qual problema pode motivá-lo?",
-          "answer": "Um serviço caro, remoto ou protegido precisa de controle antes de ser utilizado diretamente."
+          "answer": "Um serviço caro, remoto ou protegido precisa de controle antes de ser utilizado diretamente.",
+          "rationale": "Um recurso pode ser caro para criar, exigir autorização ou estar em outra máquina. A mediação concentra essas decisões antes do uso real, evitando repeti-las em cada cliente."
         },
         {
           "id": "estrutura",
           "question": "Qual relação existe entre proxy e serviço?",
-          "answer": "Ambos implementam o contrato; o proxy decide quando inicializar, validar ou encaminhar ao serviço real."
+          "answer": "Ambos implementam o contrato; o proxy decide quando inicializar, validar ou encaminhar ao serviço real.",
+          "rationale": "O contrato comum permite ao cliente usar proxy ou serviço real. O proxy mantém ou obtém uma referência ao serviço e decide quando encaminhar. Essa decisão de mediação distingue seu papel do trabalho principal do serviço."
         },
         {
           "id": "implementacao",
           "question": "Como introduzir um proxy?",
-          "answer": "Extraia o contrato comum, encapsule o serviço e substitua o ponto de composição sem alterar os consumidores."
+          "answer": "Extraia o contrato comum, encapsule o serviço e substitua o ponto de composição sem alterar os consumidores.",
+          "rationale": "A substituição acontece na composição: onde se fornecia o serviço, fornece-se seu representante. Para manter consumidores funcionando, o contrato precisa incluir resultados e erros relevantes, e não apenas nomes iguais de métodos."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra criação tardia?",
-          "answer": "ImagemLazy guarda o caminho e carrega a imagem real apenas na primeira solicitação de renderização."
+          "answer": "ImagemLazy guarda o caminho e carrega a imagem real apenas na primeira solicitação de renderização.",
+          "rationale": "Guardar o caminho é barato; carregar os dados visuais pode ser caro. O proxy adia esse custo até renderizar() e passa a delegar ao objeto real. Isso só economiza trabalho se o recurso não for sempre necessário imediatamente."
         },
         {
           "id": "aplicabilidade",
           "question": "Quais aplicações são frequentes?",
-          "answer": "Acesso remoto, proteção, inicialização tardia, cache e registro de chamadas, conforme a necessidade."
+          "answer": "Acesso remoto, proteção, inicialização tardia, cache e registro de chamadas, conforme a necessidade.",
+          "rationale": "As aplicações listadas são formas de mediação: atravessar rede, autorizar, adiar criação ou reaproveitar resposta. Uma mesma técnica de delegação pode atender a objetivos distintos; o contrato deve definir a política adotada."
         },
         {
           "id": "trade-offs",
           "question": "Que transparência merece cautela?",
-          "answer": "Uma chamada remota tem latência e falhas diferentes de uma local; não esconda esses limites do contrato."
+          "answer": "Uma chamada remota tem latência e falhas diferentes de uma local; não esconda esses limites do contrato.",
+          "rationale": "A interface pode esconder a localização do serviço, mas não elimina latência, indisponibilidade ou respostas perdidas. O consumidor precisa saber lidar com falhas e limites de tempo compatíveis com o recurso remoto."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Decorator?",
-          "answer": "Proxy prioriza mediação de acesso e ciclo de vida; Decorator combina capacidades adicionais escolhidas pelo cliente."
+          "answer": "Proxy prioriza mediação de acesso e ciclo de vida; Decorator combina capacidades adicionais escolhidas pelo cliente.",
+          "rationale": "Proxy prioriza controlar o acesso ao objeto; Decorator prioriza acrescentar capacidades combináveis. A implementação pode parecer semelhante. Identificar por que a camada existe ajuda a escolher o nome e o contrato corretos."
         }
-      ]
+      ],
+      "explanation": "Proxy é um representante de outro objeto. Ele oferece o contrato esperado pelo cliente e decide como permitir o acesso ao objeto real: pode verificar permissão, carregar algo apenas quando necessário ou encaminhar uma chamada remota.\n\nO cliente usa a operação conhecida, mas passa por essa mediação. Isso pode evitar uma criação cara ou controlar um recurso protegido. A mesma interface não significa as mesmas propriedades físicas: uma chamada pela rede pode demorar e falhar de formas diferentes. O contrato deve deixar esses limites claros, em vez de fingir que todo acesso é equivalente a uma chamada local.",
+      "background": "Contexto: uma galeria possui muitas imagens grandes, mas o usuário visualiza apenas algumas. Carregar todas na abertura desperdiça memória e tempo.\n\nImagemLazy guarda o caminho e implementa renderizar(). Na primeira renderização, carrega a ImagemReal e delega; nas próximas, pode reutilizá-la. O cliente continua tratando o objeto como uma imagem. Se o carregamento falhar, o proxy precisa definir o erro ou uma apresentação alternativa. O benefício depende de haver imagens que talvez nunca sejam efetivamente exibidas."
     }
   ]
 }

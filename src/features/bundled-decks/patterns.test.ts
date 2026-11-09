@@ -175,3 +175,66 @@ test('backup preserva imagens e versos visuais, rejeitando caminhos e URLs inseg
     filledFaces([{ id: 'visual', title: 'Imagem', content: '', image }]),
   ).toHaveLength(1);
 });
+
+test('todos os cartões recebem três versos didáticos e atualizam versões antigas sem perder progresso', () => {
+  const library = withBundledPatternsDeck(emptyLibrary);
+  for (const pattern of catalog.patterns) {
+    expect(pattern.explanation.length).toBeGreaterThan(350);
+    expect(pattern.background.length).toBeGreaterThan(300);
+    expect(new Set(pattern.cards.map((entry) => entry.rationale)).size).toBe(8);
+    for (const entry of pattern.cards) {
+      const id = `builtin-patterns-${pattern.id}-${entry.id}`;
+      const card = library.cards.find((item) => item.id === id)!;
+      const faces = card.faces!;
+      expect(new Set(faces.map((face) => face.id)).size).toBe(faces.length);
+      expect(faces.find((face) => face.id === `${id}-answer`)!.content).toBe(
+        entry.answer,
+      );
+      expect(
+        faces.find((face) => face.id === `${id}-explanation`)!.content,
+      ).toBe(pattern.explanation);
+      expect(
+        faces.find((face) => face.id === `${id}-background`)!.content,
+      ).toBe(pattern.background);
+      expect(faces.find((face) => face.id === `${id}-rationale`)!.content).toBe(
+        entry.rationale,
+      );
+      expect(entry.rationale.length).toBeGreaterThan(140);
+      expect(faces).toHaveLength(
+        entry.id === 'estrutura' &&
+          assets.some((asset) => asset.pattern === pattern.id)
+          ? 5
+          : 4,
+      );
+    }
+  }
+  const old = structuredClone(library);
+  for (const card of old.cards) {
+    card.faces = card.faces!.filter(
+      (face) =>
+        !['explanation', 'background', 'rationale'].some((suffix) =>
+          face.id.endsWith(`-${suffix}`),
+        ),
+    );
+    Object.assign(card, {
+      due: 123456,
+      interval: 7,
+      reviews: 12,
+      favorite: true,
+    });
+  }
+  const upgraded = withBundledPatternsDeck(old);
+  for (const card of upgraded.cards) {
+    expect(card).toMatchObject({
+      due: 123456,
+      interval: 7,
+      reviews: 12,
+      favorite: true,
+    });
+    expect(card.faces).toEqual(
+      library.cards.find((item) => item.id === card.id)!.faces,
+    );
+  }
+  expect(parseBackup(JSON.stringify(upgraded))).toEqual(upgraded);
+  expect(pendingIds(upgraded, emptySyncState())).toEqual([]);
+});

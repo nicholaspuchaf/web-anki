@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-11-04",
+  "reviewedAt": "2026-11-08",
   "name": "Design Patterns · Conceitos e decisões",
   "syncEnabled": false,
   "sourceCatalog": "https://refactoring.guru/design-patterns/catalog",
@@ -20,44 +20,54 @@
         {
           "id": "conceito",
           "question": "Qual decisão o Factory Method adia?",
-          "answer": "A classe concreta do produto; subclasses escolhem a implementação usada pela lógica herdada."
+          "answer": "A classe concreta do produto; subclasses escolhem a implementação usada pela lógica herdada.",
+          "rationale": "O fluxo precisa de um produto, mas não precisa escolher sua classe concreta. Essa escolha acontece no método redefinido pela subclasse. Adiar significa deixar a decisão para essa especialização, e não necessariamente atrasar a criação até o último instante."
         },
         {
           "id": "problema",
           "question": "Que acoplamento ele reduz?",
-          "answer": "O fluxo principal deixa de construir diretamente produtos específicos, evitando alterações espalhadas para cada variante."
+          "answer": "O fluxo principal deixa de construir diretamente produtos específicos, evitando alterações espalhadas para cada variante.",
+          "rationale": "Quando o fluxo contém new Csv(), ele depende diretamente de Csv. Ao chamar criarFormato(), passa a depender do contrato do produto. Uma variante nova pode fornecer outro produto sem espalhar decisões de criação pelo algoritmo principal."
         },
         {
           "id": "estrutura",
           "question": "Quem cria e quem usa?",
-          "answer": "ConcreteCreator sobrescreve a criação; Creator trabalha com Product; ConcreteProduct cumpre esse contrato."
+          "answer": "ConcreteCreator sobrescreve a criação; Creator trabalha com Product; ConcreteProduct cumpre esse contrato.",
+          "rationale": "Creator concentra o fluxo que usa o produto; ConcreteCreator decide o objeto fornecido. Product define o que o fluxo pode chamar, e ConcreteProduct realiza essas operações. Essa divisão permite mudar a criação sem duplicar a lógica de uso."
         },
         {
           "id": "implementacao",
           "question": "Como introduzir o ponto de extensão?",
-          "answer": "Extraia a criação para um método substituível, retorne a abstração e faça o fluxo chamá-lo."
+          "answer": "Extraia a criação para um método substituível, retorne a abstração e faça o fluxo chamá-lo.",
+          "rationale": "Só extrair new para outro método não basta se o restante do código continuar exigindo Csv. O retorno precisa ser uma abstração útil ao fluxo, e o fluxo precisa chamar o método substituível. Assim, a especialização muda a criação sem reescrever a sequência."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo simples representa a ideia?",
-          "answer": "Exportacao.executar() chama criarFormato(); ExportacaoCsv fornece Csv. O algoritmo herdado não conhece esse formato concreto."
+          "answer": "Exportacao.executar() chama criarFormato(); ExportacaoCsv fornece Csv. O algoritmo herdado não conhece esse formato concreto.",
+          "rationale": "O exemplo tem dois elementos essenciais: executar() é herdado e criarFormato() é redefinido. Csv muda o produto utilizado, enquanto a lógica de exportação continua comum. Uma função que apenas escolhe formatos por um switch não demonstra, sozinha, esse mecanismo por herança."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando usar esse mecanismo?",
-          "answer": "Quando subclasses precisam especializar produtos de um fluxo reutilizável. O método também pode reaproveitar instâncias."
+          "answer": "Quando subclasses precisam especializar produtos de um fluxo reutilizável. O método também pode reaproveitar instâncias.",
+          "rationale": "O benefício aparece quando já existe um fluxo comum que precisa de produtos diferentes em subclasses. O método pode devolver um objeto novo ou reutilizado, desde que respeite o contrato. O padrão organiza a escolha do produto, não obriga uma política de alocação."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo merece atenção?",
-          "answer": "Criar subclasses só para escolher objetos aumenta complexidade; uma função injetada pode bastar num caso simples."
+          "answer": "Criar subclasses só para escolher objetos aumenta complexidade; uma função injetada pode bastar num caso simples.",
+          "rationale": "Cada subclasse traz nomes, arquivos e manutenção. Se a única diferença é uma pequena decisão de criação, receber uma função pode oferecer a mesma flexibilidade com menos estrutura. O custo deve ser comparado com a quantidade real de lógica herdada que será reutilizada."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Abstract Factory?",
-          "answer": "Factory Method especializa uma criação por herança; Abstract Factory oferece uma família de produtos compatíveis."
+          "answer": "Factory Method especializa uma criação por herança; Abstract Factory oferece uma família de produtos compatíveis.",
+          "rationale": "Factory Method concentra-se num ponto de criação redefinido por subclasses. Abstract Factory reúne criações relacionadas, como botão e menu de um tema. Uma Abstract Factory pode até usar Factory Methods internamente; a diferença está no problema organizado por cada padrão."
         }
-      ]
+      ],
+      "explanation": "Imagine uma receita que sempre segue os mesmos passos, mas deixa a escolha de um ingrediente para quem a executa. Factory Method funciona assim: uma classe base contém um fluxo e chama um método para obter o objeto de que precisa. Uma subclasse redefine esse método para fornecer o objeto adequado.\n\nO fluxo usa apenas as operações combinadas no contrato do produto. Por isso, continua funcionando quando surge uma nova implementação. A palavra fábrica aqui significa criar ou fornecer objetos; não significa necessariamente uma classe separada. O ponto central é permitir que subclasses decidam o produto usado pelo fluxo herdado.",
+      "background": "Contexto: uma aplicação exporta relatórios. Toda exportação busca dados, monta um documento e o entrega ao usuário. O que muda é o formato.\n\nExportacao.executar() chama criarFormato() e usa o resultado para escrever o documento. ExportacaoCsv devolve um objeto Csv; ExportacaoPdf devolve um Pdf. Ambos oferecem escrever(dados). Ao acrescentar PDF, a sequência de exportação continua na classe base. Essa separação ajuda quando realmente há um fluxo reutilizável e produtos variáveis; para uma única escolha simples, uma função recebida como parâmetro pode ser suficiente."
     },
     {
       "id": "abstract-factory",
@@ -74,44 +84,54 @@
         {
           "id": "conceito",
           "question": "O que uma Abstract Factory preserva?",
-          "answer": "A compatibilidade entre produtos de uma mesma família, ocultando suas classes concretas."
+          "answer": "A compatibilidade entre produtos de uma mesma família, ocultando suas classes concretas.",
+          "rationale": "A fábrica concreta fornece todos os produtos de uma variante. Assim, a decisão de compatibilidade fica em um único lugar. O cliente ainda precisa usar a mesma fábrica para montar o conjunto; misturar produtos manualmente pode quebrar essa intenção."
         },
         {
           "id": "problema",
           "question": "Qual problema pede famílias?",
-          "answer": "Variações combinadas podem misturar componentes incompatíveis quando cada objeto é escolhido isoladamente."
+          "answer": "Variações combinadas podem misturar componentes incompatíveis quando cada objeto é escolhido isoladamente.",
+          "rationale": "Escolher botão e menu separadamente permite combinar variantes que não foram pensadas juntas. Uma fábrica por família concentra essas escolhas e reduz a chance de combinações inválidas. O problema não é criar objetos isolados, mas coordenar escolhas relacionadas."
         },
         {
           "id": "estrutura",
           "question": "Quais papéis colaboram?",
-          "answer": "Cliente usa fábrica e produtos abstratos; cada fábrica concreta entrega uma variante de todos os produtos."
+          "answer": "Cliente usa fábrica e produtos abstratos; cada fábrica concreta entrega uma variante de todos os produtos.",
+          "rationale": "O cliente conversa com contratos abstratos para não depender de TemaClaro ou TemaEscuro. Cada fábrica concreta conhece as classes de sua família e fornece os produtos correspondentes. Os produtos cumprem os contratos usados pela tela."
         },
         {
           "id": "implementacao",
           "question": "Como organizar a implementação?",
-          "answer": "Defina contratos por produto e métodos na fábrica; injete uma fábrica concreta na composição da aplicação."
+          "answer": "Defina contratos por produto e métodos na fábrica; injete uma fábrica concreta na composição da aplicação.",
+          "rationale": "Contratos por produto definem o que será consumido; a interface da fábrica define quais peças podem ser pedidas. Selecionar a fábrica no ponto de composição evita que o restante da aplicação espalhe condições sobre a variante escolhida."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo evita mistura de variantes?",
-          "answer": "TemaClaro cria BotaoClaro e MenuClaro; TemaEscuro cria ambos escuros, sem decisões dispersas no cliente."
+          "answer": "TemaClaro cria BotaoClaro e MenuClaro; TemaEscuro cria ambos escuros, sem decisões dispersas no cliente.",
+          "rationale": "O exemplo é uma família porque botão e menu variam juntos. A tela pede ambos à mesma fábrica e recebe peças do mesmo tema. Apenas ter uma fábrica de botões, sem relação entre produtos, não demonstra a preocupação central deste padrão."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando faz sentido adotá-la?",
-          "answer": "Quando várias famílias precisam ser intercambiáveis e seus produtos devem funcionar juntos."
+          "answer": "Quando várias famílias precisam ser intercambiáveis e seus produtos devem funcionar juntos.",
+          "rationale": "Quando há várias peças relacionadas e várias famílias possíveis, trocar a fábrica permite trocar o conjunto preservando o cliente. Se as peças variam independentemente, agrupá-las à força pode criar dependências que o domínio não exige."
         },
         {
           "id": "trade-offs",
           "question": "Onde a extensão fica cara?",
-          "answer": "Adicionar uma família é simples; adicionar um novo tipo de produto exige mudar todas as fábricas."
+          "answer": "Adicionar uma família é simples; adicionar um novo tipo de produto exige mudar todas as fábricas.",
+          "rationale": "Uma família nova implementa as operações já previstas, sem mudar os clientes. Um tipo de produto novo, como criarSlider(), amplia o contrato da fábrica e precisa ser implementado em cada família. A facilidade de uma extensão é o custo da outra."
         },
         {
           "id": "comparacao",
           "question": "Como difere de Builder?",
-          "answer": "Abstract Factory entrega produtos relacionados; Builder coordena etapas para construir uma representação complexa."
+          "answer": "Abstract Factory entrega produtos relacionados; Builder coordena etapas para construir uma representação complexa.",
+          "rationale": "Abstract Factory entrega produtos que formam um conjunto coerente. Builder organiza uma montagem passo a passo, normalmente até obter um resultado final. Pedir botão e menu não é a mesma tarefa que montar um relatório com título, seções e rodapé."
         }
-      ]
+      ],
+      "explanation": "Pense em um kit de peças que precisam combinar. Abstract Factory é uma interface para pedir as peças desse kit sem escolher cada classe concreta. Uma fábrica de tema claro cria botão claro e menu claro; uma de tema escuro cria as versões escuras.\n\nO código que monta a tela recebe a fábrica e pede seus produtos. Ele conhece os contratos de botão e menu, mas não precisa decidir a aparência de cada peça. Trocar a fábrica troca a família inteira. O ganho principal é manter coerência entre produtos relacionados, e não apenas esconder chamadas de construtores.",
+      "background": "Contexto: um aplicativo possui temas claro e escuro. A tela precisa de botões, menus e caixas de seleção que mantenham a mesma aparência e comportamento visual.\n\nNa inicialização, a aplicação escolhe FabricaTemaEscuro e a entrega à tela. A tela chama criarBotao() e criarMenu() sem testar o tema em cada componente. Depois, FabricaTemaClaro pode ocupar o mesmo lugar. O desenho é útil quando a família completa varia; se apenas uma cor muda, uma configuração de estilo costuma ser mais simples."
     },
     {
       "id": "builder",
@@ -128,44 +148,54 @@
         {
           "id": "conceito",
           "question": "O que o Builder separa?",
-          "answer": "O processo de montagem de um objeto complexo e as representações produzidas por esse processo."
+          "answer": "O processo de montagem de um objeto complexo e as representações produzidas por esse processo.",
+          "rationale": "A sequência de montagem descreve o que fazer; o builder concreto decide como representar cada etapa. Separar essas duas coisas permite reaproveitar uma receita para resultados diferentes, sem fazer o cliente conhecer os detalhes de cada formato."
         },
         {
           "id": "problema",
           "question": "Qual sintoma sugere seu uso?",
-          "answer": "Construtores enormes ou subclasses para todas as combinações de configuração tornam a criação difícil de compreender."
+          "answer": "Construtores enormes ou subclasses para todas as combinações de configuração tornam a criação difícil de compreender.",
+          "rationale": "Um construtor com muitos parâmetros opcionais é difícil de ler e permite combinações confusas. Etapas com nomes deixam a intenção explícita. Ainda é preciso validar as combinações: trocar argumentos por métodos não torna automaticamente válido qualquer objeto."
         },
         {
           "id": "estrutura",
           "question": "O Director é obrigatório?",
-          "answer": "Não. Ele reutiliza sequências; o cliente pode chamar o builder diretamente e obter seu produto."
+          "answer": "Não. Ele reutiliza sequências; o cliente pode chamar o builder diretamente e obter seu produto.",
+          "rationale": "O Director apenas coordena uma sequência conhecida. O cliente pode desempenhar esse papel chamando as etapas diretamente. Portanto, a ausência de Director não elimina Builder, desde que a construção gradual e a obtenção do resultado estejam separadas."
         },
         {
           "id": "implementacao",
           "question": "Como manter a montagem segura?",
-          "answer": "Defina etapas, builders concretos e obtenção do resultado; reinicie estado quando necessário e valide invariantes ao concluir."
+          "answer": "Defina etapas, builders concretos e obtenção do resultado; reinicie estado quando necessário e valide invariantes ao concluir.",
+          "rationale": "Um builder costuma manter estado temporário. Validação na conclusão impede que esse estado escape como produto inválido; reinicialização impede que uma montagem contamine a próxima. As etapas precisam ter uma ordem e um contrato compreensíveis."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo mostra representações diferentes?",
-          "answer": "As etapas titulo() e secao() produzem um RelatorioPdf ou RelatorioHtml conforme o builder escolhido."
+          "answer": "As etapas titulo() e secao() produzem um RelatorioPdf ou RelatorioHtml conforme o builder escolhido.",
+          "rationale": "Título e seção expressam uma receita comum, enquanto cada builder decide a representação. O mesmo processo pode gerar HTML ou PDF sem exigir que esses resultados tenham a mesma implementação interna."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando esse padrão agrega valor?",
-          "answer": "Quando construção possui várias etapas, opções ou representações que compartilham uma sequência."
+          "answer": "Quando construção possui várias etapas, opções ou representações que compartilham uma sequência.",
+          "rationale": "O padrão ajuda quando a dificuldade está na montagem: muitas opções, etapas ou representações. Para um objeto de dois campos obrigatórios, um construtor claro costuma ser suficiente. O benefício precisa compensar os tipos e a coordenação adicionais."
         },
         {
           "id": "trade-offs",
           "question": "Qual armadilha aparece em produção?",
-          "answer": "Reutilizar um builder mutável sem reset pode vazar configuração entre construções; produtos incompletos não devem escapar."
+          "answer": "Reutilizar um builder mutável sem reset pode vazar configuração entre construções; produtos incompletos não devem escapar.",
+          "rationale": "Se o builder guarda seções numa lista e essa lista não é limpa, um novo relatório pode herdar dados do anterior. Além do reset, é necessário impedir que alterações posteriores no builder modifiquem um produto já entregue por referência compartilhada."
         },
         {
           "id": "comparacao",
           "question": "Builder equivale a métodos encadeados?",
-          "answer": "Não. Encadeamento é sintaxe opcional; o padrão trata construção gradual e pode gerar produtos sem interface comum."
+          "answer": "Não. Encadeamento é sintaxe opcional; o padrão trata construção gradual e pode gerar produtos sem interface comum.",
+          "rationale": "Encadear métodos é apenas uma escolha de retorno, como devolver this. Builder existe mesmo com chamadas separadas. Sua responsabilidade é conduzir a construção e disponibilizar o resultado, inclusive quando cada builder produz tipos diferentes."
         }
-      ]
+      ],
+      "explanation": "Builder é um montador de objetos. Em vez de passar muitos argumentos de uma vez para um construtor, você informa etapas: definir título, adicionar seção, configurar rodapé e concluir. O builder guarda a montagem e entrega o resultado quando ele está pronto.\n\nBuilders diferentes podem interpretar as mesmas etapas e produzir representações diferentes. Um Director, quando existe, guarda uma receita de etapas reutilizável; ele não é obrigatório. O importante é separar como montar do objeto produzido e garantir que o resultado entregue seja válido. Escrever chamadas encadeadas pode tornar o uso agradável, mas não define o padrão.",
+      "background": "Contexto: um sistema gera relatórios em HTML e PDF. Ambos precisam de título e seções, mas usam estruturas internas distintas.\n\nUma rotina chama titulo(), secao() e concluir() no builder escolhido. O builder HTML monta elementos; o builder PDF monta páginas. Uma receita mensal pode ficar num Director e servir aos dois. Ao concluir, o builder verifica campos obrigatórios e evita entregar um documento incompleto. Se for reutilizado, precisa começar uma montagem limpa para não carregar o título do relatório anterior."
     },
     {
       "id": "prototype",
@@ -182,44 +212,54 @@
         {
           "id": "conceito",
           "question": "O que o Prototype permite?",
-          "answer": "Criar objetos copiando instâncias existentes, sem conhecer suas classes concretas."
+          "answer": "Criar objetos copiando instâncias existentes, sem conhecer suas classes concretas.",
+          "rationale": "O cliente parte de uma instância pronta e solicita uma cópia por um contrato conhecido. Ele não precisa descobrir a classe para invocar seu construtor, nem repetir sua configuração. Essa é a diferença entre clonar e reconstruir externamente."
         },
         {
           "id": "problema",
           "question": "Por que copiar externamente pode falhar?",
-          "answer": "O cliente pode desconhecer o tipo concreto ou não acessar estado privado necessário à cópia."
+          "answer": "O cliente pode desconhecer o tipo concreto ou não acessar estado privado necessário à cópia.",
+          "rationale": "Uma cópia feita pelo cliente pode esquecer campos privados, invariantes ou detalhes específicos de uma subclasse. Quem conhece a representação do objeto consegue definir uma cópia coerente, sem expor esses detalhes ao restante do sistema."
         },
         {
           "id": "estrutura",
           "question": "Quem conhece a lógica de cópia?",
-          "answer": "O próprio protótipo concreto implementa clone(); um registro opcional organiza modelos prontos por chave."
+          "answer": "O próprio protótipo concreto implementa clone(); um registro opcional organiza modelos prontos por chave.",
+          "rationale": "O protótipo concreto conhece o estado que precisa reproduzir. O registro é apenas uma forma conveniente de encontrar modelos por nome; não é obrigatório. A responsabilidade essencial está na operação de cópia, não no catálogo de modelos."
         },
         {
           "id": "implementacao",
           "question": "Qual decisão vem antes de implementar clone()?",
-          "answer": "Definir o que será copiado ou compartilhado, incluindo referências, identidade e ciclos no grafo de objetos."
+          "answer": "Definir o que será copiado ou compartilhado, incluindo referências, identidade e ciclos no grafo de objetos.",
+          "rationale": "Antes de programar a recursão, é preciso decidir o que representa identidade e propriedade. Um identificador de documento talvez deva ser novo, um estilo imutável pode ser compartilhado e ciclos exigem controle para não copiar indefinidamente."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo usa configurações prontas?",
-          "answer": "Um editor clona um bloco configurado e muda seu texto, preservando o estilo do modelo."
+          "answer": "Um editor clona um bloco configurado e muda seu texto, preservando o estilo do modelo.",
+          "rationale": "O bloco inicial já reúne uma configuração reutilizável. Cloná-lo permite alterar o texto sem repetir a montagem do estilo. O exemplo só é seguro se a cópia mantiver a independência esperada dos dados que serão editados."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando clonar pode ajudar?",
-          "answer": "Quando inicialização é trabalhosa ou existem muitas configurações reutilizáveis sem necessidade de uma subclasse por combinação."
+          "answer": "Quando inicialização é trabalhosa ou existem muitas configurações reutilizáveis sem necessidade de uma subclasse por combinação.",
+          "rationale": "Quando preparar o estado inicial é trabalhoso, um modelo pronto pode ser mais conveniente. Isso não garante ganho de desempenho: copiar também custa. A motivação pode ser simplificar configuração e evitar classes para cada combinação."
         },
         {
           "id": "trade-offs",
           "question": "Qual risco exige teste específico?",
-          "answer": "Cópia rasa compartilha objetos internos; cópia profunda mal planejada pode duplicar recursos ou entrar em recursão."
+          "answer": "Cópia rasa compartilha objetos internos; cópia profunda mal planejada pode duplicar recursos ou entrar em recursão.",
+          "rationale": "Uma cópia rasa cria um novo objeto externo, mas mantém referências internas. Alterar uma lista da cópia pode alterar o original. Já uma cópia profunda precisa lidar com ciclos, recursos externos e identidade; por isso, testes devem refletir a política de cópia escolhida."
         },
         {
           "id": "comparacao",
           "question": "Como se relaciona com outros criacionais?",
-          "answer": "Factories podem usar protótipos internamente; Builder monta em etapas, enquanto Prototype parte de uma instância pronta."
+          "answer": "Factories podem usar protótipos internamente; Builder monta em etapas, enquanto Prototype parte de uma instância pronta.",
+          "rationale": "Factory descreve como fornecer objetos; ela pode obter o objeto clonando um protótipo. Builder monta em etapas, e Prototype começa de algo já pronto. Os padrões podem colaborar porque atuam sobre aspectos diferentes da criação."
         }
-      ]
+      ],
+      "explanation": "Prototype cria um objeto a partir de outro já configurado. Imagine duplicar um bloco de um editor: o novo bloco começa com o mesmo estilo, mas depois pode receber outro texto. O cliente pede uma cópia, sem precisar conhecer a classe concreta nem reconstruir todos os detalhes.\n\nO próprio objeto, ou uma colaboração que conhece seu estado, define como copiar. A decisão mais importante é o significado de cópia: quais partes serão independentes e quais serão compartilhadas? Copiar só a referência não cria um objeto novo. Copiar tudo cegamente também pode duplicar recursos que deveriam continuar únicos.",
+      "background": "Contexto: um editor oferece modelos de caixas de texto com fonte, borda e espaçamento prontos. O usuário escolhe um modelo e clica em duplicar.\n\nO editor chama clone() no bloco configurado e altera o texto da cópia. O estilo pode ser compartilhado se for imutável, mas uma lista mutável de comentários talvez deva ser copiada. O modelo original não deve mudar quando o usuário edita a cópia. Testar essa independência é mais importante do que simplesmente verificar se clone() retorna outro endereço de memória."
     },
     {
       "id": "singleton",
@@ -236,44 +276,54 @@
         {
           "id": "conceito",
           "question": "Quais responsabilidades o Singleton combina?",
-          "answer": "Controlar uma instância e oferecer acesso global a ela."
+          "answer": "Controlar uma instância e oferecer acesso global a ela.",
+          "rationale": "Impedir múltiplas instâncias e dar acesso global são responsabilidades distintas reunidas no padrão. Compartilhar um objeto por injeção não exige acesso global. Reconhecer essa diferença ajuda a escolher apenas o mecanismo necessário."
         },
         {
           "id": "problema",
           "question": "Qual necessidade ele pretende atender?",
-          "answer": "Compartilhar um recurso cuja multiplicidade precisa ser controlada, evitando criação independente pelos clientes."
+          "answer": "Compartilhar um recurso cuja multiplicidade precisa ser controlada, evitando criação independente pelos clientes.",
+          "rationale": "O padrão centraliza a obtenção de um recurso para que clientes não criem cópias independentes. Antes de adotá-lo, é necessário verificar em qual escopo a multiplicidade realmente precisa ser controlada e se esse controle pertence à classe."
         },
         {
           "id": "estrutura",
           "question": "Como sua estrutura restringe criação?",
-          "answer": "Construtor restrito, referência estática e um método de acesso que devolve a instância guardada."
+          "answer": "Construtor restrito, referência estática e um método de acesso que devolve a instância guardada.",
+          "rationale": "Restringir o construtor evita a criação direta comum, enquanto a referência guardada permite reutilização. O método de acesso devolve essa referência. A garantia exata depende dos recursos da linguagem e de como o ambiente carrega a classe."
         },
         {
           "id": "implementacao",
           "question": "Que cuidado vale na inicialização tardia?",
-          "answer": "Concorrência pode criar duas instâncias; use o mecanismo seguro da linguagem e considere também o estado compartilhado."
+          "answer": "Concorrência pode criar duas instâncias; use o mecanismo seguro da linguagem e considere também o estado compartilhado.",
+          "rationale": "Duas threads podem observar a referência vazia e criar dois objetos ao mesmo tempo. Inicialização segura resolve essa corrida, mas não torna automaticamente seguros os campos mutáveis do objeto compartilhado. Criação e uso concorrente são problemas separados."
         },
         {
           "id": "exemplo",
           "question": "Qual exemplo ilustra identidade compartilhada?",
-          "answer": "Duas chamadas a Configuracao.getInstance() devolvem a mesma referência dentro do escopo definido."
+          "answer": "Duas chamadas a Configuracao.getInstance() devolvem a mesma referência dentro do escopo definido.",
+          "rationale": "O critério do exemplo é a identidade da referência: as duas chamadas obtêm o mesmo objeto no mesmo escopo. Ter dois objetos com valores iguais não demonstra Singleton; igualdade de dados não implica identidade."
         },
         {
           "id": "aplicabilidade",
           "question": "Quando questionar sua adoção?",
-          "answer": "Quando a necessidade real é só compartilhar uma dependência; injeção explícita pode controlar o ciclo de vida."
+          "answer": "Quando a necessidade real é só compartilhar uma dependência; injeção explícita pode controlar o ciclo de vida.",
+          "rationale": "Se a necessidade é apenas compartilhar, a composição da aplicação pode criar uma instância e passá-la aos consumidores. Isso permite trocar a dependência em testes e explicita quem a usa, sem tornar o acesso global obrigatório."
         },
         {
           "id": "trade-offs",
           "question": "Qual custo aparece nos testes?",
-          "answer": "Dependência global oculta e estado persistente dificultam isolamento, paralelismo e substituição de colaboradores."
+          "answer": "Dependência global oculta e estado persistente dificultam isolamento, paralelismo e substituição de colaboradores.",
+          "rationale": "Um teste pode alterar o estado global e afetar o seguinte, inclusive em execução paralela. A dependência também fica escondida dentro do código que a consulta. Esse acoplamento torna substituição e isolamento mais difíceis."
         },
         {
           "id": "comparacao",
           "question": "Uma instância significa unicidade distribuída?",
-          "answer": "Não. Unicidade depende do processo ou escopo; múltiplos processos podem manter instâncias próprias."
+          "answer": "Não. Unicidade depende do processo ou escopo; múltiplos processos podem manter instâncias próprias.",
+          "rationale": "Uma referência estática pertence a um ambiente de execução, não coordena máquinas. Cada processo pode construir a própria instância. Exclusividade distribuída requer coordenação adequada ao recurso e às falhas possíveis, além do escopo de Singleton."
         }
-      ]
+      ],
+      "explanation": "Singleton tenta garantir uma instância dentro de um escopo e oferece um ponto global para acessá-la. Em vez de cada parte criar sua própria configuração, todas pedem a instância guardada pela classe.\n\nHá duas decisões juntas: controlar quantos objetos existem e permitir acesso global. Nem sempre precisamos das duas. Uma dependência criada uma vez e passada explicitamente também pode ser compartilhada. Além disso, uma instância por processo não é uma instância para toda a internet: cada processo, ambiente ou carregador pode ter seu próprio objeto. Estado global mutável exige cuidado com concorrência e testes.",
+      "background": "Contexto: uma aplicação lê suas configurações na inicialização e deseja disponibilizar a mesma visão delas em vários módulos.\n\nConfiguracao.getInstance() devolve a referência guardada, evitando leituras e construções independentes naquele processo. Isso pode ilustrar Singleton, mas criar a configuração na inicialização e injetá-la torna as dependências mais visíveis. Em dois processos do servidor existirão duas configurações em memória; controlar um recurso global entre máquinas exige outro mecanismo, não apenas uma variável estática."
     }
   ]
 }

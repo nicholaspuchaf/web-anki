@@ -70,6 +70,25 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
   await page.getByRole('button', { name: /Resposta/ }).click();
   await expect(page.getByText(answer, { exact: true })).toBeVisible();
   await expect(official).toHaveCount(0);
+  for (const [title, content] of [
+    ['Entenda o padrão', catalog.patterns[0].explanation],
+    ['Contexto e aplicação', catalog.patterns[0].background],
+    [
+      'Por que a resposta está certa?',
+      catalog.patterns[0].cards.find((entry) => entry.id === 'estrutura')!
+        .rationale,
+    ],
+  ]) {
+    await page.getByRole('button', { name: title, exact: false }).click();
+    await expect(
+      page.getByText(content.split('\n\n')[0], { exact: false }),
+    ).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  }
   await page.getByRole('button', { name: /Bom/ }).click();
   await page.getByRole('button', { name: 'Voltar aos baralhos' }).click();
   await page.evaluate(async () => {

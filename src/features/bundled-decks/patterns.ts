@@ -36,6 +36,23 @@ export function withBundledPatternsDeck(library: Library): Library {
           content: '',
           image: official,
         });
+      faces.push(
+        {
+          id: `${id}-explanation`,
+          title: 'Entenda o padrão',
+          content: pattern.explanation,
+        },
+        {
+          id: `${id}-background`,
+          title: 'Contexto e aplicação',
+          content: pattern.background,
+        },
+        {
+          id: `${id}-rationale`,
+          title: 'Por que a resposta está certa?',
+          content: entry.rationale,
+        },
+      );
       return {
         id,
         deckId: PATTERNS_DECK_ID,

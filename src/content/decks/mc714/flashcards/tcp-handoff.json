@@ -1,0 +1,231 @@
+{
+  "reviewedAt": "2026-11-09",
+  "cards": [
+    {
+      "id": "tcp-handoff-1",
+      "question": "O que é TCP handoff de uma conexão já estabelecida?",
+      "answer": "Transferir a responsabilidade e o estado necessários para outro servidor continuar aquela conexão.",
+      "explanation": "Não é simplesmente escolher o destino do primeiro SYN. A migração precisa preservar a visão do cliente sobre a conexão existente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "estado-tcp"
+      ]
+    },
+    {
+      "id": "tcp-handoff-2",
+      "question": "Qual é a diferença entre encaminhar pacotes L4 e fazer TCP handoff?",
+      "answer": "Encaminhar mantém o destino lógico recebendo os pacotes; handoff transfere uma conexão já assumida por outro endpoint.",
+      "explanation": "Se o backend participou do estabelecimento desde o início, ele já possui seu próprio estado TCP. Um encaminhador não precisa necessariamente exportar um estado completo para ele.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "l4",
+        "encaminhamento"
+      ]
+    },
+    {
+      "id": "tcp-handoff-3",
+      "question": "Por que IPs e portas não bastam para continuar uma conexão TCP transferida?",
+      "answer": "Porque identificam a conexão, mas não informam o progresso do fluxo de bytes nem seu estado de controle.",
+      "explanation": "O receptor precisa saber, por exemplo, o próximo byte esperado e o que ainda aguarda reconhecimento. Identidade da conexão e estado da conexão são coisas distintas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "estado-tcp",
+        "quatro-tupla"
+      ]
+    },
+    {
+      "id": "tcp-handoff-4",
+      "question": "Que progresso do fluxo de bytes precisa ser preservado no handoff TCP?",
+      "answer": "Os números de sequência relevantes, os próximos bytes esperados e os dados enviados ainda não reconhecidos.",
+      "explanation": "TCP trata um fluxo de bytes. Continuar com valores incoerentes pode gerar rejeições, retransmissões ou perda da continuidade percebida pelo cliente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "sequence-number",
+        "ack"
+      ]
+    },
+    {
+      "id": "tcp-handoff-5",
+      "question": "Se foram recebidos em ordem os bytes 1000 a 1999, qual é o próximo byte esperado?",
+      "answer": "2000, supondo que esses números representem bytes de dados consecutivos.",
+      "explanation": "O ACK cumulativo aponta o próximo número de sequência esperado. SYN e FIN também consomem espaço de sequência, mas não fazem parte deste exemplo de dados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "sequence-number",
+        "ack"
+      ]
+    },
+    {
+      "id": "tcp-handoff-6",
+      "question": "Por que o estado da máquina TCP precisa ser considerado na transferência?",
+      "answer": "Porque uma conexão estabelecida e uma em encerramento aceitam eventos e exigem ações diferentes.",
+      "explanation": "O novo endpoint não pode tratar uma conexão em CLOSE_WAIT como se acabasse de iniciar. A continuidade inclui o estágio do protocolo, além dos dados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "estado-tcp",
+        "maquina-de-estados"
+      ]
+    },
+    {
+      "id": "tcp-handoff-7",
+      "question": "Que informações de controle de fluxo e opções podem ser relevantes num handoff TCP?",
+      "answer": "Janelas anunciadas, escala de janela e opções negociadas como MSS, timestamps e SACK, conforme a conexão.",
+      "explanation": "A transferência deve manter o comportamento coerente com o que foi negociado. A lista exata e a forma de reconstrução dependem do mecanismo de migração.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "janelas",
+        "opcoes-tcp"
+      ]
+    },
+    {
+      "id": "tcp-handoff-8",
+      "question": "Por que buffers e temporizadores importam na migração de uma conexão TCP?",
+      "answer": "Podem conter dados já recebidos, dados ainda não confirmados, prazos de retransmissão e estado relevante de congestionamento.",
+      "explanation": "Copiar só contadores pode perder bytes ainda não consumidos ou deixar dados pendentes sem retransmissão. O mecanismo precisa preservar ou reconstruir com segurança o controle de congestionamento e coordenar a troca de responsável.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "buffers",
+        "retransmissao"
+      ]
+    },
+    {
+      "id": "tcp-handoff-9",
+      "question": "O TCP padrão oferece uma operação universal para migrar conexões entre servidores?",
+      "answer": "Não. TCP handoff exige mecanismos específicos da infraestrutura, do sistema operacional ou da implementação.",
+      "explanation": "Os servidores precisam coordenar a transferência ou reconstrução do estado e o encaminhamento futuro. Não basta enviar uma mensagem HTTP dizendo para assumir a conexão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "implementacao"
+      ]
+    },
+    {
+      "id": "tcp-handoff-10",
+      "question": "Qual vantagem de escalabilidade o TCP handoff pode oferecer ao despachante?",
+      "answer": "Reduzir sua participação no tráfego subsequente, dependendo do caminho de dados adotado.",
+      "explanation": "Se as respostas grandes deixam de atravessá-lo, sua rede e processamento ficam mais livres para despacho. O benefício não elimina os custos de migração nem garante retorno direto em toda implementação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "escalabilidade",
+        "retorno-direto"
+      ]
+    },
+    {
+      "id": "tcp-handoff-11",
+      "question": "TCP handoff e Direct Server Return são sinônimos?",
+      "answer": "Não. Handoff transfere uma conexão; DSR permite que o servidor responda diretamente ao cliente.",
+      "explanation": "Um desenho L4 pode usar DSR sem migrar uma conexão estabelecida. Também é necessário verificar se uma implementação de handoff realmente tira o retorno do caminho do despachante.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "dsr",
+        "retorno-direto"
+      ]
+    },
+    {
+      "id": "tcp-handoff-12",
+      "question": "No modelo puramente L4, transferir uma conexão por handoff habilita roteamento por URL?",
+      "answer": "Não. Transferir estado TCP não equivale a interpretar o conteúdo HTTP.",
+      "explanation": "Handoff descreve como continuar uma conexão; L4 ou L7 descreve quais informações orientam a decisão. Sistemas especializados podem combinar inspeção de aplicação com transferência, mas isso vai além do modelo L4 puro.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "tcp",
+        "handoff",
+        "l4",
+        "l7"
+      ]
+    }
+  ]
+}

@@ -15,7 +15,7 @@ test('MC714 instala conteúdo local e aplica tags obrigatórias com uma avaliaç
   const deck = page.getByRole('button', {
     name: /Sistemas Distribuidos - MC714.*Abrir baralho/,
   });
-  await expect(deck).toContainText('168 cartões');
+  await expect(deck).toContainText('228 cartões');
   await deck.click();
   await page
     .getByRole('button', { name: '+ Novo cartão', exact: true })
@@ -34,7 +34,7 @@ test('MC714 instala conteúdo local e aplica tags obrigatórias com uma avaliaç
     .fill('Resposta pessoal preservada.');
   await page.getByRole('button', { name: 'Salvar', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
-  await expect(page.getByText(/^169 cartões ·/)).toBeVisible();
+  await expect(page.getByText(/^229 cartões ·/)).toBeVisible();
   await page.reload();
   await deck.click();
   await page
@@ -72,7 +72,7 @@ test('MC714 instala conteúdo local e aplica tags obrigatórias com uma avaliaç
   await expect(page.locator('.feed-manager article')).toHaveCount(7);
   await expect(
     page.getByLabel('Baralho para estudar').locator('option:checked'),
-  ).toContainText('169 flashcards');
+  ).toContainText('229 flashcards');
   const wan = page.locator('.feed-manager article').filter({
     has: page.getByRole('heading', {
       name: 'X em WANs · O custo das esperas',

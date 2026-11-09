@@ -111,9 +111,9 @@ carrosséis**, escolha o baralho e estude sua sequência ou um carrossel especí
 Os conteúdos incluídos estão em pastas por baralho, com vários arquivos dentro de
 `flashcards/` e `carousels/`: veja o [guia de organização](src/content/decks/README.md).
 
-O baralho local **Sistemas Distribuidos - MC714** inclui 168 flashcards e 7 carrosséis
+O baralho local **Sistemas Distribuidos - MC714** inclui 228 flashcards e 7 carrosséis
 (66 páginas) sobre apresentação remota, cloud gaming, aplicações web e qualidade de
-experiência, além de navegadores, assincronismo, transparência, consistência e arquiteturas stateless/stateful. Usa tags obrigatórias e uma avaliação P1/P2/P3; o conteúdo inicial é P2.
+experiência, além de navegadores, assincronismo, transparência, consistência e arquiteturas stateless/stateful, despacho L4/L7, TCP handoff e balanceamento hierárquico. Usa tags obrigatórias e uma avaliação P1/P2/P3; o conteúdo inicial é P2.
 Veja [conteúdo e cobertura](src/content/decks/mc714/README.md).
 
 ## Feed de aprendizado

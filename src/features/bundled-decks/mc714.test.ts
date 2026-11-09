@@ -13,14 +13,14 @@ import { pendingIds } from '../sync/model';
 import { emptySyncState } from '../sync/model';
 import { isBundledId } from './ids';
 
-test('MC714 cobre 168 flashcards, sete carrosséis com 66 páginas e diagramas locais válidos', () => {
+test('MC714 cobre 228 flashcards, sete carrosséis com 66 páginas e diagramas locais válidos', () => {
   const library = withBundledMc714Deck(emptyLibrary);
   const feed = parseFeed(courses);
-  expect(library.cards).toHaveLength(168);
+  expect(library.cards).toHaveLength(228);
   expect(feed.carousels).toHaveLength(7);
   expect(feed.carousels.flatMap((c) => c.slides)).toHaveLength(66);
-  expect(new Set(library.cards.map((c) => c.id)).size).toBe(168);
-  expect(new Set(library.cards.map((c) => c.front)).size).toBe(168);
+  expect(new Set(library.cards.map((c) => c.id)).size).toBe(228);
+  expect(new Set(library.cards.map((c) => c.front)).size).toBe(228);
   for (const item of [...library.cards, ...feed.carousels]) {
     expect(item.deckId).toBe(manifest.id);
     expect(item.tags).toEqual(
@@ -173,7 +173,7 @@ test('questão 5 amplia o catálogo de 132 cartões sem perder revisões ou cart
     reviews: 2,
   });
   const upgraded = withBundledMc714Deck(withPersonal);
-  expect(upgraded.cards).toHaveLength(169);
+  expect(upgraded.cards).toHaveLength(229);
   for (const card of old)
     expect(upgraded.cards.find((c) => c.id === card.id)).toEqual(card);
   expect(
@@ -200,4 +200,40 @@ test('questão 5 inclui 36 perguntas distintas com todas as tags solicitadas', (
     expect(card.answer.trim().length).toBeGreaterThan(15);
     expect(card.explanation.trim().length).toBeGreaterThan(15);
   }
+});
+
+test('questão 6 instala 60 cartões sobre despacho sem alterar os 168 cartões anteriores', () => {
+  const complete = withBundledMc714Deck(emptyLibrary);
+  const previous = { ...complete, cards: complete.cards.slice(0, 168) };
+  Object.assign(previous.cards[0], {
+    due: 98765,
+    interval: 14,
+    reviews: 8,
+    favorite: true,
+  });
+  const saved = structuredClone(previous.cards);
+  const upgraded = withBundledMc714Deck(previous);
+  expect(upgraded.cards).toHaveLength(228);
+  for (const card of saved)
+    expect(upgraded.cards.find((item) => item.id === card.id)).toEqual(card);
+  const added = upgraded.cards.filter((card) =>
+    card.tags?.includes('questao-6'),
+  );
+  expect(added).toHaveLength(60);
+  for (const card of added) {
+    expect(card.tags).toEqual(
+      expect.arrayContaining([
+        'sistemas-distribuidos',
+        'p2',
+        'load balancer',
+        'unicamp',
+        'mc714',
+      ]),
+    );
+    expect(card.faces).toHaveLength(2);
+    expect(card.reviews).toBe(0);
+    expect(card.syncEnabled).toBe(false);
+  }
+  expect(parseBackup(JSON.stringify(upgraded))).toEqual(upgraded);
+  expect(pendingIds(upgraded, emptySyncState())).toEqual([]);
 });

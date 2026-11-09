@@ -1,0 +1,232 @@
+{
+  "reviewedAt": "2026-11-09",
+  "cards": [
+    {
+      "id": "despacho-l4-l7-1",
+      "question": "Quais são as três camadas lógicas de uma aplicação e onde entra o balanceador frontal?",
+      "answer": "Apresentação, aplicação e dados; o balanceador frontal distribui o tráfego entre instâncias da aplicação.",
+      "explanation": "O balanceador é infraestrutura de despacho, não uma quarta camada de negócio. Replicar a aplicação também não elimina possíveis limites na camada de dados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "tres-camadas"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-2",
+      "question": "Qual é o objetivo principal do despacho de requisições em um cluster?",
+      "answer": "Distribuir trabalho entre servidores aptos, evitando concentrar a carga numa única instância.",
+      "explanation": "A distribuição precisa considerar capacidade e disponibilidade. Ter várias instâncias não garante desempenho se o despacho ou o banco limitar o conjunto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "escalabilidade"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-3",
+      "question": "Quais informações um balanceador puramente L4 usa para identificar um fluxo?",
+      "answer": "IPs de origem e destino, portas de origem e destino e protocolo de transporte: a 5-tupla.",
+      "explanation": "Em uma conexão TCP, os dois pares IP/porta formam a 4-tupla dentro desse protocolo. O protocolo distingue fluxos TCP e UDP com os mesmos outros campos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l4",
+        "cinco-tupla"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-4",
+      "question": "Por que o despacho L4 costuma ter menor sobrecarga que o roteamento HTTP L7?",
+      "answer": "Porque pode escolher o destino sem interpretar URLs, cookies ou o corpo HTTP.",
+      "explanation": "É uma tendência para funcionalidades e implementação comparáveis, não uma garantia de que qualquer L4 supera qualquer L7. Capacidade de rede e recursos também importam.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l4",
+        "desempenho"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-5",
+      "question": "Um balanceador puramente L4 consegue separar /imagens de /api pelo caminho solicitado?",
+      "answer": "Não. O caminho é informação HTTP, não parte dos campos de transporte usados no despacho L4.",
+      "explanation": "Ambas as requisições podem compartilhar IP de destino e porta 443. Para escolher por caminho, é necessário acesso e interpretação do HTTP.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l4",
+        "l7",
+        "roteamento-por-conteudo"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-6",
+      "question": "Round Robin sobre novas conexões A, B, C envia a quarta conexão para qual servidor?",
+      "answer": "Para A, reiniciando o ciclo, supondo os três servidores aptos e sem pesos diferentes.",
+      "explanation": "A contagem distribui conexões, não necessariamente o mesmo trabalho. Uma conexão longa ou com muitas requisições pode custar muito mais que outra.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "round-robin"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-7",
+      "question": "Por que distribuir o mesmo número de conexões não garante carga igual entre servidores?",
+      "answer": "Porque conexões podem ter durações, volumes e custos de processamento diferentes.",
+      "explanation": "Um servidor pode receber poucas conexões pesadas e outro muitas conexões leves. A métrica usada pelo algoritmo precisa se aproximar do recurso que se deseja equilibrar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "algoritmos",
+        "conexoes"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-8",
+      "question": "O que Least Connections considera ao escolher um servidor?",
+      "answer": "O número de conexões ativas, preferindo um destino com menos conexões, conforme a política e eventuais pesos.",
+      "explanation": "Menos conexões não significa necessariamente menos CPU ocupada. É uma aproximação útil em alguns cenários, não uma medição direta do custo das requisições.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "least-connections"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-9",
+      "question": "Que dados permitem roteamento de requisições HTTP na camada 7?",
+      "answer": "Caminho, método, cabeçalhos, domínio HTTP e cookies, entre outros dados de aplicação acessíveis ao balanceador.",
+      "explanation": "Usar identidade autenticada exige validar ou receber essa identidade de uma fonte confiável. Um cabeçalho enviado pelo cliente não é automaticamente prova de identidade.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l7",
+        "http"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-10",
+      "question": "O que é content-based routing?",
+      "answer": "Escolher um conjunto de servidores a partir do conteúdo ou dos metadados da requisição de aplicação.",
+      "explanation": "Por exemplo, /imagens vai ao serviço de arquivos e /api/pagamentos ao serviço de pagamentos. Depois dessa escolha, ainda pode haver balanceamento entre réplicas do serviço.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l7",
+        "roteamento-por-conteudo"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-11",
+      "question": "Por que L7 pode encaminhar requisições de uma conexão persistente para backends diferentes?",
+      "answer": "Porque o proxy interpreta as requisições individualmente e pode usar conexões separadas com os backends.",
+      "explanation": "A conexão do cliente termina no proxy. Essa capacidade depende do protocolo e do modo de operação; um túnel opaco não oferece o mesmo roteamento por requisição.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l7",
+        "http",
+        "conexoes-persistentes"
+      ]
+    },
+    {
+      "id": "despacho-l4-l7-12",
+      "question": "Como escolher entre L4 e L7 sem assumir que uma camada é sempre melhor?",
+      "answer": "Use L4 quando encaminhamento por transporte atende aos requisitos; use L7 quando precisar interpretar a aplicação para rotear ou aplicar políticas.",
+      "explanation": "Compare também latência, vazão, TLS, afinidade e disponibilidade. Mais flexibilidade exige recursos, mas pode evitar que trabalho chegue ao serviço errado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "clusters",
+        "arquiteturas",
+        "l4",
+        "l7",
+        "trade-offs"
+      ]
+    }
+  ]
+}

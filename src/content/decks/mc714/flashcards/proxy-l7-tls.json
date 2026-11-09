@@ -1,0 +1,242 @@
+{
+  "reviewedAt": "2026-11-09",
+  "cards": [
+    {
+      "id": "proxy-l7-tls-1",
+      "question": "O que significa terminação TCP num proxy L7?",
+      "answer": "O proxy é endpoint da conexão do cliente e usa outra conexão independente para falar com o backend.",
+      "explanation": "Cliente ↔ proxy e proxy ↔ backend possuem estados TCP próprios. Encaminhar uma requisição entre eles não transfere a conexão TCP original.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "terminacao-tcp"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-2",
+      "question": "Terminar uma conexão no balanceador significa necessariamente rejeitar o usuário?",
+      "answer": "Não. Significa atuar como endpoint do protocolo naquele trecho da comunicação.",
+      "explanation": "O balanceador pode receber normalmente a requisição e encaminhá-la ao backend por outra conexão. Terminação de protocolo não é sinônimo de erro ou recusa de serviço.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "terminacao-tcp",
+        "terminacao-tls"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-3",
+      "question": "Por que o balanceador não consegue normalmente ler URL e cookies de um HTTP protegido por TLS sem descriptografá-lo?",
+      "answer": "Porque esses campos estão dentro do conteúdo protegido pelo TLS.",
+      "explanation": "Receber os pacotes e conhecer IPs ou portas não dá acesso ao HTTP em texto claro. Roteamento por esses campos exige um ponto com acesso ao conteúdo descriptografado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "https",
+        "roteamento-por-conteudo"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-4",
+      "question": "O que acontece quando o balanceador termina TLS do cliente?",
+      "answer": "Ele participa do handshake, apresenta as credenciais apropriadas e obtém acesso ao conteúdo HTTP descriptografado.",
+      "explanation": "O trecho criptografado do cliente termina ali. O tráfego ao backend pode usar uma nova sessão TLS independente, conforme o desenho e os requisitos de proteção.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "terminacao-tls",
+        "https"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-5",
+      "question": "Após terminar TLS, o balanceador é obrigado a enviar HTTP sem criptografia ao backend?",
+      "answer": "Não. Ele pode abrir outra conexão TLS e encaminhar por HTTPS.",
+      "explanation": "Recriptografar protege o segundo trecho, mas não transforma as duas sessões numa única sessão TLS entre cliente e backend. O proxy continua sendo um ponto de acesso ao texto claro.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "https",
+        "recriptografia"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-6",
+      "question": "Qual é a diferença entre terminação TCP e terminação TLS?",
+      "answer": "A primeira define o endpoint do transporte; a segunda define o endpoint da proteção TLS e o acesso ao conteúdo descriptografado.",
+      "explanation": "São camadas distintas. Um proxy TCP pode retransmitir bytes TLS sem descriptografá-los; separar conexões TCP não exige, por si só, terminar TLS.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "terminacao-tcp",
+        "terminacao-tls"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-7",
+      "question": "Por que TLS e análise HTTP podem aumentar o custo de um balanceador L7?",
+      "answer": "Acrescentam handshakes, operações criptográficas, parsing, buffers e aplicação de regras ao encaminhamento.",
+      "explanation": "O impacto depende da implementação, do hardware, da reutilização de conexões e do tráfego. Não existe uma penalidade fixa universal para todo proxy L7.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "desempenho",
+        "cpu"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-8",
+      "question": "Por que respostas normalmente atravessam um proxy reverso L7 tradicional?",
+      "answer": "Porque ele conecta dois trechos independentes e precisa encaminhar a resposta do backend pela conexão do cliente.",
+      "explanation": "O backend não pode simplesmente enviar os bytes na conexão TCP/TLS do cliente, cujo estado pertence ao proxy. Uma alternativa direta exigiria outro desenho de protocolo e rede.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "retorno-direto"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-9",
+      "question": "O que é TLS passthrough e qual sua limitação para roteamento HTTP?",
+      "answer": "Encaminhar o TLS sem terminá-lo, deixando a descriptografia para o backend; o balanceador não lê URLs ou cookies protegidos.",
+      "explanation": "Alguns metadados do handshake podem orientar decisões quando estiverem visíveis. Isso não equivale a inspecionar o HTTP criptografado, e o retorno direto depende do encaminhamento adotado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "passthrough"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-10",
+      "question": "Encaminhar uma requisição HTTP ao backend é handoff da conexão TCP/TLS do cliente?",
+      "answer": "Não. Um proxy pode copiar a requisição para outra conexão e continuar dono da conexão original.",
+      "explanation": "Transferência de mensagem e transferência de endpoint são mecanismos diferentes. O backend pode atender o pedido sem possuir os contadores e as chaves da conexão do cliente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "handoff"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-11",
+      "question": "Além de TCP, que estado um handoff especializado de HTTPS pode precisar preservar?",
+      "answer": "Estado TLS, como segredos de tráfego e contadores de registros, e estado HTTP, como parser, requisições pendentes e streams.",
+      "explanation": "É tecnicamente possível em implementações especializadas, não um recurso genérico do HTTP/TLS. A migração precisa manter as camadas coerentes e proteger os segredos. Certificado ou chave privada, sozinhos, não reproduzem uma sessão TLS ativa.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "handoff",
+        "estado-tls"
+      ]
+    },
+    {
+      "id": "proxy-l7-tls-12",
+      "question": "Por que HTTP/2 dificulta mover uma conexão inteira após escolher o backend da primeira requisição?",
+      "answer": "Porque uma mesma conexão pode carregar múltiplos streams simultâneos, com requisições que merecem destinos diferentes.",
+      "explanation": "Mover toda a conexão para um backend reduz a liberdade de roteamento posterior. Uma migração completa também precisa lidar com o estado dos streams e da conexão, não apenas com um pedido.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "l7",
+        "tls",
+        "proxy-reverso",
+        "http2",
+        "multiplexacao",
+        "handoff"
+      ]
+    }
+  ]
+}

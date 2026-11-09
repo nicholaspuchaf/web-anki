@@ -1,0 +1,237 @@
+{
+  "reviewedAt": "2026-11-09",
+  "cards": [
+    {
+      "id": "retorno-direto-hierarquia-1",
+      "question": "Por que respostas grandes tornam o caminho de retorno especialmente importante no balanceamento?",
+      "answer": "Porque o volume de respostas pode superar muito o de requisições e saturar o despachante.",
+      "explanation": "Em tráfego assimétrico, retirar o retorno desse caminho reduz banda e processamento de pacotes no balanceador. Não elimina o tráfego que a rede e os servidores ainda precisam transportar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "assimetria",
+        "gargalos"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-2",
+      "question": "Usando unidades decimais, quanto somam 1.000 requisições de 1 KB?",
+      "answer": "1 MB de dados de requisição.",
+      "explanation": "1.000 × 1 KB = 1.000 KB = 1 MB. É uma conta simplificada de payload, sem cabeçalhos, retransmissões, ACKs e demais custos de rede.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "calculo",
+        "banda"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-3",
+      "question": "Usando unidades decimais, quanto somam 1.000 respostas de 10 MB?",
+      "answer": "10.000 MB, ou 10 GB de dados de resposta.",
+      "explanation": "Esse volume agregado não é uma taxa: para obter banda necessária, também precisamos saber em quanto tempo será transmitido. Concorrência e duração influenciam a carga instantânea.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "calculo",
+        "banda"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-4",
+      "question": "No exemplo de 1 MB de pedidos e 10 GB de respostas, o que o retorno direto evita?",
+      "answer": "Evita que os 10 GB de payload de resposta precisem atravessar o despachante.",
+      "explanation": "O despachante ainda processa o tráfego de entrada e possivelmente ACKs e outros pacotes, conforme o desenho. Dizer que ele processa só 1 MB é uma simplificação do payload do exemplo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "dsr",
+        "assimetria"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-5",
+      "question": "L4 sem TCP handoff obriga que as respostas passem pelo balanceador?",
+      "answer": "Não. Um desenho com Direct Server Return pode permitir retorno direto sem migrar uma conexão estabelecida.",
+      "explanation": "NAT bidirecional é um caso em que ida e volta atravessam o balanceador, mas não representa todas as formas de despacho L4.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "dsr",
+        "l4",
+        "nat"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-6",
+      "question": "Que condições de rede precisam ser resolvidas para um retorno direto funcionar?",
+      "answer": "O backend precisa responder de forma aceita pelo cliente, com endereçamento, roteamento e políticas de rede compatíveis com o serviço.",
+      "explanation": "Não basta desviar a resposta: ela deve pertencer à conexão esperada e atravessar controles da rede. A configuração concreta depende da técnica de DSR ou handoff adotada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "dsr",
+        "roteamento"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-7",
+      "question": "Retorno direto melhora automaticamente todos os tipos de tráfego?",
+      "answer": "Não. O benefício depende do volume de retorno, do gargalo atual e da arquitetura.",
+      "explanation": "É especialmente valioso quando respostas dominam o tráfego e o despachante está no caminho crítico. Também acrescenta requisitos operacionais e não elimina outros limites do cluster.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "trade-offs",
+        "desempenho"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-8",
+      "question": "O que é uma arquitetura hierárquica de balanceamento?",
+      "answer": "Uma organização com níveis de decisão, como escolher região, serviço e depois uma réplica local.",
+      "explanation": "Cada nível resolve uma parte da distribuição. A hierarquia não exige que um único proxy global retransmita todos os bytes do sistema.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "hierarquia"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-9",
+      "question": "Que critérios um nível global pode usar para escolher uma região?",
+      "answer": "Latência, proximidade, saúde e capacidade disponível, conforme a política adotada.",
+      "explanation": "Proximidade geográfica é uma aproximação, não garantia da menor latência. A decisão deve considerar a disponibilidade do serviço e as condições reais de atendimento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "hierarquia",
+        "global"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-10",
+      "question": "O que o balanceamento local faz depois da escolha de datacenter ou serviço?",
+      "answer": "Escolhe uma instância apta dentro do conjunto selecionado, usando um algoritmo apropriado.",
+      "explanation": "Round Robin ou Least Connections são possibilidades. Separar grupos como API e imagens também permite dimensioná-los independentemente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "hierarquia",
+        "regional",
+        "algoritmos"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-11",
+      "question": "Por que uma hierarquia ainda pode ter um gargalo no primeiro nível?",
+      "answer": "Porque, se um único componente obrigatório processar todo o tráfego, sua capacidade continua limitando o conjunto.",
+      "explanation": "Distribuir os níveis inferiores não remove esse limite. Mecanismos como DNS, Anycast ou múltiplas entradas podem ajudar a distribuir o ingresso, conforme a implementação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "hierarquia",
+        "dns",
+        "anycast",
+        "gargalos"
+      ]
+    },
+    {
+      "id": "retorno-direto-hierarquia-12",
+      "question": "Redirecionar novas conexões a outra região garante que as sessões existentes continuem sem interrupção?",
+      "answer": "Não. Recuperar conexões e estado existente é um problema adicional ao encaminhamento de novos clientes.",
+      "explanation": "Cada nível precisa de redundância, e a aplicação pode precisar replicar dados ou externalizar sessões. DNS também envolve cache, e alterações de roteamento não migram automaticamente conexões TCP/TLS ativas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "Load Balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "retorno-direto",
+        "redes",
+        "hierarquia",
+        "failover",
+        "sessoes"
+      ]
+    }
+  ]
+}

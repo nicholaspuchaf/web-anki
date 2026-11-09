@@ -1,7 +1,7 @@
 # Sistemas Distribuidos - MC714
 
 Baralho local baseado nas notas fornecidas pelo usuário, organizado para **P2**.
-São **168 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
+São **228 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os
 flashcards têm uma resposta direta e um verso de justificativa/atenção. Os
 carrosséis desenvolvem explicações, percursos, contas e exercícios; não há cópia
 integral de uma fonte externa. Três diagramas SVG são autorais e ficam em
@@ -106,3 +106,23 @@ as distinções de protocolo e medição:
 Os dados estão divididos entre `flashcards/` e `carousels/`; os índices agregam os
 sete arquivos de cada formato. IDs são estáveis. `syncEnabled: false`, a política
 de sincronização e a reserva `builtin-mc714*` mantêm este conteúdo fora do DynamoDB.
+
+## Questão 6 — Despacho e balanceamento de carga
+
+60 novos flashcards de revisão, com resposta curta e verso de explicação, divididos em cinco arquivos de 12 cartões:
+
+- `despacho-l4-l7.json`: cluster em três camadas, campos de transporte, algoritmos e roteamento por conteúdo.
+- `tcp-handoff.json`: transferência de conexão, estado TCP, buffers, opções e distinção de DSR.
+- `proxy-l7-tls.json`: terminação TCP/TLS, passthrough, proxy reverso e limites de um handoff HTTPS/HTTP2 especializado.
+- `afinidade-gargalos.json`: afinidade de conexão e sessão, NAT, mobilidade, health checks, capacidade e SPOF.
+- `retorno-direto-hierarquia.json`: assimetria, cálculos em unidades decimais, retorno direto, distribuição global/local e failover.
+
+Todos recebem `sistemas-distribuidos`, `p2`, `Load Balancer`, `unicamp`, `mc714`, `balanceamento-de-carga`, `questao-6` e tags específicas. O aplicativo normaliza `Load Balancer` para `load balancer`, mantendo a mesma tag para busca e filtros. O conteúdo é instalado automaticamente e permanece local, fora do DynamoDB. Os 168 cartões anteriores mantêm IDs e progresso.
+
+O material fornecido pelo usuário é a base pedagógica. Os detalhes de estado dos protocolos foram conferidos em fontes primárias:
+
+- [RFC 9293, seção 3.3.1 — estado TCP e TCB](https://www.rfc-editor.org/rfc/rfc9293.html#section-3.3.1).
+- [RFC 8446, seção 5.3 — contadores de registros TLS](https://www.rfc-editor.org/rfc/rfc8446.html#section-5.3).
+- [RFC 9113, seção 5 — streams e estado de conexão HTTP/2](https://www.rfc-editor.org/rfc/rfc9113.html#section-5).
+
+Handoff de uma conexão ativa não é apresentado como uma operação universal desses protocolos. Nos exemplos de volume de dados, KB/MB/GB são decimais e o payload é separado do custo adicional dos pacotes.

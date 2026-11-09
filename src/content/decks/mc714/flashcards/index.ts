@@ -14,9 +14,14 @@ import q5part0 from './stateless-stateful.json' with { type: 'json' };
 import q5part1 from './escalabilidade-sessoes.json' with { type: 'json' };
 import q5part2 from './tokens-jwt.json' with { type: 'json' };
 import q5part3 from './estado-compartilhado.json' with { type: 'json' };
+import q6part0 from './despacho-l4-l7.json' with { type: 'json' };
+import q6part1 from './tcp-handoff.json' with { type: 'json' };
+import q6part2 from './proxy-l7-tls.json' with { type: 'json' };
+import q6part3 from './afinidade-gargalos.json' with { type: 'json' };
+import q6part4 from './retorno-direto-hierarquia.json' with { type: 'json' };
 export default {
   ...part0,
-  reviewedAt: '2026-11-08',
+  reviewedAt: '2026-11-09',
   cards: [
     ...part0.cards,
     ...part1.cards,
@@ -34,5 +39,10 @@ export default {
     ...q5part1.cards,
     ...q5part2.cards,
     ...q5part3.cards,
+    ...q6part0.cards,
+    ...q6part1.cards,
+    ...q6part2.cards,
+    ...q6part3.cards,
+    ...q6part4.cards,
   ],
 };

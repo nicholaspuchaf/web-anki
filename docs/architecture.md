@@ -273,3 +273,27 @@ progresso e espelha os registros no localStorage após o commit. A migração re
 contadores sem inferir datas e mantém registros conhecidos em importações e
 remoções. O diário permanece separado do formato `Library` enviado à nuvem ou
 exportado nos backups atuais. Veja [contrato e recuperação](review-dashboard.md).
+
+## Endpoints do backend
+
+`backend/service.ts` compõe a API: normaliza a requisição, valida a origem, responde
+preflight e despacha a rota. `backend/routes.ts` é o registro central de caminhos,
+métodos permitidos e dependências. `backend/http.ts` concentra tipos HTTP,
+serialização JSON, cabeçalhos e tratamento de falhas de armazenamento.
+
+Os handlers ficam em `backend/endpoints/`:
+
+| Arquivo          | Endpoint                                                                                     |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| `flashcards.ts`  | GET/PUT/DELETE `/flashcards/:id`, incluindo versões, tombstones e políticas de sincronização |
+| `sync.ts`        | GET `/sync`, incluindo parâmetros e paginação                                                |
+| `leetcode.ts`    | GET `/leetcode/problems/:slug`, com os erros próprios da importação                          |
+| `mark-rework.ts` | PUT `/flashcards/:id/rework`, com validação do pedido de melhoria                            |
+| `list-rework.ts` | GET `/rework-requests`, com validação do cursor                                              |
+
+A rota descontinuada `/library` continua retornando 410. Os adaptadores
+`backend/store.ts` e `backend/rework.ts` cuidam da persistência e não dependem dos
+handlers HTTP. Para acrescentar uma rota, implemente seu handler, registre caminho
+e métodos em `routes.ts` e teste seu contrato pelo `createHandler`. A assinatura
+existente de `createHandler` e os tipos HTTP reexportados em `service.ts` permanecem
+compatíveis com a Lambda e os testes de integração.

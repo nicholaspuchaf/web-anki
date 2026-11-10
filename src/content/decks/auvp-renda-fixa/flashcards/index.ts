@@ -1,4 +1,3 @@
-import part0 from './introducao.json' with { type: 'json' };
 import part1 from './aula-01.json' with { type: 'json' };
 import part2 from './aula-02.json' with { type: 'json' };
 import part3 from './aula-03.json' with { type: 'json' };
@@ -20,7 +19,6 @@ import part18 from './aula-17.json' with { type: 'json' };
 
 export default {
   lessons: [
-    part0,
     part1,
     part2,
     part3,

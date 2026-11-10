@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { navigateSection } from './app-navigation';
 
-test('AUVP carrega 250 cartões com tags e páginas, preserva revisão offline e pode ser desativado', async ({
+test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e pode ser desativado', async ({
   page,
   context,
 }) => {
@@ -9,7 +9,7 @@ test('AUVP carrega 250 cartões com tags e páginas, preserva revisão offline e
   const deck = page.getByRole('button', {
     name: /AUVP - Renda Fixa.*Abrir baralho/,
   });
-  await expect(deck).toContainText('250 cartões');
+  await expect(deck).toContainText('246 cartões');
   await deck.click();
   await page.getByLabel('Filtrar por tag').selectOption('aula-06');
   await expect(page.locator('.problem-list-item')).toHaveCount(7);
@@ -50,7 +50,7 @@ test('AUVP carrega 250 cartões com tags e páginas, preserva revisão offline e
     exact: true,
   });
   await expect(toggle.locator('..')).toContainText(
-    '250 flashcards · 0 carrosséis',
+    '246 flashcards · 0 carrosséis',
   );
   await toggle.uncheck();
   await navigateSection(page, 'Flashcards');

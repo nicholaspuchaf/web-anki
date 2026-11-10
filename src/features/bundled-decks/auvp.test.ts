@@ -11,8 +11,8 @@ import { isBundledId } from './ids';
 import { createHandler } from '../../../backend/service';
 
 test('AUVP cobre todas as aulas e páginas de estudo com perguntas únicas, tags e origem verificável', () => {
-  expect(AUVP_CARD_COUNT).toBe(250);
-  expect(catalog.lessons).toHaveLength(19);
+  expect(AUVP_CARD_COUNT).toBe(246);
+  expect(catalog.lessons).toHaveLength(18);
   expect(coverage.pdfPages).toBe(41);
   expect(coverage.sha256).toMatch(/^[a-f0-9]{64}$/);
   expect(coverage.editorialPages).toEqual([1, 2, 3, 4, 5]);
@@ -98,12 +98,29 @@ test('instalação e atualizações mantêm progresso, dados pessoais, backup co
     favorite: true,
   });
   const old = structuredClone(first);
+  const previous = {
+    ...first,
+    cards: [
+      ...first.cards,
+      ...Array.from({ length: 4 }, (_, index) => ({
+        id: `builtin-auvp-introducao-0${index + 1}`,
+        deckId: manifest.id,
+        front: 'Introdução antiga',
+        back: 'Resposta antiga',
+        reviews: 3,
+        interval: 7,
+        due: 123456,
+      })),
+    ],
+  };
+  expect(withBundledAuvpDeck(previous)).toEqual(old);
+  expect(coverage.excludedPages).toEqual([6]);
   const next = withBundledAuvpDeck(first);
   expect(next).toEqual(old);
   expect(parseBackup(JSON.stringify(next))).toEqual(next);
   expect(pendingIds(next, emptySyncState())).toEqual([]);
   expect(next.cards.filter((item) => item.deckId === manifest.id)).toHaveLength(
-    250,
+    246,
   );
   const beforeDeck = {
     ...next,

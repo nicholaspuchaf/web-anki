@@ -1,6 +1,6 @@
 # AUVP - Renda Fixa
 
-250 flashcards de revisão em 19 arquivos: introdução e 17 aulas, com a aula 7 dividida em duas partes. O baralho é instalado automaticamente, funciona offline e pode ser ativado/desativado em Configurações. Não contém carrosséis.
+246 flashcards de revisão em 18 arquivos: 17 aulas, com a aula 7 dividida em duas partes. O baralho é instalado automaticamente, funciona offline e pode ser ativado/desativado em Configurações. Não contém carrosséis.
 
 Cada cartão tem uma pergunta focada e três versos: **Resposta**, **Entenda o raciocínio** e **Origem no material** (aula, arquivo e página). Tags comuns: `auvp`, `renda-fixa`, `modulo-3`; tags específicas identificam aula, instrumento, risco, cálculo, tributação e estratégia. Exemplos e opiniões são identificados também por tags como `exemplo-do-material`, `opiniao-do-material`, `contexto-comercial` e `revisao-critica`.
 
@@ -12,7 +12,7 @@ Fonte enviada pelo usuário: **AUVP ESCOLA - MÓDULO 3 - RENDA FIXA.pdf**, 41 p�
 
 SHA-256 do arquivo lido: `71e60ca1e939efa77e8d7020b08268722cb1a8ad55e2b958f10baa625f1fe453`.
 
-As páginas 1–5 (capas, ficha técnica e sumário) são conteúdo editorial; a introdução e todo o conteúdo de estudo estão nas páginas 6–41. Foram lidos o texto e as figuras dessas páginas, incluindo gráficos de marcação, tabelas tributárias e exemplos dos simuladores. Imagens meramente ilustrativas não viraram perguntas de memorização de detalhes decorativos.
+As páginas 1–5 (capas, ficha técnica e sumário) são conteúdo editorial; a introdução da página 6 foi retirada do baralho por solicitação do usuário. O conteúdo das aulas está nas páginas 7–41. Foram lidos o texto e as figuras dessas páginas, incluindo gráficos de marcação, tabelas tributárias e exemplos dos simuladores. Imagens meramente ilustrativas não viraram perguntas de memorização de detalhes decorativos.
 
 `coverage.json` registra páginas, objetivos de cada seção e IDs dos cartões correspondentes. Cada cartão também informa suas páginas de origem. Os testes conferem que não há páginas de estudo sem cartões, nem IDs/perguntas duplicados. A cobertura semântica resulta da leitura e revisão do material; contar páginas não é, sozinho, uma prova automática de cobertura de todos os conceitos.
 
@@ -22,7 +22,6 @@ O PDF original permanece como arquivo local do usuário e não é copiado para o
 
 | Seção                                              | Páginas do PDF | Cartões | Conteúdo coberto                                                                                                         |
 | -------------------------------------------------- | -------------- | ------: | ------------------------------------------------------------------------------------------------------------------------ |
-| Introdução — liberdade financeira                  | 6              |       4 | Autonomia financeira; Ativos, passivos e dívidas                                                                         |
 | Aula 1 — Fundamentos da renda fixa                 | 7, 8           |       9 | Regra de remuneração; Empréstimo e juros; Renda variável; Papel na carteira; Mapa de produtos                            |
 | Aula 2 — Corretoras, custódia e incentivos         | 8, 9, 10       |      19 | Intermediação e custódia; FGC e fiscalização; B3 e CVM; Comparação de plataformas; Modelo comercial AUVP                 |
 | Aula 3 — Tesouro Direto, inflação e Selic          | 11, 12, 13     |      12 | Dívida soberana; Acesso ao Tesouro; Inflação e deflação; Política monetária; Famílias de títulos                         |

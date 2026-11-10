@@ -3,24 +3,12 @@
   "sha256": "71e60ca1e939efa77e8d7020b08268722cb1a8ad55e2b958f10baa625f1fe453",
   "pdfPages": 41,
   "studyPages": [
-    6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-    26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41
+    7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+    27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41
   ],
   "editorialPages": [1, 2, 3, 4, 5],
   "reviewedAt": "2026-11-10",
   "lessons": [
-    {
-      "id": "introducao",
-      "title": "Introdução — liberdade financeira",
-      "pages": [6],
-      "topics": ["Autonomia financeira", "Ativos, passivos e dívidas"],
-      "cardIds": [
-        "introducao-01",
-        "introducao-02",
-        "introducao-03",
-        "introducao-04"
-      ]
-    },
     {
       "id": "aula-01",
       "title": "Aula 1 — Fundamentos da renda fixa",
@@ -515,6 +503,13 @@
         "aula-17-06",
         "aula-17-07"
       ]
+    }
+  ],
+  "excludedPages": [6],
+  "exclusions": [
+    {
+      "pages": [6],
+      "reason": "Cartões da introdução removidos por solicitação do usuário."
     }
   ]
 }

@@ -1,0 +1,58 @@
+{
+  "reviewedAt": "2026-11-10",
+  "scope": "Conferências pontuais para distinguir simplificações do PDF de conceitos técnicos; não substituem a origem de cada cartão.",
+  "sources": [
+    {
+      "topic": "Garantia e limites por conglomerado",
+      "url": "https://www.fgc.org.br/pt-br/sobre-garantia-fgc"
+    },
+    {
+      "topic": "Fundos garantidores FGC e FGCoop",
+      "url": "https://www.bcb.gov.br/meubc/faqs/s/fundos-garantidores-de-credito"
+    },
+    {
+      "topic": "Cupons e rentabilidade são conceitos distintos",
+      "url": "https://www.tesourodireto.com.br/b/o-que-sao-juros-semestrais-"
+    },
+    {
+      "topic": "Calendário de cupons por série",
+      "url": "https://www.b3.com.br/pt_br/produtos-e-servicos/tesouro-direto/tesouro-direto/perguntas-frequentes/"
+    },
+    {
+      "topic": "Copom e decisões de política monetária",
+      "url": "https://www.bcb.gov.br/controleinflacao/copom"
+    },
+    {
+      "topic": "Prazo mínimo de LCI/LCA sem correção por índice de preços",
+      "url": "https://www.bcb.gov.br/detalhenoticia/20686/nota"
+    },
+    {
+      "topic": "Indicadores de capital e ativos ponderados pelo risco",
+      "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?numero=306&tipo=Resolu%C3%A7%C3%A3o+BCB"
+    },
+    {
+      "topic": "Emissores de renda fixa e securitização",
+      "url": "https://www.gov.br/investidor/pt-br/investir/antes-de-investir/entenda-as-caracteristicas-dos-investimentos"
+    },
+    {
+      "topic": "CRI, securitizadora e estrutura",
+      "url": "https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-fixa/certificados-de-recebiveis-imobiliarios.htm"
+    },
+    {
+      "topic": "Come-cotas sobre rendimentos, não sobre o principal",
+      "url": "https://www.caixa.gov.br/fundos-investimento/voce/Paginas/default.aspx"
+    },
+    {
+      "topic": "PGBL e VGBL: distinção e tributação",
+      "url": "https://www.gov.br/susep/pt-br/assuntos/meu-futuro-seguro/seguros-previdencia-e-capitalizacao/providencia-complementar-aberta/pgbl-vgbl"
+    },
+    {
+      "topic": "ITCMD nos repasses de PGBL/VGBL por morte — Tema 1214",
+      "url": "https://portal.stf.jus.br/jurisprudenciarepercussao/tema.asp?num=1214"
+    },
+    {
+      "topic": "Regime público de repartição e previdência complementar",
+      "url": "https://www.gov.br/previc/pt-br/publicacoes/guias-de-melhores-praticas/previdencia-complementar-o-futuro-comeca-agora.pdf"
+    }
+  ]
+}

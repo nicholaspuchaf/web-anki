@@ -1,0 +1,520 @@
+{
+  "file": "AUVP ESCOLA - MÓDULO 3 - RENDA FIXA.pdf",
+  "sha256": "71e60ca1e939efa77e8d7020b08268722cb1a8ad55e2b958f10baa625f1fe453",
+  "pdfPages": 41,
+  "studyPages": [
+    6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+    26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41
+  ],
+  "editorialPages": [1, 2, 3, 4, 5],
+  "reviewedAt": "2026-11-10",
+  "lessons": [
+    {
+      "id": "introducao",
+      "title": "Introdução — liberdade financeira",
+      "pages": [6],
+      "topics": ["Autonomia financeira", "Ativos, passivos e dívidas"],
+      "cardIds": [
+        "introducao-01",
+        "introducao-02",
+        "introducao-03",
+        "introducao-04"
+      ]
+    },
+    {
+      "id": "aula-01",
+      "title": "Aula 1 — Fundamentos da renda fixa",
+      "pages": [7, 8],
+      "topics": [
+        "Regra de remuneração",
+        "Empréstimo e juros",
+        "Renda variável",
+        "Papel na carteira",
+        "Mapa de produtos"
+      ],
+      "cardIds": [
+        "aula-01-01",
+        "aula-01-02",
+        "aula-01-03",
+        "aula-01-04",
+        "aula-01-05",
+        "aula-01-06",
+        "aula-01-07",
+        "aula-01-08",
+        "aula-01-09"
+      ]
+    },
+    {
+      "id": "aula-02",
+      "title": "Aula 2 — Corretoras, custódia e incentivos",
+      "pages": [8, 9, 10],
+      "topics": [
+        "Intermediação e custódia",
+        "FGC e fiscalização",
+        "B3 e CVM",
+        "Comparação de plataformas",
+        "Modelo comercial AUVP"
+      ],
+      "cardIds": [
+        "aula-02-01",
+        "aula-02-02",
+        "aula-02-03",
+        "aula-02-04",
+        "aula-02-05",
+        "aula-02-06",
+        "aula-02-07",
+        "aula-02-08",
+        "aula-02-09",
+        "aula-02-10",
+        "aula-02-11",
+        "aula-02-12",
+        "aula-02-13",
+        "aula-02-14",
+        "aula-02-15",
+        "aula-02-16",
+        "aula-02-17",
+        "aula-02-18",
+        "aula-02-19"
+      ]
+    },
+    {
+      "id": "aula-03",
+      "title": "Aula 3 — Tesouro Direto, inflação e Selic",
+      "pages": [11, 12, 13],
+      "topics": [
+        "Dívida soberana",
+        "Acesso ao Tesouro",
+        "Inflação e deflação",
+        "Política monetária",
+        "Famílias de títulos"
+      ],
+      "cardIds": [
+        "aula-03-01",
+        "aula-03-02",
+        "aula-03-03",
+        "aula-03-04",
+        "aula-03-05",
+        "aula-03-06",
+        "aula-03-07",
+        "aula-03-08",
+        "aula-03-09",
+        "aula-03-10",
+        "aula-03-11",
+        "aula-03-12"
+      ]
+    },
+    {
+      "id": "aula-04",
+      "title": "Aula 4 — Tesouro Selic e tributação",
+      "pages": [13, 14, 15],
+      "topics": [
+        "Pós-fixação",
+        "Liquidez da reserva",
+        "Selic meta e efetiva",
+        "DI",
+        "IOF e IR"
+      ],
+      "cardIds": [
+        "aula-04-01",
+        "aula-04-02",
+        "aula-04-03",
+        "aula-04-04",
+        "aula-04-05",
+        "aula-04-06",
+        "aula-04-07",
+        "aula-04-08",
+        "aula-04-09",
+        "aula-04-10",
+        "aula-04-11",
+        "aula-04-12",
+        "aula-04-13",
+        "aula-04-14",
+        "aula-04-15"
+      ]
+    },
+    {
+      "id": "aula-05",
+      "title": "Aula 5 — Prefixados e poder de compra",
+      "pages": [15, 16, 17],
+      "topics": [
+        "Taxa contratada",
+        "Juros compostos",
+        "Valor de face",
+        "Venda antecipada",
+        "Nominal e real"
+      ],
+      "cardIds": [
+        "aula-05-01",
+        "aula-05-02",
+        "aula-05-03",
+        "aula-05-04",
+        "aula-05-05",
+        "aula-05-06",
+        "aula-05-07",
+        "aula-05-08",
+        "aula-05-09",
+        "aula-05-10",
+        "aula-05-11",
+        "aula-05-12"
+      ]
+    },
+    {
+      "id": "aula-06",
+      "title": "Aula 6 — Tesouro IPCA+",
+      "pages": [18],
+      "topics": [
+        "Indexação e taxa real",
+        "Composição das taxas",
+        "Valor nominal atualizado",
+        "IR sobre correção monetária"
+      ],
+      "cardIds": [
+        "aula-06-01",
+        "aula-06-02",
+        "aula-06-03",
+        "aula-06-04",
+        "aula-06-05",
+        "aula-06-06",
+        "aula-06-07"
+      ]
+    },
+    {
+      "id": "aula-07-1",
+      "title": "Aula 7.1 — Marcação a mercado: mecanismo",
+      "pages": [18, 19],
+      "topics": [
+        "Preço e taxa",
+        "Analogia da balança",
+        "Ganho antecipado",
+        "Limites da especulação"
+      ],
+      "cardIds": [
+        "aula-07-1-01",
+        "aula-07-1-02",
+        "aula-07-1-03",
+        "aula-07-1-04",
+        "aula-07-1-05",
+        "aula-07-1-06",
+        "aula-07-1-07",
+        "aula-07-1-08"
+      ]
+    },
+    {
+      "id": "aula-07-2",
+      "title": "Aula 7.2 — Marcação a mercado: gráficos e decisões",
+      "pages": [20, 21, 22],
+      "topics": [
+        "Acesso e cotações",
+        "Curvas de preço",
+        "Exemplos históricos",
+        "Venda líquida e reinvestimento",
+        "Limites das heurísticas"
+      ],
+      "cardIds": [
+        "aula-07-2-01",
+        "aula-07-2-02",
+        "aula-07-2-03",
+        "aula-07-2-04",
+        "aula-07-2-05",
+        "aula-07-2-06",
+        "aula-07-2-07",
+        "aula-07-2-08",
+        "aula-07-2-09",
+        "aula-07-2-10",
+        "aula-07-2-11",
+        "aula-07-2-12",
+        "aula-07-2-13",
+        "aula-07-2-14",
+        "aula-07-2-15",
+        "aula-07-2-16"
+      ]
+    },
+    {
+      "id": "aula-08",
+      "title": "Aula 8 — Títulos com juros semestrais",
+      "pages": [23],
+      "topics": [
+        "Cupons e renda",
+        "Acumulação e reinvestimento",
+        "Tributação",
+        "Calendário"
+      ],
+      "cardIds": [
+        "aula-08-01",
+        "aula-08-02",
+        "aula-08-03",
+        "aula-08-04",
+        "aula-08-05",
+        "aula-08-06",
+        "aula-08-07",
+        "aula-08-08",
+        "aula-08-09"
+      ]
+    },
+    {
+      "id": "aula-09",
+      "title": "Aula 9 — Tesouro Educa+ e Renda+",
+      "pages": [24, 25],
+      "topics": [
+        "Objetivos educacionais e aposentadoria",
+        "Acumulação e conversão",
+        "Simuladores",
+        "Pagamentos mensais"
+      ],
+      "cardIds": [
+        "aula-09-01",
+        "aula-09-02",
+        "aula-09-03",
+        "aula-09-04",
+        "aula-09-05",
+        "aula-09-06",
+        "aula-09-07",
+        "aula-09-08",
+        "aula-09-09",
+        "aula-09-10"
+      ]
+    },
+    {
+      "id": "aula-10",
+      "title": "Aula 10 — CDB, LC, RDB, bancos e FGC",
+      "pages": [26, 27, 28],
+      "topics": [
+        "Liquidez interbancária e DI",
+        "Prêmio de risco",
+        "Índice de Basileia",
+        "Emissores e siglas",
+        "Garantia agregada"
+      ],
+      "cardIds": [
+        "aula-10-01",
+        "aula-10-02",
+        "aula-10-03",
+        "aula-10-04",
+        "aula-10-05",
+        "aula-10-06",
+        "aula-10-07",
+        "aula-10-08",
+        "aula-10-09",
+        "aula-10-10",
+        "aula-10-11",
+        "aula-10-12",
+        "aula-10-13",
+        "aula-10-14",
+        "aula-10-15",
+        "aula-10-16",
+        "aula-10-17",
+        "aula-10-18",
+        "aula-10-19"
+      ]
+    },
+    {
+      "id": "aula-11",
+      "title": "Aula 11 — LCI, LCA e mercado secundário",
+      "pages": [29, 30],
+      "topics": [
+        "Setores de crédito",
+        "Tributação e comparação líquida",
+        "FGC",
+        "Prazos e carência",
+        "Revenda"
+      ],
+      "cardIds": [
+        "aula-11-01",
+        "aula-11-02",
+        "aula-11-03",
+        "aula-11-04",
+        "aula-11-05",
+        "aula-11-06",
+        "aula-11-07",
+        "aula-11-08",
+        "aula-11-09",
+        "aula-11-10",
+        "aula-11-11"
+      ]
+    },
+    {
+      "id": "aula-12",
+      "title": "Aula 12 — CRI, CRA e ratings",
+      "pages": [30, 31],
+      "topics": [
+        "Securitização",
+        "Diferenças frente a LCI/LCA",
+        "FGC e garantias",
+        "Tributação",
+        "Ratings e fluxos"
+      ],
+      "cardIds": [
+        "aula-12-01",
+        "aula-12-02",
+        "aula-12-03",
+        "aula-12-04",
+        "aula-12-05",
+        "aula-12-06",
+        "aula-12-07",
+        "aula-12-08",
+        "aula-12-09",
+        "aula-12-10",
+        "aula-12-11",
+        "aula-12-12",
+        "aula-12-13"
+      ]
+    },
+    {
+      "id": "aula-13",
+      "title": "Aula 13 — Debêntures",
+      "pages": [31, 32, 33],
+      "topics": [
+        "Dívida empresarial",
+        "Incentivadas",
+        "Análise do emissor",
+        "Credor versus acionista",
+        "Liquidez, IR e distribuição"
+      ],
+      "cardIds": [
+        "aula-13-01",
+        "aula-13-02",
+        "aula-13-03",
+        "aula-13-04",
+        "aula-13-05",
+        "aula-13-06",
+        "aula-13-07",
+        "aula-13-08",
+        "aula-13-09",
+        "aula-13-10",
+        "aula-13-11",
+        "aula-13-12",
+        "aula-13-13",
+        "aula-13-14",
+        "aula-13-15",
+        "aula-13-16"
+      ]
+    },
+    {
+      "id": "aula-14",
+      "title": "Aula 14 — Fundos, custos e come-cotas",
+      "pages": [33, 34, 35, 36],
+      "topics": [
+        "Cotas e gestão",
+        "Benchmark",
+        "Taxas",
+        "Exemplos históricos",
+        "Comportamento",
+        "Come-cotas",
+        "Posição do curso"
+      ],
+      "cardIds": [
+        "aula-14-01",
+        "aula-14-02",
+        "aula-14-03",
+        "aula-14-04",
+        "aula-14-05",
+        "aula-14-06",
+        "aula-14-07",
+        "aula-14-08",
+        "aula-14-09",
+        "aula-14-10",
+        "aula-14-11",
+        "aula-14-12",
+        "aula-14-13",
+        "aula-14-14",
+        "aula-14-15",
+        "aula-14-16",
+        "aula-14-17",
+        "aula-14-18",
+        "aula-14-19",
+        "aula-14-20",
+        "aula-14-21",
+        "aula-14-22",
+        "aula-14-23"
+      ]
+    },
+    {
+      "id": "aula-15",
+      "title": "Aula 15 — Previdência privada e planejamento",
+      "pages": [36, 37, 38],
+      "topics": [
+        "Reserva e capitalização",
+        "Previdência e supervisão",
+        "Custos e portabilidade",
+        "PGBL e VGBL",
+        "Sucessão e tributação"
+      ],
+      "cardIds": [
+        "aula-15-01",
+        "aula-15-02",
+        "aula-15-03",
+        "aula-15-04",
+        "aula-15-05",
+        "aula-15-06",
+        "aula-15-07",
+        "aula-15-08",
+        "aula-15-09",
+        "aula-15-10",
+        "aula-15-11",
+        "aula-15-12",
+        "aula-15-13",
+        "aula-15-14",
+        "aula-15-15",
+        "aula-15-16",
+        "aula-15-17",
+        "aula-15-18",
+        "aula-15-19",
+        "aula-15-20",
+        "aula-15-21",
+        "aula-15-22",
+        "aula-15-23"
+      ]
+    },
+    {
+      "id": "aula-16",
+      "title": "Aula 16 — Contrafluxo e incentivos de distribuição",
+      "pages": [39, 40, 41],
+      "topics": [
+        "Spread e rebate",
+        "Conflitos e sazonalidade",
+        "CDI versus taxa fixa e IPCA",
+        "Exemplos e limitações",
+        "Horizonte de investimento"
+      ],
+      "cardIds": [
+        "aula-16-01",
+        "aula-16-02",
+        "aula-16-03",
+        "aula-16-04",
+        "aula-16-05",
+        "aula-16-06",
+        "aula-16-07",
+        "aula-16-08",
+        "aula-16-09",
+        "aula-16-10",
+        "aula-16-11",
+        "aula-16-12",
+        "aula-16-13",
+        "aula-16-14",
+        "aula-16-15",
+        "aula-16-16",
+        "aula-16-17"
+      ]
+    },
+    {
+      "id": "aula-17",
+      "title": "Aula 17 — Montagem da carteira de renda fixa",
+      "pages": [41],
+      "topics": [
+        "Rotina de pesquisa",
+        "Mercado secundário",
+        "Aplicação do contrafluxo",
+        "Comparação e objetivos"
+      ],
+      "cardIds": [
+        "aula-17-01",
+        "aula-17-02",
+        "aula-17-03",
+        "aula-17-04",
+        "aula-17-05",
+        "aula-17-06",
+        "aula-17-07"
+      ]
+    }
+  ]
+}

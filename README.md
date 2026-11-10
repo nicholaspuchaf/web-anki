@@ -234,3 +234,7 @@ No mobile, a navegação entre Flashcards, Feed, Administração e Configuraçõ
 no menu lateral à esquerda (símbolo do Folha), disponível também nas subpáginas e durante a
 revisão. No desktop, as abas continuam visíveis. Cada baralho tem um atalho
 compacto **Revisar**, à direita das informações e acima da linha divisória.
+
+## AUVP - Renda Fixa
+
+Baralho local com **250 flashcards** da apostila enviada (41 páginas), cobrindo a introdução e as 17 aulas. Cada cartão tem resposta, explicação e página de origem, com tags por assunto. Exemplos históricos, opiniões e pontos que exigem revisão crítica são distinguidos. Veja a [matriz de cobertura e as fontes](src/content/decks/auvp-renda-fixa/README.md).

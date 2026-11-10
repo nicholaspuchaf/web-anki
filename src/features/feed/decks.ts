@@ -1,8 +1,7 @@
-import mc714 from '../../content/decks/mc714/deck.json' with { type: 'json' };
+import { bundledDeckDefinitions } from '../../content/decks/catalog';
 import type { Deck } from '../decks/model';
 import type { Carousel, FeedData } from './model';
 import patterns from '../../content/decks/design-patterns/deck.json' with { type: 'json' };
-import aws from '../../content/decks/aws/deck.json' with { type: 'json' };
 import learning from '../../content/decks/learning/deck.json' with { type: 'json' };
 import { parseDeck } from '../decks/model';
 
@@ -18,10 +17,7 @@ export function carouselDeckId(
 export function feedDecks(data: FeedData, library: Deck[] = []): Deck[] {
   const known = new Map<string, Deck>(
     [
-      GENERAL_DECK,
-      parseDeck(patterns),
-      parseDeck(aws),
-      parseDeck(mc714),
+      ...bundledDeckDefinitions.map(({ deck }) => deck),
       ...(data.decks ?? []),
       ...library,
     ].map((d) => [d.id, d]),

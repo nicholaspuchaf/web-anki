@@ -1,0 +1,160 @@
+{
+  "id": "aula-09",
+  "title": "Aula 9 — Tesouro Educa+ e Renda+",
+  "sourcePages": [24, 25],
+  "topics": [
+    "Objetivos educacionais e aposentadoria",
+    "Acumulação e conversão",
+    "Simuladores",
+    "Pagamentos mensais"
+  ],
+  "cards": [
+    {
+      "id": "aula-09-01",
+      "question": "Que objetivos o módulo associa ao Educa+ e ao Renda+?",
+      "answer": "Educa+ ao custeio de educação; Renda+ à complementação de renda futura na aposentadoria.",
+      "explanation": "Os nomes traduzem finalidades, mas é necessário conhecer o fluxo e o prazo do produto.",
+      "sourcePages": [24],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "educa",
+        "renda-mais",
+        "objetivos"
+      ]
+    },
+    {
+      "id": "aula-09-02",
+      "question": "Que característica de remuneração aproxima Educa+ e Renda+ do IPCA+?",
+      "answer": "Correção inflacionária combinada a uma taxa real contratada.",
+      "explanation": "A semelhança da remuneração não torna idênticos os calendários e as regras de resgate.",
+      "sourcePages": [24],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-09", "ipca", "taxa-real"]
+    },
+    {
+      "id": "aula-09-03",
+      "question": "Quais dados o exemplo de simulador do Educa+ solicita?",
+      "answer": "Idade, início pretendido dos estudos, renda mensal desejada e aporte inicial.",
+      "explanation": "Esses dados permitem projetar a necessidade de aportes até a data de conversão.",
+      "sourcePages": [24],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "educa",
+        "simulacao",
+        "planejamento"
+      ]
+    },
+    {
+      "id": "aula-09-04",
+      "question": "Como aumentar o aporte inicial afeta a projeção de aportes mensais, mantidas as demais hipóteses?",
+      "answer": "Tende a reduzir o aporte periódico necessário.",
+      "explanation": "Uma parte maior do objetivo já está financiada desde o começo. O resultado depende das taxas e hipóteses do simulador.",
+      "sourcePages": [24],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "aportes",
+        "juros-compostos"
+      ]
+    },
+    {
+      "id": "aula-09-05",
+      "question": "O que o simulador pode ajudar a estimar além da data do objetivo?",
+      "answer": "A série compatível e a quantidade ou valor de aportes periódicos necessários.",
+      "explanation": "A projeção precisa ser revisitada se preços, renda desejada ou capacidade de poupança mudarem.",
+      "sourcePages": [24, 25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "simulacao",
+        "aportes"
+      ]
+    },
+    {
+      "id": "aula-09-06",
+      "question": "A data no nome de Educa+ ou Renda+ significa receber todo o patrimônio de uma vez?",
+      "answer": "Não. Ela se relaciona ao início da fase de pagamentos mensais do produto.",
+      "explanation": "A apostila usa a palavra vencimento de modo simplificado; distinguir conversão e fim dos pagamentos melhora o entendimento.",
+      "sourcePages": [25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "conversao",
+        "fluxo-de-caixa"
+      ]
+    },
+    {
+      "id": "aula-09-07",
+      "question": "Como o recebimento mensal difere do resgate único de um título sem cupons?",
+      "answer": "O patrimônio é devolvido gradualmente junto da remuneração prevista, não apenas como um montante final único.",
+      "explanation": "Receber mensalmente não significa necessariamente receber só juros e preservar todo o principal.",
+      "sourcePages": [25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "amortizacao",
+        "renda-mensal"
+      ]
+    },
+    {
+      "id": "aula-09-08",
+      "question": "Quais dados o simulador de Renda+ usa no exemplo?",
+      "answer": "Idade atual, idade desejada para iniciar a aposentadoria, renda mensal e recursos iniciais disponíveis.",
+      "explanation": "O objetivo é estimar compras necessárias ao longo da fase de acumulação.",
+      "sourcePages": [25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "renda-mais",
+        "aposentadoria",
+        "simulacao"
+      ]
+    },
+    {
+      "id": "aula-09-09",
+      "question": "Por que repetir aportes não significa contratar exatamente a mesma taxa a cada compra?",
+      "answer": "Porque a mesma série pode permanecer disponível, mas seu preço e sua taxa de compra mudam.",
+      "explanation": "A frase mesmo título da página 25 deve ser entendida como identificação da série, não como congelamento de condições.",
+      "sourcePages": [25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "lotes",
+        "taxa-de-compra",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-09-10",
+      "question": "Educa+ e Renda+ garantem a mesma rentabilidade de qualquer outro IPCA+ comprado em outra data?",
+      "answer": "Não. Compartilham a lógica de indexação, mas preço, taxa, prazo e fluxo precisam ser comparados.",
+      "explanation": "A apostila aproxima os mecanismos; igualdade exata de retorno não decorre apenas de ambos serem indexados ao IPCA.",
+      "sourcePages": [25],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-09",
+        "comparacao",
+        "revisao-critica"
+      ]
+    }
+  ]
+}

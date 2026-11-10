@@ -1,0 +1,31 @@
+{
+  "id": "builtin-auvp-renda-fixa",
+  "name": "AUVP - Renda Fixa",
+  "defaultTemplate": "multi-face",
+  "syncEnabled": false,
+  "reviewedAt": "2026-11-10",
+  "content": {
+    "flashcards": [
+      "flashcards/introducao.json",
+      "flashcards/aula-01.json",
+      "flashcards/aula-02.json",
+      "flashcards/aula-03.json",
+      "flashcards/aula-04.json",
+      "flashcards/aula-05.json",
+      "flashcards/aula-06.json",
+      "flashcards/aula-07-1.json",
+      "flashcards/aula-07-2.json",
+      "flashcards/aula-08.json",
+      "flashcards/aula-09.json",
+      "flashcards/aula-10.json",
+      "flashcards/aula-11.json",
+      "flashcards/aula-12.json",
+      "flashcards/aula-13.json",
+      "flashcards/aula-14.json",
+      "flashcards/aula-15.json",
+      "flashcards/aula-16.json",
+      "flashcards/aula-17.json"
+    ],
+    "carousels": []
+  }
+}

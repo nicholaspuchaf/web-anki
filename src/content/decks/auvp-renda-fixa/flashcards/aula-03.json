@@ -1,0 +1,183 @@
+{
+  "id": "aula-03",
+  "title": "Aula 3 — Tesouro Direto, inflação e Selic",
+  "sourcePages": [11, 12, 13],
+  "topics": [
+    "Dívida soberana",
+    "Acesso ao Tesouro",
+    "Inflação e deflação",
+    "Política monetária",
+    "Famílias de títulos"
+  ],
+  "cards": [
+    {
+      "id": "aula-03-01",
+      "question": "O que o investidor financia ao comprar um título público federal?",
+      "answer": "Uma obrigação do Tesouro Nacional, recebendo o fluxo previsto para aquele título.",
+      "explanation": "A aula relaciona emissão de dívida às necessidades de financiamento do governo; dívida também pode financiar rolagem e gestão financeira.",
+      "sourcePages": [11],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "tesouro-direto",
+        "divida-publica"
+      ]
+    },
+    {
+      "id": "aula-03-02",
+      "question": "Por que o risco do emissor influencia os juros exigidos?",
+      "answer": "Porque o investidor tende a exigir prêmio para aceitar maior incerteza de pagamento.",
+      "explanation": "A comparação entre países do PDF ilustra o prêmio de risco. Renda do país, sozinha, não determina toda sua estrutura de juros.",
+      "sourcePages": [11],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "risco-soberano",
+        "premio-de-risco"
+      ]
+    },
+    {
+      "id": "aula-03-03",
+      "question": "Quais requisitos básicos de acesso ao Tesouro Direto são citados?",
+      "answer": "CPF e relacionamento cadastrado com instituição financeira habilitada ao programa.",
+      "explanation": "Pode haver bancos e outras instituições habilitadas, não apenas uma corretora independente.",
+      "sourcePages": [11],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "tesouro-direto",
+        "cadastro",
+        "intermediacao"
+      ]
+    },
+    {
+      "id": "aula-03-04",
+      "question": "O que é inflação e qual seu efeito sobre o dinheiro?",
+      "answer": "Aumento do nível de preços, que reduz o poder de compra da moeda.",
+      "explanation": "Se a mesma quantia compra menos bens ao longo do tempo, houve perda de poder aquisitivo.",
+      "sourcePages": [11, 12],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "inflacao",
+        "poder-de-compra"
+      ]
+    },
+    {
+      "id": "aula-03-05",
+      "question": "Qual índice de preços o módulo usa como referência de inflação?",
+      "answer": "O IPCA, Índice Nacional de Preços ao Consumidor Amplo.",
+      "explanation": "Ele é uma referência ampla; a inflação de cada família pode diferir da cesta do índice e existem outros índices.",
+      "sourcePages": [11],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-03", "ipca", "indices"]
+    },
+    {
+      "id": "aula-03-06",
+      "question": "O que distingue inflação de deflação numa leitura periódica do IPCA?",
+      "answer": "Variação positiva indica aumento do índice; variação negativa indica queda naquele período.",
+      "explanation": "Um mês de deflação não implica que todos os produtos baixaram nem que a tendência de longo prazo foi revertida.",
+      "sourcePages": [11],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-03", "deflacao", "ipca"]
+    },
+    {
+      "id": "aula-03-07",
+      "question": "Quais duas origens de inflação a apostila destaca?",
+      "answer": "Pressão de demanda e aumento dos custos de produção.",
+      "explanation": "Mais procura pode pressionar preços; custos maiores podem ser repassados. As causas podem coexistir.",
+      "sourcePages": [12],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "inflacao-demanda",
+        "inflacao-custos"
+      ]
+    },
+    {
+      "id": "aula-03-08",
+      "question": "O que é Selic meta e quem a define?",
+      "answer": "É a meta da taxa básica de juros definida pelo Copom, no Banco Central.",
+      "explanation": "O PDF resume o calendário como cerca de 45 dias. Consulte o calendário oficial; não é uma mudança obrigatória em intervalos exatos.",
+      "sourcePages": [12],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "selic",
+        "copom",
+        "politica-monetaria"
+      ]
+    },
+    {
+      "id": "aula-03-09",
+      "question": "Como juros maiores podem ajudar a conter a inflação?",
+      "answer": "Tendem a encarecer crédito e moderar demanda e atividade econômica.",
+      "explanation": "O efeito opera com defasagens e depende de outras condições; não é uma relação instantânea e garantida.",
+      "sourcePages": [12, 13],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "selic",
+        "inflacao",
+        "credito"
+      ]
+    },
+    {
+      "id": "aula-03-10",
+      "question": "Como juros menores podem estimular a economia?",
+      "answer": "Podem baratear financiamento e favorecer consumo e investimento.",
+      "explanation": "O mecanismo depende da transmissão para o crédito e das expectativas. A inflação não sobe automaticamente na mesma proporção.",
+      "sourcePages": [12],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "selic",
+        "atividade-economica"
+      ]
+    },
+    {
+      "id": "aula-03-11",
+      "question": "Se o investimento rende menos que a inflação, o que acontece com seu poder de compra?",
+      "answer": "Ele diminui, mesmo que o saldo nominal tenha aumentado.",
+      "explanation": "Compare retorno líquido e inflação no mesmo período para avaliar o resultado econômico.",
+      "sourcePages": [13],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "rentabilidade-real",
+        "poder-de-compra"
+      ]
+    },
+    {
+      "id": "aula-03-12",
+      "question": "Quais modelos de Tesouro a aula enumera?",
+      "answer": "Selic, Prefixado, IPCA+, versões com cupons, Educa+ e Renda+.",
+      "explanation": "Os produtos têm fluxos e riscos de preço distintos. A lista é a do material estudado, não uma promessa de catálogo permanente.",
+      "sourcePages": [13],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-03",
+        "tesouro-direto",
+        "produtos"
+      ]
+    }
+  ]
+}

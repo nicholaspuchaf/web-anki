@@ -1,0 +1,272 @@
+{
+  "id": "aula-16",
+  "title": "Aula 16 — Contrafluxo e incentivos de distribuição",
+  "sourcePages": [39, 40, 41],
+  "topics": [
+    "Spread e rebate",
+    "Conflitos e sazonalidade",
+    "CDI versus taxa fixa e IPCA",
+    "Exemplos e limitações",
+    "Horizonte de investimento"
+  ],
+  "cards": [
+    {
+      "id": "aula-16-01",
+      "question": "Que analogia a aula usa para explicar a remuneração da distribuição?",
+      "answer": "A margem entre o custo de adquirir um produto e o preço de revendê-lo no comércio.",
+      "explanation": "A analogia ajuda a enxergar que o intermediário pode ter remuneração mesmo sem cobrar uma fatura explícita.",
+      "sourcePages": [39],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "distribuicao",
+        "remuneracao"
+      ]
+    },
+    {
+      "id": "aula-16-02",
+      "question": "O que ilustra a comparação de um título com 125% do CDI e oferta de 119% ao cliente?",
+      "answer": "Uma possível margem de distribuição que reduz a remuneração repassada ao investidor.",
+      "explanation": "São percentuais exemplificativos. A diferença de seis pontos de percentual do CDI não é, sem cálculo adicional, uma comissão de 6% do patrimônio.",
+      "sourcePages": [39],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "spread",
+        "cdi",
+        "exemplo-do-material"
+      ]
+    },
+    {
+      "id": "aula-16-03",
+      "question": "Como a apostila relaciona spread e rebate?",
+      "answer": "Chama de spread a diferença da operação e de rebate a remuneração obtida pela distribuição.",
+      "explanation": "Termos e mecanismos de remuneração podem variar por produto e contrato; não presuma que toda receita da corretora seja idêntica.",
+      "sourcePages": [39],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-16", "spread", "rebate"]
+    },
+    {
+      "id": "aula-16-04",
+      "question": "Corretoras só recebem quando o investidor obtém lucro?",
+      "answer": "Não. A remuneração pode ser gerada na distribuição, independentemente do resultado posterior do cliente.",
+      "explanation": "Isso ajuda a compreender por que incentivos de venda e interesse do investidor podem divergir.",
+      "sourcePages": [39],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "comissoes",
+        "conflito-de-interesses"
+      ]
+    },
+    {
+      "id": "aula-16-05",
+      "question": "Qual conflito a aula associa a produtos com margens diferentes?",
+      "answer": "O distribuidor pode preferir vender o que o remunera mais, não o que melhor atende ao cliente.",
+      "explanation": "É uma possibilidade de incentivo, não prova de que todo assessor sempre age contra seus clientes.",
+      "sourcePages": [39, 40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "assessoria",
+        "incentivos",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-16-06",
+      "question": "Como a sazonalidade de Selic e inflação pode influenciar o apelo comercial de títulos?",
+      "answer": "Indexadores em destaque podem atrair demanda e facilitar a distribuição de certos produtos.",
+      "explanation": "A estratégia de venda descrita pelo autor usa medo ou entusiasmo do momento; isso não demonstra uma regra universal de preço.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "sazonalidade",
+        "comportamento"
+      ]
+    },
+    {
+      "id": "aula-16-07",
+      "question": "Qual cálculo simplificado leva de Selic de 13% a 108% de um CDI assumido de 12,9%?",
+      "answer": "12,9% × 1,08 = 13,932% ao ano.",
+      "explanation": "O exemplo usa CDI anual constante e próximo da Selic. No investimento real, o percentual é aplicado à composição dos fatores diários.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "calculo",
+        "percentual-do-cdi"
+      ]
+    },
+    {
+      "id": "aula-16-08",
+      "question": "Quais três alternativas o exemplo da página 40 coloca lado a lado?",
+      "answer": "108% do CDI, IPCA + 6% e prefixado de 13,80% ao ano.",
+      "explanation": "Taxas próximas naquele cenário não significam resultados futuros iguais, porque os indexadores seguem trajetórias diferentes.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "cdi",
+        "ipca",
+        "prefixado",
+        "comparacao"
+      ]
+    },
+    {
+      "id": "aula-16-09",
+      "question": "Por que escolher um indexador apenas pelo medo da inflação do momento pode ser um viés?",
+      "answer": "Porque a decisão pode ignorar o preço pago, a taxa real oferecida e o horizonte.",
+      "explanation": "A proteção desejada deve ser comparada às condições concretas do título, não só à notícia que ficou mais saliente.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "vies",
+        "comportamento",
+        "inflacao"
+      ]
+    },
+    {
+      "id": "aula-16-10",
+      "question": "O que significa contrafluxo no argumento do curso?",
+      "answer": "Evitar seguir automaticamente a preferência predominante e investigar oportunidades menos procuradas.",
+      "explanation": "É uma estratégia de análise apresentada pelo autor, não uma garantia de que o oposto da maioria sempre será lucrativo.",
+      "sourcePages": [40, 41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "contrafluxo",
+        "efeito-manada"
+      ]
+    },
+    {
+      "id": "aula-16-11",
+      "question": "No exemplo com Selic baixa e ofertas de 140% do CDI, qual componente do contrato pode ser preservado?",
+      "answer": "O multiplicador de 140% do CDI, se essa for a regra do título.",
+      "explanation": "O CDI futuro continua variável. O benefício de uma alta posterior depende da permanência e das condições do papel.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "pos-fixado",
+        "percentual-do-cdi"
+      ]
+    },
+    {
+      "id": "aula-16-12",
+      "question": "Como a apostila compara prefixado de 8% e 140% do CDI num cenário de Selic inicialmente a 2%?",
+      "answer": "Mostra que a taxa nominal inicial maior pode parecer atraente, mas que o pós-fixado reage a uma alta posterior do indexador.",
+      "explanation": "É uma leitura retrospectiva do cenário. Se a trajetória dos juros fosse outra, o resultado relativo poderia mudar.",
+      "sourcePages": [40],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "cenario",
+        "expectativas",
+        "exemplo-do-material"
+      ]
+    },
+    {
+      "id": "aula-16-13",
+      "question": "A conta 10,5% × 1,40 = 14,7% demonstra exatamente o rendimento de 140% do CDI?",
+      "answer": "Não. Usa a Selic de 10,5% como aproximação, embora o contrato seja atrelado ao CDI.",
+      "explanation": "Se o CDI fosse 10,4% na mesma simplificação anual, a conta daria 14,56%. A apuração real usa o CDI efetivo e sua composição diária.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "calculo",
+        "revisao-critica",
+        "selic",
+        "cdi"
+      ]
+    },
+    {
+      "id": "aula-16-14",
+      "question": "Quais ofertas históricas de juros altos a página 41 cita para prefixados?",
+      "answer": "Taxas de 15% a 17% ao ano no contexto do fim de 2022 e início de 2023.",
+      "explanation": "São referências históricas da narrativa, não cotações atuais nem promessa de que voltarão a existir.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "historico",
+        "prefixado",
+        "contexto-do-material"
+      ]
+    },
+    {
+      "id": "aula-16-15",
+      "question": "Que oportunidade o material relaciona a períodos de inflação pouco comentada?",
+      "answer": "Pesquisar papéis com taxa real elevada, usando IPCA + 9% ou +10% como exemplos.",
+      "explanation": "A recomendação de procurar o que está fora do foco é do autor. Uma taxa muito alta também pode sinalizar risco maior.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "ipca",
+        "taxa-real",
+        "contrafluxo"
+      ]
+    },
+    {
+      "id": "aula-16-16",
+      "question": "Comprar o contrário do que todos compram garante uma carteira que rende bem em qualquer cenário?",
+      "answer": "Não. Diversificação de indexadores ajuda a distribuir exposições, mas há riscos e cenários desfavoráveis.",
+      "explanation": "A conclusão entusiasmada do material precisa ser interpretada como tese de estratégia, não promessa de resultado permanente.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "diversificacao",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-16-17",
+      "question": "Qual cuidado deve acompanhar a ideia de não agir por emoções de curto prazo?",
+      "answer": "Manter critérios de prazo, liquidez, risco, preço e objetivos mesmo ao adotar uma visão de longo prazo.",
+      "explanation": "Longo prazo não corrige automaticamente um título mal escolhido nem permite dispensar a análise do emissor.",
+      "sourcePages": [40, 41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-16",
+        "horizonte",
+        "disciplina"
+      ]
+    }
+  ]
+}

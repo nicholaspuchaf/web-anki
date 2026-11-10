@@ -1,0 +1,262 @@
+{
+  "id": "aula-07-2",
+  "title": "Aula 7.2 — Marcação a mercado: gráficos e decisões",
+  "sourcePages": [20, 21, 22],
+  "topics": [
+    "Acesso e cotações",
+    "Curvas de preço",
+    "Exemplos históricos",
+    "Venda líquida e reinvestimento",
+    "Limites das heurísticas"
+  ],
+  "cards": [
+    {
+      "id": "aula-07-2-01",
+      "question": "Que acesso operacional a aula usa para consultar a posição no Tesouro?",
+      "answer": "A área do investidor do Tesouro Direto, com cadastro e senha quando necessários.",
+      "explanation": "A aula mostra que é possível acompanhar a posição e consultar informações além da tela da corretora.",
+      "sourcePages": [20],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "tesouro-direto",
+        "consulta"
+      ]
+    },
+    {
+      "id": "aula-07-2-02",
+      "question": "Comprar pelo portal em vez da instituição elimina automaticamente todos os custos?",
+      "answer": "Não. É preciso conferir custos do programa e os praticados pelo agente.",
+      "explanation": "A aula ressalta que mudar a tela não altera por si o título ou sua cotação; a instituição pode ter condições próprias de serviço.",
+      "sourcePages": [20],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "custos",
+        "canais-de-compra"
+      ]
+    },
+    {
+      "id": "aula-07-2-03",
+      "question": "O que a curva teórica representa no gráfico apresentado no PDF?",
+      "answer": "Uma referência de evolução do título pelas condições da aquisição.",
+      "explanation": "No material, ela é azul-escuro; a curva azul-claro representa o preço observado de mercado.",
+      "sourcePages": [20],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "grafico",
+        "curva-teorica"
+      ]
+    },
+    {
+      "id": "aula-07-2-04",
+      "question": "A expressão preço real nos gráficos significa rentabilidade descontada da inflação?",
+      "answer": "Não. Nesse trecho, real se refere ao preço efetivo de mercado.",
+      "explanation": "Distinguir esse uso da expressão rentabilidade real evita confundir cotação com poder de compra.",
+      "sourcePages": [20, 21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "grafico",
+        "terminologia",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-07-2-05",
+      "question": "No caso de taxa contratada de 5,39% e taxa de mercado de 6,38%, que posição relativa o gráfico ilustra?",
+      "answer": "Preço de mercado abaixo da referência teórica, por aumento da taxa de desconto.",
+      "explanation": "Os números são históricos da aula. Não são cotações atuais e não bastam para medir isoladamente o prejuízo absoluto.",
+      "sourcePages": [20, 21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "grafico",
+        "exemplo-do-material",
+        "alta-de-juros"
+      ]
+    },
+    {
+      "id": "aula-07-2-06",
+      "question": "Se a curva de mercado está abaixo da teórica, isso obriga a manter o título?",
+      "answer": "Não. É preciso comparar necessidades de caixa, custo de oportunidade e alternativas líquidas.",
+      "explanation": "O curso recomenda evitar a venda no exemplo, mas essa orientação não substitui a análise do caso concreto.",
+      "sourcePages": [21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "venda-antecipada",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-07-2-07",
+      "question": "O que ilustra o título comprado a 12,86% frente a taxas de 11,62% ou 12,21%?",
+      "answer": "A valorização relativa do fluxo antigo quando a remuneração exigida pelo mercado diminui.",
+      "explanation": "O gráfico mostra a curva de mercado acima da referência em vários pontos.",
+      "sourcePages": [21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "grafico",
+        "queda-de-juros",
+        "exemplo-do-material"
+      ]
+    },
+    {
+      "id": "aula-07-2-08",
+      "question": "Como interpretar maior distância positiva entre curva de mercado e teórica?",
+      "answer": "Como maior valorização frente àquela referência, naquela data.",
+      "explanation": "O resultado realizável depende do preço efetivo de recompra, impostos, custos e quantidade de títulos.",
+      "sourcePages": [21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "grafico",
+        "ganho-de-capital"
+      ]
+    },
+    {
+      "id": "aula-07-2-09",
+      "question": "Por que olhar apenas a Selic não determina exatamente o preço de um título longo?",
+      "answer": "Porque a taxa de mercado daquele prazo incorpora expectativas e prêmios próprios.",
+      "explanation": "A apostila usa a Selic como atalho explicativo. Mudanças na curva de juros podem ocorrer antes ou sem mudança da meta.",
+      "sourcePages": [21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "curva-de-juros",
+        "selic",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-07-2-10",
+      "question": "Esperar um corte de juros garante conseguir vender melhor depois?",
+      "answer": "Não. A expectativa pode já estar no preço ou o cenário pode mudar.",
+      "explanation": "O exemplo de contratar 14% e observar Selic a 2% é ilustrativo, não uma regra de timing garantido.",
+      "sourcePages": [21],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "expectativas",
+        "especulacao"
+      ]
+    },
+    {
+      "id": "aula-07-2-11",
+      "question": "O que fazer com a regra de vender ao antecipar 80% ou 90% do retorno apresentada no material?",
+      "answer": "Tratá-la como heurística do autor e verificar a conta líquida de manutenção e reinvestimento.",
+      "explanation": "Um percentual arbitrário não captura sozinho prazo restante, risco, tributos e objetivos.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "heuristica",
+        "opiniao-do-material"
+      ]
+    },
+    {
+      "id": "aula-07-2-12",
+      "question": "Um título nunca pode valer mais hoje que seu valor nominal de vencimento?",
+      "answer": "Essa afirmação não é universal: depende das taxas e dos fluxos, inclusive cupons e indexação.",
+      "explanation": "A frase da página 22 é uma simplificação. Não se deve transformar um exemplo de fluxo único com taxa positiva em limite de todos os títulos.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "precificacao",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-07-2-13",
+      "question": "No exemplo de 78 meses de duração e 24 já decorridos, quanto prazo resta?",
+      "answer": "54 meses.",
+      "explanation": "O prazo restante é o horizonte correto para comparar reinvestir o valor de venda com manter o investimento original.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "calculo",
+        "prazo",
+        "custo-de-oportunidade"
+      ]
+    },
+    {
+      "id": "aula-07-2-14",
+      "question": "Quais valores são comparados no exemplo de troca por LCA da página 22?",
+      "answer": "Venda hipotética por R$ 33.391,39; manutenção projetada de R$ 54.979,26; e LCA apresentada a 13% ao ano.",
+      "explanation": "O texto cita R$ 55.704,13 para a alternativa, mas a comparação precisa ser refeita com a mesma base líquida e prazo.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "exemplo-do-material",
+        "lca",
+        "reinvestimento"
+      ]
+    },
+    {
+      "id": "aula-07-2-15",
+      "question": "Qual resultado dá R$ 33.391,39 a 13% ao ano por 54 meses, na convenção anual composta simplificada?",
+      "answer": "Aproximadamente R$ 57.874,53, antes de ajustar quaisquer custos e condições do cenário.",
+      "explanation": "Use 33.391,39 × 1,13^(54/12). A conta mostra que o total de R$ 55.704,13 impresso não decorre diretamente desses dados.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "calculo",
+        "juros-compostos",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-07-2-16",
+      "question": "Qual comparação deve orientar uma possível troca de título?",
+      "answer": "Valor futuro líquido de manter versus valor futuro líquido de reinvestir o resgate líquido, com horizonte e riscos comparáveis.",
+      "explanation": "Não compare bruto de um lado com líquido do outro, nem ignore o risco de conseguir a nova taxa e o custo de sair.",
+      "sourcePages": [22],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-07-2",
+        "custo-de-oportunidade",
+        "tributacao",
+        "comparacao"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "aula-17",
+  "title": "Aula 17 — Montagem da carteira de renda fixa",
+  "sourcePages": [41],
+  "topics": [
+    "Rotina de pesquisa",
+    "Mercado secundário",
+    "Aplicação do contrafluxo",
+    "Comparação e objetivos"
+  ],
+  "cards": [
+    {
+      "id": "aula-17-01",
+      "question": "Que rotina prática a última aula sugere para observar ofertas?",
+      "answer": "Consultar títulos por volta das 10h da manhã, especialmente no mercado secundário.",
+      "explanation": "O horário é uma dica da apostila. Ele não prova que uma oferta seja vantajosa nem obriga o investidor a interromper compromissos pessoais.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "rotina-de-pesquisa",
+        "ofertas"
+      ]
+    },
+    {
+      "id": "aula-17-02",
+      "question": "Por que o material sugere observar a plataforma por pelo menos três dias seguidos?",
+      "answer": "Para comparar o que aparece e perceber oportunidades e condições diferentes.",
+      "explanation": "A rotina proposta reduz decisões com base numa única tela, mas o número de dias não é um teste estatístico de qualidade.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "comparacao",
+        "rotina-de-pesquisa"
+      ]
+    },
+    {
+      "id": "aula-17-03",
+      "question": "Um título de mercado secundário foi necessariamente devolvido ao emissor?",
+      "answer": "Não. Pode ter sido negociado com outro investidor ou intermediário antes do vencimento.",
+      "explanation": "A aula usa devolver para a corretora como atalho. Revenda e resgate junto ao emissor são mecanismos distintos.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "mercado-secundario",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-17-04",
+      "question": "Ao comprar no secundário, qual data importa além da data da compra original de outro investidor?",
+      "answer": "As datas dos fluxos restantes e o vencimento efetivo do papel adquirido.",
+      "explanation": "A sua taxa resulta do preço que você paga por esses fluxos, não apenas da taxa que o vendedor havia contratado.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "precificacao",
+        "vencimento"
+      ]
+    },
+    {
+      "id": "aula-17-05",
+      "question": "Que critérios do módulo devem ser combinados para montar a carteira?",
+      "answer": "Objetivos, prazo, liquidez, emissor, garantias, tributação, taxas e diversificação de indexadores.",
+      "explanation": "Uma oferta só se torna comparável após colocar esses critérios na mesma base.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "carteira",
+        "checklist"
+      ]
+    },
+    {
+      "id": "aula-17-06",
+      "question": "Como aplicar a ideia de contrafluxo sem transformá-la numa compra automática?",
+      "answer": "Usar a baixa procura como motivo para investigar, e só comprar após avaliar as condições do título.",
+      "explanation": "Fazer o oposto da maioria não substitui adequação ao objetivo nem cria retorno garantido.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "contrafluxo",
+        "diligencia"
+      ]
+    },
+    {
+      "id": "aula-17-07",
+      "question": "Por que uma taxa alta sozinha não define a melhor oportunidade da carteira?",
+      "answer": "Porque pode remunerar prazo longo, crédito frágil, baixa liquidez ou custos não evidentes.",
+      "explanation": "O módulo inteiro constrói ferramentas para comparar o líquido e o risco, em vez de escolher apenas a maior taxa na vitrine.",
+      "sourcePages": [41],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-17",
+        "carteira",
+        "premio-de-risco"
+      ]
+    }
+  ]
+}

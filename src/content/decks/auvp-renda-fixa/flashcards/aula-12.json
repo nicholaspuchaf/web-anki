@@ -1,0 +1,218 @@
+{
+  "id": "aula-12",
+  "title": "Aula 12 — CRI, CRA e ratings",
+  "sourcePages": [30, 31],
+  "topics": [
+    "Securitização",
+    "Diferenças frente a LCI/LCA",
+    "FGC e garantias",
+    "Tributação",
+    "Ratings e fluxos"
+  ],
+  "cards": [
+    {
+      "id": "aula-12-01",
+      "question": "O que significam CRI e CRA?",
+      "answer": "Certificado de Recebíveis Imobiliários e Certificado de Recebíveis do Agronegócio.",
+      "explanation": "A aula aproxima os setores financiados de LCI e LCA, mas a estrutura do crédito é diferente.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "cri",
+        "cra",
+        "siglas"
+      ]
+    },
+    {
+      "id": "aula-12-02",
+      "question": "Quem emite CRI e CRA e que estrutura existe por trás desses títulos?",
+      "answer": "Companhias securitizadoras, com lastro em recebíveis e regras da emissão.",
+      "explanation": "Dizer apenas empresas privadas, como no resumo da apostila, omite a securitização e a análise da operação.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "securitizacao",
+        "emissor",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-12-03",
+      "question": "Qual diferença de garantia distingue CRI/CRA de LCI/LCA elegíveis?",
+      "answer": "CRI e CRA não contam com garantia ordinária do FGC.",
+      "explanation": "Isso não significa necessariamente ausência de qualquer garantia contratual: leia lastro, estrutura e documentos da emissão.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "fgc",
+        "garantias",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-12-04",
+      "question": "Que vantagem tributária o material atribui a CRI e CRA para pessoa física?",
+      "answer": "Isenção de IR nas condições legalmente aplicáveis.",
+      "explanation": "A comparação deve usar as regras da emissão e do investidor; isenção não substitui análise de crédito e liquidez.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "isencao",
+        "pessoa-fisica"
+      ]
+    },
+    {
+      "id": "aula-12-05",
+      "question": "CRI e CRA são necessariamente iguais a um empréstimo simples direto a uma empresa?",
+      "answer": "Não. O investidor está exposto à estrutura de recebíveis e às condições da securitização.",
+      "explanation": "A analogia com debêntures ajuda a reconhecer crédito privado, mas não descreve toda a cadeia de devedores e garantias.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "credito-privado",
+        "lastro",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-12-06",
+      "question": "Por que CRI e CRA podem oferecer prêmio maior que títulos públicos ou bancários?",
+      "answer": "Para remunerar riscos da operação, prazo, estrutura e menor liquidez.",
+      "explanation": "Não existe uma ordem obrigatória de retorno em que todo CRA rende mais que todo CDB.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "premio-de-risco",
+        "comparacao"
+      ]
+    },
+    {
+      "id": "aula-12-07",
+      "question": "CRI/CRA exigem sempre investimento mínimo maior e emissores melhores que debêntures?",
+      "answer": "Não. Esses pontos variam conforme oferta, público-alvo e estrutura.",
+      "explanation": "O PDF faz generalizações sobre qualidade e tamanho de aporte. A análise deve ser feita emissão por emissão.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "aporte-minimo",
+        "publico-alvo",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-12-08",
+      "question": "Por que analisar o calendário de pagamentos de CRI e CRA?",
+      "answer": "Porque podem ter juros e amortizações em periodicidades diferentes, afetando a renda e o capital remanescente.",
+      "explanation": "A apostila cita renda semestral ou mensal; a periodicidade efetiva vem dos documentos do papel.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "amortizacao",
+        "renda-periodica",
+        "fluxo-de-caixa"
+      ]
+    },
+    {
+      "id": "aula-12-09",
+      "question": "Patrimônio acima de R$ 1 milhão torna CRI e CRA obrigatórios?",
+      "answer": "Não. Essa é uma preferência de alocação expressa pelo autor.",
+      "explanation": "Perfil, concentração, prazo e capacidade de assumir riscos continuam determinantes; não há obrigatoriedade por faixa patrimonial.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "carteira",
+        "opiniao-do-material"
+      ]
+    },
+    {
+      "id": "aula-12-10",
+      "question": "Como a aula sugere iniciar uma busca por avaliação de risco?",
+      "answer": "Pesquisar empresa ou emissão, ratings e agência, como no exemplo Madero S&P ratings.",
+      "explanation": "Depois identifique se a nota encontrada é do emissor, do título, da escala nacional ou global, e sua data.",
+      "sourcePages": [31],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "rating",
+        "pesquisa",
+        "sp"
+      ]
+    },
+    {
+      "id": "aula-12-11",
+      "question": "O que representa uma nota AAA na escala mencionada?",
+      "answer": "Uma avaliação alta de capacidade de pagamento dentro da escala e metodologia da agência.",
+      "explanation": "Rating é opinião de risco, não promessa de pagamento. Escalas e significado precisam ser comparados corretamente.",
+      "sourcePages": [31],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "rating",
+        "aaa",
+        "risco-de-credito"
+      ]
+    },
+    {
+      "id": "aula-12-12",
+      "question": "O que significa caminhar de AAA em direção a notas baixas como C ou D?",
+      "answer": "Em geral, maior percepção de risco de crédito ou inadimplência, conforme a escala.",
+      "explanation": "O PDF observa que as classificações variam por agência; a letra isolada não substitui o relatório.",
+      "sourcePages": [31],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "rating",
+        "inadimplencia"
+      ]
+    },
+    {
+      "id": "aula-12-13",
+      "question": "Qual cautela deve acompanhar a recomendação de comprar CRI/CRA cedo pela manhã?",
+      "answer": "Usá-la como rotina de pesquisa, sem presumir qualidade só pelo horário ou pela escassez da oferta.",
+      "explanation": "A análise do crédito e do preço continua mais importante que a pressão para comprar rapidamente.",
+      "sourcePages": [31],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-12",
+        "liquidez",
+        "ofertas",
+        "comportamento"
+      ]
+    }
+  ]
+}

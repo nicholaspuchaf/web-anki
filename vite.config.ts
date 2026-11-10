@@ -7,6 +7,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes('/src/content/decks/auvp-renda-fixa/flashcards/'))
+            return 'auvp-renda-fixa';
           if (id.includes('/src/content/decks/mc714/flashcards/'))
             return 'mc714-flashcards';
           if (id.includes('/src/content/decks/mc714/carousels/'))

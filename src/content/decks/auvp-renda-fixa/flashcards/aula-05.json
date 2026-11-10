@@ -1,0 +1,199 @@
+{
+  "id": "aula-05",
+  "title": "Aula 5 — Prefixados e poder de compra",
+  "sourcePages": [15, 16, 17],
+  "topics": [
+    "Taxa contratada",
+    "Juros compostos",
+    "Valor de face",
+    "Venda antecipada",
+    "Nominal e real"
+  ],
+  "cards": [
+    {
+      "id": "aula-05-01",
+      "question": "O que fica conhecido ao comprar um Tesouro Prefixado sem cupons?",
+      "answer": "A taxa nominal contratada e o fluxo bruto previsto até o vencimento, dadas as condições da aplicação.",
+      "explanation": "O retorno de uma venda anterior à data final não fica travado pela taxa da compra.",
+      "sourcePages": [15, 16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "tesouro-prefixado",
+        "taxa-prefixada"
+      ]
+    },
+    {
+      "id": "aula-05-02",
+      "question": "Como projetar R$ 500 aplicados à taxa anual de 11,49% por n anos?",
+      "answer": "Valor bruto projetado = 500 × (1 + 0,1149)^n.",
+      "explanation": "É o exemplo de juros compostos da apostila. Para o líquido, entram tributos e custos; use prazo e convenção compatíveis.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "juros-compostos",
+        "calculo",
+        "exemplo-do-material"
+      ]
+    },
+    {
+      "id": "aula-05-03",
+      "question": "Comprar o mesmo vencimento em dias diferentes exige receber a mesma taxa?",
+      "answer": "Não. O preço de aquisição pode mudar e produzir taxas diferentes por lote.",
+      "explanation": "O PDF compara 11,49% e 11,51%. Isso não significa necessariamente que uma nova espécie de título nasceu a cada dia.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "lotes",
+        "taxa-de-compra",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-05-04",
+      "question": "A que título se aplica o exemplo de R$ 1.000 nominais no vencimento?",
+      "answer": "A uma unidade de Tesouro Prefixado sem cupons, no exemplo de valor de face.",
+      "explanation": "Não generalize esse valor a todo Tesouro ou a qualquer quantia aplicada. Frações recebem proporcionalmente, e títulos indexados têm outra atualização.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "valor-de-face",
+        "ltn"
+      ]
+    },
+    {
+      "id": "aula-05-05",
+      "question": "Por que o preço atual de um prefixado depende da taxa de mercado?",
+      "answer": "Porque o preço desconta o pagamento futuro pela remuneração exigida para o prazo restante.",
+      "explanation": "Para um fluxo único: preço = valor futuro ÷ (1 + taxa)^prazo, numa convenção anual simplificada.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "precificacao",
+        "valor-presente"
+      ]
+    },
+    {
+      "id": "aula-05-06",
+      "question": "O que tende a acontecer com o preço de um prefixado quando sua taxa de mercado sobe?",
+      "answer": "O preço cai, mantendo o fluxo futuro atrativo à nova taxa exigida.",
+      "explanation": "O investidor que precisa vender fica exposto a essa nova cotação.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "marcacao-a-mercado",
+        "juros"
+      ]
+    },
+    {
+      "id": "aula-05-07",
+      "question": "O que tende a acontecer com o preço de um prefixado quando sua taxa de mercado cai?",
+      "answer": "O preço sobe, porque o fluxo contratado se torna relativamente mais valioso.",
+      "explanation": "A valorização pode produzir ganho na venda, mas não garante que toda troca de título seja vantajosa.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "marcacao-a-mercado",
+        "valorizacao"
+      ]
+    },
+    {
+      "id": "aula-05-08",
+      "question": "Qual risco existe ao comprar prefixado para um objetivo anterior ao vencimento?",
+      "answer": "Precisar vender a uma cotação desfavorável antes de receber o fluxo contratado.",
+      "explanation": "Prazo de investimento e data da necessidade de dinheiro precisam ser compatíveis.",
+      "sourcePages": [16],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "liquidez",
+        "horizonte",
+        "risco-de-mercado"
+      ]
+    },
+    {
+      "id": "aula-05-09",
+      "question": "Qual é a diferença entre ganho nominal e ganho real?",
+      "answer": "Nominal mede a variação monetária; real desconta a variação do nível de preços.",
+      "explanation": "A apostila usa preços antigos de supermercado para mostrar que o mesmo número de reais compra coisas diferentes ao longo do tempo.",
+      "sourcePages": [17],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "rentabilidade-nominal",
+        "rentabilidade-real"
+      ]
+    },
+    {
+      "id": "aula-05-10",
+      "question": "Como calcular retorno real a partir de retorno nominal e inflação do mesmo período?",
+      "answer": "Retorno real = (1 + retorno nominal) ÷ (1 + inflação) − 1.",
+      "explanation": "Subtrair as taxas é uma aproximação. Use retorno líquido para medir o poder de compra efetivamente disponível.",
+      "sourcePages": [17],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "formula",
+        "inflacao",
+        "calculo"
+      ]
+    },
+    {
+      "id": "aula-05-11",
+      "question": "O que o exemplo de R$ 100 de 1994 equivalerem a R$ 13,43 procura ilustrar?",
+      "answer": "A perda acumulada de poder de compra, conforme a referência histórica usada no material.",
+      "explanation": "A frase depende da data e do índice de comparação. Não é uma taxa de conversão permanente entre dinheiro antigo e atual.",
+      "sourcePages": [17],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "exemplo-do-material",
+        "inflacao",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-05-12",
+      "question": "Por que um prefixado pode cumprir o prometido e ainda decepcionar em termos reais?",
+      "answer": "Porque a inflação ocorrida pode consumir boa parte ou todo o ganho nominal líquido.",
+      "explanation": "Contratar a taxa nominal não contrata a inflação futura que será efetivamente observada.",
+      "sourcePages": [17],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-05",
+        "risco-de-inflacao",
+        "retorno-liquido"
+      ]
+    }
+  ]
+}

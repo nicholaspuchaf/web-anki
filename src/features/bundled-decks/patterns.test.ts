@@ -1,3 +1,4 @@
+import { AUVP_CARD_COUNT, withBundledAuvpDeck } from './auvp';
 import mc714 from '../../content/decks/mc714/flashcards';
 import { expect, test } from 'bun:test';
 import { readFileSync, existsSync } from 'node:fs';
@@ -87,7 +88,11 @@ test('recompor dois baralhos preserva conteúdo, progresso, favoritos e cartões
   };
   const library = withBundledDecks(own);
   expect(library.cards).toHaveLength(
-    AWS_CARD_COUNT + PATTERNS_CARD_COUNT + mc714.cards.length + 1,
+    AWS_CARD_COUNT +
+      PATTERNS_CARD_COUNT +
+      mc714.cards.length +
+      AUVP_CARD_COUNT +
+      1,
   );
   expect(library.cards[0]).toEqual(own.cards[0]);
   const pattern = library.cards.find(
@@ -98,7 +103,9 @@ test('recompor dois baralhos preserva conteúdo, progresso, favoritos e cartões
   Object.assign(aws, { due: 456, interval: 3, reviews: 2 });
   const expected = structuredClone(library);
   expect(withBundledDecks(library)).toEqual(expected);
-  const reverse = withBundledAwsDeck(withBundledPatternsDeck(library));
+  const reverse = withBundledAuvpDeck(
+    withBundledAwsDeck(withBundledPatternsDeck(library)),
+  );
   expect(new Map(reverse.cards.map((card) => [card.id, card]))).toEqual(
     new Map(expected.cards.map((card) => [card.id, card])),
   );

@@ -38,7 +38,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     name: 'Ativar Aprendizado geral',
     exact: true,
   });
-  await expect(page.getByRole('checkbox')).toHaveCount(4);
+  await expect(page.getByRole('checkbox')).toHaveCount(5);
   await expect(patternToggle.locator('..')).toContainText(
     '176 flashcards · 22 carrosséis',
   );
@@ -49,6 +49,9 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     '228 flashcards · 7 carrosséis',
   );
   await patternToggle.uncheck();
+  await page
+    .getByRole('checkbox', { name: 'Ativar AUVP - Renda Fixa', exact: true })
+    .uncheck();
   await awsToggle.uncheck();
   await generalToggle.uncheck();
   await setTheme(page, 'dark');

@@ -1,0 +1,152 @@
+{
+  "id": "aula-01",
+  "title": "Aula 1 — Fundamentos da renda fixa",
+  "sourcePages": [7, 8],
+  "topics": [
+    "Regra de remuneração",
+    "Empréstimo e juros",
+    "Renda variável",
+    "Papel na carteira",
+    "Mapa de produtos"
+  ],
+  "cards": [
+    {
+      "id": "aula-01-01",
+      "question": "O que é definido no momento da aplicação em renda fixa?",
+      "answer": "A regra de remuneração, não necessariamente o valor final em reais.",
+      "explanation": "Uma taxa pode ser prefixada ou depender de um índice futuro; ambas continuam sendo regras previamente contratadas.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "fundamentos",
+        "remuneracao"
+      ]
+    },
+    {
+      "id": "aula-01-02",
+      "question": "Por que um investimento pós-fixado continua sendo renda fixa?",
+      "answer": "Porque o contrato define como o rendimento será calculado, mesmo que o indexador varie.",
+      "explanation": "Fixa refere-se à regra do investimento. Não significa que a taxa ou a cotação permanecerão constantes.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "pos-fixado",
+        "conceitos"
+      ]
+    },
+    {
+      "id": "aula-01-03",
+      "question": "Qual operação econômica está por trás dos títulos de dívida de renda fixa?",
+      "answer": "O investidor empresta recursos a um emissor e recebe a promessa de remuneração e devolução conforme o contrato.",
+      "explanation": "O emissor pode ser governo, banco ou empresa; a promessa está sujeita aos riscos e condições do título.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "credito",
+        "emissor",
+        "juros"
+      ]
+    },
+    {
+      "id": "aula-01-04",
+      "question": "Qual é a diferença básica entre renda fixa e variável apresentada na aula?",
+      "answer": "Na renda fixa há regra de remuneração contratada; na variável, o retorno não é contratado dessa forma.",
+      "explanation": "Isso não torna toda renda fixa segura nem toda renda variável inadequada. O risco depende do instrumento e do uso.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "renda-variavel",
+        "comparacao"
+      ]
+    },
+    {
+      "id": "aula-01-05",
+      "question": "Por que renda fixa pode contribuir para estabilizar uma carteira?",
+      "answer": "Pode acrescentar fluxos e regras mais previsíveis, dependendo dos emissores, prazos e indexadores escolhidos.",
+      "explanation": "A apostila destaca esse papel, mas títulos longos podem oscilar bastante antes do vencimento.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "carteira",
+        "diversificacao",
+        "volatilidade"
+      ]
+    },
+    {
+      "id": "aula-01-06",
+      "question": "Menor apelo emocional da renda fixa implica necessariamente menor utilidade?",
+      "answer": "Não. Menos novidade ou especulação visível não elimina sua função financeira.",
+      "explanation": "A aula contrapõe o entusiasmo com renda variável ao estudo das características da renda fixa.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "comportamento",
+        "fundamentos"
+      ]
+    },
+    {
+      "id": "aula-01-07",
+      "question": "Como organizar a sopa de letrinhas dos títulos de renda fixa?",
+      "answer": "Classifique por emissor, remuneração, prazo, liquidez, tributação e garantias.",
+      "explanation": "Esses critérios permitem comparar instrumentos cujo nome, sozinho, diz pouco sobre sua adequação.",
+      "sourcePages": [7, 8],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "comparacao",
+        "risco",
+        "liquidez"
+      ]
+    },
+    {
+      "id": "aula-01-08",
+      "question": "Quais famílias de produtos são introduzidas no início do módulo?",
+      "answer": "Tesouro Direto, CDB, LCI/LCA, CRI/CRA e debêntures.",
+      "explanation": "As aulas seguintes ampliam o mapa com LC, RDB, fundos e previdência, detalhando diferenças entre eles.",
+      "sourcePages": [7],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "produtos",
+        "mapa-do-modulo"
+      ]
+    },
+    {
+      "id": "aula-01-09",
+      "question": "Ter remuneração contratada elimina a possibilidade de perda antes do vencimento?",
+      "answer": "Não. A venda antecipada pode ocorrer a preço de mercado, além de existir risco de crédito.",
+      "explanation": "A continuação da aula anuncia a marcação a mercado justamente para explicar ganhos e perdas durante a vida do título.",
+      "sourcePages": [8],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-01",
+        "marcacao-a-mercado",
+        "risco"
+      ]
+    }
+  ]
+}

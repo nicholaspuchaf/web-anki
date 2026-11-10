@@ -1,0 +1,185 @@
+{
+  "id": "aula-11",
+  "title": "Aula 11 — LCI, LCA e mercado secundário",
+  "sourcePages": [29, 30],
+  "topics": [
+    "Setores de crédito",
+    "Tributação e comparação líquida",
+    "FGC",
+    "Prazos e carência",
+    "Revenda"
+  ],
+  "cards": [
+    {
+      "id": "aula-11-01",
+      "question": "O que significam LCI e LCA?",
+      "answer": "Letra de Crédito Imobiliário e Letra de Crédito do Agronegócio.",
+      "explanation": "O material usa agrícola para LCA; a denominação usual é do Agronegócio.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "lci",
+        "lca",
+        "siglas"
+      ]
+    },
+    {
+      "id": "aula-11-02",
+      "question": "Quem é o devedor do investidor numa LCI ou LCA bancária?",
+      "answer": "A instituição financeira emissora, conforme o instrumento.",
+      "explanation": "A vinculação a crédito imobiliário ou do agronegócio não elimina o risco bancário.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "emissor",
+        "risco-de-credito"
+      ]
+    },
+    {
+      "id": "aula-11-03",
+      "question": "Que vantagem tributária a apostila destaca para LCI e LCA de pessoa física?",
+      "answer": "A isenção de IR nas condições aplicáveis ao produto e ao investidor.",
+      "explanation": "Compare a legislação vigente na data da aplicação. Isenção não significa ausência de risco ou liquidez imediata.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "isencao",
+        "ir",
+        "pessoa-fisica"
+      ]
+    },
+    {
+      "id": "aula-11-04",
+      "question": "Por que uma LCI com taxa bruta menor pode superar um CDB tributado?",
+      "answer": "Porque o resultado líquido pode ser maior após descontar o IR do CDB.",
+      "explanation": "Mantenha indexador, prazo, risco e liquidez comparáveis antes de concluir.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "comparacao",
+        "liquido",
+        "cdb"
+      ]
+    },
+    {
+      "id": "aula-11-05",
+      "question": "Como comparar, de forma simplificada, 90% do CDI isentos com um CDB sob IR de 20%?",
+      "answer": "A taxa tributada equivalente é 90% ÷ 0,80 = 112,5% do CDI.",
+      "explanation": "A equivalência simplifica a aplicação proporcional do imposto ao rendimento; confirme a composição efetiva e os demais custos.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "calculo",
+        "equivalencia-tributaria"
+      ]
+    },
+    {
+      "id": "aula-11-06",
+      "question": "O que a existência de FGC não dispensa ao escolher LCI e LCA?",
+      "answer": "Analisar o emissor, os limites agregados e a disponibilidade do dinheiro.",
+      "explanation": "Garantia de crédito e liquidez do título são questões diferentes.",
+      "sourcePages": [29],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "fgc",
+        "liquidez",
+        "diligencia"
+      ]
+    },
+    {
+      "id": "aula-11-07",
+      "question": "Que uso de curto prazo o PDF exemplifica para LCI e LCA?",
+      "answer": "Guardar recursos para um objetivo planejado, como uma viagem, respeitando o prazo do papel.",
+      "explanation": "Curto prazo não significa que qualquer data de saque seja permitida.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "objetivos",
+        "planejamento"
+      ]
+    },
+    {
+      "id": "aula-11-08",
+      "question": "Como interpretar a referência de seis meses para LCI e LCA da página 30?",
+      "answer": "Como referência que precisa ser vinculada à modalidade e à regra vigente, não a todas as emissões sem exceção.",
+      "explanation": "O BC reduziu para seis meses o prazo mínimo das emissões sem atualização por índice de preços. Prazo mínimo de emissão não é sinônimo universal de resgate diário após seis meses.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "carencia",
+        "vencimento",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-11-09",
+      "question": "O que é mercado secundário de títulos?",
+      "answer": "Negociação de um título que já havia sido emitido e adquirido por outro investidor.",
+      "explanation": "O dinheiro da nova transação remunera a negociação entre participantes, em vez de representar necessariamente uma nova captação do emissor.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "mercado-secundario"
+      ]
+    },
+    {
+      "id": "aula-11-10",
+      "question": "Comprar um título no secundário permite escolher qualquer prazo e eliminar carências?",
+      "answer": "Não. O papel conserva suas condições; o que muda é seu preço e o tempo restante até os fluxos.",
+      "explanation": "A sugestão do curso de buscar prazos menores exige verificar disponibilidade, elegibilidade e regras da operação.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "mercado-secundario",
+        "liquidez",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-11-11",
+      "question": "Qual hábito de pesquisa a aula recomenda para encontrar ofertas no secundário?",
+      "answer": "Observar as plataformas pela manhã, próximo da abertura.",
+      "explanation": "É uma dica operacional da apostila, não garantia de que as melhores ofertas só existam nesse horário.",
+      "sourcePages": [30],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-11",
+        "ofertas",
+        "rotina-de-estudo",
+        "opiniao-do-material"
+      ]
+    }
+  ]
+}

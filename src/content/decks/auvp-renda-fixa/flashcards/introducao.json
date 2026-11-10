@@ -1,0 +1,69 @@
+{
+  "id": "introducao",
+  "title": "Introdução — liberdade financeira",
+  "sourcePages": [6],
+  "topics": ["Autonomia financeira", "Ativos, passivos e dívidas"],
+  "cards": [
+    {
+      "id": "introducao-01",
+      "question": "Qual objetivo a introdução associa à liberdade financeira?",
+      "answer": "Ter autonomia para sustentar a vida e fazer escolhas sem depender integralmente do próximo salário.",
+      "explanation": "A imagem do poder de dizer não relaciona dinheiro a escolhas, e não apenas a consumo.",
+      "sourcePages": [6],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "introducao",
+        "planejamento",
+        "liberdade-financeira"
+      ]
+    },
+    {
+      "id": "introducao-02",
+      "question": "Que pergunta a introdução propõe para avaliar a dependência do trabalho?",
+      "answer": "O que aconteceria com suas contas e seu padrão de vida se você parasse de trabalhar hoje?",
+      "explanation": "A pergunta evidencia a relação entre despesas, patrimônio e fontes de renda.",
+      "sourcePages": [6],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "introducao",
+        "planejamento",
+        "despesas"
+      ]
+    },
+    {
+      "id": "introducao-03",
+      "question": "Qual papel de ativos e passivos é enfatizado na construção de autonomia?",
+      "answer": "Construir uma base patrimonial que sustente despesas, em vez de acumular apenas obrigações.",
+      "explanation": "A apostila apresenta administrar ativos e fazer o dinheiro trabalhar como parte desse processo; não basta comparar quantidades de bens.",
+      "sourcePages": [6],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "introducao",
+        "ativos",
+        "passivos",
+        "patrimonio"
+      ]
+    },
+    {
+      "id": "introducao-04",
+      "question": "Por que a introdução recomenda rever dívidas e compras antecipadas?",
+      "answer": "Porque compromissos assumidos antes de haver capacidade financeira reduzem a liberdade de escolha.",
+      "explanation": "Carro e imóvel antecipados aparecem como exemplos. A análise concreta depende do custo da dívida e da situação financeira.",
+      "sourcePages": [6],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "introducao",
+        "dividas",
+        "planejamento"
+      ]
+    }
+  ]
+}

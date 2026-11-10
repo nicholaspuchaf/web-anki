@@ -1,0 +1,236 @@
+{
+  "id": "aula-04",
+  "title": "Aula 4 — Tesouro Selic e tributação",
+  "sourcePages": [13, 14, 15],
+  "topics": [
+    "Pós-fixação",
+    "Liquidez da reserva",
+    "Selic meta e efetiva",
+    "DI",
+    "IOF e IR"
+  ],
+  "cards": [
+    {
+      "id": "aula-04-01",
+      "question": "Como é definida a remuneração básica do Tesouro Selic?",
+      "answer": "Ela acompanha a Selic efetiva acumulada, conforme as condições e o preço do título.",
+      "explanation": "A apostila simplifica como 100% da Selic. Cotação, ágio/deságio, custos e tributos influenciam o resultado do investidor.",
+      "sourcePages": [13, 14],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "tesouro-selic",
+        "pos-fixado"
+      ]
+    },
+    {
+      "id": "aula-04-02",
+      "question": "Por que não se conhece previamente o valor final de um Tesouro Selic?",
+      "answer": "Porque a trajetória futura de seu indexador ainda não é conhecida.",
+      "explanation": "A regra de remuneração é contratada, mas o índice acumulado muda com o tempo.",
+      "sourcePages": [14],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "pos-fixado",
+        "indexador"
+      ]
+    },
+    {
+      "id": "aula-04-03",
+      "question": "Que usos a apostila associa ao Tesouro Selic?",
+      "answer": "Reserva de emergência, organização financeira e alternativa ao dinheiro pouco remunerado.",
+      "explanation": "São usos apresentados pelo curso. Disponibilidade operacional e necessidade de acesso fora do expediente precisam ser consideradas.",
+      "sourcePages": [13],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "reserva-de-emergencia",
+        "liquidez"
+      ]
+    },
+    {
+      "id": "aula-04-04",
+      "question": "Liquidez diária do Tesouro equivale a saque instantâneo em qualquer dia e horário?",
+      "answer": "Não. É preciso observar negociação, liquidação, instituição e eventuais suspensões.",
+      "explanation": "A seção de previdência retoma a diferença entre liquidez do título e acesso em fins de semana e feriados.",
+      "sourcePages": [13, 36],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "liquidez",
+        "resgate"
+      ]
+    },
+    {
+      "id": "aula-04-05",
+      "question": "Tesouro Selic é absolutamente incapaz de apresentar perda numa venda antecipada?",
+      "answer": "Não. Pequenas oscilações de preço e custos podem produzir resultado desfavorável, sobretudo em prazo curto.",
+      "explanation": "A afirmação nunca perder da página 14 é excessiva. Baixa volatilidade não equivale a preço invariável.",
+      "sourcePages": [14],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "marcacao-a-mercado",
+        "revisao-critica",
+        "risco"
+      ]
+    },
+    {
+      "id": "aula-04-06",
+      "question": "A Selic ser sempre positiva é uma garantia contratual do título?",
+      "answer": "Não. A apostila transforma uma expectativa sobre o país numa afirmação absoluta.",
+      "explanation": "Estude o mecanismo do título e o cenário, sem usar a frase jamais negativa como garantia de ausência de risco.",
+      "sourcePages": [14],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "selic",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-04-07",
+      "question": "Qual fonte institucional a aula indica para acompanhar Selic e inflação?",
+      "answer": "O site do Banco Central do Brasil.",
+      "explanation": "A captura de tela da página 14 ilustra um painel de indicadores; os valores históricos da imagem não são taxas atuais.",
+      "sourcePages": [14],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "banco-central",
+        "indicadores"
+      ]
+    },
+    {
+      "id": "aula-04-08",
+      "question": "Qual distinção evita confundir a decisão do Copom com taxas observadas diariamente?",
+      "answer": "Selic meta é a decisão de política monetária; a taxa efetiva é observada nas operações do mercado.",
+      "explanation": "A taxa DI é outra referência, ligada a depósitos interfinanceiros. Uma não deve ser definida simplesmente como a outra.",
+      "sourcePages": [14, 15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "selic-meta",
+        "selic-efetiva",
+        "taxa-di"
+      ]
+    },
+    {
+      "id": "aula-04-09",
+      "question": "Qual problema os empréstimos interbancários de curtíssimo prazo ajudam a resolver?",
+      "answer": "Necessidades de liquidez e ajustes financeiros das instituições.",
+      "explanation": "A aula usa a ideia de fechar o caixa. Isso não significa que uma regra universal exija sempre depósitos do dia maiores que todos os saques.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "interbancario",
+        "liquidez",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-04-10",
+      "question": "O que pode incidir sobre rendimentos de aplicações resgatadas antes de 30 dias?",
+      "answer": "IOF regressivo, quando aplicável ao produto.",
+      "explanation": "A redução descrita no PDF é sobre o rendimento, não uma taxa que retira automaticamente parte do principal. A incidência zera ao completar 30 dias nas aplicações sujeitas à tabela.",
+      "sourcePages": [15],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-04", "iof", "tributacao"]
+    },
+    {
+      "id": "aula-04-11",
+      "question": "Qual alíquota de IR a tabela da apostila usa até 180 dias?",
+      "answer": "22,5% sobre o rendimento tributável.",
+      "explanation": "Não é 22,5% do saldo total investido. O prazo corresponde ao tempo da aplicação.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "ir",
+        "tabela-regressiva"
+      ]
+    },
+    {
+      "id": "aula-04-12",
+      "question": "Qual alíquota de IR corresponde a 181–360 dias na tabela apresentada?",
+      "answer": "20% sobre os rendimentos tributáveis.",
+      "explanation": "Compare os prazos exatos, pois cruzar uma faixa pode mudar o retorno líquido.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "ir",
+        "tabela-regressiva"
+      ]
+    },
+    {
+      "id": "aula-04-13",
+      "question": "Qual alíquota de IR corresponde a 361–720 dias na tabela apresentada?",
+      "answer": "17,5% sobre os rendimentos tributáveis.",
+      "explanation": "A taxa intermediária mostra como o tratamento do prazo afeta a comparação líquida.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "ir",
+        "tabela-regressiva"
+      ]
+    },
+    {
+      "id": "aula-04-14",
+      "question": "Qual alíquota de IR vale acima de 720 dias na tabela apresentada?",
+      "answer": "15% sobre os rendimentos tributáveis.",
+      "explanation": "É a menor faixa dessa tabela, não uma regra universal para qualquer produto financeiro.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "ir",
+        "tabela-regressiva"
+      ]
+    },
+    {
+      "id": "aula-04-15",
+      "question": "Como a apostila descreve o recolhimento do IR nos títulos do Tesouro?",
+      "answer": "Retenção na fonte, conforme o evento de tributação e o prazo.",
+      "explanation": "O resultado anunciado em taxa bruta não é necessariamente o que será creditado líquido ao investidor.",
+      "sourcePages": [15],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-04",
+        "ir",
+        "retencao-na-fonte",
+        "liquido"
+      ]
+    }
+  ]
+}

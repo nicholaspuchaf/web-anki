@@ -1,0 +1,121 @@
+{
+  "id": "aula-06",
+  "title": "Aula 6 — Tesouro IPCA+",
+  "sourcePages": [18],
+  "topics": [
+    "Indexação e taxa real",
+    "Composição das taxas",
+    "Valor nominal atualizado",
+    "IR sobre correção monetária"
+  ],
+  "cards": [
+    {
+      "id": "aula-06-01",
+      "question": "Quais são os dois componentes básicos da remuneração do Tesouro IPCA+?",
+      "answer": "Correção pelo IPCA e uma taxa real contratada na compra.",
+      "explanation": "O valor nominal futuro depende da inflação, enquanto a parcela real bruta é definida nas condições do título levado ao vencimento.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "tesouro-ipca",
+        "indexacao"
+      ]
+    },
+    {
+      "id": "aula-06-02",
+      "question": "Por que Tesouro IPCA+ é chamado de híbrido?",
+      "answer": "Porque combina um indexador variável com uma taxa contratada.",
+      "explanation": "O componente de inflação não é conhecido antecipadamente; a taxa adicional é conhecida na aquisição.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "hibrido",
+        "pos-fixado",
+        "prefixado"
+      ]
+    },
+    {
+      "id": "aula-06-03",
+      "question": "No exemplo com inflação de 9% e taxa real de 5%, qual é a composição nominal exata no mesmo período anual?",
+      "answer": "(1,09 × 1,05) − 1 = 14,45%, antes de custos e impostos.",
+      "explanation": "O PDF apresenta 14% por soma simplificada. O produto dos fatores inclui o termo cruzado de 0,45 ponto percentual.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "calculo",
+        "composicao-de-taxas",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-06-04",
+      "question": "Todo Tesouro IPCA+ vence por exatamente R$ 1.000 nominais?",
+      "answer": "Não. Seu valor de referência é atualizado pela inflação, conforme a estrutura do título.",
+      "explanation": "O material usa R$ 1.000 corrigidos como simplificação. Não confunda valor de referência com preço de compra ou principal investido.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "valor-nominal-atualizado",
+        "revisao-critica"
+      ]
+    },
+    {
+      "id": "aula-06-05",
+      "question": "Qual proteção o IPCA+ busca oferecer quando levado ao vencimento?",
+      "answer": "Remuneração bruta ligada à inflação medida pelo índice, acrescida da taxa real contratada.",
+      "explanation": "Essa proteção não equivale automaticamente à inflação pessoal do investidor nem ao retorno real líquido após impostos.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "poder-de-compra",
+        "taxa-real"
+      ]
+    },
+    {
+      "id": "aula-06-06",
+      "question": "Por que o IR pode enfraquecer a proteção real de um título indexado à inflação?",
+      "answer": "Porque incide sobre o ganho nominal tributável, que inclui a parcela de correção inflacionária.",
+      "explanation": "Mesmo mantendo uma taxa real bruta positiva, o ganho real líquido pode cair quando a inflação aumenta.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "ir",
+        "inflacao",
+        "retorno-liquido"
+      ]
+    },
+    {
+      "id": "aula-06-07",
+      "question": "IPCA+ elimina o risco de perda numa venda antes do vencimento?",
+      "answer": "Não. O preço também reage às taxas de mercado e ao prazo restante.",
+      "explanation": "A indexação não remove a marcação a mercado. A aula seguinte desenvolve exatamente essa diferença.",
+      "sourcePages": [18],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-06",
+        "risco-de-mercado",
+        "marcacao-a-mercado"
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { StudyTimePanel } from '../study-time/StudyTimePanel';
 import { useState } from 'react';
 import type { Library } from '../library/model';
 import { Alert } from '../../shared/ui/Alert';
@@ -124,6 +125,12 @@ export default function AdminPage({
           <small>{activity[0].cards} cartões com histórico anterior</small>
         </article>
       </div>
+      <StudyTimePanel
+        key={deckId}
+        library={snapshot}
+        deckId={deckId}
+        now={now}
+      />
       <section className="admin-panel">
         <div className="admin-panel-title">
           <div>

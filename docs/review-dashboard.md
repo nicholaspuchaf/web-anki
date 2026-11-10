@@ -76,3 +76,13 @@ Não há alterações de intervalos, novos limites diários, integração de his
 com DynamoDB ou envio de datas de revisão à nuvem. O backup atual de flashcards
 continua preservando o progresso dos cartões, mas não exporta esse histórico separado.
 Apagar todos os dados locais do site remove também as avaliações deste aparelho.
+
+## Tempo de estudo
+
+A Administração mostra o tempo ativo diário dos últimos 30 dias e uma tabela pesquisável e paginada por flashcard, respeitando o filtro de baralho. Cada linha apresenta tempo total, número de passagens cronometradas e média por passagem. Cartões sem medição anterior ficam fora do denominador: não é possível recuperar os tempos dos cronômetros que antes existiam somente em memória.
+
+O tempo inclui revisão e treino livre, mesmo se o usuário sair sem avaliar o cartão. Isso é diferente da quantidade de avaliações do gráfico de revisões, que continua excluindo treino livre. Uma passagem identifica a apresentação de um cartão dentro de uma sessão; pausar e retornar ao mesmo cartão não cria outra passagem. Começar uma sessão nova cria uma nova passagem. As médias consideram somente o tempo dentro da janela ou dia selecionado.
+
+`features/study-time` concentra o modelo de agregação, armazenamento e painel. `use-study-timers` grava checkpoints cumulativos por passagem/dia em chaves `folha:study-time:v1:<UUID>:<dia-local>`. O mesmo checkpoint é sobrescrito; abas têm UUIDs independentes, evitando sobrescrever a atividade umas das outras. Trechos que cruzam meia-noite são divididos pelos dias locais. O tempo usa relógio monotônico, pausa com aba oculta/fora da revisão e é atualizado aproximadamente a cada segundo, ao pausar, trocar de cartão ou sair da página.
+
+Os registros persistem no localStorage, separados de cartões, eventos de avaliação e da sincronização DynamoDB. Não entram nos backups de flashcards. Uma falha de quota é avisada; checkpoints pendentes ficam na memória da aba para nova tentativa. Fechar a aba antes de resolver a falha pode perder essa parte ainda não persistida. Registros inválidos são sinalizados e ignorados, sem modificar o histórico de revisões. O painel acompanha eventos de armazenamento de outras abas.

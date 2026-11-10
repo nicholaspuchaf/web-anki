@@ -242,5 +242,5 @@ Baralho local com **246 flashcards** da apostila enviada (41 páginas), cobrindo
 Na revisão, os cronômetros mostram o tempo total da sessão à esquerda e o tempo
 do cartão atual à direita. O contador do cartão reinicia ao avançar; uma nova
 sessão reinicia ambos. A contagem pausa ao sair da revisão ou ocultar a aba e
-termina quando não há mais cartões. Esses tempos são temporários e não alteram
-agendamento, histórico de avaliações ou sincronização.
+termina quando não há mais cartões. Os cronômetros reiniciam por sessão, mas o tempo ativo é salvo no localStorage
+para os gráficos e as médias da Administração. Agendamento e sincronização não são alterados.

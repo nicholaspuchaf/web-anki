@@ -1,3 +1,4 @@
+import { Alert } from '../../shared/ui/Alert';
 import { formatStudyTime } from './study-timer';
 import { CardActions } from '../rework/CardActions';
 import { StandardCard } from '../standard/StandardCard';
@@ -42,6 +43,9 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
       <button className="text-button back" onClick={onBack} disabled={busy}>
         ← Encerrar revisão
       </button>
+      {review.timers.storageWarning && (
+        <Alert error>{review.timers.storageWarning}</Alert>
+      )}
       <div className="review-status-bar">
         <div className="review-timer">
           <small>Sessão</small>

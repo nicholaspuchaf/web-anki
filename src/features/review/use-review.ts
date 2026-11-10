@@ -29,7 +29,13 @@ export function useReview(
   const activeQueue = queue.filter((id) => activeIds.has(id));
   const current = library.cards.find((c) => c.id === activeQueue[0]);
 
-  const timers = useStudyTimers(session, current?.id, active);
+  const timers = useStudyTimers(
+    session,
+    current?.id,
+    active,
+    current?.deckId,
+    practice,
+  );
   const revealed = !!current && revealedId === current.id;
   const choiceCorrect =
     choice?.id === current?.id ? (choice?.correct ?? null) : null;

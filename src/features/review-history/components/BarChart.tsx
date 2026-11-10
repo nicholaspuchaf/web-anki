@@ -5,6 +5,7 @@ export type ChartPoint = {
   value: number;
   description: string;
   special?: boolean;
+  formattedValue?: string;
 };
 
 export function BarChart({
@@ -48,7 +49,7 @@ export function BarChart({
           <button
             key={point.key}
             className={`admin-bar${point.special ? ' admin-bar-special' : ''}`}
-            aria-label={`${point.label}: ${point.value} ${unit}`}
+            aria-label={`${point.label}: ${point.formattedValue ?? point.value} ${unit}`}
             title={point.description}
             aria-pressed={selected === point.key}
             onClick={() => onSelect(point.key)}
@@ -60,7 +61,7 @@ export function BarChart({
                   height: `${point.special ? (point.value > 0 ? 100 : 0) : (point.value / max) * 100}%`,
                 }}
               />
-              <strong>{point.value}</strong>
+              <strong>{point.formattedValue ?? point.value}</strong>
             </span>
             <span className="admin-bar-label">{point.label}</span>
           </button>

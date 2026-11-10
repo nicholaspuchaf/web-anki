@@ -1,0 +1,74 @@
+.settings-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+}
+.settings-page h1 {
+  margin: 0 0 0.6rem;
+}
+.settings-page h2 {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+.settings-page header p,
+.settings-help {
+  color: var(--muted);
+  line-height: 1.6;
+}
+.settings-decks {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.settings-deck {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.15rem;
+  cursor: pointer;
+  background: var(--surface);
+}
+.settings-deck:focus-within {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.settings-deck input {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin: 0;
+  accent-color: var(--green);
+}
+.settings-deck-body {
+  display: grid;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.settings-deck-body > span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.settings-state {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.settings-state.enabled {
+  color: var(--green);
+}
+@media (max-width: 600px) {
+  .settings-deck {
+    gap: 0.75rem;
+    padding: 1rem 0.8rem;
+    flex-wrap: wrap;
+  }
+  .settings-deck-body {
+    flex-basis: calc(100% - 40px);
+  }
+  .settings-state {
+    margin-left: 34px;
+  }
+}

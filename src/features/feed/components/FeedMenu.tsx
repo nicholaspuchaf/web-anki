@@ -10,9 +10,11 @@ export function FeedMenu({
   onImport,
   ready,
   opening,
+  canCreate = true,
 }: {
   ready: boolean;
   opening: boolean;
+  canCreate?: boolean;
   onClose: () => void;
   onLearn: () => void;
   onManage: () => void;
@@ -60,11 +62,17 @@ export function FeedMenu({
         <a href="#/admin" onClick={onClose}>
           ▥ Administração
         </a>
+        <a href="#/settings" onClick={onClose}>
+          ⚙ Configurações
+        </a>
       </nav>
       <div className="feed-menu-actions">
         <button onClick={() => action(onLearn)}>Aprender</button>
         <button onClick={() => action(onManage)}>Meus carrosséis</button>
-        <button disabled={!ready || opening} onClick={() => action(onCreate)}>
+        <button
+          disabled={!ready || opening || !canCreate}
+          onClick={() => action(onCreate)}
+        >
           + Novo carrossel
         </button>
       </div>

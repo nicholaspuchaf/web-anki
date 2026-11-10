@@ -5,20 +5,38 @@ import type { Library } from '../library/model';
 import type { SaveLibrary } from '../library/hooks/use-library';
 import { schedule, type Rating } from './scheduler';
 
-export function useReview(library: Library, save: SaveLibrary) {
+export function useReview(
+  library: Library,
+  save: SaveLibrary,
+  disabledDecks: readonly string[] = [],
+) {
   const ratingLock = useRef(false);
   const [practice, setPractice] = useState(false);
   const [queue, setQueue] = useState<string[]>([]);
-  const [revealed, setRevealed] = useState(false);
-  const [choiceCorrect, setChoiceCorrect] = useState<boolean | null>(null);
+  const [revealedId, setRevealedId] = useState<string | null>(null);
+  const [choice, setChoice] = useState<{ id: string; correct: boolean } | null>(
+    null,
+  );
   const [reviewed, setReviewed] = useState(0);
-  const current = library.cards.find((c) => c.id === queue[0]);
+  const activeIds = new Set(
+    library.cards
+      .filter((card) => !disabledDecks.includes(card.deckId))
+      .map((card) => card.id),
+  );
+  const activeQueue = queue.filter((id) => activeIds.has(id));
+  const current = library.cards.find((c) => c.id === activeQueue[0]);
+
+  const revealed = !!current && revealedId === current.id;
+  const choiceCorrect =
+    choice?.id === current?.id ? (choice?.correct ?? null) : null;
 
   function begin(
     deckId?: string,
     options?: { ids?: string[]; practice?: boolean },
   ) {
-    const candidates = deckId ? getDeckCards(library, deckId) : library.cards;
+    const candidates = (
+      deckId ? getDeckCards(library, deckId) : library.cards
+    ).filter((card) => activeIds.has(card.id));
     const filtered = options?.ids
       ? candidates.filter((c) => options.ids!.includes(c.id))
       : candidates;
@@ -29,8 +47,8 @@ export function useReview(library: Library, save: SaveLibrary) {
     );
     setPractice(options?.practice ?? false);
     setReviewed(0);
-    setRevealed(false);
-    setChoiceCorrect(null);
+    setRevealedId(null);
+    setChoice(null);
   }
   async function rate(rating: Rating) {
     if (!current || ratingLock.current) return;
@@ -54,9 +72,9 @@ export function useReview(library: Library, save: SaveLibrary) {
           newReviewEvent(current, updated, rating, now),
         ));
       if (saved) {
-        setQueue((q) => q.slice(1));
-        setRevealed(false);
-        setChoiceCorrect(null);
+        setQueue((q) => q.filter((id) => id !== current.id));
+        setRevealedId(null);
+        setChoice(null);
         setReviewed((n) => n + 1);
       }
     } finally {
@@ -67,17 +85,20 @@ export function useReview(library: Library, save: SaveLibrary) {
   return {
     practice,
     current,
-    remaining: queue.length,
+    remaining: activeQueue.length,
     revealed,
     choiceCorrect,
     answerChoice: (correct: boolean) => {
-      setChoiceCorrect(correct);
-      setRevealed(true);
+      if (!current) return;
+      setChoice({ id: current.id, correct });
+      setRevealedId(current.id);
     },
     reviewed,
     begin,
     rate,
-    reveal: () => setRevealed(true),
+    reveal: () => {
+      if (current) setRevealedId(current.id);
+    },
   };
 }
 export type ReviewSession = ReturnType<typeof useReview>;

@@ -217,3 +217,9 @@ O primeiro build pode rodar sem `VITE_API_URL`, somente com armazenamento local.
 O Terraform não cria nem publica o frontend e não exige credenciais Cloudflare.
 As credenciais AWS também não são necessárias no build do Pages. Nenhuma publicação
 foi executada automaticamente.
+
+## Configurações dos baralhos
+
+Em **Configurações** (`/#/settings`), marque os baralhos incluídos no aplicativo que deseja estudar. Cada linha mostra a quantidade atual de flashcards e carrosséis. Todos começam ativos; as escolhas ficam no navegador e são atualizadas entre abas.
+
+Desativar um baralho o oculta da biblioteca de estudo, da revisão geral e dos carrosséis do Feed, sem apagar conteúdo, favoritos, datas ou progresso. Reativar restaura sua visualização. Backups e o histórico da Administração permanecem completos; baralhos pessoais não são desativados por essa configuração. No celular, a aba também está no menu flutuante do Feed.

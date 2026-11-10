@@ -1,3 +1,5 @@
+import { useSettings } from '../features/settings/use-settings';
+import { activeLibrary } from '../features/settings/model';
 import { useCloudSync } from '../features/sync/use-cloud-sync';
 import { CloudSyncPanel } from '../features/sync/CloudSyncPanel';
 import { lazy, Suspense, useRef, useState } from 'react';
@@ -16,6 +18,7 @@ import { DeckPage } from '../features/library/components/DeckPage';
 import { ReviewPage } from '../features/review/ReviewPage';
 import { LibraryEditor } from '../features/library/components/LibraryEditor';
 
+const SettingsPage = lazy(() => import('../features/settings/SettingsPage'));
 const AdminPage = lazy(() => import('../features/review-history/AdminPage'));
 const FeedPage = lazy(() => import('../features/feed/FeedPage'));
 
@@ -43,7 +46,9 @@ export default function App() {
   const [editing, setEditing] = useState<Card | null>(null);
   const now = useClock();
   const online = useOnline();
-  const review = useReview(library, save);
+  const { disabledDecks } = useSettings();
+  const studyLibrary = activeLibrary(library, disabledDecks);
+  const review = useReview(library, save, disabledDecks);
   const { exportBackup, importBackup } = useBackup(
     library,
     save,
@@ -56,7 +61,8 @@ export default function App() {
     updateServiceWorker,
   } = useRegisterSW();
 
-  const deck = library.decks.find((d) => d.id === selected);
+  const deck = studyLibrary.decks.find((d) => d.id === selected);
+  const visibleView = view === 'cards' && !deck ? 'decks' : view;
 
   function begin(
     deckId?: string,
@@ -111,16 +117,20 @@ export default function App() {
                 : 'Abrindo seus cartões…'}
             </p>
           </div>
+        ) : page === 'settings' ? (
+          <Suspense fallback={<p role="status">Abrindo as configurações…</p>}>
+            <SettingsPage library={library} />
+          </Suspense>
         ) : page === 'admin' ? (
           <Suspense fallback={<p role="status">Abrindo a administração…</p>}>
             <AdminPage library={library} now={now} />
           </Suspense>
         ) : (
           <>
-            {view === 'decks' && (
+            {visibleView === 'decks' && (
               <>
                 <LibraryPage
-                  library={library}
+                  library={studyLibrary}
                   now={now}
                   busy={busy}
                   begin={() => begin()}
@@ -137,7 +147,7 @@ export default function App() {
                 )}
               </>
             )}
-            {view === 'cards' && deck && (
+            {visibleView === 'cards' && deck && (
               <DeckPage
                 library={library}
                 deck={deck}
@@ -152,7 +162,7 @@ export default function App() {
                 }}
               />
             )}
-            {view === 'review' && (
+            {visibleView === 'review' && (
               <ReviewPage
                 library={library}
                 review={review}

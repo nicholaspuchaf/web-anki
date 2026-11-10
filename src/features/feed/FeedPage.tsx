@@ -1,3 +1,5 @@
+import { useSettings } from '../settings/use-settings';
+import { activeFeed } from '../settings/model';
 import type { Library } from '../library/model';
 import type { SaveLibrary } from '../library/hooks/use-library';
 import {
@@ -62,17 +64,28 @@ export default function FeedPage({
   const [epoch, setEpoch] = useState(0);
   const [notice, setNotice] = useState('');
   const file = useRef<HTMLInputElement>(null);
-  const decks = feedDecks(feed.data, library.decks);
-  const studyData = selectDeckFeed(feed.data, selectedDeck);
+  const { disabledDecks } = useSettings();
+  const availableFeed = activeFeed(feed.data, disabledDecks);
+  const allDecks = feedDecks(feed.data, library.decks);
+  const decks = allDecks.filter((deck) => !disabledDecks.includes(deck.id));
+  const deckOptions =
+    decks.some((deck) => deck.id === GENERAL_DECK.id) ||
+    disabledDecks.includes(GENERAL_DECK.id)
+      ? decks
+      : [...decks, GENERAL_DECK];
+  const activeSelected = disabledDecks.includes(selectedDeck)
+    ? ''
+    : selectedDeck;
+  const studyData = selectDeckFeed(availableFeed, activeSelected);
   const due = dueCarousels(studyData, now).length;
   useEffect(() => {
     if (!feed.ready || !libraryReady || libraryBusy) return;
-    const missing = decks.filter(
+    const missing = allDecks.filter(
       (d) => !library.decks.some((existing) => existing.id === d.id),
     );
     if (missing.length)
       void saveLibrary({ ...library, decks: [...library.decks, ...missing] });
-  }, [feed.ready, libraryReady, libraryBusy, decks, library, saveLibrary]);
+  }, [feed.ready, libraryReady, libraryBusy, allDecks, library, saveLibrary]);
   function study(carousel?: Carousel) {
     if (carousel) setSelectedDeck(carouselDeckId(carousel));
     setInitialCarouselId(carousel?.id);
@@ -88,7 +101,15 @@ export default function FeedPage({
         initial: draft ?? {
           carousel: carousel
             ? structuredClone(carousel)
-            : { ...newCarousel(), deckId: selectedDeck || GENERAL_DECK.id },
+            : {
+                ...newCarousel(),
+                deckId:
+                  activeSelected ||
+                  (deckOptions.some((deck) => deck.id === GENERAL_DECK.id)
+                    ? GENERAL_DECK.id
+                    : deckOptions[0]?.id) ||
+                  GENERAL_DECK.id,
+              },
           expectedRevision: carousel?.revision ?? null,
         },
         draftKey: key,
@@ -153,7 +174,7 @@ export default function FeedPage({
         </span>
         <button
           className="primary feed-create"
-          disabled={!feed.ready || opening}
+          disabled={!feed.ready || opening || !deckOptions.length}
           onClick={() => void open()}
         >
           + Novo carrossel
@@ -170,12 +191,23 @@ export default function FeedPage({
       ) : mode === 'feed' && !studyData.carousels.length ? (
         <div className="feed-empty">
           <span aria-hidden="true">✦</span>
-          <h2>Um novo espaço para suas ideias</h2>
+          <h2>
+            {disabledDecks.length
+              ? 'Sem carrosséis ativos'
+              : 'Um novo espaço para suas ideias'}
+          </h2>
           <p>
-            Crie um carrossel com um objetivo claro e desenvolva o tema card por
-            card.
+            {disabledDecks.length
+              ? 'Ative um baralho nas Configurações para voltar a estudar seus carrosséis.'
+              : 'Crie um carrossel com um objetivo claro e desenvolva o tema card por card.'}
           </p>
-          <button onClick={() => void open()} disabled={opening}>
+          {disabledDecks.length > 0 && (
+            <a href="#/settings">Configurar baralhos</a>
+          )}
+          <button
+            onClick={() => void open()}
+            disabled={opening || !deckOptions.length}
+          >
             Criar primeiro carrossel
           </button>
         </div>
@@ -194,14 +226,10 @@ export default function FeedPage({
         </div>
       ) : (
         <CarouselLibrary
-          data={feed.data}
-          decks={
-            decks.some((d) => d.id === GENERAL_DECK.id)
-              ? decks
-              : [...decks, GENERAL_DECK]
-          }
+          data={availableFeed}
+          decks={deckOptions}
           cards={library.cards}
-          selected={selectedDeck}
+          selected={activeSelected}
           onSelect={(id) => {
             setSelectedDeck(id);
             setInitialCarouselId(undefined);
@@ -259,6 +287,7 @@ export default function FeedPage({
       {menu && (
         <FeedMenu
           ready={feed.ready}
+          canCreate={!!deckOptions.length}
           opening={opening}
           onClose={() => setMenu(false)}
           onLearn={() => setMode('feed')}
@@ -272,11 +301,7 @@ export default function FeedPage({
         <FeedEditor
           key={editor.initial.carousel.id}
           {...editor}
-          decks={
-            decks.some((d) => d.id === GENERAL_DECK.id)
-              ? decks
-              : [...decks, GENERAL_DECK]
-          }
+          decks={deckOptions}
           onClose={() => setEditor(null)}
           onSave={async (value, expected) => {
             const next = await saveCarousel(

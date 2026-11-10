@@ -54,6 +54,12 @@ export function AppLayout({ online, page, onHome, children }: Props) {
         <a href="#/admin" aria-current={page === 'admin' ? 'page' : undefined}>
           ▥ <span>Administração</span>
         </a>
+        <a
+          href="#/settings"
+          aria-current={page === 'settings' ? 'page' : undefined}
+        >
+          ⚙ <span>Configurações</span>
+        </a>
       </nav>
       {children}
       {page !== 'feed' && (

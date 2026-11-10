@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-export type AppPage = 'flashcards' | 'feed' | 'admin';
+export type AppPage = 'flashcards' | 'feed' | 'admin' | 'settings';
 const subscribe = (notify: () => void) => {
   window.addEventListener('hashchange', notify);
   return () => window.removeEventListener('hashchange', notify);
@@ -10,7 +10,9 @@ const currentPage = (): AppPage => {
     ? 'feed'
     : path === '#/admin'
       ? 'admin'
-      : 'flashcards';
+      : path === '#/settings'
+        ? 'settings'
+        : 'flashcards';
 };
 export function usePage() {
   return useSyncExternalStore(

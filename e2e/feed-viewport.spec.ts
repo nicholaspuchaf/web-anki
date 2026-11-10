@@ -1,3 +1,4 @@
+import { navigateSection } from './app-navigation';
 import { expect, test } from '@playwright/test';
 import { swipeFeed } from './feed-actions';
 
@@ -19,7 +20,7 @@ test('Feed ocupa a tela, menu mobile e código longo sem misturar carrosséis', 
   ).toBeVisible();
   await menu.getByRole('link', { name: /Flashcards/ }).click();
   await expect(page.locator('.app-header')).toBeVisible();
-  await page.getByRole('link', { name: /Feed/ }).click();
+  await navigateSection(page, 'Feed');
   page.on('dialog', (d) => void d.accept());
   await page.getByLabel('Arquivo de backup do Feed').setInputFiles({
     name: 'viewport.json',

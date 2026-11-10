@@ -64,6 +64,11 @@ export default function App() {
   const deck = studyLibrary.decks.find((d) => d.id === selected);
   const visibleView = view === 'cards' && !deck ? 'decks' : view;
 
+  function goHome() {
+    window.location.hash = '/';
+    setView('decks');
+  }
+
   function begin(
     deckId?: string,
     options?: { ids?: string[]; practice?: boolean },
@@ -73,14 +78,7 @@ export default function App() {
   }
 
   return (
-    <AppLayout
-      online={online}
-      page={page}
-      onHome={() => {
-        window.location.hash = '/';
-        setView('decks');
-      }}
-    >
+    <AppLayout online={online} page={page} onHome={goHome}>
       <main className={page === 'feed' ? 'feed-main' : undefined}>
         {error && (
           <Alert error onDismiss={() => setError('')}>
@@ -102,6 +100,7 @@ export default function App() {
         {page === 'feed' ? (
           <Suspense fallback={<p role="status">Abrindo o Feed…</p>}>
             <FeedPage
+              onHome={goHome}
               now={now}
               library={library}
               libraryReady={ready}

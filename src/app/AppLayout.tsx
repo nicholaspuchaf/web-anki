@@ -1,5 +1,8 @@
+import { BrandMark } from './BrandMark';
+import { NavigationDrawer } from './NavigationDrawer';
+import { SectionNavigation } from './SectionNavigation';
 import type { AppPage } from './use-page';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ThemePicker } from '../features/theme/ThemePicker';
 
 type Props = {
@@ -9,21 +12,30 @@ type Props = {
   children: ReactNode;
 };
 export function AppLayout({ online, page, onHome, children }: Props) {
+  const [menu, setMenu] = useState(false);
   return (
     <div className={`app${page === 'feed' ? ' app-feed' : ''}`}>
       <header className="app-header">
         <div className="header-navigation">
+          <button
+            className="app-menu-trigger brand"
+            aria-label="Abrir menu"
+            aria-haspopup="dialog"
+            aria-expanded={menu}
+            onClick={() => setMenu(true)}
+          >
+            <BrandMark />
+            <span>Folha</span>
+          </button>
           <a
-            className="brand"
+            className="brand desktop-brand"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               onHome();
             }}
           >
-            <span className="brand-icon" aria-hidden="true">
-              〈<b>/</b>〉
-            </span>
+            <BrandMark />
             <span>
               Folha<span className="brand-caption">LeetCode review</span>
             </span>
@@ -39,28 +51,30 @@ export function AppLayout({ online, page, onHome, children }: Props) {
         <div className="header-tools">
           <span className="connection">
             <i />
-            {online ? 'Local' : 'Offline'}
+            {!online
+              ? 'Offline'
+              : ['localhost', '127.0.0.1', '[::1]'].includes(
+                    window.location.hostname,
+                  ) || window.location.hostname.endsWith('.localhost')
+                ? 'Local'
+                : 'Online'}
           </span>
           <ThemePicker />
         </div>
       </header>
-      <nav className="app-section-nav" aria-label="Seções do aplicativo">
-        <a href="#/" aria-current={page === 'flashcards' ? 'page' : undefined}>
-          ▤ <span>Flashcards</span>
-        </a>
-        <a href="#/feed" aria-current={page === 'feed' ? 'page' : undefined}>
-          ✦ <span>Feed</span>
-        </a>
-        <a href="#/admin" aria-current={page === 'admin' ? 'page' : undefined}>
-          ▥ <span>Administração</span>
-        </a>
-        <a
-          href="#/settings"
-          aria-current={page === 'settings' ? 'page' : undefined}
+      <SectionNavigation page={page} className="app-section-nav" />
+      {menu && (
+        <NavigationDrawer
+          title="Menu do aplicativo"
+          onClose={() => setMenu(false)}
         >
-          ⚙ <span>Configurações</span>
-        </a>
-      </nav>
+          <SectionNavigation
+            page={page}
+            onClose={() => setMenu(false)}
+            onHome={onHome}
+          />
+        </NavigationDrawer>
+      )}
       {children}
       {page !== 'feed' && (
         <footer>

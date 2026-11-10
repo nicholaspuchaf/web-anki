@@ -1,3 +1,5 @@
+import { setTheme } from './theme-actions';
+import { navigateSection } from './app-navigation';
 import { feedAction } from './feed-actions';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -19,7 +21,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   await page.getByRole('button', { name: /Resposta/ }).click();
   await page.getByRole('button', { name: /Bom/ }).click();
-  await page.getByRole('link', { name: /Configurações/ }).click();
+  await navigateSection(page, 'Configurações');
   const patternToggle = page.getByRole('checkbox', {
     name: 'Ativar Design Patterns · Conceitos e decisões',
     exact: true,
@@ -49,7 +51,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await patternToggle.uncheck();
   await awsToggle.uncheck();
   await generalToggle.uncheck();
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.screenshot({
     path: info.outputPath('settings-mobile-dark.png'),
     fullPage: true,
@@ -62,7 +64,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await page.reload();
   await expect(patternToggle).not.toBeChecked();
   await expect(mcToggle).toBeChecked();
-  await page.getByRole('link', { name: /Flashcards/ }).click();
+  await navigateSection(page, 'Flashcards');
   await page.getByRole('button', { name: 'Meus baralhos' }).click();
   await expect(patterns).toHaveCount(0);
   await expect(
@@ -89,7 +91,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
         card.id === 'builtin-patterns-factory-method-estrutura',
     ),
   ).toMatchObject({ reviews: 1, favorite: true });
-  await page.getByRole('link', { name: /Feed/ }).click();
+  await navigateSection(page, 'Feed');
   await feedAction(page, 'Meus carrosséis');
   await expect(page.getByLabel('Baralho para estudar')).not.toContainText(
     'Design Patterns',
@@ -104,7 +106,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     .getByRole('link', { name: /Configurações/ })
     .click();
   await patternToggle.check();
-  await page.getByRole('link', { name: /Flashcards/ }).click();
+  await navigateSection(page, 'Flashcards');
   await page.getByRole('button', { name: 'Meus baralhos' }).click();
   await patterns.click();
   await expect(
@@ -115,7 +117,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
       .locator('.problem-list-item')
       .filter({ hasText: 'Quem cria e quem usa?' }),
   ).toContainText('1 revisões');
-  await page.getByRole('link', { name: /Configurações/ }).click();
+  await navigateSection(page, 'Configurações');
   const other = await context.newPage();
   await other.goto('/#/settings');
   await other
@@ -134,7 +136,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await expect(patternToggle).not.toBeChecked();
   await patternToggle.check();
   await expect(patternToggle).toBeChecked();
-  await page.getByRole('link', { name: /Feed/ }).click();
+  await navigateSection(page, 'Feed');
   await feedAction(page, 'Meus carrosséis');
   await expect(page.locator('.feed-manager article')).toHaveCount(29);
   await page.getByRole('button', { name: 'Abrir menu do Feed' }).click();
@@ -144,13 +146,13 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     .click();
   await patternToggle.uncheck();
   await mcToggle.uncheck();
-  await page.getByRole('link', { name: /Flashcards/ }).click();
+  await navigateSection(page, 'Flashcards');
   await page.getByRole('button', { name: 'Meus baralhos' }).click();
   await expect(page.locator('.deck-grid .deck')).toHaveCount(0);
   await expect(
     page.getByRole('button', { name: /Revisar agora/ }),
   ).toBeDisabled();
-  await page.getByRole('link', { name: /Feed/ }).click();
+  await navigateSection(page, 'Feed');
   await expect(
     page.getByRole('heading', { name: 'Sem carrosséis ativos' }),
   ).toBeVisible();

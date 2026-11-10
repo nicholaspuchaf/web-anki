@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import type { Page } from '@playwright/test';
 
 export async function feedAction(page: Page, name: string) {
@@ -11,13 +12,10 @@ export async function feedAction(page: Page, name: string) {
 }
 
 export async function feedTheme(page: Page) {
-  const picker = page.getByLabel('Tema', { exact: true });
-  if (await picker.isVisible()) return picker.selectOption('dark');
+  const picker = page.getByRole('button', { name: 'Tema escuro', exact: true });
+  if (await picker.isVisible()) return setTheme(page, 'dark');
   await page.getByRole('button', { name: 'Abrir menu do Feed' }).click();
-  await page
-    .getByRole('dialog', { name: 'Menu do Feed' })
-    .getByLabel('Tema', { exact: true })
-    .selectOption('dark');
+  await setTheme(page, 'dark');
   await page.getByRole('button', { name: 'Fechar menu', exact: true }).click();
 }
 

@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
@@ -83,7 +84,7 @@ test('baralho de múltipla escolha cria, valida, revisa e preserva alternativas 
     page.getByRole('radio', { name: 'B é a resposta correta' }),
   ).toBeChecked();
   await page.getByRole('button', { name: 'Fechar', exact: true }).click();
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   await expect(page.getByRole('button', { name: /Bom/ })).toHaveCount(0);
   await page.getByRole('radio', { name: 'Uma fila', exact: true }).check();

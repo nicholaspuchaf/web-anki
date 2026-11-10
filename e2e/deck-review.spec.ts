@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 
 test('atalho da página inicial revisa só o baralho escolhido e fica desabilitado quando não há pendências', async ({
@@ -51,7 +52,7 @@ test('atalho da página inicial revisa só o baralho escolhido e fica desabilita
   await page.getByRole('button', { name: 'Salvar', exact: true }).click();
   await page.getByRole('button', { name: /Todos os baralhos/ }).click();
   await expect(shortcut).toBeEnabled();
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.screenshot({
     path: info.outputPath('deck-review-mobile.png'),
     fullPage: true,

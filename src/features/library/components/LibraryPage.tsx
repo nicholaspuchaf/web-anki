@@ -97,16 +97,19 @@ export function LibraryPage({
                       <span>↗</span>
                     </div>
                     <h3>{d.name}</h3>
-                    {d.syncEnabled === false && (
-                      <small className="local-deck-badge">
-                        {isBundledId(d.id)
-                          ? 'Incluído no site · apenas neste aparelho'
-                          : 'Apenas neste aparelho'}
-                      </small>
-                    )}
-                    <p>
-                      {items.length} {items.length === 1 ? 'cartão' : 'cartões'}
-                    </p>
+                    <div className="deck-meta">
+                      {d.syncEnabled === false && (
+                        <small className="local-deck-badge">
+                          {isBundledId(d.id)
+                            ? 'Incluído no site · apenas neste aparelho'
+                            : 'Apenas neste aparelho'}
+                        </small>
+                      )}
+                      <p>
+                        {items.length}{' '}
+                        {items.length === 1 ? 'cartão' : 'cartões'}
+                      </p>
+                    </div>
                     <div className="deck-bottom">
                       <span className={pending ? 'pending' : ''}>
                         {pending ? `${pending} para revisar` : 'Em dia'}

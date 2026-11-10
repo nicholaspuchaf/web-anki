@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import catalog from '../src/content/decks/design-patterns/flashcards/index';
 import assets from '../src/content/decks/design-patterns/assets.json' with { type: 'json' };
@@ -33,7 +34,7 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
   await page.getByLabel('Filtrar por tag').selectOption('');
   await search.fill('Quem cria e quem usa?');
   await page.getByRole('button', { name: 'Favoritar cartão' }).click();
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   const original = page.getByRole('img', {
     name: 'Papéis do padrão Factory Method',

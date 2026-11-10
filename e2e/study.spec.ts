@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 
 test('cria, revisa, restaura backup e mantém dados offline', async ({
@@ -221,14 +222,12 @@ test('temas persistentes, versos opcionais e painéis responsivos', async ({
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.emulateMedia({ colorScheme: 'light' });
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-  await page
-    .getByRole('combobox', { name: 'Tema', exact: true })
-    .selectOption('dark');
+  await setTheme(page, 'dark');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(
-    page.getByRole('combobox', { name: 'Tema', exact: true }),
-  ).toHaveValue('dark');
+    page.getByRole('button', { name: 'Tema escuro', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '+ Novo baralho' }).click();
   await page.getByLabel('Nome do baralho').fill('Revisão');
   await page.getByRole('button', { name: 'Salvar', exact: true }).click();
@@ -285,9 +284,7 @@ test('temas persistentes, versos opcionais e painéis responsivos', async ({
     fullPage: true,
   });
   await page.getByRole('button', { name: 'Fechar', exact: true }).click();
-  await page
-    .getByRole('combobox', { name: 'Tema', exact: true })
-    .selectOption('light');
+  await setTheme(page, 'light');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.getByRole('button', { name: 'Editar', exact: true }).click();
   while (await page.locator('.face-editor').count())

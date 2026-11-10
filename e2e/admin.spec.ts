@@ -1,3 +1,5 @@
+import { setTheme } from './theme-actions';
+import { navigateSection } from './app-navigation';
 import { expect, test, type Page } from '@playwright/test';
 test.use({ timezoneId: 'America/Sao_Paulo' });
 const timestamp = new Date('2026-11-08T15:00:00Z');
@@ -57,7 +59,7 @@ async function seedLegacy(page: Page) {
   await page.reload();
 }
 async function admin(page: Page) {
-  await page.getByRole('link', { name: /Administração/ }).click();
+  await navigateSection(page, 'Administração');
   await expect(
     page.getByRole('heading', { name: 'Administração dos flashcards' }),
   ).toBeVisible();
@@ -229,7 +231,7 @@ test('administração preserva legado sem data, registra avaliações, separa ca
     ),
   ).toBe(true);
   await page.setViewportSize({ width: 1366, height: 1000 });
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await expect
     .poll(() =>
       activity(page)

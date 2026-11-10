@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import catalog from '../src/content/decks/aws/flashcards/index';
 import { cloudFixture } from '../tests/helpers/cloud';
@@ -75,7 +76,7 @@ test('baralho AWS carrega automaticamente, revela quatro versos, mantém progres
     page.getByRole('button', { name: 'Excluir', exact: true }),
   ).toBeDisabled();
   await page.getByRole('button', { name: 'Favoritar cartão' }).click();
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   await expect(
     page.getByRole('heading', { name: 'Amazon DynamoDB', exact: true }),

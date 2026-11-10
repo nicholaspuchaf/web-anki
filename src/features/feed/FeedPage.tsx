@@ -1,3 +1,4 @@
+import { BrandMark } from '../../app/BrandMark';
 import { useSettings } from '../settings/use-settings';
 import { activeFeed } from '../settings/model';
 import type { Library } from '../library/model';
@@ -33,12 +34,14 @@ import { FeedStream } from './components/FeedStream';
 import { FeedMenu } from './components/FeedMenu';
 
 export default function FeedPage({
+  onHome,
   now,
   library,
   libraryReady,
   libraryBusy,
   saveLibrary,
 }: {
+  onHome: () => void;
   now: number;
   library: Library;
   libraryReady: boolean;
@@ -152,7 +155,7 @@ export default function FeedPage({
           aria-expanded={menu}
           onClick={() => setMenu(true)}
         >
-          ☰
+          <BrandMark />
         </button>
         <h1>Feed</h1>
         <div className="feed-mode-switch" aria-label="Visualização do Feed">
@@ -286,6 +289,7 @@ export default function FeedPage({
       />
       {menu && (
         <FeedMenu
+          onHome={onHome}
           ready={feed.ready}
           canCreate={!!deckOptions.length}
           opening={opening}

@@ -1,3 +1,4 @@
+import { navigateSection } from './app-navigation';
 import { feedAction, feedTheme } from './feed-actions';
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -82,7 +83,7 @@ test('catálogo chega a feeds existentes sem perder progresso ou ressuscitar exc
     )
       remoteRequests.push(request.url());
   });
-  await page.getByRole('link', { name: 'Feed', exact: false }).click();
+  await navigateSection(page, 'Feed');
   await feedAction(page, 'Meus carrosséis');
   await expect(page.locator('.feed-manager article')).toHaveCount(30);
   for (const carousel of catalog.carousels)

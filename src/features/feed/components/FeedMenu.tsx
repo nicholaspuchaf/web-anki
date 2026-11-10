@@ -1,7 +1,9 @@
-import { useEffect, useId, useRef } from 'react';
+import { NavigationDrawer } from '../../../app/NavigationDrawer';
+import { SectionNavigation } from '../../../app/SectionNavigation';
 import { ThemePicker } from '../../theme/ThemePicker';
 
 export function FeedMenu({
+  onHome,
   onClose,
   onLearn,
   onManage,
@@ -12,6 +14,7 @@ export function FeedMenu({
   opening,
   canCreate = true,
 }: {
+  onHome: () => void;
   ready: boolean;
   opening: boolean;
   canCreate?: boolean;
@@ -22,50 +25,18 @@ export function FeedMenu({
   onExport: () => void;
   onImport: () => void;
 }) {
-  const ref = useRef<HTMLDialogElement>(null);
-  const title = useId();
-  useEffect(() => {
-    const dialog = ref.current;
-    dialog?.showModal();
-    return () => dialog?.close();
-  }, []);
   function action(run: () => void) {
     onClose();
     run();
   }
   return (
-    <dialog
-      className="feed-menu"
-      ref={ref}
-      aria-labelledby={title}
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
-      }}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
-      <div className="feed-menu-heading">
-        <h2 id={title}>Menu do Feed</h2>
-        <button aria-label="Fechar menu" onClick={onClose}>
-          ×
-        </button>
-      </div>
-      <nav aria-label="Seções do aplicativo">
-        <a href="#/" onClick={onClose}>
-          ▤ Flashcards
-        </a>
-        <a href="#/feed" aria-current="page" onClick={() => action(onLearn)}>
-          ✦ Feed
-        </a>
-        <a href="#/admin" onClick={onClose}>
-          ▥ Administração
-        </a>
-        <a href="#/settings" onClick={onClose}>
-          ⚙ Configurações
-        </a>
-      </nav>
+    <NavigationDrawer title="Menu do Feed" onClose={onClose}>
+      <SectionNavigation
+        page="feed"
+        onHome={onHome}
+        onClose={onClose}
+        onFeed={onLearn}
+      />
       <div className="feed-menu-actions">
         <button onClick={() => action(onLearn)}>Aprender</button>
         <button onClick={() => action(onManage)}>Meus carrosséis</button>
@@ -88,6 +59,6 @@ export function FeedMenu({
         <span>Aparência</span>
         <ThemePicker />
       </div>
-    </dialog>
+    </NavigationDrawer>
   );
 }

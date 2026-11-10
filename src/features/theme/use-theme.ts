@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 export type ThemePreference = 'system' | 'light' | 'dark';
 const storageKey = 'folha-theme';
+const themeChanged = 'folha:theme-changed';
 function readPreference(): ThemePreference {
   try {
     const value = localStorage.getItem(storageKey);
@@ -33,9 +34,15 @@ export function useTheme() {
       if (event.key === storageKey || event.key === null)
         setPreference(readPreference());
     };
+    const onLocalChange = (event: Event) => {
+      const value = (event as CustomEvent<ThemePreference>).detail;
+      if (['system', 'light', 'dark'].includes(value)) setPreference(value);
+    };
+    window.addEventListener(themeChanged, onLocalChange);
     media.addEventListener('change', onSystemChange);
     window.addEventListener('storage', onStorage);
     return () => {
+      window.removeEventListener(themeChanged, onLocalChange);
       media.removeEventListener('change', onSystemChange);
       window.removeEventListener('storage', onStorage);
     };
@@ -48,6 +55,7 @@ export function useTheme() {
     }
     applyTheme(value);
     setPreference(value);
+    window.dispatchEvent(new CustomEvent(themeChanged, { detail: value }));
   }
   return { preference, changeTheme };
 }

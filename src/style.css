@@ -219,26 +219,19 @@ p {
   background: var(--green);
 }
 .theme-picker {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 3px;
+  justify-content: center;
   margin: 0;
-  color: var(--muted);
-}
-.theme-picker > span {
-  font-size: 20px;
-}
-.theme-picker select {
-  background: transparent;
+  width: 36px;
+  min-height: 36px;
+  padding: 4px;
   border: 0;
+  background: transparent;
   color: var(--muted);
-  width: auto;
-  margin: 0;
-  padding: 6px;
-  min-height: 32px;
-  font-size: 11px;
-  cursor: pointer;
+  font-size: 22px;
 }
+
 main {
   max-width: 1320px;
   padding: 0 32px 24px;
@@ -347,6 +340,7 @@ footer span span {
   gap: 16px;
 }
 .deck {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
@@ -361,7 +355,8 @@ footer span span {
   border-color: var(--faint);
 }
 .deck-open {
-  display: block;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   width: 100%;
   padding: 0;
@@ -373,10 +368,31 @@ footer span span {
 .deck-open:hover {
   background: transparent;
 }
-.deck-review {
+.deck-meta {
   min-height: 44px;
-  margin-top: 14px;
+  padding-right: 90px;
+  margin-top: auto;
+}
+.deck-meta p {
+  margin-bottom: 0;
+}
+.deck-open .deck-top,
+.deck-open .deck-bottom {
   width: 100%;
+}
+.deck-open .deck-bottom {
+  margin-top: 12px;
+}
+.deck-review {
+  position: absolute;
+  right: 21px;
+  bottom: 63px;
+  min-height: 36px;
+  margin: 0;
+  padding: 6px 14px;
+  width: auto;
+  align-self: flex-end;
+  font-size: 12px;
 }
 .deck-top {
   display: flex;
@@ -1297,10 +1313,6 @@ label {
   }
   .connection {
     font-size: 9px;
-  }
-  .theme-picker select {
-    max-width: 93px;
-    font-size: 10px;
   }
   main {
     padding: 0 14px 20px;

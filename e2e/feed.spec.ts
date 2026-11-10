@@ -1,3 +1,4 @@
+import { navigateSection } from './app-navigation';
 import { feedAction, feedTheme, swipeFeed } from './feed-actions';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -156,7 +157,7 @@ test('editor do Feed recupera rascunhos, cria blocos e imagens, preserva backup 
       .getByRole('img', { name: 'Primeiro exemplo de imagem local' }),
   ).not.toHaveJSProperty('naturalWidth', 0);
   await page.getByRole('button', { name: 'Fechar', exact: true }).click();
-  await page.getByRole('link', { name: 'Flashcards', exact: false }).click();
+  await navigateSection(page, 'Flashcards');
   await expect(
     page.getByRole('button', {
       name: /AWS · Serviços e aplicações.*Abrir baralho/,

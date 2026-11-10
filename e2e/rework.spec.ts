@@ -1,3 +1,4 @@
+import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import { createHandler } from '../backend/service';
 import type { FlashcardStore } from '../backend/model';
@@ -94,7 +95,7 @@ test('Refazer confirma marcação remota, permite retry e é idempotente após r
     'builtin-patterns-factory-method-estrutura',
   );
   expect(initial.question).toContain('Quem cria e quem usa?');
-  await page.getByLabel('Tema', { exact: true }).selectOption('dark');
+  await setTheme(page, 'dark');
   await page.screenshot({
     path: info.outputPath('rework-mobile-dark.png'),
     animations: 'disabled',

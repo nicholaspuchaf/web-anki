@@ -41,7 +41,7 @@ Veja [docs/quality.md](docs/quality.md) para os pré-requisitos e limites dos sc
 ## Funcionalidades
 
 - Interface inspirada no LeetCode, com painéis de descrição/revisão lado a lado no desktop e empilhados no celular.
-- Temas claro, escuro e automático (acompanha o sistema), com preferência salva no aparelho.
+- Botão de alternância entre tema claro e escuro, com preferência salva no aparelho. No primeiro acesso, acompanha o sistema até você escolher.
 
 - Template LeetCode com número, dificuldade, link HTTPS e cor personalizável.
 - Formatação automática do texto colado: parágrafos compactos, exemplos com entrada/saída, restrições em lista e follow-up destacado. O texto original é preservado.
@@ -229,3 +229,8 @@ Desativar um baralho o oculta da biblioteca de estudo, da revisão geral e dos c
 Use **Refazer**, ao lado da fonte do flashcard, para registrar uma pendência de melhoria na API. Funciona também para cartões do repositório: apenas um registro de identificação é enviado ao DynamoDB, separado da sincronização e sem respostas ou progresso. A marcação é idempotente.
 
 Para listar as pendências localmente: `bun scripts/list-rework.ts 'https://SUA-API' > /tmp/flashcards-refazer.json`. Veja [rotas, formato, idempotência e publicação](docs/flashcard-rework.md).
+
+No mobile, a navegação entre Flashcards, Feed, Administração e Configurações fica
+no menu lateral à esquerda (símbolo do Folha), disponível também nas subpáginas e durante a
+revisão. No desktop, as abas continuam visíveis. Cada baralho tem um atalho
+compacto **Revisar**, à direita das informações e acima da linha divisória.

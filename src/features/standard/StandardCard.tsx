@@ -43,13 +43,9 @@ export function StandardCard({
           {face.content && <p className="preserve-text">{face.content}</p>}
           {face.image && <StudyIllustration image={face.image} />}
         </section>
-      ) : (
-        <p className="review-instruction">
-          {faces.length
-            ? 'Tente lembrar antes de escolher um verso.'
-            : 'Nenhum verso preenchido.'}
-        </p>
-      )}
+      ) : !faces.length ? (
+        <p className="review-instruction">Nenhum verso preenchido.</p>
+      ) : null}
       <CardActions card={card} reportable={reportable} />
     </article>
   );

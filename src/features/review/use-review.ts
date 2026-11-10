@@ -1,3 +1,4 @@
+import { useStudyTimers } from './use-study-timers';
 import { newReviewEvent } from '../review-history/model';
 import { getDueCards, getDeckCards } from '../library/selectors';
 import { useRef, useState } from 'react';
@@ -9,7 +10,9 @@ export function useReview(
   library: Library,
   save: SaveLibrary,
   disabledDecks: readonly string[] = [],
+  active = true,
 ) {
+  const [session, setSession] = useState(0);
   const ratingLock = useRef(false);
   const [practice, setPractice] = useState(false);
   const [queue, setQueue] = useState<string[]>([]);
@@ -26,6 +29,7 @@ export function useReview(
   const activeQueue = queue.filter((id) => activeIds.has(id));
   const current = library.cards.find((c) => c.id === activeQueue[0]);
 
+  const timers = useStudyTimers(session, current?.id, active);
   const revealed = !!current && revealedId === current.id;
   const choiceCorrect =
     choice?.id === current?.id ? (choice?.correct ?? null) : null;
@@ -34,6 +38,7 @@ export function useReview(
     deckId?: string,
     options?: { ids?: string[]; practice?: boolean },
   ) {
+    setSession((value) => value + 1);
     const candidates = (
       deckId ? getDeckCards(library, deckId) : library.cards
     ).filter((card) => activeIds.has(card.id));
@@ -83,6 +88,7 @@ export function useReview(
   }
 
   return {
+    timers,
     practice,
     current,
     remaining: activeQueue.length,

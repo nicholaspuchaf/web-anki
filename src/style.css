@@ -2739,3 +2739,48 @@ main.feed-main {
     white-space: nowrap;
   }
 }
+
+.review-status-bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+.review-status-copy {
+  text-align: center;
+  min-width: 0;
+}
+.review-status-copy p {
+  margin: 0;
+  font-size: 12px;
+}
+.review-status-copy .eyebrow {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+.review-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.review-timer:last-child {
+  text-align: right;
+}
+.review-timer small {
+  font-size: 10px;
+}
+.review-timer time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 400px) {
+  .review-status-bar {
+    gap: 8px;
+  }
+  .review-status-copy .eyebrow {
+    font-size: 9px;
+  }
+}

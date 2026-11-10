@@ -1,3 +1,4 @@
+import { formatStudyTime } from './study-timer';
 import { CardActions } from '../rework/CardActions';
 import { StandardCard } from '../standard/StandardCard';
 import { filledFaces } from '../standard/model';
@@ -41,16 +42,34 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
       <button className="text-button back" onClick={onBack} disabled={busy}>
         ← Encerrar revisão
       </button>
-      <p className="eyebrow">
-        {practice
-          ? 'TREINO LIVRE · SEM ALTERAR O AGENDAMENTO'
-          : 'UM CARTÃO DE CADA VEZ'}
-      </p>
+      <div className="review-status-bar">
+        <div className="review-timer">
+          <small>Sessão</small>
+          <time aria-label="Tempo total da sessão">
+            {formatStudyTime(review.timers.totalMs)}
+          </time>
+        </div>
+        <div className="review-status-copy">
+          <p className="eyebrow">
+            {practice
+              ? 'TREINO LIVRE · SEM ALTERAR O AGENDAMENTO'
+              : 'UM CARTÃO DE CADA VEZ'}
+          </p>
+          {current && (
+            <p>
+              {reviewed} revisados · {remaining} restantes
+            </p>
+          )}
+        </div>
+        <div className="review-timer">
+          <small>Cartão</small>
+          <time aria-label="Tempo do cartão atual">
+            {formatStudyTime(review.timers.cardMs)}
+          </time>
+        </div>
+      </div>
       {current ? (
         <>
-          <p>
-            {reviewed} revisados · {remaining} restantes
-          </p>
           {current.faces ? (
             <StandardCard key={current.id} card={current} onReveal={reveal} />
           ) : current.multipleChoice ? (
@@ -133,11 +152,7 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
             <p className="review-instruction">
               Selecione uma alternativa e confirme sua resposta para continuar.
             </p>
-          ) : current.faces ? (
-            <p className="review-instruction">
-              Escolha um verso para revelar e depois avalie sua lembrança.
-            </p>
-          ) : !current.leetcode ? (
+          ) : current.faces ? null : !current.leetcode ? (
             <button className="primary reveal" onClick={() => reveal()}>
               Mostrar resposta
             </button>

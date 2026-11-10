@@ -48,7 +48,12 @@ export default function App() {
   const online = useOnline();
   const { disabledDecks } = useSettings();
   const studyLibrary = activeLibrary(library, disabledDecks);
-  const review = useReview(library, save, disabledDecks);
+  const review = useReview(
+    library,
+    save,
+    disabledDecks,
+    page === 'flashcards' && view === 'review',
+  );
   const { exportBackup, importBackup } = useBackup(
     library,
     save,

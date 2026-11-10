@@ -133,7 +133,7 @@ export default function App() {
                   library={studyLibrary}
                   now={now}
                   busy={busy}
-                  begin={() => begin()}
+                  begin={begin}
                   onCreateDeck={() => setModal('deck')}
                   onOpenDeck={(id) => {
                     setSelected(id);

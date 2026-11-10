@@ -347,6 +347,9 @@ footer span span {
   gap: 16px;
 }
 .deck {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
   min-width: 0;
   text-align: left;
   padding: 21px;
@@ -356,6 +359,24 @@ footer span span {
 .deck:hover {
   background: var(--surface-raised);
   border-color: var(--faint);
+}
+.deck-open {
+  display: block;
+  flex: 1;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+}
+.deck-open:hover {
+  background: transparent;
+}
+.deck-review {
+  min-height: 44px;
+  margin-top: 14px;
+  width: 100%;
 }
 .deck-top {
   display: flex;

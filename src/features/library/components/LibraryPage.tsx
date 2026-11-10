@@ -6,7 +6,7 @@ type Props = {
   library: Library;
   now: number;
   busy: boolean;
-  begin: () => void;
+  begin: (deckId?: string) => void;
   onCreateDeck: () => void;
   onOpenDeck: (id: string) => void;
   exportBackup: () => void;
@@ -87,33 +87,47 @@ export function LibraryPage({
               const items = getDeckCards(library, d.id);
               const pending = getDueCards(items, now).length;
               return (
-                <button
-                  className="deck"
-                  key={d.id}
-                  onClick={() => onOpenDeck(d.id)}
-                >
-                  <div className="deck-top">
-                    <span className={`deck-icon tone-${index % 3}`}>▤</span>
-                    <span>↗</span>
-                  </div>
-                  <h3>{d.name}</h3>
-                  {d.syncEnabled === false && (
-                    <small className="local-deck-badge">
-                      {isBundledId(d.id)
-                        ? 'Incluído no site · apenas neste aparelho'
-                        : 'Apenas neste aparelho'}
-                    </small>
-                  )}
-                  <p>
-                    {items.length} {items.length === 1 ? 'cartão' : 'cartões'}
-                  </p>
-                  <div className="deck-bottom">
-                    <span className={pending ? 'pending' : ''}>
-                      {pending ? `${pending} para revisar` : 'Em dia'}
-                    </span>
-                    <span>Abrir baralho →</span>
-                  </div>
-                </button>
+                <article className="deck" key={d.id}>
+                  <button
+                    className="deck-open"
+                    onClick={() => onOpenDeck(d.id)}
+                  >
+                    <div className="deck-top">
+                      <span className={`deck-icon tone-${index % 3}`}>▤</span>
+                      <span>↗</span>
+                    </div>
+                    <h3>{d.name}</h3>
+                    {d.syncEnabled === false && (
+                      <small className="local-deck-badge">
+                        {isBundledId(d.id)
+                          ? 'Incluído no site · apenas neste aparelho'
+                          : 'Apenas neste aparelho'}
+                      </small>
+                    )}
+                    <p>
+                      {items.length} {items.length === 1 ? 'cartão' : 'cartões'}
+                    </p>
+                    <div className="deck-bottom">
+                      <span className={pending ? 'pending' : ''}>
+                        {pending ? `${pending} para revisar` : 'Em dia'}
+                      </span>
+                      <span>Abrir baralho →</span>
+                    </div>
+                  </button>
+                  <button
+                    className="primary deck-review"
+                    aria-label={`Revisar ${d.name}`}
+                    disabled={!pending || busy}
+                    title={
+                      pending
+                        ? `Revisar ${pending} ${pending === 1 ? 'cartão pendente' : 'cartões pendentes'}`
+                        : 'Nenhum cartão pendente para revisão.'
+                    }
+                    onClick={() => begin(d.id)}
+                  >
+                    Revisar
+                  </button>
+                </article>
               );
             })}
           </div>

@@ -1,3 +1,4 @@
+import { CardActions } from '../rework/CardActions';
 import { StudyIllustration } from './StudyIllustration';
 import { useState } from 'react';
 import type { Card } from '../library/model';
@@ -7,9 +8,11 @@ import { TagList } from '../leetcode/components/TagList';
 export function StandardCard({
   card,
   onReveal,
+  reportable = true,
 }: {
   card: Card;
   onReveal?: () => void;
+  reportable?: boolean;
 }) {
   const [active, setActive] = useState<string | null>(null);
   const faces = filledFaces(card.faces ?? []);
@@ -47,16 +50,7 @@ export function StandardCard({
             : 'Nenhum verso preenchido.'}
         </p>
       )}
-      {card.sourceUrl && (
-        <a
-          className="standard-source"
-          href={card.sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Consultar fonte ↗
-        </a>
-      )}
+      <CardActions card={card} reportable={reportable} />
     </article>
   );
 }

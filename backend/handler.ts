@@ -1,3 +1,4 @@
+import { createReworkStore } from './rework';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { createHandler } from './service';
@@ -9,4 +10,7 @@ const client = DynamoDBDocumentClient.from(
 export const handler = createHandler(
   createDynamoStore(client, process.env.TABLE_NAME!),
   JSON.parse(process.env.ALLOWED_ORIGINS ?? '[]'),
+  undefined,
+  undefined,
+  createReworkStore(client, process.env.TABLE_NAME!),
 );

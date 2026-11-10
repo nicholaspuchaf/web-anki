@@ -1,3 +1,4 @@
+import { CardActions } from '../../rework/CardActions';
 import { ProblemDescription } from './ProblemDescription';
 import { useState } from 'react';
 import type { Card } from '../../library/model';
@@ -5,8 +6,8 @@ import { difficultyLabels, faceLabels, getAvailableFaces } from '../model';
 import { TagList } from './TagList';
 import { CodeBlock } from './CodeBlock';
 
-type Props = { card: Card; onReveal?: () => void };
-export function LeetCodeCard({ card, onReveal }: Props) {
+type Props = { card: Card; onReveal?: () => void; reportable?: boolean };
+export function LeetCodeCard({ card, onReveal, reportable = true }: Props) {
   const data = card.leetcode!;
   const [activeFace, setActiveFace] = useState<string | null>(null);
   const [seen, setSeen] = useState<string[]>([]);
@@ -40,11 +41,12 @@ export function LeetCodeCard({ card, onReveal }: Props) {
           </div>
           <ProblemDescription source={card.front} />
           <div className="problem-links">
-            {data.url && (
-              <a href={data.url} target="_blank" rel="noreferrer">
-                Abrir problema ↗
-              </a>
-            )}
+            <CardActions
+              card={card}
+              source={data.url}
+              sourceLabel="Abrir problema ↗"
+              reportable={reportable}
+            />
             <TagList tags={data.tags} />
           </div>
           {data.constraints && (

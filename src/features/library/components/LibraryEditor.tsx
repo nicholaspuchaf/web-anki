@@ -216,7 +216,7 @@ export function LibraryEditor({
         </div>
       )}
       {preview ? (
-        <CardPreview card={draft} />
+        <CardPreview card={draft} reportable={false} />
       ) : (
         <form
           onSubmit={async (e) => {

@@ -1,3 +1,4 @@
+import { handleRework, type ReworkStore } from './rework';
 import {
   LIBRARY_ID,
   MAX_CARD_BYTES,
@@ -42,6 +43,7 @@ export function createHandler(
   origins: string[],
   now: () => Date = () => new Date(),
   importProblem = loadProblem,
+  reworkStore?: ReworkStore,
 ) {
   return async (event: HttpEvent): Promise<HttpResponse> => {
     const method = event.requestContext.http.method;
@@ -74,16 +76,23 @@ export function createHandler(
         });
       }
     }
+    const rework =
+      path === '/rework-requests' || /^\/flashcards\/[^/]+\/rework$/.test(path);
     const match = /^\/flashcards\/([^/]+)$/.exec(path);
-    if (path !== '/sync' && !match)
+    if (path !== '/sync' && !match && !rework)
       return reply(404, { error: 'Rota não encontrada.' });
     if (
-      path === '/sync'
+      !rework &&
+      (path === '/sync'
         ? method !== 'GET'
-        : !['GET', 'PUT', 'DELETE'].includes(method)
+        : !['GET', 'PUT', 'DELETE'].includes(method))
     )
       return reply(405, { error: 'Método não permitido.' });
     try {
+      if (rework) {
+        const result = await handleRework(event, headers, reworkStore, now);
+        return reply(result.status, result.body);
+      }
       if (path === '/sync') {
         let query;
         try {

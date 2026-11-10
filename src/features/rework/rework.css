@@ -1,0 +1,39 @@
+.card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.card-actions .standard-source {
+  margin: 0;
+}
+.rework-button {
+  padding: 4px 9px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.rework-error {
+  flex-basis: 100%;
+  color: var(--red);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.card-actions .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rework-button.is-marked:disabled {
+  opacity: 1;
+  color: var(--green);
+  background: var(--green-soft);
+}

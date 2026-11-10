@@ -1,3 +1,4 @@
+import { CardActions } from '../../rework/CardActions';
 import { useId, useState } from 'react';
 import type { Card } from '../../library/model';
 import { optionLetters } from '../model';
@@ -6,9 +7,11 @@ export function MultipleChoiceCard({
   card,
   busy = false,
   onAnswer,
+  reportable = true,
 }: {
   card: Card;
   busy?: boolean;
+  reportable?: boolean;
   onAnswer?: (correct: boolean) => void;
 }) {
   const data = card.multipleChoice!;
@@ -79,6 +82,7 @@ export function MultipleChoiceCard({
           )}
         </div>
       )}
+      <CardActions card={card} reportable={reportable} />
     </article>
   );
 }

@@ -170,3 +170,7 @@ A tabela tem proteção de exclusão e `prevent_destroy`. Um destroy comum será
 bloqueado enquanto a proteção existir; remover a biblioteca da nuvem exige uma
 mudança explícita dessas proteções. Exporte backups JSON regularmente, pois o
 público pode alterar ou excluir o conteúdo da biblioteca pela aplicação.
+
+### Pedidos para refazer flashcards
+
+As rotas `PUT /flashcards/:id/rework` e `GET /rework-requests` usam a mesma tabela e o mesmo índice (`library_id = REWORK`, separado de `PUBLIC`). Não exigem novos recursos, índices ou permissões: `PutItem` condicional e `Query` já são permitidos, assim como GET/PUT no CORS. Atualize o pacote da Lambda e o frontend para ativar o recurso. Veja [documentação e script local](../../docs/flashcard-rework.md).

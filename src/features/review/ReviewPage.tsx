@@ -1,3 +1,4 @@
+import { CardActions } from '../rework/CardActions';
 import { StandardCard } from '../standard/StandardCard';
 import { filledFaces } from '../standard/model';
 import { MultipleChoiceCard } from '../multiple-choice/components/MultipleChoiceCard';
@@ -76,6 +77,7 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
               ) : (
                 <p>Pense na resposta antes de revelar.</p>
               )}
+              <CardActions card={current} />
             </div>
           )}
           {practice ? (

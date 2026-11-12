@@ -29,6 +29,13 @@ export function withBundledPatternsDeck(library: Library): Library {
       const faces: StudyFace[] = [
         { id: `${id}-answer`, title: 'Resposta', content: entry.answer },
       ];
+      if (entry.id === 'estrutura')
+        faces.push({
+          id: `${id}-roles`,
+          title: 'Mapa de papéis',
+          content: '',
+          image: diagram,
+        });
       if (entry.id === 'estrutura' && official)
         faces.push({
           id: `${id}-illustration`,
@@ -57,7 +64,6 @@ export function withBundledPatternsDeck(library: Library): Library {
         id,
         deckId: PATTERNS_DECK_ID,
         front: `${pattern.name} · ${entry.question}`,
-        ...(entry.id === 'estrutura' ? { frontImage: diagram } : {}),
         back: '',
         faces,
         tags: [
@@ -71,5 +77,7 @@ export function withBundledPatternsDeck(library: Library): Library {
       };
     }),
   );
-  return mergeBundledDeck(library, parseDeck(manifest), cards);
+  return mergeBundledDeck(library, parseDeck(manifest), cards, {
+    preservePersonalCards: true,
+  });
 }

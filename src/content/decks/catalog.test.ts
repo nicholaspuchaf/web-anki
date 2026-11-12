@@ -32,7 +32,7 @@ test('pastas de baralho compõem múltiplos arquivos e mantêm IDs e conteúdo',
     expect(manifest.content.flashcards.length).toBeGreaterThan(1);
   }
   expect(aws.cards).toHaveLength(326);
-  expect(patterns.patterns.flatMap((p) => p.cards)).toHaveLength(176);
+  expect(patterns.patterns.flatMap((p) => p.cards)).toHaveLength(147);
   expect(carousels.carousels).toHaveLength(22);
   expect(carousels.carousels.every((c) => c.deckId === PATTERNS_DECK_ID)).toBe(
     true,

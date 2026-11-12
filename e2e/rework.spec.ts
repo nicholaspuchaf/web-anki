@@ -1,3 +1,4 @@
+import { patternStructureQuestion } from './patterns-fixture';
 import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import { createHandler } from '../backend/service';
@@ -69,7 +70,7 @@ test('Refazer confirma marcação remota, permite retry e é idempotente após r
       .click();
     await page
       .getByRole('searchbox', { name: 'Buscar problema' })
-      .fill('Quem cria e quem usa?');
+      .fill(patternStructureQuestion);
     await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   };
   await open();
@@ -94,7 +95,7 @@ test('Refazer confirma marcação remota, permite retry e é idempotente após r
   expect(initial.flashcard_id).toBe(
     'builtin-patterns-factory-method-estrutura',
   );
-  expect(initial.question).toContain('Quem cria e quem usa?');
+  expect(initial.question).toContain(patternStructureQuestion);
   await setTheme(page, 'dark');
   await page.screenshot({
     path: info.outputPath('rework-mobile-dark.png'),

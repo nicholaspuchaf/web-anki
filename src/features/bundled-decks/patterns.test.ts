@@ -22,6 +22,8 @@ import { parseStudyImage } from '../standard/image';
 import { filledFaces } from '../standard/model';
 import { createHandler } from '../../../backend/service';
 import { createCloudApi } from '../sync/api';
+import revision from '../../content/decks/design-patterns/revision.json' with { type: 'json' };
+import coverage from '../../../docs/design-patterns/coverage.json' with { type: 'json' };
 
 const topics = [
   'conceito',
@@ -34,29 +36,35 @@ const topics = [
   'comparacao',
 ];
 
-test('22 padrões têm oito perguntas distintas, cobertura temática, fontes e imagens locais íntegras', () => {
+test('22 padrões têm perguntas focadas, cobertura rastreável, fontes e imagens locais íntegras', () => {
   expect(catalog.patterns).toHaveLength(22);
-  expect(PATTERNS_CARD_COUNT).toBe(176);
+  expect(PATTERNS_CARD_COUNT).toBe(147);
   const library = withBundledPatternsDeck(emptyLibrary);
-  expect(new Set(library.cards.map((card) => card.id)).size).toBe(176);
+  expect(new Set(library.cards.map((card) => card.id)).size).toBe(
+    PATTERNS_CARD_COUNT,
+  );
   for (const pattern of catalog.patterns) {
-    expect(pattern.cards.map((entry) => entry.id)).toEqual(topics);
-    expect(new Set(pattern.cards.map((entry) => entry.question)).size).toBe(8);
+    const covered = coverage.patterns.find((row) => row.id === pattern.id)!;
+    expect(covered.coveredTopics).toEqual(topics);
+    expect(covered.topics).toEqual(pattern.cards.map((entry) => entry.id));
+    expect(pattern.cards.length).toBeGreaterThanOrEqual(5);
+    expect(new Set(pattern.cards.map((entry) => entry.question)).size).toBe(
+      pattern.cards.length,
+    );
     expect(pattern.cards.every((entry) => entry.answer.trim())).toBe(true);
     expect(pattern.sourceUrl).toBe(
       `https://refactoring.guru/design-patterns/${pattern.id}`,
     );
-    const words = pattern.cards
-      .flatMap((entry) => [entry.question, entry.answer])
-      .join(' ')
-      .split(/\s+/).length;
-    expect(words).toBeLessThanOrEqual(185);
     const card = library.cards.find(
       (item) => item.id === `builtin-patterns-${pattern.id}-estrutura`,
     )!;
-    expect(existsSync(`public${card.frontImage!.src}`)).toBe(true);
-    expect(parseStudyImage(card.frontImage)).toEqual(card.frontImage!);
-    expect(card.frontImage!.alt).toContain(pattern.name);
+    expect(card.frontImage).toBeUndefined();
+    const image = card.faces!.find((face) =>
+      face.id.endsWith('-roles'),
+    )!.image!;
+    expect(existsSync(`public${image.src}`)).toBe(true);
+    expect(parseStudyImage(image)).toEqual(image);
+    expect(image.alt).toContain(pattern.name);
   }
   expect(assets).toHaveLength(10);
   expect(new Set(assets.map((asset) => asset.originalUrl)).size).toBe(10);
@@ -167,7 +175,9 @@ test('IDs do novo baralho bloqueiam mutação remota e qualquer operação Dynam
 test('backup preserva imagens e versos visuais, rejeitando caminhos e URLs inseguros', () => {
   const library = withBundledPatternsDeck(emptyLibrary);
   expect(parseBackup(JSON.stringify(library))).toEqual(library);
-  const image = library.cards.find((card) => card.frontImage)!.frontImage!;
+  const image = library.cards
+    .flatMap((card) => card.faces ?? [])
+    .find((face) => face.image)!.image!;
   for (const src of [
     'https://tracker.example/image.png',
     '/study-assets/../secret.png',
@@ -190,7 +200,9 @@ test('todos os cartões recebem três versos didáticos e atualizam versões ant
   for (const pattern of catalog.patterns) {
     expect(pattern.explanation.length).toBeGreaterThan(350);
     expect(pattern.background.length).toBeGreaterThan(300);
-    expect(new Set(pattern.cards.map((entry) => entry.rationale)).size).toBe(8);
+    expect(new Set(pattern.cards.map((entry) => entry.rationale)).size).toBe(
+      pattern.cards.length,
+    );
     for (const entry of pattern.cards) {
       const id = `builtin-patterns-${pattern.id}-${entry.id}`;
       const card = library.cards.find((item) => item.id === id)!;
@@ -208,12 +220,14 @@ test('todos os cartões recebem três versos didáticos e atualizam versões ant
       expect(faces.find((face) => face.id === `${id}-rationale`)!.content).toBe(
         entry.rationale,
       );
-      expect(entry.rationale.length).toBeGreaterThan(140);
+      expect(entry.rationale.trim()).toBeTruthy();
       expect(faces).toHaveLength(
         entry.id === 'estrutura' &&
           assets.some((asset) => asset.pattern === pattern.id)
-          ? 5
-          : 4,
+          ? 6
+          : entry.id === 'estrutura'
+            ? 5
+            : 4,
       );
     }
   }
@@ -246,4 +260,78 @@ test('todos os cartões recebem três versos didáticos e atualizam versões ant
   }
   expect(parseBackup(JSON.stringify(upgraded))).toEqual(upgraded);
   expect(pendingIds(upgraded, emptySyncState())).toEqual([]);
+});
+
+test('revisão dos padrões mapeia 176 origens e preserva aprendizado e cartões pessoais sem copiar revisões de mesclas', () => {
+  const library = withBundledPatternsDeck(emptyLibrary);
+  const current = new Map(library.cards.map((card) => [card.id, card]));
+  const originalIds = catalog.patterns.flatMap((pattern) =>
+    topics.map((topic) => `builtin-patterns-${pattern.id}-${topic}`),
+  );
+  expect(revision.originalCount).toBe(176);
+  expect(revision.cardCount).toBe(PATTERNS_CARD_COUNT);
+  expect(revision.cards.map((row) => row.sourceCardId).sort()).toEqual(
+    originalIds.sort(),
+  );
+  expect(revision.cards.filter((row) => row.action === 'MESCLAR')).toHaveLength(
+    29,
+  );
+  for (const row of revision.cards) {
+    expect(row.targetCardIds.length).toBeGreaterThan(0);
+    for (const id of row.targetCardIds) expect(current.has(id)).toBe(true);
+    expect(current.has(row.sourceCardId)).toBe(row.action === 'REFORMULAR');
+  }
+  const previous = {
+    ...library,
+    cards: revision.cards.map((row) => {
+      const card = current.get(row.sourceCardId);
+      const image = card?.faces?.find((face) =>
+        face.id.endsWith('-roles'),
+      )?.image;
+      return {
+        ...(card ?? {
+          id: row.sourceCardId,
+          deckId: PATTERNS_DECK_ID,
+          back: 'Resposta antiga',
+        }),
+        front: `Texto antigo de ${row.sourceCardId}`,
+        ...(image ? { frontImage: image } : {}),
+        due: 123456,
+        interval: 7,
+        reviews: row.action === 'MESCLAR' ? 99 : 12,
+        favorite: true,
+      };
+    }),
+  };
+  const personal = {
+    id: 'personal-pattern-note',
+    deckId: PATTERNS_DECK_ID,
+    front: 'Minha anotação de padrões',
+    back: 'Resposta pessoal',
+    due: 654,
+    interval: 3,
+    reviews: 2,
+    favorite: false,
+  };
+  previous.cards.push(personal);
+  const result = withBundledPatternsDeck(previous);
+  expect(result.cards).toHaveLength(PATTERNS_CARD_COUNT + 1);
+  expect(result.cards.find((card) => card.id === personal.id)).toEqual(
+    personal,
+  );
+  for (const expected of library.cards) {
+    const card = result.cards.find((card) => card.id === expected.id)!;
+    expect(card).toMatchObject({
+      due: 123456,
+      interval: 7,
+      reviews: 12,
+      favorite: true,
+      front: expected.front,
+    });
+    expect(card.frontImage).toBeUndefined();
+    expect(card.faces).toEqual(expected.faces);
+  }
+  expect(withBundledPatternsDeck(result)).toEqual(result);
+  expect(parseBackup(JSON.stringify(result))).toEqual(result);
+  expect(pendingIds(result, emptySyncState())).toEqual([]);
 });

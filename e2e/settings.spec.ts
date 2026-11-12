@@ -1,3 +1,4 @@
+import { patternCardCount, patternStructureQuestion } from './patterns-fixture';
 import { setTheme } from './theme-actions';
 import { navigateSection } from './app-navigation';
 import { feedAction } from './feed-actions';
@@ -16,7 +17,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await patterns.click();
   await page
     .getByRole('searchbox', { name: 'Buscar problema' })
-    .fill('Quem cria e quem usa?');
+    .fill(patternStructureQuestion);
   await page.getByRole('button', { name: 'Favoritar cartão' }).click();
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   await page.getByRole('button', { name: /Resposta/ }).click();
@@ -48,7 +49,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   );
   await revisedToggle.uncheck();
   await expect(patternToggle.locator('..')).toContainText(
-    '176 flashcards · 22 carrosséis',
+    `${patternCardCount} flashcards · 22 carrosséis`,
   );
   await expect(awsToggle.locator('..')).toContainText(
     '326 flashcards · 0 carrosséis',
@@ -95,7 +96,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     backup.cards.filter(
       (card: { deckId: string }) => card.deckId === 'builtin-patterns-design',
     ),
-  ).toHaveLength(176);
+  ).toHaveLength(patternCardCount);
   expect(
     backup.cards.find(
       (card: { id: string }) =>
@@ -126,7 +127,7 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
   await expect(
     page
       .locator('.problem-list-item')
-      .filter({ hasText: 'Quem cria e quem usa?' }),
+      .filter({ hasText: patternStructureQuestion }),
   ).toContainText('1 revisões');
   await navigateSection(page, 'Configurações');
   const other = await context.newPage();

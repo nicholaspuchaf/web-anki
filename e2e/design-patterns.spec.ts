@@ -1,9 +1,10 @@
+import { patternCardCount, patternStructureQuestion } from './patterns-fixture';
 import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 import catalog from '../src/content/decks/design-patterns/flashcards/index';
 import assets from '../src/content/decks/design-patterns/assets.json' with { type: 'json' };
 
-test('baralho de padrões tem oito cartões por padrão, imagens com crédito, revisão e todos os recursos offline', async ({
+test('baralho de padrões tem perguntas revisadas, imagens reveláveis com crédito e estudo offline', async ({
   page,
   context,
 }, testInfo) => {
@@ -16,7 +17,7 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
   const deck = page.getByRole('button', {
     name: /Design Patterns · Conceitos e decisões.*Abrir baralho/,
   });
-  await expect(deck).toContainText('176 cartões');
+  await expect(deck).toContainText(`${patternCardCount} cartões`);
   await expect(
     page.getByRole('button', {
       name: /AWS · Serviços e aplicações.*Abrir baralho/,
@@ -29,10 +30,12 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
   const search = page.getByRole('searchbox', { name: 'Buscar problema' });
   for (const pattern of catalog.patterns) {
     await page.getByLabel('Filtrar por tag').selectOption(pattern.id);
-    await expect(page.locator('.problem-list-item')).toHaveCount(8);
+    await expect(page.locator('.problem-list-item')).toHaveCount(
+      pattern.cards.length,
+    );
   }
   await page.getByLabel('Filtrar por tag').selectOption('');
-  await search.fill('Quem cria e quem usa?');
+  await search.fill(patternStructureQuestion);
   await page.getByRole('button', { name: 'Favoritar cartão' }).click();
   await setTheme(page, 'dark');
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
@@ -40,9 +43,11 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
     name: 'Papéis do padrão Factory Method',
     exact: true,
   });
+  await expect(original).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Bom/ })).toHaveCount(0);
+  await page.getByRole('button', { name: /Mapa de papéis/ }).click();
   await expect(original).toBeVisible();
   await expect(original).toHaveJSProperty('naturalWidth', 680);
-  await expect(page.getByRole('button', { name: /Bom/ })).toHaveCount(0);
   const answer = catalog.patterns[0].cards.find(
     (entry) => entry.id === 'estrutura',
   )!.answer;
@@ -98,12 +103,14 @@ test('baralho de padrões tem oito cartões por padrão, imagens com crédito, r
   await context.setOffline(true);
   await page.reload();
   await deck.click();
-  await search.fill('Quem cria e quem usa?');
+  await search.fill(patternStructureQuestion);
   await expect(
     page.getByRole('button', { name: 'Remover favorito' }),
   ).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.problem-list-item')).toContainText('1 revisões');
   await page.getByRole('button', { name: 'Visualizar cartão' }).click();
+  await expect(original).toHaveCount(0);
+  await page.getByRole('button', { name: /Mapa de papéis/ }).click();
   await expect(original).toHaveJSProperty('naturalWidth', 680);
   await page.getByRole('button', { name: /Estrutura ilustrada/ }).click();
   await expect(official).not.toHaveJSProperty('naturalWidth', 0);

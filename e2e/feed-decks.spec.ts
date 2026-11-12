@@ -1,3 +1,4 @@
+import { patternCardCount } from './patterns-fixture';
 import { expect, test } from '@playwright/test';
 import { feedAction, swipeFeed } from './feed-actions';
 import { readFile } from 'node:fs/promises';
@@ -77,7 +78,7 @@ test('baralho reúne flashcards e carrosséis, permite escolher tema e mantém e
   await selector.selectOption('builtin-patterns-design');
   await expect(page.locator('.feed-manager article')).toHaveCount(22);
   await expect(selector.locator('option:checked')).toContainText(
-    '176 flashcards',
+    `${patternCardCount} flashcards`,
   );
   const patternTitles = await page
     .locator('.feed-manager article h2')

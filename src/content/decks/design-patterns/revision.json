@@ -1,0 +1,1145 @@
+{
+  "reviewedAt": "2026-11-12",
+  "originalCount": 176,
+  "cardCount": 147,
+  "source": "Catálogo local, explicações e exemplos do projeto; verificações pontuais nas fontes indicadas. Não é uma auditoria integral dos artigos.",
+  "cards": [
+    {
+      "sourceCardId": "builtin-patterns-factory-method-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-factory-method-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-factory-method-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-factory-method-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-abstract-factory-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-abstract-factory-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-builder-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-builder-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-builder-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-prototype-estrutura"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-aplicabilidade",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-aplicabilidade"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-prototype-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-prototype-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-singleton-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-aplicabilidade",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-aplicabilidade"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-singleton-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-singleton-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-adapter-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-adapter-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-adapter-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-bridge-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-bridge-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-bridge-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-composite-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-composite-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-composite-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-composite-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-decorator-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-decorator-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-decorator-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-facade-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-facade-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-facade-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-flyweight-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-aplicabilidade",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-aplicabilidade"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-flyweight-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-flyweight-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-proxy-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-proxy-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-proxy-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-implementacao",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-proxy-estrutura"],
+      "reason": "A análise de candidatos confirmou sobreposição do alvo; conteúdo complementar incorporado ao destino, sem transferir revisões."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-proxy-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-proxy-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-proxy-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-proxy-comparacao",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-decorator-comparacao"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": [
+        "builtin-patterns-chain-of-responsibility-implementacao"
+      ],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-aplicabilidade",
+      "action": "REFORMULAR",
+      "targetCardIds": [
+        "builtin-patterns-chain-of-responsibility-aplicabilidade"
+      ],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-chain-of-responsibility-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-chain-of-responsibility-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-aplicabilidade",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-aplicabilidade"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-command-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-command-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-implementacao",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-iterator-estrutura"],
+      "reason": "A análise de candidatos confirmou sobreposição do alvo; conteúdo complementar incorporado ao destino, sem transferir revisões."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-iterator-estrutura"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-iterator-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-iterator-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-implementacao",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-mediator-conceito"],
+      "reason": "A análise de candidatos confirmou sobreposição do alvo; conteúdo complementar incorporado ao destino, sem transferir revisões."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-mediator-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-mediator-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-mediator-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-memento-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-memento-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-memento-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-memento-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-observer-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-observer-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-observer-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-state-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-state-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-state-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-problema",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-strategy-conceito"],
+      "reason": "A análise de candidatos confirmou sobreposição do alvo; conteúdo complementar incorporado ao destino, sem transferir revisões."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-strategy-conceito"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-strategy-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-strategy-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-template-method-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-template-method-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-template-method-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-conceito",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-conceito"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-problema",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-problema"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-estrutura",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-estrutura"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-implementacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-implementacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-exemplo",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-exemplo"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-aplicabilidade",
+      "action": "MESCLAR",
+      "targetCardIds": ["builtin-patterns-visitor-problema"],
+      "reason": "Mesmo alvo de conhecimento consolidado no destino; o histórico não é copiado entre IDs."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-trade-offs",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-trade-offs"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    },
+    {
+      "sourceCardId": "builtin-patterns-visitor-comparacao",
+      "action": "REFORMULAR",
+      "targetCardIds": ["builtin-patterns-visitor-comparacao"],
+      "reason": "Pergunta delimitada e resposta direta, com o mesmo alvo de conhecimento e ID."
+    }
+  ],
+  "semanticReview": [
+    {
+      "cards": [
+        "builtin-patterns-proxy-estrutura",
+        "builtin-patterns-proxy-implementacao"
+      ],
+      "decision": "MESCLAR",
+      "reason": "Contrato substituível e fornecimento na composição pertencem à mesma colaboração descrita no destino."
+    },
+    {
+      "cards": [
+        "builtin-patterns-iterator-conceito",
+        "builtin-patterns-iterator-implementacao"
+      ],
+      "decision": "MESCLAR",
+      "targetCardId": "builtin-patterns-iterator-estrutura",
+      "reason": "Criação e estado independente do iterador foram reunidos, preservando a intenção no cartão conceitual."
+    },
+    {
+      "cards": [
+        "builtin-patterns-strategy-conceito",
+        "builtin-patterns-strategy-problema"
+      ],
+      "decision": "MESCLAR",
+      "reason": "As duas perguntas cobravam variar algoritmos sem alterar o contexto."
+    },
+    {
+      "cards": [
+        "builtin-patterns-mediator-conceito",
+        "builtin-patterns-mediator-implementacao"
+      ],
+      "decision": "MESCLAR",
+      "reason": "As duas descreviam extrair coordenação para um mediador delimitado."
+    },
+    {
+      "cards": [
+        "builtin-patterns-chain-of-responsibility-estrutura",
+        "builtin-patterns-chain-of-responsibility-implementacao"
+      ],
+      "decision": "MANTER",
+      "reason": "Semântica de continuação durante atendimento difere de configuração da ordem na composição."
+    },
+    {
+      "cards": [
+        "builtin-patterns-flyweight-comparacao",
+        "builtin-patterns-flyweight-trade-offs"
+      ],
+      "decision": "MANTER",
+      "reason": "Quantidade de instâncias compartilhadas difere de consequências de mutar uma instância."
+    },
+    {
+      "cards": [
+        "builtin-patterns-strategy-implementacao",
+        "builtin-patterns-strategy-trade-offs"
+      ],
+      "decision": "REFORMULAR",
+      "reason": "Contrato dos algoritmos e política de seleção são alvos distintos; a segunda pergunta agora cobra apenas seleção."
+    },
+    {
+      "cards": [
+        "builtin-patterns-proxy-conceito",
+        "builtin-patterns-proxy-estrutura"
+      ],
+      "decision": "MANTER",
+      "reason": "Intenção de controlar acesso e condição de substituição por contrato são alvos distintos, apesar da alta similaridade."
+    }
+  ],
+  "sourceVerification": {
+    "date": "2026-11-12",
+    "scope": "Intenção e colaboração em verificações pontuais; a fonte principal da reformulação foi o acervo local existente.",
+    "urls": [
+      "https://refactoring.guru/design-patterns/factory-method",
+      "https://refactoring.guru/design-patterns/decorator",
+      "https://refactoring.guru/design-patterns/state",
+      "https://refactoring.guru/design-patterns/visitor"
+    ]
+  }
+}

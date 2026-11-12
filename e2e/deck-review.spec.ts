@@ -1,3 +1,4 @@
+import { patternCardCount } from './patterns-fixture';
 import { setTheme } from './theme-actions';
 import { expect, test } from '@playwright/test';
 
@@ -12,7 +13,9 @@ test('atalho da página inicial revisa só o baralho escolhido e fica desabilita
       exact: true,
     })
     .click();
-  await expect(page.getByText('0 revisados · 176 restantes')).toBeVisible();
+  await expect(
+    page.getByText(`0 revisados · ${patternCardCount} restantes`),
+  ).toBeVisible();
   await expect(
     page.getByRole('heading', { name: /Factory Method/ }),
   ).toBeVisible();

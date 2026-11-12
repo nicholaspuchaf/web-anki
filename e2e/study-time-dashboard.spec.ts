@@ -1,3 +1,4 @@
+import { patternProblemQuestion } from './patterns-fixture';
 import { expect, test } from '@playwright/test';
 import { navigateSection } from './app-navigation';
 
@@ -49,7 +50,7 @@ test('administração agrega tempo por dia e cartão, mantém estudos sem avalia
   await expect(stats.locator('article').nth(1)).toContainText('00:06');
   const row = table
     .locator('tbody tr')
-    .filter({ hasText: 'Que acoplamento ele reduz?' });
+    .filter({ hasText: patternProblemQuestion });
   await expect(row).toContainText('00:12');
   await expect(row.locator('td').nth(2)).toHaveText('2');
   await expect(row.locator('td').nth(3)).toHaveText('00:06');

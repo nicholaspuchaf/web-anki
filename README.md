@@ -85,10 +85,10 @@ O template **Básico · vários versos** também pode ser usado em outros baralh
 
 ## Baralho Design Patterns
 
-**Design Patterns · Conceitos e decisões** inclui **176 cartões**, oito para cada um
-dos 22 padrões do catálogo Refactoring.Guru. As perguntas cobrem conceito, problema,
-estrutura, implementação, exemplo original, aplicabilidade, trade-offs e comparações.
-Há 22 mapas autorais na pergunta e dez ilustrações do site em versos independentes,
+**Design Patterns · Conceitos e decisões** inclui **147 cartões** sobre os 22 padrões
+do catálogo Refactoring.Guru, revisados com a skill de criação e otimização. As perguntas
+avaliam conceitos, colaboração, decisões de implementação, aplicações e comparações,
+com repetições consolidadas. Há 22 mapas autorais e dez ilustrações do site em versos reveláveis,
 com crédito e link de origem. As imagens são locais e funcionam offline após o
 primeiro carregamento completo da PWA.
 

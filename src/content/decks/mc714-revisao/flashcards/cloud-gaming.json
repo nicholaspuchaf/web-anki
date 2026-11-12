@@ -1,0 +1,146 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "cloud-gaming-1",
+      "question": "Onde o jogo e os gráficos 3D são executados no cloud gaming?",
+      "answer": "No servidor remoto.",
+      "explanation": "O cliente captura entradas, recebe o fluxo, decodifica e apresenta os quadros.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-1"]
+    },
+    {
+      "id": "cloud-gaming-2",
+      "question": "O que mede a latência input-to-photon?",
+      "answer": "O tempo da ação do usuário até a apresentação visual do resultado.",
+      "explanation": "Ela inclui componentes de rede, processamento, codificação, decodificação e exibição.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-2"]
+    },
+    {
+      "id": "cloud-gaming-3",
+      "question": "Por que um ping baixo não garante baixa latência input-to-photon?",
+      "answer": "Porque processamento, filas, codificação, decodificação e exibição somam atrasos à rede.",
+      "explanation": "RTT mede ida e volta da comunicação; input-to-photon mede desde a ação até o resultado visual. São métricas de fronteiras diferentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["cloud-gaming-3", "metricas-qoe-2"]
+    },
+    {
+      "id": "cloud-gaming-4",
+      "question": "Qual é a latência de interação com envio de 20 ms, processamento de 12, codificação de 5, retorno de 20, decodificação de 5 e exibição de 8?",
+      "answer": "70 ms.",
+      "explanation": "Some os seis componentes uma vez: 20 + 12 + 5 + 20 + 5 + 8. Não acrescente RTT se seus trechos de rede já foram contabilizados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-4"]
+    },
+    {
+      "id": "cloud-gaming-5",
+      "question": "Um fluxo constante de 20 Mbps consome quantos GB decimais em uma hora, sem overhead?",
+      "answer": "Aproximadamente 9 GB.",
+      "explanation": "20 × 3600 ÷ 8 = 9000 MB. Oito bits formam um byte; taxa e overhead reais podem variar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-5"]
+    },
+    {
+      "id": "cloud-gaming-6",
+      "question": "Como aumentar resolução ou FPS tende a afetar o bitrate necessário para manter a qualidade do vídeo?",
+      "answer": "Tende a aumentar o bitrate, dependendo do codec e do conteúdo.",
+      "explanation": "A relação não é uma proporção fixa. Bitrate é a quantidade de bits transmitidos por segundo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-6"]
+    },
+    {
+      "id": "cloud-gaming-7",
+      "question": "Um jogo exige 20 Mbps estáveis. Por que 50 Mbps com RTT de 15 ms pode superar 500 Mbps com RTT de 150 ms?",
+      "answer": "Porque ambas as conexões sustentam o fluxo, mas a primeira reduz a espera de interação.",
+      "explanation": "A comparação supõe capacidade realmente disponível e estabilidade. Mais banda, depois do necessário, não remove a latência.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-7"]
+    },
+    {
+      "id": "cloud-gaming-8",
+      "question": "Qual compromisso o bitrate adaptativo faz quando a capacidade da rede cai?",
+      "answer": "Reduz qualidade ou resolução para tentar preservar a continuidade do fluxo.",
+      "explanation": "Pode aliviar congestionamento, mas não elimina o tempo de propagação nem garante boa interação em uma rede instável.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-8"]
+    },
+    {
+      "id": "cloud-gaming-9",
+      "question": "Por que cloud gaming pode continuar usando banda sem novas ações do usuário?",
+      "answer": "Porque o servidor pode continuar gerando e transmitindo quadros de vídeo.",
+      "explanation": "Cenas, animações e estado do jogo podem mudar mesmo sem entradas novas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-9"]
+    },
+    {
+      "id": "cloud-gaming-10",
+      "question": "O jogo espera 30 ms numa fila de renderização e já tem banda suficiente. Onde investigar a otimização?",
+      "answer": "Na fila e na capacidade de processamento/renderização que estão atrasando o quadro.",
+      "explanation": "Aumentar banda não remove uma espera interna do servidor; meça o caminho completo antes de escolher o componente a otimizar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "cloud-gaming"
+      ],
+      "sourceCardIds": ["cloud-gaming-10"]
+    }
+  ]
+}

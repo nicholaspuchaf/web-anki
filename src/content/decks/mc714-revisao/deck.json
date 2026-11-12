@@ -1,0 +1,38 @@
+{
+  "id": "builtin-sd-mc714",
+  "name": "Sistemas Distribuidos - MC714",
+  "defaultTemplate": "multi-face",
+  "syncEnabled": false,
+  "reviewedAt": "2026-11-11",
+  "tagPolicy": {
+    "required": ["sistemas-distribuidos", "unicamp", "mc714"],
+    "oneOf": ["p1", "p2", "p3"],
+    "default": "p2"
+  },
+  "content": {
+    "flashcards": [
+      "flashcards/x-window.json",
+      "flashcards/x-wan.json",
+      "flashcards/interfaces-remotas.json",
+      "flashcards/cloud-gaming.json",
+      "flashcards/aplicacoes-web.json",
+      "flashcards/metricas-qoe.json",
+      "flashcards/escolha-arquitetural.json",
+      "flashcards/navegadores-processos.json",
+      "flashcards/javascript-concorrencia.json",
+      "flashcards/transparencia-middleware.json",
+      "flashcards/mobilidade-recuperacao.json",
+      "flashcards/consistencia-transparencia.json",
+      "flashcards/stateless-stateful.json",
+      "flashcards/escalabilidade-sessoes.json",
+      "flashcards/tokens-jwt.json",
+      "flashcards/estado-compartilhado.json",
+      "flashcards/despacho-l4-l7.json",
+      "flashcards/tcp-handoff.json",
+      "flashcards/proxy-l7-tls.json",
+      "flashcards/afinidade-gargalos.json",
+      "flashcards/retorno-direto-hierarquia.json"
+    ],
+    "carousels": []
+  }
+}

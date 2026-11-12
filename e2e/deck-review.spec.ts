@@ -23,7 +23,7 @@ test('atalho da página inicial revisa só o baralho escolhido e fica desabilita
       exact: true,
     })
     .click();
-  await expect(page.getByText('0 revisados · 228 restantes')).toBeVisible();
+  await expect(page.getByText('0 revisados · 218 restantes')).toBeVisible();
   await page.getByRole('button', { name: /Encerrar revisão/ }).click();
   await page
     .getByRole('button', { name: '+ Novo baralho', exact: true })

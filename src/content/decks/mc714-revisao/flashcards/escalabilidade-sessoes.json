@@ -1,0 +1,153 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "escalabilidade-sessoes-1",
+      "question": "O que significa escalabilidade horizontal, ou scale-out?",
+      "answer": "Aumentar a capacidade adicionando instâncias ao sistema.",
+      "explanation": "É diferente de ampliar CPU ou memória de uma única máquina; o ganho real depende dos demais gargalos.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "escalabilidade-horizontal",
+        "scale-out"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-1"]
+    },
+    {
+      "id": "escalabilidade-sessoes-2",
+      "question": "Por que instâncias stateless simplificam o balanceamento de carga?",
+      "answer": "Porque o balanceador não precisa preservar uma associação de sessão exclusiva entre cliente e instância.",
+      "explanation": "Qualquer destino apto pode atender, desde que disponha do contexto e das dependências necessários.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "balanceamento-de-carga"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-2"]
+    },
+    {
+      "id": "escalabilidade-sessoes-4",
+      "question": "Por que autoscaling fica mais simples sem sessões exclusivas de cada instância?",
+      "answer": "Porque novas instâncias podem atender sem receber previamente o contexto local de cada usuário.",
+      "explanation": "Ainda é preciso garantir prontidão e dependências; remover instâncias exige tratar requisições em andamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "autoscaling",
+        "elasticidade"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-4"]
+    },
+    {
+      "id": "escalabilidade-sessoes-5",
+      "question": "Para que serve afinidade de sessão, ou sticky sessions?",
+      "answer": "Tentar encaminhar os pedidos de uma sessão à instância que já tem seu contexto.",
+      "explanation": "É útil com estado local. Associar cliente e servidor é uma política de roteamento, não uma cópia da sessão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "afinidade-de-sessao",
+        "stateful",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-5", "afinidade-gargalos-1"]
+    },
+    {
+      "id": "escalabilidade-sessoes-6",
+      "question": "Por que sticky sessions dificultam equilibrar carga e remover instâncias?",
+      "answer": "Porque prendem sessões de custos diferentes a destinos específicos.",
+      "explanation": "Mesmo número de sessões não significa mesmo trabalho. A restrição reduz a liberdade de enviar pedidos para destinos mais livres e exige cuidado no scale-in.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "balanceamento-de-carga",
+        "gargalos",
+        "load balancer",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "autoscaling"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-6", "afinidade-gargalos-7"]
+    },
+    {
+      "id": "escalabilidade-sessoes-7",
+      "question": "O que falta à afinidade de sessão para recuperar o contexto após uma falha da instância?",
+      "answer": "Persistência, replicação ou armazenamento externo com uma política de recuperação.",
+      "explanation": "Afinidade apenas escolhe o destino. Direcionar à instância saudável não recria os dados exclusivos da que falhou.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sticky-sessions",
+        "recuperacao-de-falhas",
+        "replicacao",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "disponibilidade",
+        "stateful"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-7", "afinidade-gargalos-6"]
+    },
+    {
+      "id": "escalabilidade-sessoes-8",
+      "question": "O que outra instância stateless pode assumir após a falha de uma instância apta?",
+      "answer": "As próximas requisições, desde que tenha acesso ao contexto e às dependências necessários.",
+      "explanation": "Isso não determina o resultado de uma operação que já estava em andamento; retry com efeitos ainda precisa de proteção contra duplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "disponibilidade",
+        "retries"
+      ],
+      "sourceCardIds": ["escalabilidade-sessoes-8"]
+    }
+  ]
+}

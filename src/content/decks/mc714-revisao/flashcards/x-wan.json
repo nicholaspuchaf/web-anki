@@ -1,0 +1,53 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "x-wan-1",
+      "question": "Por que mais banda pode não acelerar uma ação X que transfere poucos bytes?",
+      "answer": "Porque a espera por respostas sequenciais, determinada pelo RTT, pode dominar o tempo.",
+      "explanation": "Banda mede capacidade de transmissão; RTT mede ida e volta. Imagens volumosas podem introduzir também um gargalo de banda.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-1", "x-wan-6"]
+    },
+    {
+      "id": "x-wan-2",
+      "question": "Qual hipótese permite estimar T ≈ N × RTT?",
+      "answer": "N interações remotas sequenciais, em que cada etapa precisa aguardar uma resposta.",
+      "explanation": "Não vale multiplicar qualquer contagem de mensagens por RTT; mensagens independentes podem se sobrepor.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-2"]
+    },
+    {
+      "id": "x-wan-4",
+      "question": "Com cinco esperas sequenciais, trocar RTT de 1 ms por 100 ms multiplica a espera por quanto?",
+      "answer": "Por 100: ela passa de 5 ms para 500 ms.",
+      "explanation": "A aproximação é N × RTT para dependências sem sobreposição; processamento e renderização acrescentam outros custos.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-4", "x-wan-3"]
+    },
+    {
+      "id": "x-wan-5",
+      "question": "Que característica do X impede atribuir um RTT de espera a todo comando gráfico?",
+      "answer": "O protocolo admite requisições assíncronas, que podem ser agrupadas ou sobrepostas.",
+      "explanation": "Conte as respostas das quais o próximo passo realmente depende, não todo comando enviado.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-5"]
+    },
+    {
+      "id": "x-wan-7",
+      "question": "Quando a banda também pode se tornar um gargalo em uma aplicação X?",
+      "answer": "Quando há grande volume de imagens ou atualizações gráficas complexas.",
+      "explanation": "Comandos simples podem ser compactos; isso não garante tráfego baixo para toda aplicação.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-7"]
+    },
+    {
+      "id": "x-wan-8",
+      "question": "Qual é a espera de oito interações sequenciais com RTT de 80 ms?",
+      "answer": "Aproximadamente 640 ms.",
+      "explanation": "8 × 80 ms. Para diminuir essa parcela, investigue eliminar dependências, agrupar ou sobrepor trabalho; aumentar apenas a banda não reduz o RTT.",
+      "tags": ["sistemas-distribuidos", "unicamp", "mc714", "p2", "x-wan"],
+      "sourceCardIds": ["x-wan-8"]
+    }
+  ]
+}

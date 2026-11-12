@@ -1,5 +1,6 @@
 import auvp from './auvp-renda-fixa/deck.json' with { type: 'json' };
 import mc714 from './mc714/deck.json' with { type: 'json' };
+import mc714Revisao from './mc714-revisao/deck.json' with { type: 'json' };
 import aws from './aws/deck.json' with { type: 'json' };
 import patterns from './design-patterns/deck.json' with { type: 'json' };
 import learning from './learning/deck.json' with { type: 'json' };
@@ -12,6 +13,7 @@ export const bundledDeckDefinitions = [
   learning,
   mc714,
   auvp,
+  mc714Revisao,
 ].map((manifest) => ({
   deck: parseDeck(manifest),
   content: manifest.content as Record<string, string[]>,

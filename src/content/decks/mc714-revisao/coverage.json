@@ -1,0 +1,1526 @@
+{
+  "sourceDeckId": "builtin-mc714",
+  "targetDeckId": "builtin-sd-mc714",
+  "sourceCardCount": 228,
+  "targetCardCount": 218,
+  "cards": [
+    {
+      "sourceCardId": "x-window-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-window-1"]
+    },
+    {
+      "sourceCardId": "x-window-2",
+      "action": "MANTER",
+      "targetCardIds": ["x-window-2"]
+    },
+    {
+      "sourceCardId": "x-window-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-window-3"]
+    },
+    {
+      "sourceCardId": "x-window-4",
+      "action": "MANTER",
+      "targetCardIds": ["x-window-4"]
+    },
+    {
+      "sourceCardId": "x-window-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-window-5"]
+    },
+    {
+      "sourceCardId": "x-window-6",
+      "action": "MESCLAR",
+      "targetCardIds": ["x-window-3"]
+    },
+    {
+      "sourceCardId": "x-window-7",
+      "action": "MANTER",
+      "targetCardIds": ["x-window-7"]
+    },
+    {
+      "sourceCardId": "x-window-8",
+      "action": "MESCLAR",
+      "targetCardIds": ["x-window-1"]
+    },
+    {
+      "sourceCardId": "x-wan-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-wan-1"]
+    },
+    {
+      "sourceCardId": "x-wan-2",
+      "action": "MANTER",
+      "targetCardIds": ["x-wan-2"]
+    },
+    {
+      "sourceCardId": "x-wan-3",
+      "action": "MESCLAR",
+      "targetCardIds": ["x-wan-4"]
+    },
+    {
+      "sourceCardId": "x-wan-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-wan-4"]
+    },
+    {
+      "sourceCardId": "x-wan-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-wan-5"]
+    },
+    {
+      "sourceCardId": "x-wan-6",
+      "action": "MESCLAR",
+      "targetCardIds": ["x-wan-1"]
+    },
+    {
+      "sourceCardId": "x-wan-7",
+      "action": "MANTER",
+      "targetCardIds": ["x-wan-7"]
+    },
+    {
+      "sourceCardId": "x-wan-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["x-wan-8"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-1",
+      "action": "DIVIDIR",
+      "targetCardIds": [
+        "interfaces-remotas-1",
+        "interfaces-remotas-vnc-dados",
+        "interfaces-remotas-web-dados"
+      ]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-2",
+      "action": "DIVIDIR",
+      "targetCardIds": ["interfaces-remotas-2", "interfaces-remotas-vnc-dados"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["interfaces-remotas-3"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-4",
+      "action": "MANTER",
+      "targetCardIds": ["interfaces-remotas-4"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-5",
+      "action": "MANTER",
+      "targetCardIds": ["interfaces-remotas-5"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-6",
+      "action": "MANTER",
+      "targetCardIds": ["interfaces-remotas-6"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["interfaces-remotas-7"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["interfaces-remotas-8"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-9",
+      "action": "MANTER",
+      "targetCardIds": ["interfaces-remotas-9"]
+    },
+    {
+      "sourceCardId": "interfaces-remotas-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["interfaces-remotas-10"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-1",
+      "action": "MANTER",
+      "targetCardIds": ["cloud-gaming-1"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-2",
+      "action": "MANTER",
+      "targetCardIds": ["cloud-gaming-2"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-3"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-4"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-5",
+      "action": "MANTER",
+      "targetCardIds": ["cloud-gaming-5"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-6"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-7"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-8"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-9",
+      "action": "MANTER",
+      "targetCardIds": ["cloud-gaming-9"]
+    },
+    {
+      "sourceCardId": "cloud-gaming-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["cloud-gaming-10"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-1",
+      "action": "MANTER",
+      "targetCardIds": ["aplicacoes-web-1"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-2",
+      "action": "MANTER",
+      "targetCardIds": ["aplicacoes-web-2"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aplicacoes-web-3"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aplicacoes-web-4"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-5",
+      "action": "DIVIDIR",
+      "targetCardIds": ["aplicacoes-web-5", "interfaces-remotas-web-dados"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-6",
+      "action": "MANTER",
+      "targetCardIds": ["aplicacoes-web-6"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aplicacoes-web-7"]
+    },
+    {
+      "sourceCardId": "aplicacoes-web-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aplicacoes-web-8"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-1",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-1"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-2",
+      "action": "MESCLAR",
+      "targetCardIds": ["cloud-gaming-3"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["metricas-qoe-3"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-4",
+      "action": "MESCLAR",
+      "targetCardIds": ["metricas-qoe-3"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["metricas-qoe-5"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-6",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-6"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-7",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-7"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["metricas-qoe-8"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-9",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-9"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["metricas-qoe-10"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-11",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-11"]
+    },
+    {
+      "sourceCardId": "metricas-qoe-12",
+      "action": "MANTER",
+      "targetCardIds": ["metricas-qoe-12"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-1",
+      "action": "MANTER",
+      "targetCardIds": ["escolha-arquitetural-1"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-2",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escolha-arquitetural-2"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-3",
+      "action": "MANTER",
+      "targetCardIds": ["escolha-arquitetural-3"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escolha-arquitetural-4"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-5",
+      "action": "MANTER",
+      "targetCardIds": ["escolha-arquitetural-5"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-6",
+      "action": "MANTER",
+      "targetCardIds": ["escolha-arquitetural-6"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-7",
+      "action": "MANTER",
+      "targetCardIds": ["escolha-arquitetural-7"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escolha-arquitetural-8"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escolha-arquitetural-9"]
+    },
+    {
+      "sourceCardId": "escolha-arquitetural-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escolha-arquitetural-10"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-1",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-1"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-2",
+      "action": "REFORMULAR",
+      "targetCardIds": ["navegadores-processos-2"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["navegadores-processos-3"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-4",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-4"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-5",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-5"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["navegadores-processos-6"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-7",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-7"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-8",
+      "action": "MESCLAR",
+      "targetCardIds": ["navegadores-processos-3"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["navegadores-processos-9"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-10",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-10"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-11",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-11"]
+    },
+    {
+      "sourceCardId": "navegadores-processos-12",
+      "action": "MANTER",
+      "targetCardIds": ["navegadores-processos-12"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-1"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-2",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-2"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-3"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-4",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-4"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-5"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-6",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-6"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-7"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-8"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-9",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-9"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-10",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-10"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-11",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-11"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-12"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-13",
+      "action": "DIVIDIR",
+      "targetCardIds": [
+        "javascript-concorrencia-13",
+        "javascript-memoria-compartilhada"
+      ]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-14",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-14"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-15",
+      "action": "MANTER",
+      "targetCardIds": ["javascript-concorrencia-15"]
+    },
+    {
+      "sourceCardId": "javascript-concorrencia-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["javascript-concorrencia-16"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-1",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-1"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-2",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-2"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-3",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-3"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-4",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-4"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["transparencia-middleware-5"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["transparencia-middleware-6"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-7",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-7"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["transparencia-middleware-8"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-9",
+      "action": "MESCLAR",
+      "targetCardIds": ["mobilidade-recuperacao-6"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-10",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-10"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-11",
+      "action": "MANTER",
+      "targetCardIds": ["transparencia-middleware-11"]
+    },
+    {
+      "sourceCardId": "transparencia-middleware-12",
+      "action": "MESCLAR",
+      "targetCardIds": [
+        "transparencia-middleware-4",
+        "transparencia-middleware-7",
+        "transparencia-middleware-10"
+      ]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-1",
+      "action": "MANTER",
+      "targetCardIds": ["mobilidade-recuperacao-1"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-2",
+      "action": "MANTER",
+      "targetCardIds": ["mobilidade-recuperacao-2"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["mobilidade-recuperacao-3"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-4",
+      "action": "MESCLAR",
+      "targetCardIds": ["transparencia-middleware-8"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-5",
+      "action": "MANTER",
+      "targetCardIds": ["mobilidade-recuperacao-5"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["mobilidade-recuperacao-6"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-7",
+      "action": "MANTER",
+      "targetCardIds": ["mobilidade-recuperacao-7"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["mobilidade-recuperacao-8"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["mobilidade-recuperacao-9"]
+    },
+    {
+      "sourceCardId": "mobilidade-recuperacao-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["mobilidade-recuperacao-10"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-1"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-2",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-2"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-3",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-3"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-4"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-5",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-5"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-6"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-7",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-7"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-8"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-9",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-9"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-10",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-10"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-11"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-12"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-13",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-13"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["mobilidade-recuperacao-6"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-15",
+      "action": "MANTER",
+      "targetCardIds": ["consistencia-transparencia-15"]
+    },
+    {
+      "sourceCardId": "consistencia-transparencia-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["consistencia-transparencia-16"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["stateless-stateful-1"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-2",
+      "action": "REFORMULAR",
+      "targetCardIds": ["stateless-stateful-2"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-3",
+      "action": "MANTER",
+      "targetCardIds": ["stateless-stateful-3"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["stateless-stateful-4"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-5",
+      "action": "MANTER",
+      "targetCardIds": ["stateless-stateful-5"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["stateless-stateful-6"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-7",
+      "action": "MANTER",
+      "targetCardIds": ["stateless-stateful-7"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-8",
+      "action": "MESCLAR",
+      "targetCardIds": ["stateless-stateful-1"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-9",
+      "action": "DIVIDIR",
+      "targetCardIds": ["stateless-stateful-9", "sessao-escolha-latencia"]
+    },
+    {
+      "sourceCardId": "stateless-stateful-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["stateless-stateful-10"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-1",
+      "action": "MANTER",
+      "targetCardIds": ["escalabilidade-sessoes-1"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-2",
+      "action": "MANTER",
+      "targetCardIds": ["escalabilidade-sessoes-2"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-3",
+      "action": "MESCLAR",
+      "targetCardIds": ["despacho-l4-l7-6", "despacho-l4-l7-8"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escalabilidade-sessoes-4"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escalabilidade-sessoes-5"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escalabilidade-sessoes-6"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escalabilidade-sessoes-7"]
+    },
+    {
+      "sourceCardId": "escalabilidade-sessoes-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["escalabilidade-sessoes-8"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tokens-jwt-1"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-2",
+      "action": "MANTER",
+      "targetCardIds": ["tokens-jwt-2"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tokens-jwt-3"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tokens-jwt-4"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tokens-jwt-5"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-6",
+      "action": "MANTER",
+      "targetCardIds": ["tokens-jwt-6"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-7",
+      "action": "MANTER",
+      "targetCardIds": ["tokens-jwt-7"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-8",
+      "action": "MANTER",
+      "targetCardIds": ["tokens-jwt-8"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-9",
+      "action": "MANTER",
+      "targetCardIds": ["tokens-jwt-9"]
+    },
+    {
+      "sourceCardId": "tokens-jwt-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tokens-jwt-10"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["estado-compartilhado-1"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-2",
+      "action": "MESCLAR",
+      "targetCardIds": ["stateless-stateful-2"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-3",
+      "action": "MANTER",
+      "targetCardIds": ["estado-compartilhado-3"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-4",
+      "action": "MANTER",
+      "targetCardIds": ["estado-compartilhado-4"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["estado-compartilhado-5"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-6",
+      "action": "MANTER",
+      "targetCardIds": ["estado-compartilhado-6"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-7",
+      "action": "MANTER",
+      "targetCardIds": ["estado-compartilhado-7"]
+    },
+    {
+      "sourceCardId": "estado-compartilhado-8",
+      "action": "DIVIDIR",
+      "targetCardIds": [
+        "sessao-escolha-revogacao",
+        "sessao-escolha-validacao",
+        "sessao-escolha-latencia"
+      ]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-1",
+      "action": "DIVIDIR",
+      "targetCardIds": ["despacho-l4-l7-1", "despacho-posicao-balanceador"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-2",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-2"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-3",
+      "action": "REFORMULAR",
+      "targetCardIds": ["despacho-l4-l7-3"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-4",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-4"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["despacho-l4-l7-5"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-6",
+      "action": "REFORMULAR",
+      "targetCardIds": ["despacho-l4-l7-6"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-7",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-7"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-8",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-8"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["despacho-l4-l7-9"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-10",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-10"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-11",
+      "action": "MANTER",
+      "targetCardIds": ["despacho-l4-l7-11"]
+    },
+    {
+      "sourceCardId": "despacho-l4-l7-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["despacho-l4-l7-12"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-1",
+      "action": "MANTER",
+      "targetCardIds": ["tcp-handoff-1"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-2",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tcp-handoff-2"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-3",
+      "action": "MANTER",
+      "targetCardIds": ["tcp-handoff-3"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-4",
+      "action": "MANTER",
+      "targetCardIds": ["tcp-handoff-4"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-5",
+      "action": "MANTER",
+      "targetCardIds": ["tcp-handoff-5"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-6",
+      "action": "MANTER",
+      "targetCardIds": ["tcp-handoff-6"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-7",
+      "action": "DIVIDIR",
+      "targetCardIds": ["tcp-handoff-7", "tcp-handoff-opcoes"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-8",
+      "action": "DIVIDIR",
+      "targetCardIds": ["tcp-handoff-8", "tcp-handoff-temporizadores"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tcp-handoff-9"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-10",
+      "action": "MESCLAR",
+      "targetCardIds": ["retorno-direto-hierarquia-1"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["tcp-handoff-11"]
+    },
+    {
+      "sourceCardId": "tcp-handoff-12",
+      "action": "MESCLAR",
+      "targetCardIds": ["despacho-l4-l7-5"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["proxy-l7-tls-1"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-2",
+      "action": "MESCLAR",
+      "targetCardIds": ["proxy-l7-tls-1"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-3",
+      "action": "MANTER",
+      "targetCardIds": ["proxy-l7-tls-3"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-4",
+      "action": "REFORMULAR",
+      "targetCardIds": ["proxy-l7-tls-4"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["proxy-l7-tls-5"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-6",
+      "action": "MANTER",
+      "targetCardIds": ["proxy-l7-tls-6"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-7",
+      "action": "MANTER",
+      "targetCardIds": ["proxy-l7-tls-7"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-8",
+      "action": "MANTER",
+      "targetCardIds": ["proxy-l7-tls-8"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-9",
+      "action": "REFORMULAR",
+      "targetCardIds": ["proxy-l7-tls-9"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-10",
+      "action": "MESCLAR",
+      "targetCardIds": ["proxy-l7-tls-1"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-11",
+      "action": "DIVIDIR",
+      "targetCardIds": ["proxy-l7-tls-11", "proxy-handoff-http"]
+    },
+    {
+      "sourceCardId": "proxy-l7-tls-12",
+      "action": "DIVIDIR",
+      "targetCardIds": ["proxy-l7-tls-12", "proxy-handoff-http"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-1",
+      "action": "MESCLAR",
+      "targetCardIds": ["escalabilidade-sessoes-5"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-2",
+      "action": "REFORMULAR",
+      "targetCardIds": ["afinidade-gargalos-2"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-3",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-3"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-4",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-4"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-5",
+      "action": "REFORMULAR",
+      "targetCardIds": ["afinidade-gargalos-5"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-6",
+      "action": "MESCLAR",
+      "targetCardIds": ["escalabilidade-sessoes-7"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-7",
+      "action": "MESCLAR",
+      "targetCardIds": ["escalabilidade-sessoes-6"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["afinidade-gargalos-8"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-9",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-9"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-10",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-10"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-11",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-11"]
+    },
+    {
+      "sourceCardId": "afinidade-gargalos-12",
+      "action": "MANTER",
+      "targetCardIds": ["afinidade-gargalos-12"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-1",
+      "action": "REFORMULAR",
+      "targetCardIds": ["retorno-direto-hierarquia-1"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-2",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-2"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-3",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-3"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-4",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-4"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-5",
+      "action": "MESCLAR",
+      "targetCardIds": ["tcp-handoff-11"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-6",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-6"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-7",
+      "action": "REFORMULAR",
+      "targetCardIds": ["retorno-direto-hierarquia-7"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-8",
+      "action": "REFORMULAR",
+      "targetCardIds": ["retorno-direto-hierarquia-8"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-9",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-9"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["retorno-direto-hierarquia-10"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-11",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-11"]
+    },
+    {
+      "sourceCardId": "retorno-direto-hierarquia-12",
+      "action": "MANTER",
+      "targetCardIds": ["retorno-direto-hierarquia-12"]
+    }
+  ],
+  "carouselSlides": [
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-1",
+      "targetCardIds": ["x-window-7", "x-window-2"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-2",
+      "targetCardIds": ["x-window-1", "x-window-2"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-3",
+      "targetCardIds": ["x-window-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-4",
+      "targetCardIds": ["x-window-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-5",
+      "targetCardIds": ["x-window-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-6",
+      "targetCardIds": ["x-window-4", "x-window-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-7",
+      "targetCardIds": ["x-window-7", "interfaces-remotas-9"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-window",
+      "sourceSlideId": "x-window-8",
+      "targetCardIds": ["x-window-1", "x-window-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-1",
+      "targetCardIds": ["x-wan-1"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-2",
+      "targetCardIds": ["x-wan-2"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-3",
+      "targetCardIds": ["x-wan-2"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-4",
+      "targetCardIds": ["x-wan-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-5",
+      "targetCardIds": ["x-wan-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-6",
+      "targetCardIds": ["x-wan-7"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-7",
+      "targetCardIds": ["x-wan-8", "x-wan-1"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-x-wan",
+      "sourceSlideId": "x-wan-8",
+      "targetCardIds": ["x-wan-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-1",
+      "targetCardIds": [
+        "interfaces-remotas-1",
+        "interfaces-remotas-vnc-dados",
+        "interfaces-remotas-web-dados"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-2",
+      "targetCardIds": [
+        "interfaces-remotas-1",
+        "interfaces-remotas-vnc-dados",
+        "interfaces-remotas-web-dados",
+        "x-wan-5",
+        "x-wan-7"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-3",
+      "targetCardIds": [
+        "interfaces-remotas-2",
+        "interfaces-remotas-vnc-dados",
+        "interfaces-remotas-3"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-4",
+      "targetCardIds": ["interfaces-remotas-vnc-dados", "interfaces-remotas-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-5",
+      "targetCardIds": ["interfaces-remotas-8", "cloud-gaming-6"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-6",
+      "targetCardIds": ["interfaces-remotas-web-dados", "interfaces-remotas-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-7",
+      "targetCardIds": [
+        "interfaces-remotas-6",
+        "x-window-7",
+        "interfaces-remotas-4"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-8",
+      "targetCardIds": ["interfaces-remotas-7", "interfaces-remotas-9"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-9",
+      "targetCardIds": [
+        "interfaces-remotas-4",
+        "interfaces-remotas-9",
+        "interfaces-remotas-10"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-interfaces-remotas",
+      "sourceSlideId": "interfaces-remotas-10",
+      "targetCardIds": [
+        "interfaces-remotas-1",
+        "interfaces-remotas-vnc-dados",
+        "interfaces-remotas-web-dados",
+        "interfaces-remotas-5"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-1",
+      "targetCardIds": ["cloud-gaming-1", "escolha-arquitetural-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-2",
+      "targetCardIds": ["cloud-gaming-2", "cloud-gaming-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-3",
+      "targetCardIds": ["cloud-gaming-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-4",
+      "targetCardIds": ["cloud-gaming-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-5",
+      "targetCardIds": ["cloud-gaming-3", "cloud-gaming-10"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-6",
+      "targetCardIds": ["cloud-gaming-6", "cloud-gaming-9"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-7",
+      "targetCardIds": ["cloud-gaming-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-8",
+      "targetCardIds": ["cloud-gaming-7"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-9",
+      "targetCardIds": ["cloud-gaming-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-cloud-gaming",
+      "sourceSlideId": "cloud-gaming-10",
+      "targetCardIds": ["cloud-gaming-10"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-1",
+      "targetCardIds": ["aplicacoes-web-1", "escolha-arquitetural-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-2",
+      "targetCardIds": ["aplicacoes-web-2", "aplicacoes-web-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-3",
+      "targetCardIds": ["aplicacoes-web-3", "javascript-concorrencia-6"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-4",
+      "targetCardIds": ["aplicacoes-web-4", "aplicacoes-web-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-5",
+      "targetCardIds": ["aplicacoes-web-5", "interfaces-remotas-web-dados"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-6",
+      "targetCardIds": ["aplicacoes-web-6", "escolha-arquitetural-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-7",
+      "targetCardIds": ["aplicacoes-web-7", "aplicacoes-web-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-aplicacoes-web",
+      "sourceSlideId": "aplicacoes-web-8",
+      "targetCardIds": ["metricas-painel-editor"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-1",
+      "targetCardIds": ["metricas-qoe-1"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-2",
+      "targetCardIds": ["cloud-gaming-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-3",
+      "targetCardIds": ["metricas-qoe-3"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-4",
+      "targetCardIds": ["metricas-qoe-5"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-5",
+      "targetCardIds": ["metricas-qoe-6", "metricas-qoe-7"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-6",
+      "targetCardIds": ["metricas-qoe-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-7",
+      "targetCardIds": ["metricas-qoe-9"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-8",
+      "targetCardIds": ["metricas-qoe-10"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-9",
+      "targetCardIds": ["metricas-qoe-11"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-10",
+      "targetCardIds": ["metricas-qoe-12"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-11",
+      "targetCardIds": ["metricas-percentis"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-metricas-qoe",
+      "sourceSlideId": "metricas-qoe-12",
+      "targetCardIds": ["metricas-painel-jogo", "metricas-painel-editor"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-1",
+      "targetCardIds": ["escolha-arquitetural-1"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-2",
+      "targetCardIds": ["escolha-arquitetural-2"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-3",
+      "targetCardIds": ["escolha-arquitetural-3", "aplicacoes-web-6"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-4",
+      "targetCardIds": ["escolha-arquitetural-5", "escolha-arquitetural-4"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-5",
+      "targetCardIds": ["escolha-arquitetural-4", "metricas-qoe-11"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-6",
+      "targetCardIds": ["escolha-arquitetural-6"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-7",
+      "targetCardIds": ["escolha-arquitetural-8", "cloud-gaming-8"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-8",
+      "targetCardIds": [
+        "escolha-arquitetural-7",
+        "interfaces-remotas-4",
+        "interfaces-remotas-10"
+      ]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-9",
+      "targetCardIds": ["escolha-arquitetural-9"]
+    },
+    {
+      "sourceCarouselId": "feed-mc714-escolha-arquitetural",
+      "sourceSlideId": "escolha-arquitetural-10",
+      "targetCardIds": ["escolha-arquitetural-10"]
+    }
+  ]
+}

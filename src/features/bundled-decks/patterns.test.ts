@@ -1,5 +1,6 @@
 import { AUVP_CARD_COUNT, withBundledAuvpDeck } from './auvp';
 import mc714 from '../../content/decks/mc714/flashcards';
+import mc714Revisao from '../../content/decks/mc714-revisao/flashcards';
 import { expect, test } from 'bun:test';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -91,6 +92,7 @@ test('recompor dois baralhos preserva conteúdo, progresso, favoritos e cartões
     AWS_CARD_COUNT +
       PATTERNS_CARD_COUNT +
       mc714.cards.length +
+      mc714Revisao.cards.length +
       AUVP_CARD_COUNT +
       1,
   );

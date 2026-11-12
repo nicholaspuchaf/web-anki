@@ -1,0 +1,179 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "estado-compartilhado-1",
+      "question": "Como uma instância B recupera uma sessão criada por A sem afinidade de sessão?",
+      "answer": "Consulta o armazenamento compartilhado usando o identificador recebido do cliente.",
+      "explanation": "A salva a sessão e devolve um ID, possivelmente em cookie. O estado não precisa viajar completo nem existir só na memória de A.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "estado-compartilhado",
+        "sessoes",
+        "redis"
+      ],
+      "sourceCardIds": ["estado-compartilhado-1"]
+    },
+    {
+      "id": "estado-compartilhado-3",
+      "question": "O que acontece com a disponibilidade da aplicação se o armazenamento central de sessões ficar indisponível?",
+      "answer": "Requisições que dependam dele podem ficar impedidas de recuperar ou validar o contexto necessário.",
+      "explanation": "Replicar apenas as instâncias de aplicação não protege essa dependência; o armazenamento precisa de estratégia de disponibilidade própria.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "disponibilidade",
+        "dependencias",
+        "estado-compartilhado"
+      ],
+      "sourceCardIds": ["estado-compartilhado-3"]
+    },
+    {
+      "id": "estado-compartilhado-4",
+      "question": "Que custo de latência o armazenamento externo de sessões pode acrescentar?",
+      "answer": "Consultas e coordenação com outro serviço podem entrar no caminho de atendimento da requisição.",
+      "explanation": "Caches e reutilização podem reduzir acessos, mas exigem considerar atualização e consistência das informações.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "latencia",
+        "sessoes",
+        "consistencia"
+      ],
+      "sourceCardIds": ["estado-compartilhado-4"]
+    },
+    {
+      "id": "estado-compartilhado-5",
+      "question": "O que pode atrasar a revogação de uma sessão mesmo usando armazenamento central?",
+      "answer": "Caches, réplicas e requisições em andamento que ainda usem o estado anterior.",
+      "explanation": "Centralizar oferece um ponto lógico de invalidação; o efeito depende de como e quando as instâncias consultam esse estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "revogacao",
+        "estado-compartilhado",
+        "consistencia"
+      ],
+      "sourceCardIds": ["estado-compartilhado-5"]
+    },
+    {
+      "id": "estado-compartilhado-6",
+      "question": "Adicionar servidores stateless resolve um gargalo no armazenamento de sessões?",
+      "answer": "Não necessariamente. O serviço compartilhado pode continuar limitando o atendimento de todas as instâncias.",
+      "explanation": "O escalonamento da camada de processamento precisa ser acompanhado da capacidade e dos requisitos da camada de estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "gargalos",
+        "escalabilidade-horizontal",
+        "estado-compartilhado"
+      ],
+      "sourceCardIds": ["estado-compartilhado-6"]
+    },
+    {
+      "id": "estado-compartilhado-7",
+      "question": "Armazenar sessões no Redis torna sua recuperação automaticamente garantida?",
+      "answer": "Não. Persistência, replicação, disponibilidade e recuperação dependem da configuração e da operação escolhidas.",
+      "explanation": "O estado saiu da memória exclusiva da aplicação, mas agora precisa ser protegido no serviço que o armazena.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "redis",
+        "persistencia",
+        "recuperacao-de-falhas"
+      ],
+      "sourceCardIds": ["estado-compartilhado-7"]
+    },
+    {
+      "id": "sessao-escolha-revogacao",
+      "question": "Você precisa revogar sessões por um ponto central. Que estratégia favorece isso em relação a validar só JWT localmente?",
+      "answer": "Uma sessão em armazenamento compartilhado consultado pelas instâncias.",
+      "explanation": "Esse ponto lógico simplifica invalidar a sessão, mas caches, réplicas, disponibilidade e latência continuam relevantes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "trade-offs",
+        "stateful",
+        "stateless",
+        "sessoes"
+      ],
+      "sourceCardIds": ["estado-compartilhado-8"]
+    },
+    {
+      "id": "sessao-escolha-validacao",
+      "question": "Você quer validar identidade em várias instâncias sem consultar obrigatoriamente uma sessão externa a cada pedido. Que abordagem considerar?",
+      "answer": "Um token verificável no cliente, como JWT, com validação adequada.",
+      "explanation": "Isso distribui validação, mas desloca custo para transmissão e criptografia e torna atualização de permissões e revogação imediata mais complexas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "trade-offs",
+        "stateful",
+        "stateless",
+        "sessoes"
+      ],
+      "sourceCardIds": ["estado-compartilhado-8"]
+    },
+    {
+      "id": "sessao-escolha-latencia",
+      "question": "Em uma sessão interativa com atualizações muito frequentes, por que considerar estado local?",
+      "answer": "Para evitar consultas externas em cada atualização e reduzir latência.",
+      "explanation": "O ganho em memória precisa compensar custos de escala, replicação, transferência e recuperação após falhas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "trade-offs",
+        "stateful",
+        "stateless",
+        "sessoes"
+      ],
+      "sourceCardIds": ["estado-compartilhado-8", "stateless-stateful-9"]
+    }
+  ]
+}

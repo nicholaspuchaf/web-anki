@@ -1,0 +1,178 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "stateless-stateful-1",
+      "question": "O que torna uma instância de aplicação stateless quanto à sessão?",
+      "answer": "Não depender de estado de sessão guardado exclusivamente nela entre requisições.",
+      "explanation": "Cada pedido traz o contexto necessário ou um identificador para recuperá-lo externamente. Não é preciso transmitir todos os dados da sessão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "sessoes",
+        "estado-compartilhado"
+      ],
+      "sourceCardIds": ["stateless-stateful-1", "stateless-stateful-8"]
+    },
+    {
+      "id": "stateless-stateful-2",
+      "question": "Se as instâncias são stateless, onde ainda pode existir o estado da aplicação?",
+      "answer": "No cliente ou em armazenamento externo, como banco de dados ou serviço compartilhado de sessões.",
+      "explanation": "Stateless descreve a instância de processamento, não a ausência de estado no sistema. Redis pode guardar a sessão enquanto diferentes instâncias a recuperam.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "estado-de-negocio",
+        "persistencia",
+        "redis",
+        "estado-compartilhado"
+      ],
+      "sourceCardIds": ["stateless-stateful-2", "estado-compartilhado-2"]
+    },
+    {
+      "id": "stateless-stateful-3",
+      "question": "Por que GET /produtos/123 pode ser atendido por instâncias diferentes de uma API stateless?",
+      "answer": "Porque a requisição identifica o recurso, e cada instância apta pode acessar os dados e o contexto necessários.",
+      "explanation": "A intercambialidade depende de acesso aos mesmos serviços e regras; o exemplo não implica acesso público ou ausência de autenticação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "apis",
+        "balanceamento-de-carga"
+      ],
+      "sourceCardIds": ["stateless-stateful-3"]
+    },
+    {
+      "id": "stateless-stateful-4",
+      "question": "Por que a próxima requisição de uma sessão stateful pode depender da mesma instância?",
+      "answer": "Porque ela pode conter o contexto necessário das interações anteriores.",
+      "explanation": "Se esse contexto só existe na memória de A, encaminhar para B não o transfere automaticamente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateful",
+        "sessoes",
+        "afinidade-de-sessao"
+      ],
+      "sourceCardIds": ["stateless-stateful-4"]
+    },
+    {
+      "id": "stateless-stateful-5",
+      "question": "Que risco aparece quando uma sessão existe apenas na memória de uma instância?",
+      "answer": "A falha ou substituição da instância pode perder o contexto necessário para continuar a sessão.",
+      "explanation": "Persistência, replicação e mecanismos de recuperação podem reduzir esse risco; a memória local sozinha não oferece essa proteção.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateful",
+        "estado-volatil",
+        "recuperacao-de-falhas"
+      ],
+      "sourceCardIds": ["stateless-stateful-5"]
+    },
+    {
+      "id": "stateless-stateful-6",
+      "question": "Como uma aplicação bancária pode manter transações duráveis com servidores de aplicação stateless?",
+      "answer": "Mantendo o estado transacional no banco de dados, fora das instâncias de aplicação.",
+      "explanation": "Dados bancários persistentes não exigem que cada sessão fique presa à memória de um servidor de processamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateless",
+        "transacoes",
+        "estado-de-negocio"
+      ],
+      "sourceCardIds": ["stateless-stateful-6"]
+    },
+    {
+      "id": "stateless-stateful-7",
+      "question": "Como diferenciar estado de sessão de estado persistente de negócio?",
+      "answer": "Estado de sessão representa o contexto da interação de um cliente; estado de negócio representa os dados e regras duráveis do domínio.",
+      "explanation": "Uma instância pode ser stateless quanto à sessão e ainda consultar ou alterar produtos, contas e pedidos persistentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "sessoes",
+        "estado-de-negocio",
+        "persistencia"
+      ],
+      "sourceCardIds": ["stateless-stateful-7"]
+    },
+    {
+      "id": "stateless-stateful-9",
+      "question": "Por que estado local em memória pode ser útil num jogo em tempo real ou processamento de fluxos?",
+      "answer": "Porque permite atualizar estado frequentemente com baixa latência.",
+      "explanation": "Posições de jogadores e agregações de eventos podem se beneficiar disso. Remover o estado pode introduzir consultas e coordenação externas mais caras.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateful",
+        "baixa-latencia",
+        "stream-processing"
+      ],
+      "sourceCardIds": ["stateless-stateful-9"]
+    },
+    {
+      "id": "stateless-stateful-10",
+      "question": "Como sistemas stateful podem escalar horizontalmente?",
+      "answer": "Distribuindo o estado com particionamento, replicação e transferência coordenada.",
+      "explanation": "A dificuldade adicional é distribuir e recuperar corretamente o estado, não uma impossibilidade de adicionar servidores.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "stateful",
+        "particionamento",
+        "replicacao"
+      ],
+      "sourceCardIds": ["stateless-stateful-10"]
+    }
+  ]
+}

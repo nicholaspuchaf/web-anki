@@ -31,14 +31,22 @@ test('configurações ativam baralhos nos dois formatos sem apagar revisões, fa
     exact: true,
   });
   const mcToggle = page.getByRole('checkbox', {
-    name: 'Ativar Sistemas Distribuidos - MC714',
+    name: 'Ativar Sistemas Distribuidos - MC714 (antigo)',
     exact: true,
   });
   const generalToggle = page.getByRole('checkbox', {
     name: 'Ativar Aprendizado geral',
     exact: true,
   });
-  await expect(page.getByRole('checkbox')).toHaveCount(5);
+  const revisedToggle = page.getByRole('checkbox', {
+    name: 'Ativar Sistemas Distribuidos - MC714',
+    exact: true,
+  });
+  await expect(page.getByRole('checkbox')).toHaveCount(6);
+  await expect(revisedToggle.locator('..')).toContainText(
+    '218 flashcards · 0 carrosséis',
+  );
+  await revisedToggle.uncheck();
   await expect(patternToggle.locator('..')).toContainText(
     '176 flashcards · 22 carrosséis',
   );

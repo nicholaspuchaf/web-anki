@@ -116,7 +116,9 @@ test('Refazer confirma marcação remota, permite retry e é idempotente após r
   expect([...records.values()]).toEqual([initial]);
   await page.getByRole('button', { name: /Encerrar revisão/ }).click();
   await page
-    .getByRole('button', { name: /Sistemas Distribuidos.*Abrir baralho/ })
+    .getByRole('button', {
+      name: /Sistemas Distribuidos.*\(antigo\).*Abrir baralho/,
+    })
     .click();
   await page.getByRole('button', { name: /Revisar este baralho/ }).click();
   await expect(

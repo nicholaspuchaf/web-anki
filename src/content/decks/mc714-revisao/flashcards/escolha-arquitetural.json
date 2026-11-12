@@ -1,0 +1,145 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "escolha-arquitetural-1",
+      "question": "Qual trade-off aparece ao transferir mais processamento para o servidor?",
+      "answer": "Menor exigência computacional no cliente, com maior dependência remota e possível aumento de custo no provedor.",
+      "explanation": "A intensidade depende do tráfego, da interatividade, da capacidade compartilhada e da aplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-1"]
+    },
+    {
+      "id": "escolha-arquitetural-2",
+      "question": "Por que mais sessões simultâneas aumentam a infraestrutura necessária ao cloud gaming?",
+      "answer": "Porque cada sessão consome capacidade de execução, renderização, codificação e transmissão.",
+      "explanation": "CPU, memória, GPU e rede precisam acompanhar a concorrência. Não é obrigatório reservar uma GPU física exclusiva por usuário.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-2"]
+    },
+    {
+      "id": "escolha-arquitetural-3",
+      "question": "Quais responsabilidades normalmente permanecem no backend de uma aplicação web?",
+      "answer": "APIs, regras de negócio, armazenamento, autenticação e acesso a dados.",
+      "explanation": "Renderização local não significa ausência de processamento ou gargalos no servidor.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-3"]
+    },
+    {
+      "id": "escolha-arquitetural-4",
+      "question": "De que depende qual modelo consome menos bateria: cloud gaming ou aplicação web?",
+      "answer": "Da tarefa, do hardware, da rede e dos custos de processamento e vídeo.",
+      "explanation": "Decodificação em hardware pode ajudar o cliente remoto; JavaScript e renderização podem pesar na web. Compare qualidade e duração equivalentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-4"]
+    },
+    {
+      "id": "escolha-arquitetural-5",
+      "question": "Que tarefas ainda consomem recursos no cliente de cloud gaming?",
+      "answer": "Capturar entradas, receber dados, decodificar vídeo e exibir quadros.",
+      "explanation": "A renderização 3D remota reduz uma carga importante, mas não elimina CPU, rede, tela ou energia locais.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-5"]
+    },
+    {
+      "id": "escolha-arquitetural-6",
+      "question": "O que significa heterogeneidade de clientes para essa decisão arquitetural?",
+      "answer": "Diferenças de capacidade computacional, memória, hardware e condições de rede entre usuários.",
+      "explanation": "Uma solução adequada a um desktop com fibra pode falhar em um celular antigo com rede móvel instável.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-6"]
+    },
+    {
+      "id": "escolha-arquitetural-7",
+      "question": "Quais dois eixos devem ser avaliados primeiro ao escolher execução local ou remota?",
+      "answer": "Capacidade do cliente e qualidade da conexão de rede.",
+      "explanation": "Também entram compatibilidade, esforço de adaptação, energia, custos e metas de qualidade.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-7"]
+    },
+    {
+      "id": "escolha-arquitetural-8",
+      "question": "Como reduzir o custo inicial de uma interface web num dispositivo com poucos recursos?",
+      "answer": "Carregando apenas os recursos e funcionalidades necessários naquele momento.",
+      "explanation": "Carregamento sob demanda, cache, menos requisições e offline planejado tratam outras restrições. Layout responsivo adapta a apresentação, mas não resolve sozinho excesso de CPU ou memória.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-8"]
+    },
+    {
+      "id": "escolha-arquitetural-9",
+      "question": "Um celular tem pouca capacidade gráfica e uma rede instável. Por que cloud gaming pode continuar inadequado?",
+      "answer": "Porque alivia a renderização local, mas depende da rede para refletir as ações na tela.",
+      "explanation": "Teste latência, jitter e perda; reduzir bitrate pode ajudar, mas não elimina propagação. Uma alternativa local também precisa caber na memória e CPU disponíveis.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-9"]
+    },
+    {
+      "id": "escolha-arquitetural-10",
+      "question": "Como justificar uma escolha arquitetural numa resposta de prova?",
+      "answer": "Ligue a restrição do cenário à divisão de trabalho e às consequências de latência, tráfego e custo.",
+      "explanation": "Identifique onde se executa e renderiza, o que cruza a rede e qual componente domina a interação. Conclua com condições, não com um vencedor universal.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "escolha-arquitetural"
+      ],
+      "sourceCardIds": ["escolha-arquitetural-10"]
+    }
+  ]
+}

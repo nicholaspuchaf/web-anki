@@ -1,0 +1,187 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "metricas-qoe-1",
+      "question": "Por que medir somente throughput não garante boa experiência?",
+      "answer": "Porque latência, jitter, perdas e atrasos de processamento podem dominar a interação.",
+      "explanation": "Vazão suficiente é uma condição útil, mas não descreve todo o caminho da tarefa.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-1"]
+    },
+    {
+      "id": "metricas-qoe-3",
+      "question": "O que é jitter na entrega de pacotes?",
+      "answer": "A variação do atraso de entrega ao longo do tempo.",
+      "explanation": "Uma média de 30 ms com picos pode ser pior que 40 ms estáveis. Buffers podem suavizar a entrega, acrescentando latência.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-3", "metricas-qoe-4"]
+    },
+    {
+      "id": "metricas-qoe-5",
+      "question": "Por que a perda de pacotes pode aumentar o tempo de uma requisição confiável?",
+      "answer": "Porque pode exigir retransmissões antes de completar a entrega.",
+      "explanation": "Em vídeo remoto, também pode haver degradação visual ou congelamentos. O efeito depende do transporte e da recuperação usados.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-5"]
+    },
+    {
+      "id": "metricas-qoe-6",
+      "question": "Por que FPS médio não basta para avaliar fluidez?",
+      "answer": "Porque não revela a regularidade dos intervalos entre quadros nem pausas.",
+      "explanation": "Observe frame times e travamentos; duas sessões de mesma média podem ter ritmos diferentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-6"]
+    },
+    {
+      "id": "metricas-qoe-7",
+      "question": "Qual é o intervalo médio entre quadros a 60 FPS?",
+      "answer": "Aproximadamente 16,7 ms.",
+      "explanation": "1000 ms ÷ 60. Esse orçamento médio não garante que todo quadro chegue no prazo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-7"]
+    },
+    {
+      "id": "metricas-qoe-8",
+      "question": "O que o INP mede na experiência de uma página web?",
+      "answer": "A responsividade das interações qualificadas até a próxima pintura.",
+      "explanation": "Inclui atraso de entrada, processamento e apresentação. Não mede necessariamente a confirmação de uma gravação no backend.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-8"]
+    },
+    {
+      "id": "metricas-qoe-9",
+      "question": "Por que medir carregamento inicial separadamente da responsividade durante o uso?",
+      "answer": "Porque baixar e inicializar recursos pode ser lento mesmo quando as interações posteriores são rápidas.",
+      "explanation": "Transferência, inicialização de código e capacidade do dispositivo afetam a primeira tarefa útil.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-9"]
+    },
+    {
+      "id": "metricas-qoe-10",
+      "question": "Por que resolução alta não basta para avaliar a qualidade visual de vídeo remoto?",
+      "answer": "Porque artefatos de compressão e irregularidade dos quadros também podem prejudicar a leitura e a fluidez.",
+      "explanation": "Observe nitidez e estabilidade além dos pixels. Na web, deslocamentos inesperados do layout também prejudicam a tarefa.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-10"]
+    },
+    {
+      "id": "metricas-qoe-11",
+      "question": "Qual é a diferença entre medir watts e joules por tarefa?",
+      "answer": "Watts medem potência; joules medem energia consumida ao longo da tarefa.",
+      "explanation": "Energia = potência média × tempo. Compare duração, qualidade e condições semelhantes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-11"]
+    },
+    {
+      "id": "metricas-qoe-12",
+      "question": "Que métrica de experiência falta se uma avaliação ignora desconexões e retomadas?",
+      "answer": "Disponibilidade e continuidade da sessão/tarefa.",
+      "explanation": "Uma experiência boa enquanto a rede funciona pode esconder perda de trabalho ou retomada ruim.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": ["metricas-qoe-12"]
+    },
+    {
+      "id": "metricas-percentis",
+      "question": "Por que usar percentis de latência além da média num serviço interativo?",
+      "answer": "Para revelar atrasos ruins que a média pode esconder para parte das interações.",
+      "explanation": "Compare congestionamento e classes de dispositivos; uma média boa pode conviver com picos que prejudicam alguns usuários.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": []
+    },
+    {
+      "id": "metricas-painel-jogo",
+      "question": "Qual métrica deve liderar a avaliação da resposta a comandos num jogo em nuvem competitivo?",
+      "answer": "Input-to-photon: da ação até seu resultado na tela.",
+      "explanation": "Complete com jitter, perdas, frame times e qualidade visual; inclua banda suficiente e energia quando forem restrições.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": []
+    },
+    {
+      "id": "metricas-painel-editor",
+      "question": "Por que avaliar separadamente resposta visual e confirmação de salvamento num editor web?",
+      "answer": "Porque a interface pode reagir localmente antes de o servidor confirmar os dados.",
+      "explanation": "INP e carregamento avaliam partes da experiência; conclusão remota e continuidade da tarefa exigem medidas próprias.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "metricas-qoe"
+      ],
+      "sourceCardIds": []
+    }
+  ]
+}

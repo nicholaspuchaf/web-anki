@@ -1,0 +1,173 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "interfaces-remotas-1",
+      "question": "O que a aplicação envia pela rede ao pedir um desenho no modelo X?",
+      "answer": "Comandos ou requisições gráficas para o servidor X interpretar.",
+      "explanation": "Eventos de entrada voltam para a aplicação. Comandos simples podem economizar banda sem exigir imagens completas da tela.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-1"]
+    },
+    {
+      "id": "interfaces-remotas-2",
+      "question": "Onde acontece a renderização no modelo VNC?",
+      "answer": "Principalmente no computador remoto.",
+      "explanation": "O cliente recebe o resultado visual, exibe atualizações e envia entradas ao remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-2"]
+    },
+    {
+      "id": "interfaces-remotas-3",
+      "question": "Como o VNC evita reenviar toda a tela a cada pequena mudança?",
+      "answer": "Transmitindo atualizações das regiões modificadas do framebuffer.",
+      "explanation": "O protocolo RFB admite diferentes codificações; VNC não implica vídeo contínuo nem quadros completos em toda atualização.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-3"]
+    },
+    {
+      "id": "interfaces-remotas-4",
+      "question": "Qual vantagem do desktop remoto para aplicações legadas?",
+      "answer": "Permitir usar a aplicação e seu ambiente remoto sem reescrever a interface para web.",
+      "explanation": "Isso troca o esforço de adaptação por dependência de apresentação e interação remotas.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-4"]
+    },
+    {
+      "id": "interfaces-remotas-5",
+      "question": "Por que uma interface HTML/JavaScript pode abrir um menu sem esperar a rede?",
+      "answer": "Porque o código e os recursos necessários podem estar no navegador.",
+      "explanation": "O backend só participa se a interação realmente depender de dados ou processamento remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-5"]
+    },
+    {
+      "id": "interfaces-remotas-6",
+      "question": "O que significa transparência de acesso em sistemas distribuídos?",
+      "answer": "Ocultar diferenças de acesso ou representação entre recursos locais e remotos por uma interface uniforme.",
+      "explanation": "Ela não garante que desempenho, falhas ou todos os detalhes de localização sejam indistinguíveis.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-6"]
+    },
+    {
+      "id": "interfaces-remotas-7",
+      "question": "Por que adotar uma interface web não permite executar automaticamente qualquer GUI legada?",
+      "answer": "Porque a interface precisa ser compatível com o navegador ou ser adaptada para ele.",
+      "explanation": "Uma interface uniforme pode esconder a localização do backend; isso não cria compatibilidade universal com aplicações gráficas existentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-7"]
+    },
+    {
+      "id": "interfaces-remotas-8",
+      "question": "Por que “thin client” não identifica um único protocolo de exibição remota?",
+      "answer": "Porque descreve a divisão do trabalho, que pode combinar imagens, vídeo e comandos gráficos.",
+      "explanation": "VNC é um caso baseado em framebuffer. Compressão e codificação deslocam custos entre CPU, banda e atraso.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-8"]
+    },
+    {
+      "id": "interfaces-remotas-9",
+      "question": "Qual abordagem combina bem com aplicações X tradicionais em uma LAN de baixa latência?",
+      "answer": "O próprio X Window System pode ser adequado.",
+      "explanation": "É preciso considerar compatibilidade, padrão de dependências e volume de dados, não apenas o rótulo LAN.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-9"]
+    },
+    {
+      "id": "interfaces-remotas-10",
+      "question": "Um sistema orientado a dados deve funcionar pela internet e abrir menus sem esperar a rede. Que abordagem favorece isso?",
+      "answer": "Uma interface web que execute essas interações no navegador.",
+      "explanation": "O servidor fornece dados e serviços. A escolha ainda depende da capacidade do cliente, da compatibilidade e do custo de adaptação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-10"]
+    },
+    {
+      "id": "interfaces-remotas-vnc-dados",
+      "question": "O que cruza a rede do servidor para o cliente no VNC?",
+      "answer": "Atualizações visuais do framebuffer renderizado remotamente.",
+      "explanation": "Teclado e mouse seguem no sentido contrário. Isso difere de enviar comandos gráficos para renderização local ou dados para uma interface web.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-1", "interfaces-remotas-2"]
+    },
+    {
+      "id": "interfaces-remotas-web-dados",
+      "question": "Numa interface web orientada a dados, o que substitui a transmissão contínua da imagem da tela?",
+      "answer": "Código e recursos da interface, com dados e requisições sob demanda.",
+      "explanation": "O navegador produz a apresentação. Vídeos ou outras cargas podem aumentar o tráfego; o modelo não garante baixo consumo em toda aplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "interfaces-remotas"
+      ],
+      "sourceCardIds": ["interfaces-remotas-1", "aplicacoes-web-5"]
+    }
+  ]
+}

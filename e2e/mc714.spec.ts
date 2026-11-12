@@ -13,7 +13,7 @@ test('MC714 instala conteúdo local e aplica tags obrigatórias com uma avaliaç
   });
   await page.goto('/');
   const deck = page.getByRole('button', {
-    name: /Sistemas Distribuidos - MC714.*Abrir baralho/,
+    name: /Sistemas Distribuidos - MC714 \(antigo\).*Abrir baralho/,
   });
   await expect(deck).toContainText('228 cartões');
   await deck.click();

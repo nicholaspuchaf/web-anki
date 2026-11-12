@@ -16,6 +16,7 @@ test('pastas de baralho compõem múltiplos arquivos e mantêm IDs e conteúdo',
     'local-learning',
     'builtin-mc714',
     'builtin-auvp-renda-fixa',
+    'builtin-sd-mc714',
   ]);
   for (const [index, slug] of ['aws', 'design-patterns'].entries()) {
     const manifest = bundledDeckDefinitions[index];

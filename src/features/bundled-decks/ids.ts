@@ -1,10 +1,12 @@
 export const AUVP_DECK_ID = 'builtin-auvp-renda-fixa';
 export const MC714_DECK_ID = 'builtin-mc714';
+export const MC714_REVISAO_DECK_ID = 'builtin-sd-mc714';
 export const AWS_DECK_ID = 'builtin-aws-services';
 export const PATTERNS_DECK_ID = 'builtin-patterns-design';
 const prefixes: Record<string, string> = {
   [AUVP_DECK_ID]: 'builtin-auvp-',
   [MC714_DECK_ID]: 'builtin-mc714-',
+  [MC714_REVISAO_DECK_ID]: 'builtin-sd-mc714-',
   [AWS_DECK_ID]: 'builtin-aws-',
   [PATTERNS_DECK_ID]: 'builtin-patterns-',
 };

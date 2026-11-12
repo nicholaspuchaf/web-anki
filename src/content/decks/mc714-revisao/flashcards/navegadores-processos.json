@@ -1,0 +1,193 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "navegadores-processos-1",
+      "question": "Como múltiplos processos ajudam a isolar falhas no navegador?",
+      "answer": "Uma falha pode ficar restrita ao processo afetado, permitindo que outros processos continuem funcionando.",
+      "explanation": "O limite da falha acompanha os processos envolvidos; não é uma garantia de que toda outra aba permanecerá intacta.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "navegadores",
+        "processos",
+        "isolamento-de-falhas"
+      ],
+      "sourceCardIds": ["navegadores-processos-1"]
+    },
+    {
+      "id": "navegadores-processos-2",
+      "question": "Por que não é seguro deduzir a quantidade de processos do navegador contando abas?",
+      "answer": "Porque uma aba pode envolver vários processos, e alguns processos podem ser compartilhados.",
+      "explanation": "A distribuição depende do navegador e da política de isolamento; o princípio é separar responsabilidades e sites, não garantir um processo por aba.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "navegadores",
+        "processos",
+        "isolamento"
+      ],
+      "sourceCardIds": ["navegadores-processos-2"]
+    },
+    {
+      "id": "navegadores-processos-3",
+      "question": "Que barreira dificulta uma página acessar a memória privada de outro processo do navegador?",
+      "answer": "O isolamento dos espaços de memória pelo sistema operacional.",
+      "explanation": "Compartilhamento controlado e IPC são possíveis, mas não acesso livre à memória privada. Essa barreira reduz riscos sem eliminar vulnerabilidades.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "seguranca",
+        "isolamento",
+        "memoria",
+        "ipc"
+      ],
+      "sourceCardIds": ["navegadores-processos-3", "navegadores-processos-8"]
+    },
+    {
+      "id": "navegadores-processos-4",
+      "question": "Por que a Same-Origin Policy continua necessária em um navegador multiprocesso?",
+      "answer": "Porque a separação de processos não substitui as regras que controlam acesso entre origens.",
+      "explanation": "A SOP protege fronteiras da plataforma web; processos e sandbox são outras camadas de proteção.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "seguranca",
+        "same-origin-policy",
+        "defesa-em-profundidade"
+      ],
+      "sourceCardIds": ["navegadores-processos-4"]
+    },
+    {
+      "id": "navegadores-processos-5",
+      "question": "Qual é a função da sandbox de um processo de renderização?",
+      "answer": "Restringir os recursos e operações aos quais o processo tem acesso.",
+      "explanation": "A ideia é reduzir o impacto de uma exploração; não permitir que conteúdo web tenha acesso irrestrito ao sistema.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "seguranca",
+        "sandbox",
+        "processos"
+      ],
+      "sourceCardIds": ["navegadores-processos-5"]
+    },
+    {
+      "id": "navegadores-processos-6",
+      "question": "O que limita o ganho de paralelismo de uma arquitetura multiprocesso?",
+      "answer": "O custo de memória, comunicação, coordenação e o perfil da carga.",
+      "explanation": "Processos podem ocupar núcleos diferentes; mais processos não garantem que a aplicação termine mais rápido.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "paralelismo",
+        "multicore",
+        "desempenho"
+      ],
+      "sourceCardIds": ["navegadores-processos-6"]
+    },
+    {
+      "id": "navegadores-processos-7",
+      "question": "Por que uma arquitetura multiprocesso tende a consumir mais RAM?",
+      "answer": "Há estruturas e estados próprios de cada processo, como pilhas, gerenciamento e dados de execução.",
+      "explanation": "Algumas regiões podem ser compartilhadas; não é correto supor que cada processo duplica fisicamente toda a memória do navegador.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "memoria",
+        "processos",
+        "overhead"
+      ],
+      "sourceCardIds": ["navegadores-processos-7"]
+    },
+    {
+      "id": "navegadores-processos-9",
+      "question": "Qual é o custo de separar rede e renderização em processos que precisam conversar?",
+      "answer": "A comunicação IPC, com mensagens, possível serialização e sincronização.",
+      "explanation": "Trocas de contexto também podem contribuir. O isolamento tem custos que precisam ser comparados aos benefícios.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "ipc",
+        "serializacao",
+        "overhead"
+      ],
+      "sourceCardIds": ["navegadores-processos-9"]
+    },
+    {
+      "id": "navegadores-processos-10",
+      "question": "Qual é a distinção principal entre processos e threads no modelo do navegador?",
+      "answer": "Processos oferecem uma fronteira de isolamento; threads organizam execução concorrente dentro de um processo.",
+      "explanation": "Threads de um processo compartilham recursos e memória desse processo, exigindo coordenação quando acessam estado compartilhado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "processos",
+        "threads",
+        "concorrencia"
+      ],
+      "sourceCardIds": ["navegadores-processos-10"]
+    },
+    {
+      "id": "navegadores-processos-11",
+      "question": "Quais atividades normalmente disputam tempo na thread principal de uma página?",
+      "answer": "JavaScript, processamento de eventos e grande parte do trabalho de estilo/layout e produção da interface.",
+      "explanation": "Uma tarefa longa pode atrasar entrada e atualização visual; nem todo o pipeline gráfico se limita a essa thread.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "main-thread",
+        "renderizacao",
+        "responsividade"
+      ],
+      "sourceCardIds": ["navegadores-processos-11"]
+    },
+    {
+      "id": "navegadores-processos-12",
+      "question": "Como diferem composição e rasterização no pipeline gráfico?",
+      "answer": "Rasterização converte conteúdo gráfico em pixels; composição combina camadas para formar o quadro apresentado.",
+      "explanation": "Algumas animações de transformação/opacidade podem usar composição sem novo layout. Atualizações que dependem de JavaScript ou de novo layout ainda podem depender da main thread.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "navegadores-processos",
+        "compositor",
+        "rasterizacao",
+        "renderizacao"
+      ],
+      "sourceCardIds": ["navegadores-processos-12"]
+    }
+  ]
+}

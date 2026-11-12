@@ -1,0 +1,195 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "tokens-jwt-1",
+      "question": "Qual é a diferença entre um cookie e um JWT?",
+      "answer": "Cookie é um mecanismo HTTP de armazenamento/transmissão; JWT é um formato de token.",
+      "explanation": "Um cookie pode transportar um JWT ou apenas um ID opaco de sessão. O formato do dado não determina seu meio de transporte.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "cookies",
+        "jwt",
+        "sessoes"
+      ],
+      "sourceCardIds": ["tokens-jwt-1"]
+    },
+    {
+      "id": "tokens-jwt-2",
+      "question": "Como um JWT pode ajudar uma instância a reconhecer uma identidade sem ter atendido ao login?",
+      "answer": "Ele pode transportar claims verificáveis sobre o cliente, que a nova instância valida conforme sua política de confiança.",
+      "explanation": "Isso permite compartilhar a capacidade de validação sem depender do contexto de login armazenado exclusivamente na instância anterior.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "autenticacao",
+        "stateless"
+      ],
+      "sourceCardIds": ["tokens-jwt-2"]
+    },
+    {
+      "id": "tokens-jwt-3",
+      "question": "Por que ler o payload de um JWT não autentica a requisição?",
+      "answer": "Porque decodificar não verifica a confiabilidade nem a validade do token.",
+      "explanation": "Valide a proteção criptográfica e os claims aplicáveis, como emissor, destinatário e validade, conforme a política do serviço.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "validacao-de-tokens",
+        "autenticacao"
+      ],
+      "sourceCardIds": ["tokens-jwt-3"]
+    },
+    {
+      "id": "tokens-jwt-4",
+      "question": "Que proteção uma assinatura válida de JWT oferece ao conteúdo?",
+      "answer": "Autenticidade e integridade, não necessariamente confidencialidade.",
+      "explanation": "Um token apenas assinado pode ser lido por quem o possui; não o trate como criptografado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "assinatura",
+        "confidencialidade"
+      ],
+      "sourceCardIds": ["tokens-jwt-4"]
+    },
+    {
+      "id": "tokens-jwt-5",
+      "question": "Por que a assinatura de um JWT não basta para revogá-lo imediatamente?",
+      "answer": "Porque ela pode continuar válida mesmo após a sessão ou permissão ter sido revogada.",
+      "explanation": "Revogação pode exigir listas, versões ou consultas externas. A assinatura não informa automaticamente mudanças posteriores.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "revogacao",
+        "trade-offs"
+      ],
+      "sourceCardIds": ["tokens-jwt-5"]
+    },
+    {
+      "id": "tokens-jwt-6",
+      "question": "Que risco existe quando um token bearer válido é roubado?",
+      "answer": "Quem o possui pode tentar apresentá-lo para obter acesso enquanto ele for aceito pelo serviço.",
+      "explanation": "O impacto depende do escopo, validade e mecanismos de revogação/proteção; não se deve considerar expiração uma revogação imediata.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "tokens",
+        "bearer",
+        "seguranca"
+      ],
+      "sourceCardIds": ["tokens-jwt-6"]
+    },
+    {
+      "id": "tokens-jwt-7",
+      "question": "Por que permissões presentes em um JWT podem ficar desatualizadas?",
+      "answer": "Porque representam informações emitidas em um momento anterior, que podem mudar antes de o token deixar de ser aceito.",
+      "explanation": "O serviço precisa decidir como tratar validade, atualização de permissões e revogação, em vez de presumir que uma claim assinada é sempre atual.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "autorizacao",
+        "dados-desatualizados"
+      ],
+      "sourceCardIds": ["tokens-jwt-7"]
+    },
+    {
+      "id": "tokens-jwt-8",
+      "question": "Qual é o custo de enviar tokens muito grandes em cada requisição?",
+      "answer": "Aumentar o volume transmitido e o custo associado ao processamento/transporte dessas informações.",
+      "explanation": "Stateless pode trocar consultas de sessão por transmissão e validação de tokens; não é ausência de custo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "banda",
+        "overhead"
+      ],
+      "sourceCardIds": ["tokens-jwt-8"]
+    },
+    {
+      "id": "tokens-jwt-9",
+      "question": "Usar JWT elimina a necessidade de banco de dados para a aplicação?",
+      "answer": "Não. Dados de negócio continuam precisando de armazenamento e processamento apropriados.",
+      "explanation": "O que pode ser evitado é uma consulta obrigatória ao armazenamento de sessão para cada validação, não toda dependência externa.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "estado-de-negocio",
+        "persistencia"
+      ],
+      "sourceCardIds": ["tokens-jwt-9"]
+    },
+    {
+      "id": "tokens-jwt-10",
+      "question": "Como instâncias diferentes concordam sobre quais JWTs aceitar?",
+      "answer": "Compartilhando configuração de confiança e políticas de validação compatíveis.",
+      "explanation": "Receber o token não basta: chaves, algoritmos aceitos, emissor, destinatário e condições de validade precisam ser coerentes.",
+      "tags": [
+        "sistemas-distribuidos",
+        "sistemas distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "arquiteturas",
+        "questao-5",
+        "jwt",
+        "balanceamento-de-carga",
+        "validacao-de-tokens"
+      ],
+      "sourceCardIds": ["tokens-jwt-10"]
+    }
+  ]
+}

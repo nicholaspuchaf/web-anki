@@ -1,0 +1,117 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "aplicacoes-web-1",
+      "question": "Qual é a diferença de renderização entre cloud gaming e uma interface web típica?",
+      "answer": "Cloud gaming renderiza remotamente; a interface web típica é renderizada no navegador.",
+      "explanation": "A web pode executar parte da lógica local e usar o backend para dados e regras.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-1"]
+    },
+    {
+      "id": "aplicacoes-web-2",
+      "question": "Por que digitar em um editor web pode responder sem RTT?",
+      "answer": "Porque código, estado e renderização necessários à ação podem estar locais.",
+      "explanation": "Isso não garante que o texto já tenha sido salvo no servidor.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-2"]
+    },
+    {
+      "id": "aplicacoes-web-3",
+      "question": "De que depende o tempo de resposta de uma interação web que usa apenas código e dados locais?",
+      "answer": "Do processamento e da renderização locais.",
+      "explanation": "T ≈ processamento local + renderização local. A aproximação exclui uma dependência remota no caminho dessa ação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-3"]
+    },
+    {
+      "id": "aplicacoes-web-4",
+      "question": "Uma consulta web precisa de uma ida e volta ao backend. Como estimar seu tempo de resposta?",
+      "answer": "RTT + processamento remoto + renderização local.",
+      "explanation": "É uma aproximação: filas, transferências grandes e outras requisições dependentes podem acrescentar tempo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-4"]
+    },
+    {
+      "id": "aplicacoes-web-5",
+      "question": "Por que uma aplicação web orientada a dados pode gastar menos banda que vídeo remoto contínuo?",
+      "answer": "Porque pode transmitir recursos reutilizáveis e dados sob demanda, renderizando localmente.",
+      "explanation": "Carregamento inicial, conteúdo multimídia e implementação ainda influenciam o volume real.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-5"]
+    },
+    {
+      "id": "aplicacoes-web-6",
+      "question": "Como CDN e cache ajudam a distribuição de aplicações web?",
+      "answer": "Reutilizam e aproximam recursos estáticos, reduzindo transferências repetidas e carga de origem.",
+      "explanation": "Não eliminam automaticamente gargalos em APIs, bancos ou processamento remoto.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-6"]
+    },
+    {
+      "id": "aplicacoes-web-7",
+      "question": "O que precisa ser planejado para uma aplicação web continuar útil offline?",
+      "answer": "Código e dados locais, operações pendentes e retomada da sincronização.",
+      "explanation": "JavaScript não cria funcionamento offline automaticamente. A política de retomada precisa tratar possíveis conflitos e indicar o que ainda não foi confirmado remotamente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-7"]
+    },
+    {
+      "id": "aplicacoes-web-8",
+      "question": "Um editor mostra o texto imediatamente. O que comprova que ele foi salvo no servidor?",
+      "answer": "A confirmação da persistência remota, não apenas a atualização da tela.",
+      "explanation": "Diferencie estado local, sincronização pendente e gravação confirmada. Resposta visual rápida não prova que o backend concluiu a operação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "aplicacoes-web"
+      ],
+      "sourceCardIds": ["aplicacoes-web-8"]
+    }
+  ]
+}

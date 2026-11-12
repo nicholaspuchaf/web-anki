@@ -1,0 +1,189 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "afinidade-gargalos-2",
+      "question": "Por que manter uma conexão no mesmo backend não garante afinidade de sessão entre conexões?",
+      "answer": "Porque uma nova conexão pode ter outra 5-tupla e receber um destino diferente.",
+      "explanation": "Afinidade de sessão precisa reconhecer o usuário entre conexões. Uma mudança de porta de origem já pode alterar o hash de fluxo.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "l4",
+        "sticky-sessions",
+        "cinco-tupla"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-2"]
+    },
+    {
+      "id": "afinidade-gargalos-3",
+      "question": "Como a mudança de Wi-Fi para rede celular pode afetar afinidade por IP?",
+      "answer": "O IP de origem pode mudar e o balanceador pode escolher outro backend.",
+      "explanation": "O novo destino talvez não tenha a sessão local. Afinidade por IP não é uma identificação estável do usuário.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "l4",
+        "sticky-sessions",
+        "mobilidade"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-3"]
+    },
+    {
+      "id": "afinidade-gargalos-4",
+      "question": "Como NAT pode prejudicar afinidade baseada no IP de origem?",
+      "answer": "Muitos usuários podem compartilhar o mesmo IP público e acabar concentrados no mesmo destino.",
+      "explanation": "O balanceador não consegue distinguir esses usuários só pelo IP. Isso pode desequilibrar carga mesmo que a associação por endereço funcione exatamente como configurada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "l4",
+        "nat",
+        "sticky-sessions"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-4"]
+    },
+    {
+      "id": "afinidade-gargalos-5",
+      "question": "Por que afinidade por cookie pode sobreviver a uma mudança de IP?",
+      "answer": "Porque o identificador enviado no cookie pode continuar igual.",
+      "explanation": "O balanceador precisa interpretar essa associação. Isso não autentica automaticamente a requisição nem recupera uma sessão perdida.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "l7",
+        "cookies",
+        "sticky-sessions"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-5"]
+    },
+    {
+      "id": "afinidade-gargalos-8",
+      "question": "Cem servidores atendem 1.000 req/s cada, mas o despachante aceita 20.000 req/s. Qual é o teto do cluster pelo despacho?",
+      "answer": "20.000 req/s, apesar dos 100.000 req/s agregados dos servidores.",
+      "explanation": "Um componente obrigatório limita o conjunto; banco, rede ou desequilíbrio podem reduzir ainda mais a vazão real.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "gargalos",
+        "capacidade"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-8"]
+    },
+    {
+      "id": "afinidade-gargalos-9",
+      "question": "Adicionar servidores de aplicação resolve um despachante saturado?",
+      "answer": "Não, se o mesmo despachante continua obrigatório e com a mesma capacidade.",
+      "explanation": "O recurso limitante precisa ser ampliado, distribuído ou retirado de parte do caminho. Escalar uma etapa que já tem folga não remove o gargalo de outra.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "gargalos",
+        "scale-out"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-9"]
+    },
+    {
+      "id": "afinidade-gargalos-10",
+      "question": "Qual é a diferença entre um gargalo e um ponto único de falha?",
+      "answer": "Gargalo limita capacidade; ponto único de falha pode derrubar o acesso ao sistema ao falhar.",
+      "explanation": "Um balanceador pode ser os dois. Uma solução redundante pode melhorar disponibilidade sem necessariamente aumentar a capacidade ativa, dependendo de sua arquitetura.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "gargalos",
+        "spof"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-10"]
+    },
+    {
+      "id": "afinidade-gargalos-11",
+      "question": "Por que múltiplos balanceadores não garantem disponibilidade por si só?",
+      "answer": "Porque também precisam de distribuição de tráfego, detecção de falhas e caminhos de recuperação sem outra dependência única.",
+      "explanation": "Se todos dependem de um único componente frontal não redundante, esse componente continua sendo SPOF. Conexões e estado de sessão existentes também precisam ser considerados no failover.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "failover",
+        "spof"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-11"]
+    },
+    {
+      "id": "afinidade-gargalos-12",
+      "question": "Por que health checks são necessários mesmo com um algoritmo de distribuição equilibrado?",
+      "answer": "Para evitar encaminhar novos pedidos a destinos que não conseguem atender.",
+      "explanation": "Contar conexões ou alternar servidores não revela sozinho a saúde do serviço. A verificação precisa representar prontidão relevante; um processo vivo pode estar incapaz de responder corretamente.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "load balancer",
+        "balanceamento-de-carga",
+        "questao-6",
+        "sessoes",
+        "escalabilidade",
+        "health-check",
+        "disponibilidade"
+      ],
+      "sourceCardIds": ["afinidade-gargalos-12"]
+    }
+  ]
+}

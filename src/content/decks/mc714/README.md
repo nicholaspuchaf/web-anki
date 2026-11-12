@@ -1,4 +1,8 @@
-# Sistemas Distribuidos - MC714
+# Sistemas Distribuidos - MC714 (antigo)
+
+Este é o acervo original, preservado com seus IDs e progresso. O novo baralho
+[Sistemas Distribuidos - MC714](../mc714-revisao/README.md) contém a revisão
+pedagógica de seu conteúdo e tem progresso independente.
 
 Baralho local baseado nas notas fornecidas pelo usuário, organizado para **P2**.
 São **228 flashcards de recuperação ativa** e **7 carrosséis com 66 páginas**. Os

@@ -1,0 +1,167 @@
+{
+  "reviewedAt": "2026-11-11",
+  "cards": [
+    {
+      "id": "mobilidade-recuperacao-1",
+      "question": "Que problema uma troca de Wi-Fi para rede celular pode causar a uma conexão existente?",
+      "answer": "A mudança de caminho e de endereço pode interromper a conexão usada pela aplicação.",
+      "explanation": "A continuidade depende dos protocolos e mecanismos de mobilidade; não se deve presumir que toda conexão sobreviverá à mudança.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "mobilidade",
+        "tcp",
+        "reconexao"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-1"]
+    },
+    {
+      "id": "mobilidade-recuperacao-2",
+      "question": "Por que usar o mesmo nome lógico não garante manter uma conexão ativa durante a troca de rede?",
+      "answer": "Porque identificar o serviço e preservar o estado da conexão são problemas diferentes.",
+      "explanation": "O nome pode continuar válido enquanto a aplicação precisa resolver o destino e estabelecer uma nova conexão.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "nomes-logicos",
+        "mobilidade",
+        "conexoes"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-2"]
+    },
+    {
+      "id": "mobilidade-recuperacao-3",
+      "question": "Qual é o fluxo básico para retomar uma sessão após mudar de rede?",
+      "answer": "Detectar a interrupção → reconectar/localizar o serviço → recuperar o contexto da sessão.",
+      "explanation": "Retomar o acesso não resolve automaticamente o resultado de uma operação que estava em andamento.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "reconexao",
+        "middleware",
+        "estado-de-sessao"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-3"]
+    },
+    {
+      "id": "mobilidade-recuperacao-5",
+      "question": "Como tokens de sessão independentes da conexão ajudam na mobilidade?",
+      "answer": "Permitem apresentar a identidade/contexto lógico da sessão em uma nova conexão.",
+      "explanation": "A réplica de destino ainda precisa validar o token e acessar o estado necessário; token não transfere automaticamente todo o estado.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "tokens",
+        "estado-de-sessao",
+        "mobilidade"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-5"]
+    },
+    {
+      "id": "mobilidade-recuperacao-6",
+      "question": "Uma transferência bancária sofreu timeout. O que é possível concluir sobre sua execução?",
+      "answer": "Apenas que a resposta não chegou no prazo; o efeito da operação continua incerto.",
+      "explanation": "Ela pode não ter chegado, estar em execução ou ter sido concluída sem a resposta. Timeout também não distingue com certeza servidor morto, servidor lento e rede congestionada.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "timeout",
+        "falhas-parciais",
+        "resultado-incerto",
+        "transparencia-middleware",
+        "proxy",
+        "recuperacao",
+        "consistencia-transparencia",
+        "incerteza"
+      ],
+      "sourceCardIds": [
+        "mobilidade-recuperacao-6",
+        "transparencia-middleware-9",
+        "consistencia-transparencia-14"
+      ]
+    },
+    {
+      "id": "mobilidade-recuperacao-7",
+      "question": "Por que reenviar cegamente uma transferência após um timeout é perigoso?",
+      "answer": "Porque a primeira tentativa pode ter sido aplicada, e uma nova execução pode repetir o débito.",
+      "explanation": "A recuperação deve tratar a identidade da operação e verificar ou deduplicar tentativas, em vez de apenas reenviar.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "retries",
+        "duplicacao",
+        "operacoes-financeiras"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-7"]
+    },
+    {
+      "id": "mobilidade-recuperacao-8",
+      "question": "O que torna uma operação idempotente quando repetida com a mesma intenção?",
+      "answer": "Repeti-la não acrescenta efeitos relevantes além dos de uma única execução.",
+      "explanation": "As respostas não precisam ser byte a byte iguais. O objetivo é impedir efeitos indevidos adicionais.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "idempotencia",
+        "retries",
+        "correcao"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-8"]
+    },
+    {
+      "id": "mobilidade-recuperacao-9",
+      "question": "Que identificador deve acompanhar todos os retries de uma operação lógica?",
+      "answer": "O mesmo identificador da operação original.",
+      "explanation": "Trocar o ID a cada tentativa pode fazer o sistema enxergar operações distintas e anular a deduplicação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "idempotencia",
+        "deduplicacao",
+        "identificadores"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-9"]
+    },
+    {
+      "id": "mobilidade-recuperacao-10",
+      "question": "O que a nova réplica precisa para deduplicar um retry após failover?",
+      "answer": "Reconhecer o ID da operação e coordenar o registro do resultado com o efeito aplicado.",
+      "explanation": "Um ID sozinho não basta se a réplica desconhece as tentativas anteriores ou se duas instâncias aplicam o efeito sem coordenação.",
+      "tags": [
+        "sistemas-distribuidos",
+        "unicamp",
+        "mc714",
+        "p2",
+        "mobilidade-recuperacao",
+        "deduplicacao",
+        "replicacao",
+        "recuperacao"
+      ],
+      "sourceCardIds": ["mobilidade-recuperacao-10"]
+    }
+  ]
+}

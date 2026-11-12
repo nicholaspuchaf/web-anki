@@ -1,7 +1,8 @@
 import mc714 from '../../content/decks/mc714/deck.json' with { type: 'json' };
+import mc714Revisao from '../../content/decks/mc714-revisao/deck.json' with { type: 'json' };
 
 export function deckTagPolicy(deckId?: string) {
-  return deckId === mc714.id ? mc714.tagPolicy : undefined;
+  return [mc714, mc714Revisao].find((deck) => deck.id === deckId)?.tagPolicy;
 }
 /** Required tags cannot be removed; assessment selection must be unambiguous. */
 export function enforceDeckTags(

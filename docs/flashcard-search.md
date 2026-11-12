@@ -53,7 +53,7 @@ O banco `.cache/flashcard-search/index.sqlite` usa SQLite do Bun e FTS5. Conteú
 
 - O hash do texto determina quais cartões precisam de novos embeddings. Renomear arquivo ou baralho atualiza metadados sem nova inferência.
 - Cartões removidos ou excluídos da seleção são eliminados do banco, do FTS e dos vetores na próxima atualização bem-sucedida.
-- Alterações no modelo, revisão, normalização ou segmentação exigem uma nova versão do embedding e recalculam o índice. A versão inclui o limite de tokens.
+- Alterações no modelo, revisão, normalização ou segmentação exigem uma nova versão do embedding e recalculam o índice. A versão inclui o limite de tokens e a versão fixada do Transformers.js no `package.json`; atualizar a biblioteca também recalcula os vetores, evitando misturar runtimes ou tokenizadores diferentes.
 - A atualização prepara os vetores antes de uma transação atômica. Uma falha preserva o índice anterior. Escritores concorrentes são detectados para evitar sobrescrever silenciosamente outra atualização.
 - Resposta principal e explicações são representadas separadamente, com janelas sobrepostas para textos longos. Cada trecho passa pelo limite de 256 tokens do tokenizador; a busca é aproximada, não uma prova de equivalência conceitual ou de ausência de duplicação.
 - A consulta combina ranking textual BM25 e ranking por similaridade de vetores, usando Reciprocal Rank Fusion. Os vetores são comparados diretamente na CPU; o acervo atual não exige extensão vetorial ou serviço separado.
@@ -64,5 +64,5 @@ Os resultados incluem conteúdo, arquivo de origem, similaridade semântica, pos
 
 - [SQLite FTS5](https://www.sqlite.org/fts5.html).
 - [SQLite no Bun](https://bun.sh/docs/runtime/sqlite).
-- [Transformers.js — carregamento local](https://huggingface.co/docs/transformers.js/v3.0.0/en/custom_usage).
+- [Transformers.js — carregamento local](https://huggingface.co/docs/transformers.js/custom_usage).
 - [Modelo ONNX multilíngue](https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2), revisão `2c4055b12046f11709e9df2c122e59ffbdc2f900`.

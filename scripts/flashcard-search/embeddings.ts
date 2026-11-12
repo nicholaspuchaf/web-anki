@@ -3,18 +3,35 @@ import { CACHE, MODEL, REVISION } from './config';
 
 export type Embed = (texts: string[]) => Promise<number[][]>;
 export async function createEmbedder(allowDownload = false): Promise<Embed> {
-  const { env, pipeline } = await import('@huggingface/transformers');
+  const { env, AutoTokenizer, AutoModel, FeatureExtractionPipeline } =
+    await import('@huggingface/transformers');
   env.cacheDir = join(CACHE, 'models');
   env.allowRemoteModels = allowDownload;
   env.allowLocalModels = true;
-  const extractor = await pipeline('feature-extraction', MODEL, {
+  // v4 tokenizer discovery omits revision; pin its metadata requests too.
+  env.remotePathTemplate = `{model}/resolve/${REVISION}/`;
+  const options = {
+    cache_dir: env.cacheDir,
     revision: REVISION,
+    local_files_only: !allowDownload,
+  };
+  // Load explicitly: v4 pipeline discovery does not forward the pinned revision.
+  const tokenizer = await AutoTokenizer.from_pretrained(
+    allowDownload ? MODEL : join(env.cacheDir, MODEL, REVISION),
+    options,
+  );
+  tokenizer.config.model_max_length = 256;
+  const model = await AutoModel.from_pretrained(MODEL, {
+    ...options,
     dtype: 'q8',
     device: 'cpu',
-    local_files_only: !allowDownload,
     session_options: { intraOpNumThreads: 2, interOpNumThreads: 1 },
   });
-  extractor.tokenizer.model_max_length = 256;
+  const extractor = new FeatureExtractionPipeline({
+    task: 'feature-extraction',
+    model,
+    tokenizer,
+  });
   // Setup may download assets. Inference itself always has remote loading disabled.
   env.allowRemoteModels = false;
   return async (texts) => {

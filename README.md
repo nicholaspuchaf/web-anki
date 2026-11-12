@@ -121,6 +121,16 @@ skill `criar-otimizar-flashcards`, cobrindo os cartões e as páginas dos carros
 anteriores. Os dois baralhos coexistem com IDs e progresso independentes. Veja a
 [cobertura e as decisões de revisão](src/content/decks/mc714-revisao/README.md).
 
+## Busca local antes de criar flashcards
+
+A [busca semântica local](docs/flashcard-search.md) combina palavras-chave e
+embeddings para consultar o acervo, excluindo baralhos antigos. Os resultados são
+candidatos para análise, sem classificação automática como duplicados.
+Prepare o modelo uma vez com `bun run flashcards:setup`; depois consulte com
+`bun run flashcards:search --query "conceito"` ou compare um lote com
+`bun run flashcards:compare --file /tmp/cartoes.json`. O índice é incremental,
+permanece em `.cache` e não altera o site nem usa serviços de inferência externos.
+
 ## Feed de aprendizado
 
 A seção **Feed** (`/#/feed`) ensina temas em carrosséis, com escopo e objetivo de

@@ -65,6 +65,32 @@ Priorize recordar, explicar e aplicar. Não use múltipla escolha como formato p
 
 Compare cada candidato com o conjunto existente e com os demais candidatos. Não gere paráfrases da mesma pergunta para aumentar o volume. Perguntas semelhantes só devem coexistir quando avaliarem aspectos diferentes, como finalidade e implementação de um mecanismo.
 
+### Consultar o índice local deste repositório
+
+Ao criar ou otimizar flashcards neste projeto, use a busca local antes de concluir que um conceito está ausente. Consulte o [guia da ferramenta](../../../docs/flashcard-search.md) para formato de entrada, comandos e limitações.
+
+1. Antes de elaborar o lote, procure os conceitos centrais, com perguntas naturais ou combinações de termos:
+
+   ```sh
+   bun run flashcards:search --query "conceito ou pergunta candidata" --limit 5
+   ```
+
+2. Ao formar o lote provisório, salve uma representação com `id`, `question`, `answer`, `explanation` e `tags` em um JSON temporário e compare:
+
+   ```sh
+   bun run flashcards:compare --file /tmp/novos-cartoes.json --limit 5
+   ```
+
+   Esse arquivo é apenas uma entrada para análise: o material final continua seguindo o formato real do aplicativo. Preserve os IDs existentes quando estiver otimizando. O comparador procura cartões no acervo e vizinhos dentro do próprio lote.
+
+3. Leia as perguntas, respostas e arquivos de origem dos candidatos relevantes. Compare o conhecimento avaliado e a operação cognitiva, não apenas o assunto. Definição, motivo e aplicação podem justificar cartões separados. Similaridade alta não prova duplicação; similaridade baixa não prova novidade. Não use limiares para remover, mesclar ou impedir cartões automaticamente.
+
+4. Ajuste o conjunto com os critérios pedagógicos desta skill. Depois de salvar conteúdo no repositório e registrar seus adaptadores, atualize o cache com `bun run flashcards:index`.
+
+As consultas atualizam incrementalmente o índice; textos e vetores de baralhos antigos ficam excluídos. Não os inclua para preencher supostas lacunas nem copie o acervo antigo para contornar a exclusão. O índice consulta apenas os cartões do repositório, não coleções pessoais do navegador ou DynamoDB.
+
+O modelo e o SQLite ficam em `.cache/flashcard-search`, fora do Git. Toda inferência é local. Somente `bun run flashcards:setup` permite baixar os arquivos públicos do modelo na preparação inicial; consultas não devem acessar serviços de inferência. Se faltar o modelo ou houver erro no índice, informe a limitação e não apresente a ausência de resultados como prova de ausência de conteúdo. Uma análise textual manual pode complementar o trabalho, identificada como tal.
+
 **A quantidade de cartões deve vir do conteúdo relevante, não de uma meta artificial de volume.** Respeite quantidades explicitamente pedidas sem preenchê-las com repetições; sinalize se o material não sustentar a quantidade com qualidade.
 
 ## 6. Seleção de conhecimentos relevantes

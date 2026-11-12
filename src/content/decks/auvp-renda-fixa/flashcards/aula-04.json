@@ -12,9 +12,9 @@
   "cards": [
     {
       "id": "aula-04-01",
-      "question": "Como é definida a remuneração básica do Tesouro Selic?",
-      "answer": "Ela acompanha a Selic efetiva acumulada, conforme as condições e o preço do título.",
-      "explanation": "A apostila simplifica como 100% da Selic. Cotação, ágio/deságio, custos e tributos influenciam o resultado do investidor.",
+      "question": "Qual referência determina a remuneração básica do Tesouro Selic?",
+      "answer": "A Selic efetiva acumulada, conforme as condições do título.",
+      "explanation": "Preço de compra, ágio ou deságio, custos e tributos também afetam o resultado. A expressão 100% da Selic é uma simplificação didática.",
       "sourcePages": [13, 14],
       "tags": [
         "auvp",
@@ -26,25 +26,10 @@
       ]
     },
     {
-      "id": "aula-04-02",
-      "question": "Por que não se conhece previamente o valor final de um Tesouro Selic?",
-      "answer": "Porque a trajetória futura de seu indexador ainda não é conhecida.",
-      "explanation": "A regra de remuneração é contratada, mas o índice acumulado muda com o tempo.",
-      "sourcePages": [14],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-04",
-        "pos-fixado",
-        "indexador"
-      ]
-    },
-    {
       "id": "aula-04-03",
-      "question": "Que usos a apostila associa ao Tesouro Selic?",
-      "answer": "Reserva de emergência, organização financeira e alternativa ao dinheiro pouco remunerado.",
-      "explanation": "São usos apresentados pelo curso. Disponibilidade operacional e necessidade de acesso fora do expediente precisam ser consideradas.",
+      "question": "Por que o Tesouro Selic costuma ser associado a reservas de curto prazo?",
+      "answer": "Por combinar liquidez operacional frequente com menor sensibilidade de preço que títulos longos prefixados ou indexados à inflação.",
+      "explanation": "É o uso estudado no curso, não uma adequação automática. Verifique quando o dinheiro estará disponível e o risco de oscilação no prazo necessário.",
       "sourcePages": [13],
       "tags": [
         "auvp",
@@ -57,9 +42,9 @@
     },
     {
       "id": "aula-04-04",
-      "question": "Liquidez diária do Tesouro equivale a saque instantâneo em qualquer dia e horário?",
-      "answer": "Não. É preciso observar negociação, liquidação, instituição e eventuais suspensões.",
-      "explanation": "A seção de previdência retoma a diferença entre liquidez do título e acesso em fins de semana e feriados.",
+      "question": "Qual diferença existe entre liquidez diária e dinheiro disponível a qualquer hora?",
+      "answer": "Liquidez diária depende das condições de negociação e liquidação; não garante saque instantâneo 24 horas por dia.",
+      "explanation": "Dias úteis, suspensões e regras da instituição importam. Compare a disponibilidade operacional da aplicação com a da conta usada para necessidades imediatas.",
       "sourcePages": [13, 36],
       "tags": [
         "auvp",
@@ -67,14 +52,16 @@
         "modulo-3",
         "aula-04",
         "liquidez",
-        "resgate"
+        "resgate",
+        "reserva-de-emergencia",
+        "poupanca"
       ]
     },
     {
       "id": "aula-04-05",
-      "question": "Tesouro Selic é absolutamente incapaz de apresentar perda numa venda antecipada?",
-      "answer": "Não. Pequenas oscilações de preço e custos podem produzir resultado desfavorável, sobretudo em prazo curto.",
-      "explanation": "A afirmação nunca perder da página 14 é excessiva. Baixa volatilidade não equivale a preço invariável.",
+      "question": "Por que uma venda antecipada de Tesouro Selic pode ter resultado negativo?",
+      "answer": "Porque pequenas oscilações de cotação e custos podem superar o rendimento no prazo.",
+      "explanation": "Baixa volatilidade não é preço fixo. Uma expectativa sobre a Selic futura também não é garantia contratual de ausência de perda.",
       "sourcePages": [14],
       "tags": [
         "auvp",
@@ -83,44 +70,15 @@
         "aula-04",
         "marcacao-a-mercado",
         "revisao-critica",
-        "risco"
-      ]
-    },
-    {
-      "id": "aula-04-06",
-      "question": "A Selic ser sempre positiva é uma garantia contratual do título?",
-      "answer": "Não. A apostila transforma uma expectativa sobre o país numa afirmação absoluta.",
-      "explanation": "Estude o mecanismo do título e o cenário, sem usar a frase jamais negativa como garantia de ausência de risco.",
-      "sourcePages": [14],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-04",
-        "selic",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-04-07",
-      "question": "Qual fonte institucional a aula indica para acompanhar Selic e inflação?",
-      "answer": "O site do Banco Central do Brasil.",
-      "explanation": "A captura de tela da página 14 ilustra um painel de indicadores; os valores históricos da imagem não são taxas atuais.",
-      "sourcePages": [14],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-04",
-        "banco-central",
-        "indicadores"
+        "risco",
+        "selic"
       ]
     },
     {
       "id": "aula-04-08",
-      "question": "Qual distinção evita confundir a decisão do Copom com taxas observadas diariamente?",
-      "answer": "Selic meta é a decisão de política monetária; a taxa efetiva é observada nas operações do mercado.",
-      "explanation": "A taxa DI é outra referência, ligada a depósitos interfinanceiros. Uma não deve ser definida simplesmente como a outra.",
+      "question": "Como Selic meta difere da Selic efetiva?",
+      "answer": "A meta é decidida pelo Copom; a efetiva resulta das operações observadas no mercado.",
+      "explanation": "A taxa DI é outra referência, associada a depósitos interfinanceiros. Não confunda decisão de política, taxa realizada e indexador bancário.",
       "sourcePages": [14, 15],
       "tags": [
         "auvp",
@@ -133,34 +91,18 @@
       ]
     },
     {
-      "id": "aula-04-09",
-      "question": "Qual problema os empréstimos interbancários de curtíssimo prazo ajudam a resolver?",
-      "answer": "Necessidades de liquidez e ajustes financeiros das instituições.",
-      "explanation": "A aula usa a ideia de fechar o caixa. Isso não significa que uma regra universal exija sempre depósitos do dia maiores que todos os saques.",
-      "sourcePages": [15],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-04",
-        "interbancario",
-        "liquidez",
-        "revisao-critica"
-      ]
-    },
-    {
       "id": "aula-04-10",
-      "question": "O que pode incidir sobre rendimentos de aplicações resgatadas antes de 30 dias?",
-      "answer": "IOF regressivo, quando aplicável ao produto.",
-      "explanation": "A redução descrita no PDF é sobre o rendimento, não uma taxa que retira automaticamente parte do principal. A incidência zera ao completar 30 dias nas aplicações sujeitas à tabela.",
+      "question": "Sobre qual parte da aplicação incide o IOF regressivo, quando aplicável antes de 30 dias?",
+      "answer": "Sobre o rendimento, não sobre todo o principal.",
+      "explanation": "Nas aplicações sujeitas à tabela diária, a incidência diminui e zera ao completar 30 dias. Confira a regra do produto.",
       "sourcePages": [15],
       "tags": ["auvp", "renda-fixa", "modulo-3", "aula-04", "iof", "tributacao"]
     },
     {
       "id": "aula-04-11",
-      "question": "Qual alíquota de IR a tabela da apostila usa até 180 dias?",
-      "answer": "22,5% sobre o rendimento tributável.",
-      "explanation": "Não é 22,5% do saldo total investido. O prazo corresponde ao tempo da aplicação.",
+      "question": "Na tabela regressiva de IR da renda fixa, qual alíquota se aplica até 180 dias?",
+      "answer": "22,5%.",
+      "explanation": "A base é o rendimento tributável, não o saldo total da aplicação. A faixa depende do prazo da aplicação sujeita a essa tabela.",
       "sourcePages": [15],
       "tags": [
         "auvp",
@@ -173,9 +115,9 @@
     },
     {
       "id": "aula-04-12",
-      "question": "Qual alíquota de IR corresponde a 181–360 dias na tabela apresentada?",
-      "answer": "20% sobre os rendimentos tributáveis.",
-      "explanation": "Compare os prazos exatos, pois cruzar uma faixa pode mudar o retorno líquido.",
+      "question": "Na tabela regressiva de IR da renda fixa, qual alíquota se aplica de 181 a 360 dias?",
+      "answer": "20% sobre o rendimento tributável.",
+      "explanation": "O primeiro dia da nova faixa importa. Não confunda a alíquota incidente no ganho com uma cobrança sobre o principal.",
       "sourcePages": [15],
       "tags": [
         "auvp",
@@ -188,9 +130,9 @@
     },
     {
       "id": "aula-04-13",
-      "question": "Qual alíquota de IR corresponde a 361–720 dias na tabela apresentada?",
-      "answer": "17,5% sobre os rendimentos tributáveis.",
-      "explanation": "A taxa intermediária mostra como o tratamento do prazo afeta a comparação líquida.",
+      "question": "Na tabela regressiva de IR da renda fixa, qual alíquota se aplica de 361 a 720 dias?",
+      "answer": "17,5% sobre o rendimento tributável.",
+      "explanation": "A comparação entre aplicações precisa considerar a faixa correspondente ao mesmo horizonte.",
       "sourcePages": [15],
       "tags": [
         "auvp",
@@ -203,9 +145,9 @@
     },
     {
       "id": "aula-04-14",
-      "question": "Qual alíquota de IR vale acima de 720 dias na tabela apresentada?",
-      "answer": "15% sobre os rendimentos tributáveis.",
-      "explanation": "É a menor faixa dessa tabela, não uma regra universal para qualquer produto financeiro.",
+      "question": "Na tabela regressiva de IR da renda fixa, qual alíquota se aplica acima de 720 dias?",
+      "answer": "15% sobre o rendimento tributável.",
+      "explanation": "É a menor faixa dessa tabela de renda fixa, não uma alíquota universal para todo produto financeiro.",
       "sourcePages": [15],
       "tags": [
         "auvp",
@@ -218,9 +160,9 @@
     },
     {
       "id": "aula-04-15",
-      "question": "Como a apostila descreve o recolhimento do IR nos títulos do Tesouro?",
-      "answer": "Retenção na fonte, conforme o evento de tributação e o prazo.",
-      "explanation": "O resultado anunciado em taxa bruta não é necessariamente o que será creditado líquido ao investidor.",
+      "question": "Como o IR dos títulos do Tesouro é recolhido nos eventos sujeitos à tributação?",
+      "answer": "Por retenção na fonte, segundo o prazo e a regra aplicáveis.",
+      "explanation": "Taxa bruta anunciada e dinheiro líquido recebido são grandezas diferentes.",
       "sourcePages": [15],
       "tags": [
         "auvp",

@@ -11,9 +11,9 @@
   "cards": [
     {
       "id": "aula-07-1-01",
-      "question": "O que é marcação a mercado?",
-      "answer": "Avaliar o título pelo preço de negociação ou referência de mercado naquele momento.",
-      "explanation": "Ela permite observar quanto o ativo vale agora, em vez de presumir apenas a evolução pela taxa de aquisição.",
+      "question": "O que a marcação a mercado informa sobre um título?",
+      "answer": "Seu valor de negociação ou de referência naquele momento.",
+      "explanation": "Ela responde quanto o ativo vale agora, não apenas como o saldo evoluiria pelas condições da compra.",
       "sourcePages": [18, 19],
       "tags": [
         "auvp",
@@ -25,57 +25,10 @@
       ]
     },
     {
-      "id": "aula-07-1-02",
-      "question": "O que representa a balança desenhada na aula?",
-      "answer": "A relação inversa entre a taxa de mercado e o preço de um fluxo de pagamento fixado.",
-      "explanation": "Se o mercado passa a exigir mais juros para aquele fluxo, paga menos por ele hoje.",
-      "sourcePages": [19],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-07-1",
-        "analogia",
-        "juros",
-        "preco"
-      ]
-    },
-    {
-      "id": "aula-07-1-03",
-      "question": "No exemplo, uma taxa de mercado passa de 10% para 12,5%. Qual é a pressão sobre o preço do título antigo?",
-      "answer": "Pressão de queda, mantidos o fluxo e os demais fatores.",
-      "explanation": "Isso não determina, sozinho, se a venda ficou abaixo do custo original: tempo decorrido e juros acumulados também importam.",
-      "sourcePages": [19],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-07-1",
-        "cenario",
-        "alta-de-juros",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-07-1-04",
-      "question": "No exemplo, a taxa de mercado cai de 10% para 8%. Qual é a pressão sobre o preço do título?",
-      "answer": "Pressão de alta, mantendo-se os demais fatores.",
-      "explanation": "O contrato antigo se torna relativamente mais atraente que novos fluxos descontados pela taxa menor.",
-      "sourcePages": [19],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-07-1",
-        "cenario",
-        "queda-de-juros"
-      ]
-    },
-    {
       "id": "aula-07-1-05",
-      "question": "Vender um título valorizado significa receber automaticamente todo o rendimento de seu vencimento?",
-      "answer": "Não. É preciso comparar o preço líquido de venda com o fluxo futuro que seria mantido.",
-      "explanation": "A apostila descreve antecipar resultados; a conta depende do preço disponível, do prazo e dos custos.",
+      "question": "Por que vender um título valorizado não significa receber automaticamente todo o rendimento até o vencimento?",
+      "answer": "Porque a venda entrega o preço líquido atual, não todos os fluxos futuros mantidos até o fim.",
+      "explanation": "Compare os caminhos de venda e manutenção no mesmo horizonte, considerando preços efetivos, impostos e custos.",
       "sourcePages": [19],
       "tags": [
         "auvp",
@@ -87,25 +40,10 @@
       ]
     },
     {
-      "id": "aula-07-1-06",
-      "question": "Quando a valorização antecipada pode tornar uma venda uma alternativa a estudar?",
-      "answer": "Quando o valor líquido liberado e seu reinvestimento forem atraentes frente à manutenção do título.",
-      "explanation": "Ganhar tempo é a tese do material; isso não torna a venda uma obrigação sempre que a cotação sobe.",
-      "sourcePages": [19],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-07-1",
-        "reinvestimento",
-        "estrategia"
-      ]
-    },
-    {
       "id": "aula-07-1-07",
-      "question": "Por que tentar lucrar com a mudança das taxas envolve especulação?",
-      "answer": "Porque depende de uma trajetória futura de juros e preços que não é garantida.",
-      "explanation": "A expressão trader do bem é uma avaliação do autor. O rótulo não elimina risco nem comprova que a operação seja sempre mais segura que outras.",
+      "question": "Por que apostar na mudança das taxas para vender com ganho é especulação?",
+      "answer": "Porque o resultado depende de uma trajetória futura de juros e preços não garantida.",
+      "explanation": "Um rótulo favorável à operação não elimina a incerteza. Valorização passada não prova ganho futuro.",
       "sourcePages": [19],
       "tags": [
         "auvp",
@@ -114,22 +52,6 @@
         "aula-07-1",
         "especulacao",
         "opiniao-do-material",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-07-1-08",
-      "question": "Que erro existe em aplicar R$ 1.000 de vencimento a todos os títulos na discussão de marcação?",
-      "answer": "Tratar fluxos e indexadores diferentes como se fossem o mesmo pagamento nominal único.",
-      "explanation": "O raciocínio inverso taxa/preço permanece útil, mas IPCA+, cupons e amortizações exigem seus próprios fluxos.",
-      "sourcePages": [18],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-07-1",
-        "fluxos",
-        "valor-de-face",
         "revisao-critica"
       ]
     }

@@ -3,7 +3,7 @@
   "name": "AUVP - Renda Fixa",
   "defaultTemplate": "multi-face",
   "syncEnabled": false,
-  "reviewedAt": "2026-11-10",
+  "reviewedAt": "2026-11-12",
   "content": {
     "flashcards": [
       "flashcards/aula-01.json",

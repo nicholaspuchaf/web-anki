@@ -45,7 +45,7 @@ A origem são apenas os flashcards incluídos no repositório, usando os adaptad
 
 **Baralhos antigos ficam fora do banco**, inclusive textos e vetores. O MC714 `builtin-mc714` está excluído explicitamente em `scripts/flashcard-search/config.ts`; nomes com o marcador `(antigo)`, sem distinção de caixa, também são excluídos. O novo `builtin-sd-mc714` participa. Desabilitar um baralho nas preferências do navegador não o torna antigo: essa preferência é local ao aparelho e não é consultada pela ferramenta editorial.
 
-O acervo inicial contém 966 cartões elegíveis: AWS, Design Patterns, AUVP e o novo MC714. A inclusão de futuros baralhos depende de registrá-los nos adaptadores do site e manter seus arquivos identificáveis pelos manifestos. Um formato desconhecido ou uma origem ambígua interrompe a atualização, sem substituir o índice anterior.
+O acervo inclui AWS, Design Patterns, AUVP e o novo MC714; a contagem acompanha os arquivos atuais e pode ser consultada com `flashcards:status`. Na revisão da AUVP, os 246 registros antigos foram retirados antes da análise e substituídos pelos 185 cartões reformulados. A inclusão de futuros baralhos depende de registrá-los nos adaptadores do site e manter seus arquivos identificáveis pelos manifestos. Um formato desconhecido ou uma origem ambígua interrompe a atualização, sem substituir o índice anterior.
 
 ## Atualização e pesquisa
 

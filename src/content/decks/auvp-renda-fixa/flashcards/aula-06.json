@@ -11,40 +11,29 @@
   "cards": [
     {
       "id": "aula-06-01",
-      "question": "Quais são os dois componentes básicos da remuneração do Tesouro IPCA+?",
-      "answer": "Correção pelo IPCA e uma taxa real contratada na compra.",
-      "explanation": "O valor nominal futuro depende da inflação, enquanto a parcela real bruta é definida nas condições do título levado ao vencimento.",
-      "sourcePages": [18],
+      "question": "Como se compõe a remuneração híbrida do Tesouro IPCA+?",
+      "answer": "Correção pelo IPCA combinada à taxa real contratada.",
+      "explanation": "Híbrido combina um indexador variável com uma taxa conhecida na compra. Educa+ e Renda+ compartilham essa lógica, mas seus prazos, fluxos e regras de resgate não são idênticos.",
+      "sourcePages": [18, 24],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-06",
         "tesouro-ipca",
-        "indexacao"
-      ]
-    },
-    {
-      "id": "aula-06-02",
-      "question": "Por que Tesouro IPCA+ é chamado de híbrido?",
-      "answer": "Porque combina um indexador variável com uma taxa contratada.",
-      "explanation": "O componente de inflação não é conhecido antecipadamente; a taxa adicional é conhecida na aquisição.",
-      "sourcePages": [18],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-06",
+        "indexacao",
         "hibrido",
         "pos-fixado",
-        "prefixado"
+        "prefixado",
+        "ipca",
+        "taxa-real"
       ]
     },
     {
       "id": "aula-06-03",
-      "question": "No exemplo com inflação de 9% e taxa real de 5%, qual é a composição nominal exata no mesmo período anual?",
-      "answer": "(1,09 × 1,05) − 1 = 14,45%, antes de custos e impostos.",
-      "explanation": "O PDF apresenta 14% por soma simplificada. O produto dos fatores inclui o termo cruzado de 0,45 ponto percentual.",
+      "question": "Com inflação de 9% e taxa real de 5% no mesmo ano, qual é a composição nominal exata?",
+      "answer": "14,45%, antes de custos e impostos.",
+      "explanation": "(1,09 × 1,05) − 1 = 0,1445. Somar 9% e 5% omite o termo cruzado de 0,45 ponto percentual.",
       "sourcePages": [18],
       "tags": [
         "auvp",
@@ -58,9 +47,9 @@
     },
     {
       "id": "aula-06-04",
-      "question": "Todo Tesouro IPCA+ vence por exatamente R$ 1.000 nominais?",
-      "answer": "Não. Seu valor de referência é atualizado pela inflação, conforme a estrutura do título.",
-      "explanation": "O material usa R$ 1.000 corrigidos como simplificação. Não confunda valor de referência com preço de compra ou principal investido.",
+      "question": "Por que não se pode presumir R$ 1.000 nominais fixos no vencimento de qualquer IPCA+?",
+      "answer": "Porque o valor de referência é atualizado pela inflação, conforme a estrutura do título.",
+      "explanation": "Valor nominal atualizado, preço de compra e quantia investida são conceitos diferentes.",
       "sourcePages": [18],
       "tags": [
         "auvp",
@@ -68,14 +57,16 @@
         "modulo-3",
         "aula-06",
         "valor-nominal-atualizado",
-        "revisao-critica"
+        "revisao-critica",
+        "fluxos",
+        "valor-de-face"
       ]
     },
     {
       "id": "aula-06-05",
       "question": "Qual proteção o IPCA+ busca oferecer quando levado ao vencimento?",
-      "answer": "Remuneração bruta ligada à inflação medida pelo índice, acrescida da taxa real contratada.",
-      "explanation": "Essa proteção não equivale automaticamente à inflação pessoal do investidor nem ao retorno real líquido após impostos.",
+      "answer": "Remuneração bruta ligada ao IPCA mais a taxa real contratada.",
+      "explanation": "Isso não iguala o IPCA à inflação de cada pessoa nem garante o mesmo ganho real depois dos impostos.",
       "sourcePages": [18],
       "tags": [
         "auvp",
@@ -88,9 +79,9 @@
     },
     {
       "id": "aula-06-06",
-      "question": "Por que o IR pode enfraquecer a proteção real de um título indexado à inflação?",
-      "answer": "Porque incide sobre o ganho nominal tributável, que inclui a parcela de correção inflacionária.",
-      "explanation": "Mesmo mantendo uma taxa real bruta positiva, o ganho real líquido pode cair quando a inflação aumenta.",
+      "question": "Por que o IR pode reduzir a proteção real de um título IPCA+?",
+      "answer": "Porque o ganho nominal tributável inclui a correção inflacionária.",
+      "explanation": "O imposto não incide apenas sobre a taxa real. Inflação mais alta pode reduzir o retorno real líquido, mesmo com taxa real bruta positiva.",
       "sourcePages": [18],
       "tags": [
         "auvp",
@@ -104,9 +95,9 @@
     },
     {
       "id": "aula-06-07",
-      "question": "IPCA+ elimina o risco de perda numa venda antes do vencimento?",
-      "answer": "Não. O preço também reage às taxas de mercado e ao prazo restante.",
-      "explanation": "A indexação não remove a marcação a mercado. A aula seguinte desenvolve exatamente essa diferença.",
+      "question": "Por que um IPCA+ pode perder valor antes do vencimento mesmo corrigindo pela inflação?",
+      "answer": "Porque sua cotação também reage às taxas de mercado e ao prazo restante.",
+      "explanation": "Indexação à inflação não elimina marcação a mercado nem garante o preço de uma venda antecipada.",
       "sourcePages": [18],
       "tags": [
         "auvp",

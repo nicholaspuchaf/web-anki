@@ -14,9 +14,9 @@
   "cards": [
     {
       "id": "aula-14-01",
-      "question": "Como o material descreve um fundo de investimento?",
-      "answer": "Um patrimônio coletivo dividido em cotas e administrado segundo uma política de investimento.",
-      "explanation": "A gestão aplica os recursos em nome da estrutura do fundo; o cotista não está simplesmente contratando uma taxa fixa de retorno.",
+      "question": "O que você adquire ao aplicar num fundo de investimento?",
+      "answer": "Cotas de um patrimônio coletivo gerido segundo uma política de investimento.",
+      "explanation": "Não é simplesmente contratar uma taxa fixa. A estratégia e os ativos do fundo determinam a exposição e os resultados.",
       "sourcePages": [33],
       "tags": [
         "auvp",
@@ -30,9 +30,9 @@
     },
     {
       "id": "aula-14-02",
-      "question": "O que distingue gestão ativa de gestão passiva?",
-      "answer": "A ativa toma decisões para cumprir uma estratégia; a passiva busca acompanhar um índice ou referência.",
-      "explanation": "A replicação de benchmark não significa ausência de custos, risco ou diferença de acompanhamento.",
+      "question": "Qual é a diferença de objetivo entre gestão ativa e passiva?",
+      "answer": "A ativa faz escolhas discricionárias para seu objetivo; a passiva busca acompanhar uma referência ou índice.",
+      "explanation": "Replicar um índice não elimina custos, riscos ou desvios de acompanhamento.",
       "sourcePages": [33],
       "tags": [
         "auvp",
@@ -45,17 +45,17 @@
     },
     {
       "id": "aula-14-03",
-      "question": "O que é benchmark no contexto de um fundo?",
-      "answer": "Uma referência para comparar resultados e, quando previsto, parametrizar a remuneração por desempenho.",
-      "explanation": "Ele não é automaticamente uma rentabilidade garantida ao cotista.",
+      "question": "Para que serve o benchmark de um fundo?",
+      "answer": "Para comparar desempenho e, quando previsto, parametrizar remuneração por performance.",
+      "explanation": "Uma referência de comparação não é promessa de rentabilidade ao cotista.",
       "sourcePages": [33, 34],
       "tags": ["auvp", "renda-fixa", "modulo-3", "aula-14", "benchmark"]
     },
     {
       "id": "aula-14-04",
-      "question": "Quais referências de benchmark a aula cita?",
-      "answer": "CDI, Selic, IPCA e Ibovespa, além do exemplo IPCA + 5%.",
-      "explanation": "O benchmark deve ser coerente com a estratégia; comparar renda fixa simples a um índice de ações pode distorcer a avaliação.",
+      "question": "Por que o benchmark precisa ser compatível com a estratégia do fundo?",
+      "answer": "Para não atribuir mérito ou fracasso a diferenças de exposição e risco.",
+      "explanation": "CDI, Selic, IPCA e índices de ações representam referências distintas. O fato de um índice ter subido mais não torna toda comparação adequada.",
       "sourcePages": [34],
       "tags": [
         "auvp",
@@ -68,9 +68,9 @@
     },
     {
       "id": "aula-14-05",
-      "question": "Para que serve a taxa de administração?",
-      "answer": "Remunerar a estrutura e os serviços de gestão e administração previstos para o produto.",
-      "explanation": "A apostila reconhece remuneração explícita em fundos, ETFs, consultorias e family offices, criticando principalmente o custo elevado.",
+      "question": "O que remunera a taxa de administração de um fundo?",
+      "answer": "Os serviços e a estrutura previstos para a gestão e administração do produto.",
+      "explanation": "Identifique a base de cobrança e o serviço recebido; o percentual só faz sentido na comparação de custos e resultados líquidos.",
       "sourcePages": [34],
       "tags": [
         "auvp",
@@ -83,9 +83,9 @@
     },
     {
       "id": "aula-14-06",
-      "question": "O que é uma taxa de performance?",
-      "answer": "Uma remuneração por desempenho calculada segundo critérios e condições definidos para o produto.",
-      "explanation": "A aula associa a cobrança ao resultado frente ao benchmark. Não presuma uma regra idêntica para todos os fundos.",
+      "question": "O que determina se uma taxa de performance pode ser cobrada?",
+      "answer": "A metodologia e as condições definidas para o produto, incluindo a referência aplicável.",
+      "explanation": "Bater um índice não basta para deduzir a cobrança de qualquer fundo. Leia o regulamento e as regras de apuração.",
       "sourcePages": [34],
       "tags": [
         "auvp",
@@ -93,31 +93,17 @@
         "modulo-3",
         "aula-14",
         "taxa-de-performance",
-        "regulamento"
-      ]
-    },
-    {
-      "id": "aula-14-07",
-      "question": "Bater uma referência basta para deduzir a taxa de performance de qualquer fundo?",
-      "answer": "Não. É necessário ler o regulamento e sua metodologia de apuração.",
-      "explanation": "A explicação de zerar a taxa em anos negativos ou abaixo do benchmark é a descrição didática da apostila, não uma especificação universal.",
-      "sourcePages": [34],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
+        "regulamento",
         "benchmark",
-        "taxa-de-performance",
         "revisao-critica"
       ]
     },
     {
       "id": "aula-14-08",
-      "question": "Taxa de administração de 1% ao ano é imperceptível em seu efeito econômico?",
-      "answer": "Não. Mesmo custos pequenos podem reduzir bastante o patrimônio ao se acumularem por muitos anos.",
-      "explanation": "O PDF a chama de ideal, mas adequação do custo exige comparar serviços, alternativas e resultado líquido.",
-      "sourcePages": [34],
+      "question": "Por que um custo anual aparentemente pequeno pode reduzir muito o patrimônio no longo prazo?",
+      "answer": "Porque reduz o capital que permanece compondo rendimentos ao longo dos anos.",
+      "explanation": "O mecanismo vale para fundos e planos de previdência. Percentuais ideais ou exemplos históricos do curso não substituem uma comparação reproduzível de custos, serviços e resultado líquido.",
+      "sourcePages": [34, 35, 37],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -125,140 +111,20 @@
         "aula-14",
         "juros-compostos",
         "taxa-de-administracao",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-14-09",
-      "question": "Quais percentuais de custos a aula usa para contrastar modelos?",
-      "answer": "1% ao ano de administração como referência favorável; 2% mais 20% de performance como exemplo criticado; 1,1% ou 1,2% para consultoria.",
-      "explanation": "Esses juízos são do autor. Percentuais não classificam sozinhos toda estrutura como justa ou abusiva.",
-      "sourcePages": [34],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
+        "revisao-critica",
         "custos",
-        "opiniao-do-material"
-      ]
-    },
-    {
-      "id": "aula-14-10",
-      "question": "Por que um serviço sem cobrança explícita pode exigir investigar incentivos?",
-      "answer": "Porque sua remuneração pode estar embutida em distribuição, spread ou outras condições.",
-      "explanation": "Gratuidade visível não comprova custo zero, mas também não prova automaticamente má-fé do prestador.",
-      "sourcePages": [34],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
-        "spread",
-        "fee-based",
-        "conflito-de-interesses"
-      ]
-    },
-    {
-      "id": "aula-14-11",
-      "question": "Quais tipos de fundos o curso critica expressamente?",
-      "answer": "Multimercado, ações, renda fixa, cambiais e fundos de previdência, no posicionamento apresentado.",
-      "explanation": "A própria apostila reconhece exceções. A crítica não deve ser memorizada como lei de que todo fundo dessas categorias é ruim.",
-      "sourcePages": [33],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
         "opiniao-do-material",
-        "categorias-de-fundos"
-      ]
-    },
-    {
-      "id": "aula-14-12",
-      "question": "Quais veículos o material separa da sua crítica geral a fundos?",
-      "answer": "Fiagro, FI-Infra, fundos imobiliários e ETFs são citados favoravelmente ou encaminhados ao módulo seguinte.",
-      "explanation": "Eles também possuem estruturas, riscos e custos próprios. Recomendação do autor não equivale a garantia de qualidade.",
-      "sourcePages": [33, 36],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
-        "fiagro",
-        "fi-infra",
-        "fii",
-        "etf"
-      ]
-    },
-    {
-      "id": "aula-14-13",
-      "question": "Que percentuais de desempenho relativo o PDF cita ao criticar fundos?",
-      "answer": "66% perdendo para o Ibovespa e cerca de 60% dos fundos de renda fixa perdendo para o CDI.",
-      "explanation": "O trecho não apresenta base, janela e metodologia suficientes para tratar esses números como estatística atual universal.",
-      "sourcePages": [35],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
-        "estatistica-do-material",
-        "benchmark",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-14-14",
-      "question": "Que comparação de longo prazo a apostila faz com a Berkshire Hathaway?",
-      "answer": "US$ 1.000 em 1965 chegando a US$ 8 milhões em 2016, versus US$ 720 mil no cenário ilustrativo com taxas de fundo.",
-      "explanation": "O objetivo é mostrar o efeito acumulado de custos. Sem hipóteses completas, os valores não constituem uma simulação independente reproduzível.",
-      "sourcePages": [35],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
         "berkshire",
         "taxas",
-        "exemplo-do-material"
-      ]
-    },
-    {
-      "id": "aula-14-15",
-      "question": "Qual conclusão didática extrair da comparação Berkshire com um fundo oneroso?",
-      "answer": "Custos recorrentes reduzem a base de capitalização e podem ter grande efeito no resultado final.",
-      "explanation": "Isso não torna comprar uma empresa equivalente a contratar qualquer fundo nem reproduz automaticamente a mesma trajetória de retorno.",
-      "sourcePages": [35],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
-        "juros-compostos",
+        "exemplo-do-material",
         "custo-total"
       ]
     },
     {
-      "id": "aula-14-16",
-      "question": "Quais resultados o exemplo de Peter Lynch compara?",
-      "answer": "US$ 1 transformado em US$ 28 entre 1977 e 1990, contra US$ 6,60 no exemplo de referência S&P 500.",
-      "explanation": "São números relatados no PDF para discutir desempenho e comportamento, não projeções de rentabilidade futura.",
-      "sourcePages": [35],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-14",
-        "peter-lynch",
-        "sp500",
-        "exemplo-do-material"
-      ]
-    },
-    {
       "id": "aula-14-17",
-      "question": "Por que o retorno de um investidor pode diferir do retorno divulgado de um fundo?",
-      "answer": "Porque datas de entrada e saída e fluxos de aportes podem ser diferentes dos da série de rentabilidade.",
-      "explanation": "A história de investidores que saíram antes no exemplo Lynch ilustra o efeito de timing; não prova por si a estatística exata sobre todos os cotistas.",
+      "question": "Por que o resultado de um cotista pode diferir da rentabilidade divulgada do fundo?",
+      "answer": "Porque ele pode entrar, aportar e sair em datas diferentes das da série divulgada.",
+      "explanation": "O exemplo histórico de investidores e gestores ilustra o efeito dos fluxos e do timing; não exige decorar valores monetários de uma narrativa.",
       "sourcePages": [35],
       "tags": [
         "auvp",
@@ -267,29 +133,37 @@
         "aula-14",
         "comportamento",
         "timing",
-        "aportes"
+        "aportes",
+        "peter-lynch",
+        "sp500",
+        "exemplo-do-material"
       ]
     },
     {
       "id": "aula-14-18",
-      "question": "Qual cuidado deve acompanhar a sugestão da apostila de trocar fundos por Tesouro Selic?",
-      "answer": "Tratar a sugestão como opinião e comparar tributação, custos de saída, estratégia e objetivos antes de decidir.",
-      "explanation": "A própria página 36 separa previdência privada e pede análise específica, em vez de uma venda automática.",
-      "sourcePages": [36],
+      "question": "Por que uma crítica genérica a fundos não basta para justificar trocar qualquer fundo por Tesouro Selic?",
+      "answer": "Porque estratégia, risco, custos, tributação e objetivo podem ser diferentes.",
+      "explanation": "Preferências do autor por algumas categorias e rejeição de outras são opiniões. Avalie os efeitos da troca, inclusive na previdência, em vez de vender automaticamente.",
+      "sourcePages": [33, 36],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-14",
         "opiniao-do-material",
-        "custo-de-saida"
+        "custo-de-saida",
+        "categorias-de-fundos",
+        "fiagro",
+        "fi-infra",
+        "fii",
+        "etf"
       ]
     },
     {
       "id": "aula-14-19",
       "question": "O que é come-cotas nos fundos sujeitos a esse regime?",
-      "answer": "Antecipação periódica de IR sobre rendimentos, recolhida mediante redução da quantidade de cotas.",
-      "explanation": "Não é uma cobrança de 15% ou 20% sobre todo o patrimônio do investidor.",
+      "answer": "Antecipação periódica de IR sobre rendimentos mediante redução da quantidade de cotas.",
+      "explanation": "A base é o ganho tributável. Não se retira 15% ou 20% de todo o patrimônio nem de todas as cotas sem apuração.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -303,9 +177,9 @@
     },
     {
       "id": "aula-14-20",
-      "question": "Quais alíquotas semestrais de come-cotas a apostila cita?",
-      "answer": "20% para fundos de curto prazo e 15% para fundos de longo prazo sujeitos ao regime.",
-      "explanation": "A base é o rendimento tributável. O número de cotas retiradas corresponde ao imposto apurado, não a esse percentual de todas as cotas.",
+      "question": "Nos fundos sujeitos a come-cotas, como diferem as alíquotas semestrais de curto e longo prazo?",
+      "answer": "20% no curto prazo e 15% no longo prazo, sobre os rendimentos tributáveis.",
+      "explanation": "As cotas retiradas correspondem ao imposto apurado. A classificação fiscal e as regras do fundo determinam o regime aplicável.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -318,9 +192,9 @@
     },
     {
       "id": "aula-14-21",
-      "question": "Um complemento de IR é sempre cobrado em todo resgate de fundo?",
-      "answer": "Não. Depende da alíquota final aplicável e do imposto já antecipado.",
-      "explanation": "A expressão sempre cobram da apostila é excessiva. Só existe complemento quando a apuração exigir diferença a recolher.",
+      "question": "Quando pode haver complemento de IR no resgate de um fundo com imposto antecipado?",
+      "answer": "Quando a alíquota final exigir imposto maior que o já antecipado.",
+      "explanation": "Não há complemento automático em todo resgate. A apuração considera prazo, regime e recolhimentos anteriores.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -334,9 +208,9 @@
     },
     {
       "id": "aula-14-22",
-      "question": "Todo fundo tem come-cotas?",
-      "answer": "Não. A incidência depende da classe e do regime tributário.",
-      "explanation": "A própria aula distingue vários veículos; não transfira a regra de certos fundos abertos para todos os fundos e planos de previdência.",
+      "question": "De que depende um fundo estar sujeito a come-cotas?",
+      "answer": "De sua classe e de seu regime tributário.",
+      "explanation": "Não aplique a regra indistintamente a todos os fundos, ETFs, fundos imobiliários ou planos de previdência.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -349,9 +223,9 @@
     },
     {
       "id": "aula-14-23",
-      "question": "Por que antecipação de imposto pode afetar o patrimônio acumulado?",
-      "answer": "Porque parte do dinheiro deixa de permanecer investida até um evento posterior.",
-      "explanation": "O efeito depende de retornos, prazos e tributação final; não basta olhar apenas a alíquota nominal.",
+      "question": "Por que a antecipação de imposto pode reduzir a acumulação em relação ao diferimento?",
+      "answer": "Porque o valor recolhido deixa de permanecer investido até um evento posterior.",
+      "explanation": "Compare o efeito no mesmo horizonte e sob regras equivalentes; a alíquota nominal isolada não descreve todo o resultado.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -360,6 +234,24 @@
         "aula-14",
         "diferimento",
         "juros-compostos"
+      ]
+    },
+    {
+      "id": "aula-14-avaliar-estatisticas",
+      "question": "Que informação falta para interpretar a alegação de que muitos fundos perderam para um índice?",
+      "answer": "Período, universo analisado e metodologia de comparação.",
+      "explanation": "Sem esses recortes, um percentual histórico não prova uma estatística atual ou universal. O benchmark também precisa ser coerente com a estratégia e os custos considerados.",
+      "sourcePages": [35],
+      "tags": [
+        "auvp",
+        "renda-fixa",
+        "modulo-3",
+        "aula-14",
+        "estatistica-do-material",
+        "benchmark",
+        "revisao-critica",
+        "leitura-critica",
+        "avaliacao-de-desempenho"
       ]
     }
   ]

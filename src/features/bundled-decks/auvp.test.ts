@@ -9,9 +9,10 @@ import { emptySyncState, pendingIds } from '../sync/model';
 import { parseBackup } from '../backup/parse-backup';
 import { isBundledId } from './ids';
 import { createHandler } from '../../../backend/service';
+import revision from '../../content/decks/auvp-renda-fixa/revision.json' with { type: 'json' };
 
 test('AUVP cobre todas as aulas e páginas de estudo com perguntas únicas, tags e origem verificável', () => {
-  expect(AUVP_CARD_COUNT).toBe(246);
+  expect(AUVP_CARD_COUNT).toBe(185);
   expect(catalog.lessons).toHaveLength(18);
   expect(coverage.pdfPages).toBe(41);
   expect(coverage.sha256).toMatch(/^[a-f0-9]{64}$/);
@@ -120,7 +121,7 @@ test('instalação e atualizações mantêm progresso, dados pessoais, backup co
   expect(parseBackup(JSON.stringify(next))).toEqual(next);
   expect(pendingIds(next, emptySyncState())).toEqual([]);
   expect(next.cards.filter((item) => item.deckId === manifest.id)).toHaveLength(
-    246,
+    185,
   );
   const beforeDeck = {
     ...next,
@@ -157,4 +158,92 @@ test('instalação e atualizações mantêm progresso, dados pessoais, backup co
         ).statusCode,
       ).toBe(403);
   expect(calls).toBe(0);
+});
+
+test('revisão pedagógica registra os 246 destinos e preserva o progresso de IDs mantidos e cartões pessoais', () => {
+  const library = withBundledAuvpDeck(emptyLibrary);
+  const current = new Map(library.cards.map((card) => [card.id, card]));
+  const ids = new Set(
+    catalog.lessons.flatMap((lesson) => lesson.cards.map((card) => card.id)),
+  );
+  expect(revision.originalCount).toBe(246);
+  expect(revision.cardCount).toBe(AUVP_CARD_COUNT);
+  expect(revision.cards).toHaveLength(246);
+  expect(new Set(revision.cards.map((row) => row.sourceCardId)).size).toBe(246);
+  for (const row of revision.cards) {
+    if (row.action === 'REMOVER') {
+      expect(row.targetCardIds).toHaveLength(0);
+      expect(row.reason.trim()).toBeTruthy();
+    } else {
+      expect(row.targetCardIds.length).toBeGreaterThan(0);
+      for (const id of row.targetCardIds) expect(ids.has(id)).toBe(true);
+    }
+    if (row.action === 'MESCLAR' || row.action === 'REMOVER')
+      expect(ids.has(row.sourceCardId)).toBe(false);
+    else expect(ids.has(row.sourceCardId)).toBe(true);
+  }
+  const originalIds = new Set(revision.cards.map((row) => row.sourceCardId));
+  for (const added of revision.added) {
+    expect(ids.has(added.cardId)).toBe(true);
+    expect(originalIds.has(added.cardId)).toBe(false);
+    for (const id of added.sourceCardIds)
+      expect(originalIds.has(id)).toBe(true);
+  }
+  const legacy = {
+    ...library,
+    cards: revision.cards.map((row) => {
+      const id = `builtin-auvp-${row.sourceCardId}`;
+      return {
+        ...(current.get(id) ?? {
+          id,
+          deckId: manifest.id,
+          front: 'Pergunta antiga',
+          back: 'Resposta antiga',
+          syncEnabled: false,
+        }),
+        front: `Enunciado anterior de ${row.sourceCardId}`,
+        due: 123456,
+        interval: 9,
+        reviews: 7,
+        favorite: true,
+      };
+    }),
+  };
+  const personal = {
+    id: 'auvp-personal-note',
+    deckId: manifest.id,
+    front: 'Minha anotação de estudo',
+    back: 'Resposta pessoal',
+    tags: ['pessoal'],
+    due: 456,
+    interval: 3,
+    reviews: 2,
+    favorite: false,
+  };
+  legacy.cards.push(personal);
+  const upgraded = withBundledAuvpDeck(legacy);
+  expect(upgraded.cards).toHaveLength(AUVP_CARD_COUNT + 1);
+  expect(upgraded.cards.find((card) => card.id === personal.id)).toEqual(
+    personal,
+  );
+  for (const row of revision.cards.filter((row) =>
+    ['REFORMULAR', 'DIVIDIR'].includes(row.action),
+  )) {
+    expect(
+      upgraded.cards.find(
+        (card) => card.id === `builtin-auvp-${row.sourceCardId}`,
+      ),
+    ).toMatchObject({ due: 123456, interval: 9, reviews: 7, favorite: true });
+    expect(
+      upgraded.cards.find(
+        (card) => card.id === `builtin-auvp-${row.sourceCardId}`,
+      )?.front,
+    ).toBe(current.get(`builtin-auvp-${row.sourceCardId}`)?.front);
+  }
+  for (const added of revision.added) {
+    expect(
+      upgraded.cards.find((card) => card.id === `builtin-auvp-${added.cardId}`),
+    ).toMatchObject({ reviews: 0, interval: 0, due: 0 });
+  }
+  expect(withBundledAuvpDeck(upgraded)).toEqual(upgraded);
 });

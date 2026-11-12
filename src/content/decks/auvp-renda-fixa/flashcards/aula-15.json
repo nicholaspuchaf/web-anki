@@ -11,26 +11,10 @@
   ],
   "cards": [
     {
-      "id": "aula-15-01",
-      "question": "Que diferença de acesso a dinheiro o início da aula destaca entre poupança e Tesouro Selic?",
-      "answer": "A disponibilidade para necessidades fora de dias e horários de operação.",
-      "explanation": "O material usa poupança como exemplo de acesso imediato; confira as condições da conta e a necessidade concreta de liquidez.",
-      "sourcePages": [36],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-15",
-        "reserva-de-emergencia",
-        "poupanca",
-        "liquidez"
-      ]
-    },
-    {
       "id": "aula-15-02",
-      "question": "Por que a apostila critica títulos de capitalização como forma de investir?",
-      "answer": "Porque os apresenta como produtos de acumulação com condições pouco atrativas para gerar rentabilidade.",
-      "explanation": "Separe a função do produto e eventuais sorteios de um objetivo de investimento. A avaliação categórica de todos serem ruins é a opinião do curso.",
+      "question": "Por que um título de capitalização não deve ser confundido com investimento para obter rentabilidade?",
+      "answer": "Porque tem finalidade e condições próprias de acumulação e sorteios.",
+      "explanation": "Examine resgate e remuneração do produto. A rejeição categórica de toda capitalização é opinião do curso, não definição de uma aplicação financeira.",
       "sourcePages": [36],
       "tags": [
         "auvp",
@@ -43,9 +27,9 @@
     },
     {
       "id": "aula-15-03",
-      "question": "Qual é a finalidade de acumular recursos em previdência privada segundo a aula?",
-      "answer": "Financiar benefícios ou renda futura, normalmente associados à aposentadoria.",
-      "explanation": "O fluxo, as condições de resgate e a conversão em benefício dependem do plano contratado.",
+      "question": "Qual finalidade financeira orienta a acumulação em previdência privada?",
+      "answer": "Formar recursos para benefícios ou renda futura.",
+      "explanation": "Resgate, pagamentos e conversão em renda dependem do contrato; o nome aposentadoria não especifica sozinho o fluxo.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -58,9 +42,9 @@
     },
     {
       "id": "aula-15-04",
-      "question": "Qual órgão supervisiona os produtos abertos de previdência e seguro discutidos no PDF?",
-      "answer": "A SUSEP, dentro do seu âmbito de atuação.",
-      "explanation": "A supervisão não transforma a rentabilidade do plano em garantia de retorno.",
+      "question": "Quem supervisiona os produtos abertos de previdência e seguros tratados na aula?",
+      "answer": "A SUSEP, dentro de suas competências.",
+      "explanation": "Supervisão não garante rentabilidade. Os produtos discutidos têm contratos e exposições próprios.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -73,9 +57,9 @@
     },
     {
       "id": "aula-15-05",
-      "question": "PGBL e VGBL são ambos tecnicamente o mesmo tipo de seguro?",
-      "answer": "Não. PGBL é plano de previdência complementar aberta; VGBL é seguro de pessoas com cobertura por sobrevivência.",
-      "explanation": "A apostila resume previdência como seguro, mas essa distinção ajuda a compreender contratos e tributação.",
+      "question": "Como PGBL e VGBL diferem na natureza do produto?",
+      "answer": "PGBL é previdência complementar aberta; VGBL é seguro de pessoas com cobertura por sobrevivência.",
+      "explanation": "As siglas são Plano Gerador de Benefícios Livres e Vida Gerador de Benefícios Livres. Essa distinção ajuda a interpretar o contrato e o tratamento tributário.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -84,14 +68,15 @@
         "aula-15",
         "pgbl",
         "vgbl",
-        "revisao-critica"
+        "revisao-critica",
+        "siglas"
       ]
     },
     {
       "id": "aula-15-06",
-      "question": "Qual mecanismo do INSS a apostila critica com a expressão pirâmide?",
-      "answer": "O financiamento por repartição, em que contribuições e outras receitas financiam benefícios correntes.",
-      "explanation": "A expressão do autor é uma opinião crítica. Regime público de repartição não deve ser classificado como esquema fraudulento ou colapso inevitável.",
+      "question": "Como o regime de repartição financia benefícios previdenciários correntes?",
+      "answer": "Com contribuições e outras receitas arrecadadas no sistema.",
+      "explanation": "A crítica do autor ao INSS não transforma o regime público em fraude nem demonstra colapso inevitável.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -106,9 +91,9 @@
     },
     {
       "id": "aula-15-07",
-      "question": "Por que comparar previdência privada com INSS exige mais do que olhar rentabilidade?",
-      "answer": "Porque são estruturas com funções e regras de proteção diferentes.",
-      "explanation": "A conclusão de que uma é sempre melhor que a outra não decorre apenas do mecanismo de financiamento descrito no PDF.",
+      "question": "Por que comparar INSS e previdência privada não se resume a comparar rentabilidade?",
+      "answer": "Porque têm funções de proteção e regras de financiamento e benefícios diferentes.",
+      "explanation": "Uma taxa projetada não demonstra, sozinha, que uma estrutura substitui todos os objetivos da outra.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -122,39 +107,27 @@
     },
     {
       "id": "aula-15-08",
-      "question": "Que comparação de desempenho o material recomenda ao analisar um plano?",
-      "answer": "Comparar o resultado, após custos e conforme o risco da estratégia, a referências pertinentes, como Selic.",
-      "explanation": "Ficar abaixo da Selic é um alerta sugerido pela aula, mas o benchmark precisa ser coerente com a carteira e o horizonte.",
-      "sourcePages": [37],
+      "question": "Como tornar útil a comparação de desempenho de um plano de previdência?",
+      "answer": "Use resultado após custos e referência compatível com o risco e o horizonte.",
+      "explanation": "Selic pode servir de comparação em certos casos, mas não é benchmark automaticamente adequado a toda estratégia.",
+      "sourcePages": [37, 38],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-15",
         "benchmark",
-        "rentabilidade-liquida"
-      ]
-    },
-    {
-      "id": "aula-15-09",
-      "question": "Por que taxas de administração de 3% a 4% ao ano merecem atenção no exemplo?",
-      "answer": "Porque custos recorrentes dessa ordem podem consumir uma parcela importante da capitalização.",
-      "explanation": "O impacto aumenta com o prazo. O percentual é exemplo do material, não a taxa praticada por todos os planos.",
-      "sourcePages": [37],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-15",
-        "taxas",
-        "juros-compostos"
+        "rentabilidade-liquida",
+        "checklist",
+        "previdencia",
+        "planejamento"
       ]
     },
     {
       "id": "aula-15-10",
-      "question": "O que é taxa de carregamento no contexto de um plano?",
-      "answer": "Cobrança vinculada às contribuições ou movimentações, conforme previsto no contrato.",
-      "explanation": "O autor rejeita esse custo; para analisar um plano, identifique base de cálculo, momento e eventuais isenções.",
+      "question": "O que é taxa de carregamento num plano de previdência?",
+      "answer": "Cobrança sobre contribuições ou movimentações previstas no contrato.",
+      "explanation": "Confira base, momento de incidência e possíveis isenções; ela é diferente da taxa de administração recorrente.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -167,9 +140,9 @@
     },
     {
       "id": "aula-15-11",
-      "question": "O que analisar numa taxa de saída?",
-      "answer": "Percentual, prazo de incidência, condição de redução e efeitos sobre o valor líquido disponível.",
-      "explanation": "O PDF prefere que a cobrança desapareça com o tempo; leia o contrato em vez de supor que todo resgate tem o mesmo custo.",
+      "question": "Que condição de uma taxa de saída precisa ser conferida antes do resgate?",
+      "answer": "Como o prazo e a operação afetam o desconto no valor líquido disponível.",
+      "explanation": "Percentual, condições de redução e isenção são contratuais. Não presuma o mesmo custo em todo resgate.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -182,9 +155,9 @@
     },
     {
       "id": "aula-15-12",
-      "question": "O que é portabilidade de previdência e qual problema ela pode ajudar a resolver?",
-      "answer": "Transferir recursos entre planos ou instituições compatíveis sem realizar o resgate para o participante.",
-      "explanation": "Pode permitir substituir um plano caro mantendo o diferimento tributário, respeitadas as regras e condições aplicáveis.",
+      "question": "Como a portabilidade pode permitir trocar um plano sem realizar um resgate tributável para o participante?",
+      "answer": "Transferindo recursos diretamente entre planos compatíveis, conforme as regras aplicáveis.",
+      "explanation": "Não é sacar e reaplicar por conta própria. Compare custos, desempenho e compatibilidade antes de optar por resgate ou transferência.",
       "sourcePages": [37, 38],
       "tags": [
         "auvp",
@@ -192,30 +165,18 @@
         "modulo-3",
         "aula-15",
         "portabilidade",
-        "diferimento"
-      ]
-    },
-    {
-      "id": "aula-15-13",
-      "question": "O que significam PGBL e VGBL?",
-      "answer": "Plano Gerador de Benefício Livre e Vida Gerador de Benefício Livre, nas siglas usadas pelo material.",
-      "explanation": "As denominações oficiais podem aparecer no plural; o ponto central é distinguir os produtos e sua base tributária.",
-      "sourcePages": [37],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-15",
-        "pgbl",
-        "vgbl",
-        "siglas"
+        "diferimento",
+        "ir",
+        "checklist",
+        "previdencia",
+        "planejamento"
       ]
     },
     {
       "id": "aula-15-14",
-      "question": "Qual benefício de dedução o PGBL pode oferecer à pessoa física elegível?",
-      "answer": "Dedução de contribuições até o limite de 12% da renda bruta tributável anual, cumpridos os requisitos legais.",
-      "explanation": "É relevante para a declaração com deduções legais. Não significa que 12% do imposto devido será devolvido nem que toda renda é base elegível.",
+      "question": "Qual limite de dedução das contribuições ao PGBL pode ser usado por pessoa física elegível?",
+      "answer": "Até 12% da renda bruta tributável anual, cumpridos os requisitos legais.",
+      "explanation": "Deduzir reduz a base de cálculo, não corresponde a devolver 12% do imposto devido. A opção por deduções legais e a elegibilidade precisam ser verificadas.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -229,9 +190,9 @@
     },
     {
       "id": "aula-15-15",
-      "question": "Sobre qual base o IR do PGBL normalmente incide no resgate ou benefício?",
-      "answer": "Sobre o valor tributável total recebido, e não apenas o rendimento.",
-      "explanation": "A dedução durante a contribuição representa diferimento, não isenção definitiva de todo o capital.",
+      "question": "Sobre qual base incide o IR do PGBL no resgate ou benefício tributável?",
+      "answer": "Sobre o valor total recebido, não só sobre o rendimento.",
+      "explanation": "A dedução no aporte representa diferimento, não isenção definitiva do capital.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -245,9 +206,9 @@
     },
     {
       "id": "aula-15-16",
-      "question": "Como o VGBL se distingue do PGBL na tributação apresentada?",
-      "answer": "Não oferece a mesma dedução das contribuições e tem IR incidente sobre rendimentos no recebimento.",
-      "explanation": "O material o associa ao modelo simplificado ou a situações sem uso da dedução; a escolha depende do caso e das regras.",
+      "question": "Sobre qual base incide o IR do VGBL no recebimento tributável?",
+      "answer": "Sobre os rendimentos, sem a mesma dedução das contribuições oferecida pelo PGBL.",
+      "explanation": "Comparar apenas alíquotas de PGBL e VGBL pode enganar porque as bases são diferentes.",
       "sourcePages": [37],
       "tags": [
         "auvp",
@@ -260,24 +221,27 @@
     },
     {
       "id": "aula-15-17",
-      "question": "Por que não basta escolher PGBL apenas porque a declaração é completa?",
-      "answer": "Porque é preciso verificar renda tributável, limite, elegibilidade e a tributação futura do plano.",
-      "explanation": "O formato da declaração é uma condição relevante, mas não resolve sozinho toda a análise.",
-      "sourcePages": [37],
+      "question": "Por que usar deduções legais na declaração não basta para decidir por PGBL?",
+      "answer": "Porque renda elegível, limite de dedução e tributação futura também precisam ser avaliados.",
+      "explanation": "Verifique os requisitos legais, o aproveitamento efetivo do benefício e as condições do plano.",
+      "sourcePages": [37, 38],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-15",
         "pgbl",
-        "planejamento-tributario"
+        "planejamento-tributario",
+        "checklist",
+        "previdencia",
+        "planejamento"
       ]
     },
     {
       "id": "aula-15-18",
-      "question": "Qual vantagem de diferimento a aula atribui à previdência em relação a certos fundos?",
-      "answer": "Ausência de come-cotas nos produtos discutidos.",
-      "explanation": "Isso evita aquela antecipação semestral, mas não elimina o imposto no resgate ou no benefício.",
+      "question": "Que antecipação de imposto não ocorre nos produtos de previdência discutidos na aula?",
+      "answer": "O come-cotas.",
+      "explanation": "A ausência dessa antecipação semestral não elimina o IR no resgate ou no benefício.",
       "sourcePages": [38],
       "tags": [
         "auvp",
@@ -289,25 +253,10 @@
       ]
     },
     {
-      "id": "aula-15-19",
-      "question": "A portabilidade exige sacar o dinheiro e antecipar o IR como num resgate comum?",
-      "answer": "Em uma portabilidade regular, não. A transferência é feita conforme as regras entre os planos.",
-      "explanation": "Esse é um motivo para estudar portabilidade antes de simplesmente liquidar uma previdência considerada ruim.",
-      "sourcePages": [38],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-15",
-        "portabilidade",
-        "ir"
-      ]
-    },
-    {
       "id": "aula-15-20",
-      "question": "Que benefício sucessório a apostila associa à previdência e que ressalva é necessária?",
-      "answer": "Indicação de beneficiários e tratamento específico do pagamento por morte, que pode facilitar a transmissão.",
-      "explanation": "A frase não entra no inventário não elimina toda análise jurídica, contratual ou possível controvérsia sobre o caso.",
+      "question": "Como a indicação de beneficiários pode ajudar no planejamento sucessório de um plano?",
+      "answer": "Ela direciona o pagamento por morte conforme o contrato e as regras aplicáveis.",
+      "explanation": "Isso pode facilitar a transmissão, mas não elimina toda análise jurídica ou controvérsia. Não trate a expressão fora do inventário como garantia universal.",
       "sourcePages": [38],
       "tags": [
         "auvp",
@@ -321,9 +270,9 @@
     },
     {
       "id": "aula-15-21",
-      "question": "Qual é a referência jurídica conferida para ITCMD sobre repasse de PGBL/VGBL por morte do titular?",
-      "answer": "O Tema 1214 do STF, que declarou inconstitucional a incidência do ITCMD nesse repasse aos beneficiários.",
-      "explanation": "A conclusão tem esse recorte; não é uma isenção genérica de todos os impostos, operações e situações envolvendo previdência.",
+      "question": "Qual é o recorte da decisão do STF no Tema 1214 sobre PGBL e VGBL?",
+      "answer": "A inconstitucionalidade do ITCMD no repasse aos beneficiários por morte do titular.",
+      "explanation": "A decisão não cria isenção genérica de todos os impostos ou de qualquer operação envolvendo previdência.",
       "sourcePages": [38],
       "tags": [
         "auvp",
@@ -337,9 +286,9 @@
     },
     {
       "id": "aula-15-22",
-      "question": "Como interpretar a comparação de IR de 10% na previdência com 15% da renda fixa comum?",
-      "answer": "Como possibilidade de uma modalidade regressiva e prazo elegível, não como taxa automática de todo plano.",
-      "explanation": "Também diferem as bases: PGBL tributa o total recebido; VGBL tributa rendimentos. Comparar só percentuais pode enganar.",
+      "question": "Por que comparar 10% na previdência com 15% na renda fixa pode ser enganoso?",
+      "answer": "Porque a alíquota depende do regime e do prazo, e a base tributada também pode ser diferente.",
+      "explanation": "A taxa reduzida não é automática para todo plano; PGBL pode tributar o total e VGBL, apenas rendimentos.",
       "sourcePages": [38],
       "tags": [
         "auvp",
@@ -349,22 +298,6 @@
         "ir",
         "tabela-regressiva",
         "comparacao"
-      ]
-    },
-    {
-      "id": "aula-15-23",
-      "question": "Quais pontos o encerramento da aula recomenda revisar antes de manter ou trocar um plano?",
-      "answer": "Custos, desempenho, escolha PGBL/VGBL, tributação e alternativas de portabilidade.",
-      "explanation": "A revisão da aula ao final do curso serve para tomar uma decisão mais informada, sem resgatar por impulso.",
-      "sourcePages": [38],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-15",
-        "checklist",
-        "previdencia",
-        "planejamento"
       ]
     }
   ]

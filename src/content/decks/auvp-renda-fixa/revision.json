@@ -1,0 +1,1536 @@
+{
+  "reviewedAt": "2026-11-12",
+  "source": "Catálogo anterior de 246 cartões, referências de aula/página e fontes primárias; PDF original não disponível para releitura nesta revisão.",
+  "originalCount": 246,
+  "cardCount": 185,
+  "cards": [
+    {
+      "sourceCardId": "aula-16-01",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-16-03"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-16-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-08",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-16-12"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-16-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-13",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-13"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-16-12"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-16-15",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-15"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-16-16"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-16-17",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-17-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-2-01",
+      "action": "REMOVER",
+      "targetCardIds": [],
+      "reason": "Passos de acesso a uma tela são instruções operacionais, não conhecimento financeiro a memorizar."
+    },
+    {
+      "sourceCardId": "aula-07-2-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-05",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06", "aula-07-2-03"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-2-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-07-2-16"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-2-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06", "aula-07-2-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-2-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-13",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-13"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-07-2-15", "aula-07-2-16"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-2-15",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-15"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-2-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-2-16"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-17-01",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-17-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-17-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-17-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-17-03",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-11-09"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-17-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-17-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-17-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-17-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-17-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-16-10"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-17-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-17-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-08-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-08-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-08-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-08-08",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-08-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-08-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-08-02", "aula-08-03"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-12-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-05",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-12-02"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-12-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-12-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-12-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-17-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-12-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-12-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-12-12",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-12-11"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-12-13",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-17-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-01-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-01-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-01-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-01-08",
+      "action": "MESCLAR",
+      "targetCardIds": [
+        "aula-03-12",
+        "aula-10-11",
+        "aula-11-01",
+        "aula-12-01",
+        "aula-13-01"
+      ],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-01-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-01-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-02",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-01-02"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-04-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-04-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-04-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-03-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-04-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-10-02"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-04-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-13",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-13"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-14",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-14"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-04-15",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-04-15"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-05-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-05-11",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-03-11"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-05-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-05-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-03",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-02"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-02-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-05",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-11"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-02-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-13",
+      "action": "REMOVER",
+      "targetCardIds": [],
+      "reason": "Lista de marcas de plataformas não é um alvo durável de aprendizagem."
+    },
+    {
+      "sourceCardId": "aula-02-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-12"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-02-15",
+      "action": "REMOVER",
+      "targetCardIds": [],
+      "reason": "Faixas comerciais históricas de patrimônio não são regras financeiras gerais."
+    },
+    {
+      "sourceCardId": "aula-02-16",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-10"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-02-17",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-17"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-18",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-18"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-02-19",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-02-19"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-01",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-04-04"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-15-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-15-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-13",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-15-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-15-14",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-14"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-15",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-15"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-16"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-17",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-17"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-18",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-18"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-19",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-15-12"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-15-20",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-20"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-21",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-21"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-22",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-15-22"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-15-23",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-15-08", "aula-15-12", "aula-15-17"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-10",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-19"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-11",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-18"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-12",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-18"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-13",
+      "action": "REMOVER",
+      "targetCardIds": [],
+      "reason": "Percentuais de desempenho sem janela e metodologia não devem ser decorados como evidência; o critério de avaliação recebe um cartão novo."
+    },
+    {
+      "sourceCardId": "aula-14-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-15",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-08"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-16",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-14-17"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-14-17",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-17"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-18",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-18"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-19",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-19"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-20",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-20"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-21",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-21"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-22",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-22"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-14-23",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-14-23"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-07",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-10-10"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-10-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-11",
+      "action": "DIVIDIR",
+      "targetCardIds": ["aula-10-11", "aula-10-11-rdb", "aula-10-11-lc"],
+      "reason": "Siglas separadas em alvos independentes; cartões novos começam sem revisões."
+    },
+    {
+      "sourceCardId": "aula-10-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-13",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-13"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-14",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-10-15",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-10-16",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-16"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-17",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-17"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-10-18",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-02-09"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-10-19",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-10-19"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-13-05"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-13-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-13",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-13"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-14",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-14"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-15",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-13-15"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-13-16",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-13-15"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-06-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-06-02",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-06-01"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-06-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-06-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-06-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-06-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-06-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-06-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-11",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-11"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-03-12",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-03-12"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-02",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-06-01"],
+      "reason": "Mesmo conhecimento avaliado no destino; análise dos candidatos semânticos confirmou a redundância pedagógica."
+    },
+    {
+      "sourceCardId": "aula-09-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-09-08",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-09-03"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-09-09",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-03"],
+      "reason": "Mesmo conhecimento avaliado no destino; análise dos candidatos semânticos confirmou a redundância pedagógica."
+    },
+    {
+      "sourceCardId": "aula-09-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-09-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-02",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-02"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-03",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-03"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-04",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-04"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-06",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-06"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-08",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-08"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-09",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-09"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-10",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-11-10"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-11-11",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-17-07"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-1-01",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-1-01"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-1-02",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-1-03",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-1-04",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-06"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-1-05",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-1-05"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-1-06",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-07-2-16"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    },
+    {
+      "sourceCardId": "aula-07-1-07",
+      "action": "REFORMULAR",
+      "targetCardIds": ["aula-07-1-07"],
+      "reason": "Pergunta delimitada e resposta direta; conhecimento e ID mantidos."
+    },
+    {
+      "sourceCardId": "aula-07-1-08",
+      "action": "MESCLAR",
+      "targetCardIds": ["aula-05-04", "aula-06-04"],
+      "reason": "Conhecimento repetido consolidado nos destinos, sem copiar histórico entre cartões."
+    }
+  ],
+  "added": [
+    {
+      "cardId": "aula-10-11-rdb",
+      "sourceCardIds": ["aula-10-11"]
+    },
+    {
+      "cardId": "aula-10-11-lc",
+      "sourceCardIds": ["aula-10-11"]
+    },
+    {
+      "cardId": "aula-14-avaliar-estatisticas",
+      "sourceCardIds": ["aula-14-13"]
+    }
+  ],
+  "semanticReview": [
+    {
+      "cards": ["aula-04-13", "aula-04-14"],
+      "decision": "MANTER",
+      "reason": "Faixas tributárias diferentes, apesar da semelhança de redação."
+    },
+    {
+      "cards": ["aula-15-15", "aula-15-16"],
+      "decision": "MANTER",
+      "reason": "Bases tributárias diferentes: total no PGBL e rendimentos no VGBL."
+    },
+    {
+      "cards": ["aula-02-07", "aula-02-08"],
+      "decision": "MANTER",
+      "reason": "Limite por conglomerado e teto global são regras diferentes."
+    },
+    {
+      "cards": ["aula-06-01", "aula-09-02"],
+      "decision": "MESCLAR",
+      "reason": "Mesma estrutura IPCA mais taxa real; a distinção de fluxo permanece no contexto e nos cartões da aula 9."
+    },
+    {
+      "cards": ["aula-05-03", "aula-09-09"],
+      "decision": "MESCLAR",
+      "reason": "Mesma relação entre nova compra, novo preço e nova taxa dentro de uma série."
+    },
+    {
+      "cards": ["aula-05-02", "aula-07-2-15"],
+      "decision": "MANTER",
+      "reason": "Fórmula geral e aplicação com prazo fracionário e correção de exemplo numérico."
+    }
+  ]
+}

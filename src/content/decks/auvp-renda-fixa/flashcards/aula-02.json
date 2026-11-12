@@ -7,14 +7,14 @@
     "FGC e fiscalização",
     "B3 e CVM",
     "Comparação de plataformas",
-    "Modelo comercial AUVP"
+    "Remuneração e incentivos"
   ],
   "cards": [
     {
       "id": "aula-02-01",
-      "question": "Qual é a função de uma corretora no acesso a investimentos?",
-      "answer": "Intermediar operações e oferecer serviços de acesso, distribuição e custódia conforme sua atuação.",
-      "explanation": "A analogia da concessionária mostra que o intermediário não se confunde com o bem adquirido.",
+      "question": "Qual papel a corretora exerce entre você e o investimento?",
+      "answer": "Intermediar o acesso e as operações, oferecendo os serviços previstos para sua atuação.",
+      "explanation": "A corretora não é automaticamente o emissor do título. Separe quem distribui, quem deve o dinheiro e quem registra a propriedade.",
       "sourcePages": [8],
       "tags": [
         "auvp",
@@ -27,9 +27,9 @@
     },
     {
       "id": "aula-02-02",
-      "question": "A quebra da corretora significa necessariamente perder os ativos custodiados em seu nome?",
-      "answer": "Não. Ativos corretamente registrados e segregados podem ser transferidos para outro agente.",
-      "explanation": "Isso não elimina procedimentos, prazos ou diferenças entre instrumentos. Não confunda custódia de ativos com saldo de dinheiro disponível.",
+      "question": "Por que a quebra da corretora não implica automaticamente perder os ativos custodiados?",
+      "answer": "Porque ativos corretamente registrados e segregados não se confundem com o patrimônio da corretora.",
+      "explanation": "Pode ser necessário transferir a custódia, com procedimentos e prazos próprios. A analogia da concessionária trata dessa separação, não de uma garantia universal de recuperação.",
       "sourcePages": [8],
       "tags": [
         "auvp",
@@ -37,29 +37,15 @@
         "modulo-3",
         "aula-02",
         "custodia",
-        "transferencia-de-custodia"
-      ]
-    },
-    {
-      "id": "aula-02-03",
-      "question": "O que a analogia entre corretora e concessionária procura ensinar?",
-      "answer": "Que a propriedade do ativo não é a mesma coisa que a sobrevivência comercial do intermediário.",
-      "explanation": "Assim como o carro não desaparece com a concessionária, um ativo registrado em seu nome não vira automaticamente patrimônio da corretora.",
-      "sourcePages": [8],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
-        "custodia",
+        "transferencia-de-custodia",
         "analogia"
       ]
     },
     {
       "id": "aula-02-04",
-      "question": "Por que dinheiro parado na corretora exige análise distinta dos títulos custodiados?",
-      "answer": "Porque o tratamento do saldo depende da conta, da instituição e das regras aplicáveis.",
-      "explanation": "A apostila alerta para esse risco. Aplicar em qualquer produto apenas para zerar o saldo não garante segurança.",
+      "question": "Por que saldo em dinheiro na corretora não deve ser tratado como um título já custodiado?",
+      "answer": "Porque a natureza da conta e as regras de proteção podem ser diferentes.",
+      "explanation": "Verifique a instituição, o tipo de saldo e a cobertura aplicável. Comprar qualquer produto para esvaziar a conta não torna o dinheiro automaticamente seguro.",
       "sourcePages": [9],
       "tags": [
         "auvp",
@@ -72,27 +58,11 @@
       ]
     },
     {
-      "id": "aula-02-05",
-      "question": "Que papel de custódia e liquidação o material associa à antiga CBLC?",
-      "answer": "Registrar a titularidade e viabilizar a liquidação e a transferência de ativos.",
-      "explanation": "CBLC é a nomenclatura histórica usada no PDF; consulte a estrutura atual da B3 e do agente para serviços concretos.",
-      "sourcePages": [8],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
-        "cblc",
-        "b3",
-        "liquidacao"
-      ]
-    },
-    {
       "id": "aula-02-06",
-      "question": "Qual é o papel do FGC e por que ele não deve ser confundido com a CVM?",
-      "answer": "FGC oferece garantia para créditos elegíveis; CVM regula e fiscaliza o mercado de valores mobiliários.",
-      "explanation": "Garantia financeira, regulação e custódia são funções diferentes. A CVM não promete ressarcir toda perda de mercado.",
-      "sourcePages": [8, 9],
+      "question": "Qual é a diferença entre a função do FGC e a da CVM?",
+      "answer": "FGC garante créditos elegíveis; CVM regula e fiscaliza o mercado de valores mobiliários.",
+      "explanation": "Garantia, fiscalização e custódia são funções distintas. O FGC busca proteger credores elegíveis e a confiança no sistema; a CVM não garante toda perda de mercado.",
+      "sourcePages": [8, 9, 28],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -100,15 +70,16 @@
         "aula-02",
         "fgc",
         "cvm",
-        "regulacao"
+        "regulacao",
+        "historico"
       ]
     },
     {
       "id": "aula-02-07",
-      "question": "Qual limite individual do FGC precisa ser agregado por conglomerado?",
-      "answer": "Até R$ 250 mil por CPF ou CNPJ, por instituição ou conglomerado, para créditos elegíveis.",
-      "explanation": "Distribuir aplicações entre marcas do mesmo conglomerado não cria limites independentes. Principal e rendimentos entram na conta.",
-      "sourcePages": [8],
+      "question": "Como se agrega o limite ordinário de R$ 250 mil do FGC?",
+      "answer": "Por CPF ou CNPJ e por instituição ou conglomerado, somando os créditos elegíveis.",
+      "explanation": "Marcas, corretoras e títulos diferentes não multiplicam a proteção contra o mesmo conglomerado. Principal e rendimentos abrangidos entram no limite.",
+      "sourcePages": [8, 28],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -116,14 +87,16 @@
         "aula-02",
         "fgc",
         "conglomerado",
-        "limites"
+        "limites",
+        "agregacao",
+        "diversificacao"
       ]
     },
     {
       "id": "aula-02-08",
-      "question": "Qual teto global de garantias do FGC a apostila destaca?",
-      "answer": "R$ 1 milhão no período de quatro anos, além do limite por instituição ou conglomerado.",
-      "explanation": "É um teto de garantias pagas nas condições regulamentares, não um limite de patrimônio que alguém pode investir.",
+      "question": "Qual teto global do FGC se soma ao limite por conglomerado?",
+      "answer": "R$ 1 milhão de garantias pagas por CPF ou CNPJ em um período de quatro anos.",
+      "explanation": "Esse teto é de garantias recebidas nas condições do regulamento; não é um limite de patrimônio que alguém pode investir.",
       "sourcePages": [8, 28],
       "tags": [
         "auvp",
@@ -137,10 +110,10 @@
     },
     {
       "id": "aula-02-09",
-      "question": "O valor acima da cobertura do FGC está necessariamente perdido de forma definitiva?",
-      "answer": "Não. Ele fica fora dessa garantia, mas pode existir recuperação pelo processo de liquidação.",
-      "explanation": "A linguagem categórica do PDF sobre perda acima do limite precisa dessa ressalva; cobertura limitada não determina recuperação final zero.",
-      "sourcePages": [8],
+      "question": "O que acontece com o crédito que excede a cobertura do FGC?",
+      "answer": "Ele fica fora da garantia, mas pode ter recuperação no processo de liquidação.",
+      "explanation": "Não confunda ausência de garantia com perda definitiva automática. Essa distinção também vale quando o teto global limita o ressarcimento de várias instituições.",
+      "sourcePages": [8, 28],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -148,15 +121,16 @@
         "aula-02",
         "fgc",
         "recuperacao-de-credito",
-        "revisao-critica"
+        "revisao-critica",
+        "liquidacao"
       ]
     },
     {
       "id": "aula-02-10",
-      "question": "O que verificar antes de escolher uma instituição para investir?",
-      "answer": "Habilitação para as operações, custos, oferta de produtos, atendimento e qualidade dos serviços.",
-      "explanation": "O PDF cita registro nos órgãos competentes. A instituição deve estar autorizada para sua atividade específica.",
-      "sourcePages": [9],
+      "question": "Que verificação vem antes de comparar a oferta de uma plataforma financeira?",
+      "answer": "Se a instituição está habilitada a exercer a atividade oferecida.",
+      "explanation": "Depois compare custos, produtos, atendimento e serviços úteis. Benefícios anunciados, como suporte ou facilidades operacionais, não substituem autorização nem análise do investimento.",
+      "sourcePages": [9, 10],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -164,15 +138,18 @@
         "aula-02",
         "corretora",
         "diligencia",
-        "custos"
+        "custos",
+        "servicos",
+        "open-finance",
+        "contexto-comercial"
       ]
     },
     {
       "id": "aula-02-11",
-      "question": "Qual função a B3 representa no panorama apresentado na apostila?",
-      "answer": "Infraestrutura de mercado que reúne negociação, registro, compensação e custódia em diferentes segmentos.",
-      "explanation": "O texto relata a formação histórica a partir de Bovespa, BM&F e Cetip. Não é preciso que todo produto financeiro seja negociado em bolsa.",
-      "sourcePages": [9],
+      "question": "Qual é o papel da infraestrutura da B3 na propriedade e na conclusão de operações?",
+      "answer": "Oferecer serviços de registro, custódia, compensação e liquidação, conforme o mercado.",
+      "explanation": "Registro identifica posições; liquidação conclui obrigações da operação. O material usa também a nomenclatura histórica CBLC. Isso não significa que todo produto seja negociado em bolsa.",
+      "sourcePages": [8, 9],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -180,14 +157,16 @@
         "aula-02",
         "b3",
         "infraestrutura",
-        "historico"
+        "historico",
+        "cblc",
+        "liquidacao"
       ]
     },
     {
       "id": "aula-02-12",
-      "question": "Por que comparar corretora, escritório de assessoria e canal de atendimento?",
-      "answer": "Porque produtos, comissões e incentivos podem variar conforme o canal utilizado.",
-      "explanation": "A crítica do PDF a escritórios ligados à XP é a posição do autor, não uma conclusão universal sobre todos os assessores.",
+      "question": "Por que investigar a remuneração de quem recomenda uma plataforma ou produto?",
+      "answer": "Porque comissões e relações comerciais podem influenciar a recomendação.",
+      "explanation": "Uma parceria comercial é informação relevante sobre incentivos, não prova automática de inadequação. Compare condições e interesses sem decorar nomes de parceiros da edição.",
       "sourcePages": [9, 10],
       "tags": [
         "auvp",
@@ -196,76 +175,17 @@
         "aula-02",
         "assessoria",
         "comissoes",
-        "conflito-de-interesses"
-      ]
-    },
-    {
-      "id": "aula-02-13",
-      "question": "Que plataformas o material cita como exemplos para comparação?",
-      "answer": "XP, Clear, Rico, Modal Mais, Inter, Nova Futura, Genial, Terra, Capital, Nu e BTG Pactual.",
-      "explanation": "São referências da edição, não um ranking atual nem garantia de que marcas, serviços e condições continuem iguais.",
-      "sourcePages": [10],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
-        "corretoras",
-        "contexto-do-material"
-      ]
-    },
-    {
-      "id": "aula-02-14",
-      "question": "Qual parceria comercial a AUVP declara ao recomendar uma plataforma?",
-      "answer": "A parceria com o BTG Pactual e a oferta de serviços pela AUVP Capital.",
-      "explanation": "Identificar a relação comercial ajuda a interpretar indicações e comparar condições de forma independente.",
-      "sourcePages": [10],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
+        "conflito-de-interesses",
         "auvp-capital",
         "btg",
         "contexto-comercial"
       ]
     },
     {
-      "id": "aula-02-15",
-      "question": "Que faixas de patrimônio aparecem na apresentação comercial da página 10?",
-      "answer": "Menos de R$ 100 mil para discutir plataformas gratuitas e mais de R$ 300 mil como referência de acesso à AUVP Capital, com condição para alunos.",
-      "explanation": "São condições relatadas na edição. Não devem ser tratadas como requisitos atuais sem consulta ao contrato vigente.",
-      "sourcePages": [10],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
-        "contexto-comercial",
-        "patrimonio"
-      ]
-    },
-    {
-      "id": "aula-02-16",
-      "question": "Quais serviços além da compra de títulos a plataforma anuncia?",
-      "answer": "Suporte, atendimento prioritário, cartão, análise de carteira via open finance, facilidades para IR e conta internacional.",
-      "explanation": "São benefícios comerciais apresentados pelo material; não alteram por si a qualidade ou o risco dos investimentos.",
-      "sourcePages": [10],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-02",
-        "servicos",
-        "open-finance",
-        "contexto-comercial"
-      ]
-    },
-    {
       "id": "aula-02-17",
-      "question": "Como o PDF diferencia autoatendimento e consultoria?",
-      "answer": "No autoatendimento o investidor escolhe as aplicações; na consultoria recebe orientação pelo modelo oferecido.",
-      "explanation": "Delegar a orientação não dispensa compreender custos, contrato e os riscos da carteira.",
+      "question": "Como autoatendimento difere de contratar orientação financeira?",
+      "answer": "No autoatendimento você escolhe; na orientação recebe o serviço definido em contrato.",
+      "explanation": "Contratar ajuda não dispensa compreender a remuneração do prestador e os riscos das decisões propostas.",
       "sourcePages": [10],
       "tags": [
         "auvp",
@@ -278,9 +198,9 @@
     },
     {
       "id": "aula-02-18",
-      "question": "Como funciona o modelo fee-based descrito pela AUVP?",
-      "answer": "Cobrança sobre patrimônio, com devolução anunciada das taxas de distribuição e percentual que diminui conforme a faixa patrimonial.",
-      "explanation": "O texto cita 1,5% como referência. Remuneração explícita reduz certos incentivos, mas não prova ausência de todo conflito.",
+      "question": "Como funciona a remuneração fee-based descrita no material?",
+      "answer": "O cliente paga uma taxa explícita pelo serviço, em vez de depender apenas da remuneração de distribuição.",
+      "explanation": "A edição descreve cobrança sobre patrimônio e devolução anunciada de comissões. O contrato define o modelo; taxa explícita não elimina todos os conflitos.",
       "sourcePages": [10],
       "tags": [
         "auvp",
@@ -295,10 +215,10 @@
     },
     {
       "id": "aula-02-19",
-      "question": "Uma plataforma gratuita é necessariamente a mais barata no custo total?",
-      "answer": "Não. Compare também spreads, comissões embutidas, serviços e rentabilidade líquida.",
-      "explanation": "A página 10 contrapõe custo explícito e remuneração da distribuição. O menor preço visível não encerra a comparação.",
-      "sourcePages": [10],
+      "question": "Por que uma plataforma sem tarifa explícita pode ter custo econômico?",
+      "answer": "Porque sua remuneração pode estar em spreads, comissões ou condições do produto.",
+      "explanation": "Compare o resultado líquido e os serviços recebidos, não apenas o preço visível. Gratuidade aparente não prova custo zero nem má-fé.",
+      "sourcePages": [10, 34],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -306,7 +226,9 @@
         "aula-02",
         "spread",
         "custo-total",
-        "comparacao"
+        "comparacao",
+        "fee-based",
+        "conflito-de-interesses"
       ]
     }
   ]

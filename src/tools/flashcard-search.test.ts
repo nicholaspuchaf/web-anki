@@ -11,6 +11,7 @@ import {
 import { cosine, type Embed } from '../../scripts/flashcard-search/embeddings';
 import { SearchIndex } from '../../scripts/flashcard-search/index';
 import { batchNeighbors, search } from '../../scripts/flashcard-search/search';
+import { AUVP_CARD_COUNT } from '../features/bundled-decks/auvp';
 
 const card = (id: string, question = id): Document => ({
   id,
@@ -26,9 +27,10 @@ const embed: Embed = async (texts) => texts.map(() => [1, 0, 0]);
 
 test('acervo usa os adaptadores reais e não inclui nenhum cartão de baralho antigo', () => {
   const corpus = loadCorpus();
-  expect(corpus.documents).toHaveLength(966);
+  const expected = 326 + 176 + 218 + AUVP_CARD_COUNT;
+  expect(corpus.documents).toHaveLength(expected);
   expect(corpus.excluded).toContain('builtin-mc714');
-  expect(new Set(corpus.documents.map((d) => d.id)).size).toBe(966);
+  expect(new Set(corpus.documents.map((d) => d.id)).size).toBe(expected);
   expect(corpus.documents.some((d) => d.deckId === 'builtin-mc714')).toBe(
     false,
   );

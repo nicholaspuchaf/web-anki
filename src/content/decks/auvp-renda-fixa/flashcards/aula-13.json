@@ -12,24 +12,26 @@
   "cards": [
     {
       "id": "aula-13-01",
-      "question": "O que é uma debênture na explicação do módulo?",
-      "answer": "Um título de dívida corporativa pelo qual o investidor financia uma empresa e recebe o fluxo contratado.",
-      "explanation": "O comprador é credor, não sócio apenas por possuir a debênture.",
-      "sourcePages": [31],
+      "question": "Que relação o investidor estabelece ao comprar uma debênture?",
+      "answer": "Torna-se credor de uma dívida corporativa, segundo as condições da emissão.",
+      "explanation": "O título financia a empresa e prevê um fluxo contratado; possuir a dívida não torna o comprador sócio.",
+      "sourcePages": [7, 31],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-13",
         "debentures",
-        "credito-corporativo"
+        "credito-corporativo",
+        "produtos",
+        "mapa-do-modulo"
       ]
     },
     {
       "id": "aula-13-02",
-      "question": "Por que uma empresa pode usar dívida para crescer?",
-      "answer": "Para financiar projetos cujo retorno esperado compense o custo e os riscos da captação.",
-      "explanation": "A aula distingue dívida produtiva da ideia de descontrole financeiro; o resultado esperado não é garantido.",
+      "question": "Quando uma empresa pode considerar dívida para financiar seu crescimento?",
+      "answer": "Quando o retorno esperado do projeto compensa o custo e os riscos do financiamento.",
+      "explanation": "Trata-se de expectativa, não garantia de resultado. Dívida produtiva não é sinônimo automático de descontrole financeiro.",
       "sourcePages": [31],
       "tags": [
         "auvp",
@@ -42,9 +44,9 @@
     },
     {
       "id": "aula-13-03",
-      "question": "Debêntures surgem apenas quando a empresa não consegue crédito bancário?",
-      "answer": "Não. São uma alternativa de financiamento com condições próprias no mercado de capitais.",
-      "explanation": "O PDF menciona empréstimos subsidiados e acesso desigual como motivações possíveis, não como condição necessária de emissão.",
+      "question": "Por que emitir debêntures não significa necessariamente ter sido recusado por um banco?",
+      "answer": "Porque o mercado de capitais é uma alternativa de financiamento com condições próprias.",
+      "explanation": "Acesso a prazos e estruturas diferentes pode motivar a emissão; não presuma uma causa única para toda captação.",
       "sourcePages": [31],
       "tags": [
         "auvp",
@@ -57,9 +59,9 @@
     },
     {
       "id": "aula-13-04",
-      "question": "Somente companhias listadas em bolsa podem emitir debêntures?",
-      "answer": "Não. Há emissões de companhias abertas e fechadas, sujeitas às regras aplicáveis.",
-      "explanation": "A existência de uma ação negociada em bolsa não é o único critério para identificar um título de dívida.",
+      "question": "Por que não é necessário ter ações negociadas em bolsa para haver emissão de debêntures?",
+      "answer": "Porque companhias abertas e fechadas podem emitir, observadas as regras aplicáveis.",
+      "explanation": "Título de dívida e ação listada são instrumentos distintos; presença em bolsa não é o único critério relevante.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -72,9 +74,9 @@
     },
     {
       "id": "aula-13-05",
-      "question": "Que característica a aula associa às debêntures incentivadas?",
-      "answer": "Financiamento de projetos elegíveis com tratamento tributário incentivado.",
-      "explanation": "Não basta pertencer a um setor citado; é necessário verificar enquadramento legal e documentos da emissão.",
+      "question": "O que caracteriza o enquadramento incentivado de uma debênture?",
+      "answer": "Financiar projetos elegíveis sob tratamento tributário específico.",
+      "explanation": "Exemplos setoriais, como energia e saneamento, não bastam para classificar toda emissão. Verifique enquadramento legal e documentos do título.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -82,20 +84,6 @@
         "modulo-3",
         "aula-13",
         "incentivadas",
-        "infraestrutura"
-      ]
-    },
-    {
-      "id": "aula-13-06",
-      "question": "Quais setores são exemplificados na lista da página 32?",
-      "answer": "Logística, transportes, aviação civil, energia, saneamento, mineração, telecomunicações e infraestrutura social.",
-      "explanation": "A lista reproduz o contexto da apostila e não constitui, sozinha, uma lista regulatória atual de toda emissão elegível.",
-      "sourcePages": [32],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-13",
         "infraestrutura",
         "setores",
         "contexto-do-material"
@@ -103,8 +91,8 @@
     },
     {
       "id": "aula-13-07",
-      "question": "Por que analisar a empresa ao comprar uma debênture, mesmo sendo renda fixa?",
-      "answer": "Porque o pagamento depende de sua capacidade de cumprir obrigações.",
+      "question": "Por que analisar a capacidade financeira da empresa ao comprar sua debênture?",
+      "answer": "Porque a remuneração contratada só será recebida se as obrigações forem cumpridas.",
       "explanation": "Uma regra de remuneração definida não garante que o devedor consiga pagar.",
       "sourcePages": [32],
       "tags": [
@@ -118,9 +106,9 @@
     },
     {
       "id": "aula-13-08",
-      "question": "Qual comparação de remuneração a apostila propõe para aceitar risco corporativo?",
-      "answer": "Exigir compensação adequada frente a alternativas públicas ou bancárias comparáveis.",
-      "explanation": "Não compare apenas taxas brutas de prazos ou riscos diferentes; tributação, garantias e liquidez alteram o prêmio efetivo.",
+      "question": "Como avaliar se o prêmio de uma debênture compensa seu risco?",
+      "answer": "Compare seu retorno líquido com alternativas de prazo, crédito, liquidez e garantias compatíveis.",
+      "explanation": "Uma taxa bruta maior pode compensar exposições diferentes ou desaparecer após custos e impostos.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -133,9 +121,9 @@
     },
     {
       "id": "aula-13-09",
-      "question": "Relatórios de especialistas dispensam avaliação própria de uma debênture?",
-      "answer": "Não. São insumos de análise e podem conter erros ou hipóteses que não se confirmam.",
-      "explanation": "O módulo recomenda combinar avaliações externas com compreensão do investimento.",
+      "question": "Por que relatórios de analistas não eliminam a necessidade de compreender uma debênture?",
+      "answer": "Porque são insumos baseados em hipóteses que podem falhar.",
+      "explanation": "Use-os para avaliar a emissão, não como garantia. Entender riscos e condições evita terceirizar a decisão a uma conclusão isolada.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -148,9 +136,9 @@
     },
     {
       "id": "aula-13-10",
-      "question": "Por que a aula considera mais difícil analisar uma companhia fechada?",
-      "answer": "Porque pode haver menor acesso público a informações financeiras comparáveis.",
-      "explanation": "Mais transparência ajuda a análise, mas ser companhia aberta não prova automaticamente menor risco de inadimplência.",
+      "question": "Qual dificuldade informacional pode existir na análise de uma companhia fechada?",
+      "answer": "Menor acesso público a dados financeiros comparáveis.",
+      "explanation": "Mais transparência ajuda a análise; ser companhia aberta, por si só, também não certifica solvência.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -163,9 +151,9 @@
     },
     {
       "id": "aula-13-11",
-      "question": "Qual é a diferença entre comprar ações e debêntures da mesma empresa?",
-      "answer": "Ações representam participação societária; debêntures representam crédito com condições de pagamento.",
-      "explanation": "O acionista tem resultado residual; o debenturista possui direitos previstos na dívida e suas garantias.",
+      "question": "Qual é a diferença entre ter uma ação e uma debênture da mesma empresa?",
+      "answer": "Ação representa participação societária; debênture representa um crédito contratual.",
+      "explanation": "O acionista participa do resultado residual. Direitos do credor dependem da dívida, garantias e estrutura da emissão.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -179,9 +167,9 @@
     },
     {
       "id": "aula-13-12",
-      "question": "Ser credor antes do acionista garante recuperar integralmente uma debênture?",
-      "answer": "Não. Prioridade relativa não garante que existam recursos suficientes para todos os credores.",
-      "explanation": "Classe do crédito, garantias e estrutura da emissão importam. O PDF simplifica a ordem de recebimento.",
+      "question": "Por que prioridade de um credor em relação ao acionista não garante recuperação integral?",
+      "answer": "Porque pode não haver patrimônio suficiente para pagar todas as obrigações.",
+      "explanation": "Classe do crédito, garantias e regras da emissão afetam a recuperação. Prioridade relativa não cria recursos.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -195,9 +183,9 @@
     },
     {
       "id": "aula-13-13",
-      "question": "É possível uma debênture oscilar de preço e ser vendida antes do vencimento?",
-      "answer": "Sim, conforme mercado e condições de negociação, mas pode haver baixa liquidez e custos de saída.",
-      "explanation": "A aula recomenda não contar com ganho fácil de marcação a mercado; pode ser difícil encontrar contraparte.",
+      "question": "Por que uma venda antecipada de debênture pode exigir preço desfavorável?",
+      "answer": "Porque pode haver baixa liquidez e poucas contrapartes, além das mudanças nas taxas e no crédito.",
+      "explanation": "É possível negociar antes do vencimento conforme o mercado; não conte com saída fácil ou ganho garantido de marcação a mercado.",
       "sourcePages": [32],
       "tags": [
         "auvp",
@@ -211,9 +199,9 @@
     },
     {
       "id": "aula-13-14",
-      "question": "Qual tratamento de IR o PDF atribui às debêntures não incentivadas?",
-      "answer": "A tabela regressiva sobre rendimentos, nas condições aplicáveis.",
-      "explanation": "O enquadramento incentivado muda a análise tributária; confira a categoria do título em vez de presumir isenção para todos.",
+      "question": "Qual tratamento de IR o material atribui às debêntures não incentivadas?",
+      "answer": "Tabela regressiva sobre rendimentos nas condições aplicáveis.",
+      "explanation": "Confirme a categoria e o enquadramento do título; não estenda a isenção de certas emissões a todas as debêntures.",
       "sourcePages": [33],
       "tags": [
         "auvp",
@@ -226,9 +214,9 @@
     },
     {
       "id": "aula-13-15",
-      "question": "Por que ofertas da mesma categoria podem ter resultados líquidos diferentes entre plataformas?",
-      "answer": "Por diferenças de preço, taxa, comissão, disponibilidade e condições de distribuição.",
-      "explanation": "A comparação deve usar a mesma emissão e condições equivalentes.",
+      "question": "Por que a mesma emissão pode oferecer resultados líquidos diferentes em duas plataformas?",
+      "answer": "Porque preço, comissão e condições de distribuição podem ser diferentes.",
+      "explanation": "Compare condições equivalentes. Cashback e comissão anunciados não provam que uma plataforma terá sempre o melhor resultado.",
       "sourcePages": [33],
       "tags": [
         "auvp",
@@ -237,20 +225,7 @@
         "aula-13",
         "corretoras",
         "custos",
-        "comparacao"
-      ]
-    },
-    {
-      "id": "aula-13-16",
-      "question": "Como interpretar a promessa comercial de comissão menor e cashback para alunos na página 33?",
-      "answer": "Como condição anunciada pelo curso, a ser conferida nos termos e na comparação líquida.",
-      "explanation": "Ela não prova que a mesma plataforma terá sempre o melhor preço ou a maior oferta atual.",
-      "sourcePages": [33],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-13",
+        "comparacao",
         "cashback",
         "rebate",
         "contexto-comercial"

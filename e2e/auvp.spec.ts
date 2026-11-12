@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { navigateSection } from './app-navigation';
 
-test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e pode ser desativado', async ({
+test('AUVP carrega 185 cartões com tags e páginas, preserva revisão offline e pode ser desativado', async ({
   page,
   context,
 }) => {
@@ -9,13 +9,13 @@ test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e
   const deck = page.getByRole('button', {
     name: /AUVP - Renda Fixa.*Abrir baralho/,
   });
-  await expect(deck).toContainText('246 cartões');
+  await expect(deck).toContainText('185 cartões');
   await deck.click();
   await page.getByLabel('Filtrar por tag').selectOption('aula-06');
-  await expect(page.locator('.problem-list-item')).toHaveCount(7);
+  await expect(page.locator('.problem-list-item')).toHaveCount(6);
   await page
     .getByRole('searchbox', { name: 'Buscar problema' })
-    .fill('qual é a composição nominal exata');
+    .fill('com inflação de 9%');
   await expect(page.locator('.problem-list-item')).toHaveCount(1);
   await page
     .getByRole('button', { name: 'Favoritar cartão', exact: true })
@@ -39,7 +39,7 @@ test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e
   await deck.click();
   await page
     .getByRole('searchbox', { name: 'Buscar problema' })
-    .fill('qual é a composição nominal exata');
+    .fill('com inflação de 9%');
   await expect(page.locator('.problem-list-item')).toContainText('1 revisões');
   await expect(
     page.getByRole('button', { name: 'Remover favorito', exact: true }),
@@ -50,7 +50,7 @@ test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e
     exact: true,
   });
   await expect(toggle.locator('..')).toContainText(
-    '246 flashcards · 0 carrosséis',
+    '185 flashcards · 0 carrosséis',
   );
   await toggle.uncheck();
   await navigateSection(page, 'Flashcards');
@@ -61,6 +61,6 @@ test('AUVP carrega 246 cartões com tags e páginas, preserva revisão offline e
   await deck.click();
   await page
     .getByRole('searchbox', { name: 'Buscar problema' })
-    .fill('qual é a composição nominal exata');
+    .fill('com inflação de 9%');
   await expect(page.locator('.problem-list-item')).toContainText('1 revisões');
 });

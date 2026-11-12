@@ -12,9 +12,9 @@
   "cards": [
     {
       "id": "aula-10-01",
-      "question": "Qual função o Banco Central tem na explicação sobre bancos?",
-      "answer": "Regular e supervisionar o sistema financeiro e suas condições de funcionamento.",
-      "explanation": "A expressão banco dos bancos é uma analogia da aula, não uma descrição de que todas as operações bancárias passam pelo BC.",
+      "question": "Qual é a função do Banco Central no funcionamento das instituições financeiras?",
+      "answer": "Regular e supervisionar o sistema financeiro dentro de suas competências.",
+      "explanation": "Banco dos bancos é uma analogia didática, não a afirmação de que cada operação individual passa diretamente pelo BC.",
       "sourcePages": [26],
       "tags": [
         "auvp",
@@ -27,10 +27,10 @@
     },
     {
       "id": "aula-10-02",
-      "question": "O que são operações interfinanceiras de curtíssimo prazo no contexto da aula?",
-      "answer": "Operações entre instituições para ajustar disponibilidade de recursos.",
-      "explanation": "O PDF usa a necessidade de fechar o caixa como explicação didática. Regras prudenciais e de liquidez são mais amplas do que somar depósitos e saques do dia.",
-      "sourcePages": [26],
+      "question": "Para que instituições fazem operações interfinanceiras de curtíssimo prazo?",
+      "answer": "Para ajustar sua disponibilidade de recursos e liquidez.",
+      "explanation": "A expressão fechar o caixa simplifica o problema. Não se trata de uma regra universal de depósitos do dia sempre superiores aos saques.",
+      "sourcePages": [15, 26],
       "tags": [
         "auvp",
         "renda-fixa",
@@ -38,14 +38,15 @@
         "aula-10",
         "di",
         "interbancario",
-        "liquidez"
+        "liquidez",
+        "revisao-critica"
       ]
     },
     {
       "id": "aula-10-03",
-      "question": "Qual cuidado terminológico é necessário ao falar em CDI e taxa DI?",
-      "answer": "Distinguir o instrumento de depósito interfinanceiro da taxa de referência derivada dessas operações.",
-      "explanation": "O material usa a sigla CDI de forma ampla. Não trate o CDI como simples acumulado de uma outra sigla sem entender o cálculo do índice.",
+      "question": "Qual é a distinção entre CDI como instrumento e taxa DI como referência?",
+      "answer": "CDI designa o depósito interfinanceiro; a taxa DI é uma referência derivada dessas operações.",
+      "explanation": "O mercado também usa CDI para se referir à taxa. Reconhecer o uso não significa tratar instrumento e índice como a mesma coisa.",
       "sourcePages": [26],
       "tags": [
         "auvp",
@@ -59,9 +60,9 @@
     },
     {
       "id": "aula-10-04",
-      "question": "O CDI ser sempre exatamente 0,10 ponto percentual abaixo da Selic é uma identidade?",
-      "answer": "Não. A proximidade é uma observação usada no exemplo, não uma igualdade permanente.",
-      "explanation": "Taxas têm metodologias distintas. Para um cálculo real, use a referência efetiva e o período da aplicação.",
+      "question": "Por que não se deve calcular CDI sempre como Selic menos 0,10 ponto percentual?",
+      "answer": "Porque são referências com metodologias próprias, sem uma diferença fixa garantida.",
+      "explanation": "A proximidade de um exemplo histórico não cria uma identidade permanente. Use a taxa efetiva correspondente ao período.",
       "sourcePages": [26],
       "tags": [
         "auvp",
@@ -75,9 +76,9 @@
     },
     {
       "id": "aula-10-05",
-      "question": "Comprar um CDB significa emprestar diretamente na mesma operação interbancária dos bancos?",
-      "answer": "Não. O investidor adquire um título bancário com condições próprias de remuneração e crédito.",
-      "explanation": "O CDI pode ser seu indexador, mas não transforma o comprador em participante daquele depósito interfinanceiro específico.",
+      "question": "Por que comprar CDB atrelado ao CDI não equivale a participar daquele depósito interfinanceiro?",
+      "answer": "Porque o CDB é um título emitido ao investidor com seu próprio contrato de crédito.",
+      "explanation": "CDI pode ser o indexador de remuneração, mas não muda quem é o devedor nem a operação adquirida.",
       "sourcePages": [27],
       "tags": [
         "auvp",
@@ -91,9 +92,9 @@
     },
     {
       "id": "aula-10-06",
-      "question": "Por que um banco pode oferecer CDB com taxa maior que outro?",
-      "answer": "Para compensar risco percebido, prazo, necessidade de captação, liquidez e condições de distribuição.",
-      "explanation": "Uma taxa maior não é prova isolada de oportunidade nem de insolvência; investigue o conjunto.",
+      "question": "Por que um banco pode pagar mais num CDB que outro banco?",
+      "answer": "Para remunerar diferenças de risco, prazo, liquidez e necessidade de captação.",
+      "explanation": "Distribuição e condições comerciais também influenciam a oferta. Taxa alta não prova, isoladamente, oportunidade ou insolvência.",
       "sourcePages": [27],
       "tags": [
         "auvp",
@@ -105,25 +106,10 @@
       ]
     },
     {
-      "id": "aula-10-07",
-      "question": "Que fonte de consulta a aula sugere para indicadores de bancos?",
-      "answer": "O Banco Data, incluindo relatórios e o Índice de Basileia.",
-      "explanation": "Verifique também período, origem dos dados e divulgações oficiais. Uma captura de tela não representa a situação atual de todos os bancos.",
-      "sourcePages": [27],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-10",
-        "bancodata",
-        "analise-de-credito"
-      ]
-    },
-    {
       "id": "aula-10-08",
-      "question": "O que o Índice de Basileia procura medir?",
-      "answer": "A relação entre capital regulatório e ativos ponderados pelo risco.",
-      "explanation": "O PDF o apresenta como termômetro de estrutura financeira; a definição não é simplesmente capital próprio dividido por captações.",
+      "question": "O que relaciona o Índice de Basileia?",
+      "answer": "Capital regulatório e ativos ponderados pelo risco.",
+      "explanation": "Não é simplesmente caixa dividido por empréstimos ou capital próprio dividido por depósitos.",
       "sourcePages": [27],
       "tags": [
         "auvp",
@@ -137,9 +123,9 @@
     },
     {
       "id": "aula-10-09",
-      "question": "Como interpretar Basileia de 20% de forma tecnicamente mais precisa?",
-      "answer": "Como uma relação de aproximadamente R$ 20 de capital regulatório para R$ 100 de ativos ponderados pelo risco.",
-      "explanation": "Não equivale necessariamente a R$ 20 em caixa para todo R$ 100 emprestado, porque ponderação de risco e definições regulatórias importam.",
+      "question": "O que significa Basileia de 20% na interpretação simplificada?",
+      "answer": "Cerca de R$ 20 de capital regulatório para R$ 100 de ativos ponderados pelo risco.",
+      "explanation": "Ponderação e conceitos regulatórios importam; não significa ter esse montante em caixa para todo empréstimo nominal.",
       "sourcePages": [27],
       "tags": [
         "auvp",
@@ -152,9 +138,9 @@
     },
     {
       "id": "aula-10-10",
-      "question": "Basileia acima de 12% prova que um banco é seguro?",
-      "answer": "Não. O número é uma referência de análise da apostila, não um certificado universal de segurança.",
-      "explanation": "Requisitos variam por enquadramento e componentes. Examine também qualidade de ativos, liquidez, resultados e evolução do indicador.",
+      "question": "Por que um Índice de Basileia acima de um corte isolado não certifica a segurança de um banco?",
+      "answer": "Porque a solvência não depende de um único indicador.",
+      "explanation": "Examine liquidez, qualidade dos ativos, resultados, evolução e requisitos aplicáveis. Ao usar Banco Data ou outra fonte, confira data, origem e divulgações oficiais.",
       "sourcePages": [27],
       "tags": [
         "auvp",
@@ -163,31 +149,33 @@
         "aula-10",
         "basileia",
         "risco-de-credito",
-        "revisao-critica"
+        "revisao-critica",
+        "bancodata",
+        "analise-de-credito"
       ]
     },
     {
       "id": "aula-10-11",
-      "question": "O que significam CDB, RDB e LC no material?",
-      "answer": "Certificado de Depósito Bancário, Recibo de Depósito Bancário e Letra de Câmbio.",
-      "explanation": "Não confunda LC com LCI ou LCA: siglas parecidas representam instrumentos diferentes.",
-      "sourcePages": [28],
+      "question": "O que é um CDB?",
+      "answer": "Certificado de Depósito Bancário: um título de captação bancária.",
+      "explanation": "O investidor se torna credor do emissor, conforme as condições contratadas. A sigla não garante que qualquer CDB tenha o mesmo risco.",
+      "sourcePages": [7, 28],
       "tags": [
         "auvp",
         "renda-fixa",
         "modulo-3",
         "aula-10",
-        "cdb",
-        "rdb",
-        "lc",
-        "siglas"
+        "siglas",
+        "produtos",
+        "mapa-do-modulo",
+        "cdb"
       ]
     },
     {
       "id": "aula-10-12",
-      "question": "Como a aula distingue os emissores de CDB, RDB e LC?",
-      "answer": "Associa CDB a bancos, RDB a instituições autorizadas de captação e LC a financeiras.",
-      "explanation": "A lista didática inclui cooperativas no RDB; em produtos concretos, confirme instrumento, emissor e fundo garantidor aplicável, inclusive FGCoop quando pertinente.",
+      "question": "Como CDB e LC diferem quanto ao emissor na classificação da aula?",
+      "answer": "CDB é associado a bancos; LC, a financeiras.",
+      "explanation": "RDB admite instituições autorizadas conforme a modalidade. Em cooperativas, verifique também o fundo garantidor aplicável, como FGCoop; não presuma FGC para qualquer emissor.",
       "sourcePages": [28],
       "tags": [
         "auvp",
@@ -200,9 +188,9 @@
     },
     {
       "id": "aula-10-13",
-      "question": "Um CDB é automaticamente mais seguro que qualquer RDB ou LC?",
-      "answer": "Não. Segurança depende do emissor, das condições e da cobertura efetiva, não apenas da sigla.",
-      "explanation": "A hierarquia rígida sugerida na aula é uma generalização. Bancos também podem ter risco elevado.",
+      "question": "Por que a sigla CDB não prova segurança maior que todo RDB ou LC?",
+      "answer": "Porque risco depende do emissor, do contrato e da cobertura efetiva.",
+      "explanation": "Compare as condições concretas. Uma hierarquia fixa por siglas ignora diferenças entre instituições e emissões.",
       "sourcePages": [28],
       "tags": [
         "auvp",
@@ -215,34 +203,10 @@
       ]
     },
     {
-      "id": "aula-10-14",
-      "question": "Que problema motivou o surgimento do FGC, segundo o histórico da apostila?",
-      "answer": "Proteger depositantes elegíveis e contribuir para a confiança no sistema financeiro diante de falhas de instituições.",
-      "explanation": "O material situa sua criação em 1995. Garantia é um mecanismo de proteção, não uma previsão de que um banco nunca quebrará.",
-      "sourcePages": [28],
-      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-10", "fgc", "historico"]
-    },
-    {
-      "id": "aula-10-15",
-      "question": "A proteção do FGC soma todos os títulos cobertos do mesmo investidor no mesmo conglomerado?",
-      "answer": "Sim. Não há um limite separado para cada CDB, LC, RDB, conta ou corretora distribuidora.",
-      "explanation": "O limite relevante acompanha créditos elegíveis e a instituição ou conglomerado emissor.",
-      "sourcePages": [28],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-10",
-        "fgc",
-        "agregacao",
-        "diversificacao"
-      ]
-    },
-    {
       "id": "aula-10-16",
-      "question": "Ao verificar o teto de R$ 250 mil do FGC, deve-se contar só o aporte?",
-      "answer": "Não. É necessário considerar principal e rendimentos abrangidos até a data de referência da garantia.",
-      "explanation": "Aplicar exatamente o limite em principal pode deixar parte dos juros fora da cobertura.",
+      "question": "Por que aplicar R$ 250 mil de principal pode deixar juros fora do FGC?",
+      "answer": "Porque o limite também inclui os rendimentos abrangidos pela garantia.",
+      "explanation": "Considere o saldo elegível na data de referência e os demais créditos do mesmo conglomerado, não apenas o aporte inicial.",
       "sourcePages": [28],
       "tags": [
         "auvp",
@@ -256,9 +220,9 @@
     },
     {
       "id": "aula-10-17",
-      "question": "Quatro bancos de conglomerados distintos garantem sempre R$ 1 milhão de ressarcimento?",
-      "answer": "Não. Cada crédito precisa ser elegível e os valores devidos e limites precisam ser respeitados.",
-      "explanation": "O exemplo supõe R$ 250 mil elegíveis em cada um e ausência de consumo anterior do teto global.",
+      "question": "Quatro conglomerados distintos com R$ 250 mil cada garantem ressarcimento automático de R$ 1 milhão?",
+      "answer": "Não: os créditos devem ser elegíveis e caber nos limites por conglomerado e no teto global disponível.",
+      "explanation": "A conta pressupõe que o investidor não tenha consumido o teto global em eventos anteriores abrangidos pelo regulamento.",
       "sourcePages": [28],
       "tags": [
         "auvp",
@@ -270,28 +234,28 @@
       ]
     },
     {
-      "id": "aula-10-18",
-      "question": "Se cinco bancos falharem, o quinto sempre terá recuperação igual a zero?",
-      "answer": "Não. O teto global pode limitar a garantia, mas eventual recuperação fora dela depende da liquidação.",
-      "explanation": "A conclusão categórica do PDF ilustra o limite e não determina a recuperação de cada credor ou a ordem dos eventos.",
-      "sourcePages": [28],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-10",
-        "fgc",
-        "liquidacao",
-        "revisao-critica"
-      ]
-    },
-    {
       "id": "aula-10-19",
-      "question": "A janela de quatro anos do FGC equivale a renovar o limite a cada ano civil?",
-      "answer": "Não. É preciso observar a regra de contagem dos eventos de garantia.",
-      "explanation": "A apostila simplifica como esperar quatro anos. Consulte o regulamento para identificar o marco inicial e o teto disponível.",
+      "question": "Por que a janela de quatro anos do FGC não deve ser tratada como renovação por ano civil?",
+      "answer": "Porque a contagem segue os eventos e critérios do regulamento, não simplesmente a virada do calendário.",
+      "explanation": "Confira o marco inicial e as garantias recebidas no período relevante antes de calcular o teto disponível.",
       "sourcePages": [28],
       "tags": ["auvp", "renda-fixa", "modulo-3", "aula-10", "fgc", "prazo"]
+    },
+    {
+      "id": "aula-10-11-rdb",
+      "question": "O que significa RDB num investimento de renda fixa?",
+      "answer": "Recibo de Depósito Bancário.",
+      "explanation": "É um instrumento de captação com condições próprias. Confirme emissor, modalidade, liquidez e cobertura aplicável, em vez de avaliar apenas a sigla.",
+      "sourcePages": [28],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-10", "siglas", "rdb"]
+    },
+    {
+      "id": "aula-10-11-lc",
+      "question": "O que é uma LC na classificação de renda fixa da aula?",
+      "answer": "Letra de Câmbio, associada à captação por financeiras.",
+      "explanation": "Não confunda LC com LCI e LCA. Nomes parecidos não tornam iguais o emissor, as garantias ou as condições do instrumento.",
+      "sourcePages": [28],
+      "tags": ["auvp", "renda-fixa", "modulo-3", "aula-10", "siglas", "lc"]
     }
   ]
 }

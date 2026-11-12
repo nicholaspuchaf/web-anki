@@ -1,6 +1,6 @@
 {
-  "reviewedAt": "2026-11-10",
-  "scope": "Conferências pontuais para distinguir simplificações do PDF de conceitos técnicos; não substituem a origem de cada cartão.",
+  "reviewedAt": "2026-11-12",
+  "scope": "Conferências pontuais para a revisão pedagógica do acervo existente. O PDF original não foi relido nesta etapa; páginas referem-se ao levantamento anterior.",
   "sources": [
     {
       "topic": "Garantia e limites por conglomerado",
@@ -53,6 +53,30 @@
     {
       "topic": "Regime público de repartição e previdência complementar",
       "url": "https://www.gov.br/previc/pt-br/publicacoes/guias-de-melhores-praticas/previdencia-complementar-o-futuro-comeca-agora.pdf"
+    },
+    {
+      "topic": "Tabela regressiva do Tesouro e base de incidência",
+      "url": "https://www.tesourodireto.com.br/b/declaracao-imposto-de-renda"
+    },
+    {
+      "topic": "Prazos mínimos de LCI/LCA — Resolução CMN 5.215/2025",
+      "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?numero=5215&tipo=Resolu%C3%A7%C3%A3o+CMN"
+    },
+    {
+      "topic": "Tema 1214 — fundamentação e recorte da decisão na PGFN",
+      "url": "https://www.gov.br/pgfn/pt-br/assuntos/representacao-judicial/lista-dispensa-contestar-recorrer/parecer-sei-no-212-2025-redlit.pdf"
     }
-  ]
+  ],
+  "verification": {
+    "date": "2026-11-12",
+    "topics": [
+      "FGC: agregação e teto global",
+      "IR do Tesouro sobre rendimentos",
+      "PGBL/VGBL: natureza, bases e dedução",
+      "Prazo mínimo não equivale a resgate diário",
+      "Come-cotas: antecipação sobre rendimentos",
+      "ITCMD: recorte do Tema 1214"
+    ],
+    "method": "Fontes primárias disponíveis, incluindo trechos indexados quando a página exigia JavaScript ou apresentava redirecionamento. Sem promessa de atualização permanente de regras."
+  }
 }

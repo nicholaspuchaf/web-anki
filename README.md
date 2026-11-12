@@ -252,7 +252,7 @@ compacto **Revisar**, à direita das informações e acima da linha divisória.
 
 ## AUVP - Renda Fixa
 
-Baralho local com **246 flashcards** da apostila enviada (41 páginas), cobrindo as 17 aulas. Cada cartão tem resposta, explicação e página de origem, com tags por assunto. Exemplos históricos, opiniões e pontos que exigem revisão crítica são distinguidos. Veja a [matriz de cobertura e as fontes](src/content/decks/auvp-renda-fixa/README.md).
+Baralho local com **185 flashcards**, reformulados com a skill de criação e otimização: perguntas focadas, respostas curtas e menos repetições. Abrange os conceitos essenciais das 17 aulas do acervo da apostila (41 páginas), com explicações, tags e referências de origem. Veja a [matriz de cobertura, a revisão e as fontes](src/content/decks/auvp-renda-fixa/README.md).
 
 Na revisão, os cronômetros mostram o tempo total da sessão à esquerda e o tempo
 do cartão atual à direita. O contador do cartão reinicia ao avançar; uma nova

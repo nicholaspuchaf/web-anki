@@ -11,9 +11,9 @@
   "cards": [
     {
       "id": "aula-08-01",
-      "question": "O que diferencia os títulos com juros semestrais dos equivalentes sem cupom?",
-      "answer": "Eles distribuem juros ao longo da vida do título, em vez de concentrar todo o fluxo no final.",
-      "explanation": "O fluxo periódico pode atender despesas, mas muda a dinâmica de reinvestimento e tributação.",
+      "question": "O que muda no fluxo de um título com juros semestrais?",
+      "answer": "Parte dos juros é paga durante a vida do título, em datas previstas.",
+      "explanation": "No título sem cupom, o fluxo se concentra no final. A diferença altera tributação, renda disponível e reinvestimento.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -26,9 +26,9 @@
     },
     {
       "id": "aula-08-02",
-      "question": "Por que a aula associa cupons a quem já vive de renda?",
-      "answer": "Porque os pagamentos periódicos podem financiar despesas sem vender uma parte do título a cada necessidade.",
-      "explanation": "É uma correspondência entre fluxo e objetivo, não uma recomendação automática para todo investidor.",
+      "question": "Por que títulos com cupons podem combinar com uma necessidade de renda periódica?",
+      "answer": "Porque oferecem pagamentos intermediários sem exigir a venda do título a cada despesa.",
+      "explanation": "A escolha depende da necessidade dos fluxos líquidos e do que será consumido ou reinvestido, não só da taxa anunciada.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -36,14 +36,16 @@
         "modulo-3",
         "aula-08",
         "renda-periodica",
-        "objetivos"
+        "objetivos",
+        "comparacao",
+        "planejamento"
       ]
     },
     {
       "id": "aula-08-03",
-      "question": "Por que cupons podem dificultar a acumulação patrimonial?",
-      "answer": "Podem antecipar imposto e exigir reinvestimento para manter o capital rendendo.",
-      "explanation": "Para comparar, considere os fluxos líquidos e as taxas possíveis nos reinvestimentos. Receber cupom não destrói juros compostos por definição.",
+      "question": "Que dificuldade os cupons podem trazer para quem quer acumular patrimônio?",
+      "answer": "Antecipam tributos e exigem decidir onde reinvestir os pagamentos líquidos.",
+      "explanation": "Receber cupom não destrói juros compostos por definição. O resultado depende do reinvestimento e de seus custos e taxas.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -52,14 +54,16 @@
         "aula-08",
         "acumulacao",
         "reinvestimento",
-        "ir"
+        "ir",
+        "comparacao",
+        "planejamento"
       ]
     },
     {
       "id": "aula-08-04",
-      "question": "Cupom semestral é sempre igual à taxa de retorno contratada dividida por dois?",
-      "answer": "Não. O fluxo de cupom segue as regras do título, e o retorno depende também do preço de compra.",
-      "explanation": "Essa distinção impede confundir taxa do cupom com taxa efetiva do investimento.",
+      "question": "Por que a taxa de cupom não é necessariamente a taxa de retorno do investimento?",
+      "answer": "Porque o retorno também depende do preço de compra e de todos os fluxos recebidos.",
+      "explanation": "O cupom segue as regras do papel; não assuma que cada pagamento equivale à taxa de aquisição dividida por dois.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -72,9 +76,9 @@
     },
     {
       "id": "aula-08-05",
-      "question": "A retenção de IR sobre cupons ignora a idade do investimento?",
-      "answer": "Não. O prazo e as regras tributárias aplicáveis afetam o imposto de cada pagamento.",
-      "explanation": "A apostila retoma as faixas de 22,5%, 20%, 17,5% e 15%; não há garantia de receber todo cupom sem desconto.",
+      "question": "Por que dois cupons podem sofrer alíquotas diferentes de IR para o mesmo investidor?",
+      "answer": "Porque o prazo da aplicação e o evento tributário afetam a alíquota aplicável.",
+      "explanation": "Na tabela estudada, as faixas são 22,5%, 20%, 17,5% e 15%. O calendário de pagamentos e a idade de cada aplicação são questões distintas.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -87,25 +91,10 @@
       ]
     },
     {
-      "id": "aula-08-06",
-      "question": "O que precisa de ressalva na regra de datas por ano par ou ímpar da página 23?",
-      "answer": "Ela não vale indistintamente para todo título com cupom. É preciso consultar o calendário do papel específico.",
-      "explanation": "O padrão citado refere-se ao IPCA+ com cupons; Prefixado com cupons tem outra programação.",
-      "sourcePages": [23],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-08",
-        "calendario",
-        "revisao-critica"
-      ]
-    },
-    {
       "id": "aula-08-07",
-      "question": "Quais calendários tradicionais distinguem IPCA+ e Prefixado com cupons?",
+      "question": "Quais calendários tradicionais distinguem IPCA+ e Prefixado com juros semestrais?",
       "answer": "IPCA+: fevereiro/agosto ou maio/novembro conforme a série; Prefixado: janeiro/julho.",
-      "explanation": "Verifique vencimento e calendário oficial. A data de compra não cria um calendário semestral exclusivo para cada investidor.",
+      "explanation": "Confira a série e o calendário oficial. A compra não cria datas próprias, a regra par/ímpar não vale para todo título e combinar séries não garante intervalos sempre iguais.",
       "sourcePages": [23],
       "tags": [
         "auvp",
@@ -114,37 +103,9 @@
         "aula-08",
         "calendario",
         "tesouro-ipca",
-        "tesouro-prefixado"
-      ]
-    },
-    {
-      "id": "aula-08-08",
-      "question": "Comprar combinações de títulos garante receber exatamente a cada dois meses?",
-      "answer": "Não. A distribuição depende dos calendários das séries e não forma automaticamente intervalos regulares.",
-      "explanation": "O PDF usa essa simplificação; os conjuntos janeiro/julho, fevereiro/agosto e maio/novembro mostram intervalos distintos.",
-      "sourcePages": [23],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-08",
-        "fluxo-de-caixa",
-        "revisao-critica"
-      ]
-    },
-    {
-      "id": "aula-08-09",
-      "question": "Para comparar título com e sem cupom, que variável deve acompanhar a taxa anunciada?",
-      "answer": "A necessidade de renda intermediária e o destino dos pagamentos líquidos recebidos.",
-      "explanation": "O mesmo retorno nominal anunciado pode ter efeitos patrimoniais diferentes quando o dinheiro é consumido ou reinvestido.",
-      "sourcePages": [23],
-      "tags": [
-        "auvp",
-        "renda-fixa",
-        "modulo-3",
-        "aula-08",
-        "comparacao",
-        "planejamento"
+        "tesouro-prefixado",
+        "revisao-critica",
+        "fluxo-de-caixa"
       ]
     }
   ]

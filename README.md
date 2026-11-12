@@ -233,11 +233,19 @@ O Terraform não cria nem publica o frontend e não exige credenciais Cloudflare
 As credenciais AWS também não são necessárias no build do Pages. Nenhuma publicação
 foi executada automaticamente.
 
-## Configurações dos baralhos
+## Configurações de estudo e baralhos
 
 Em **Configurações** (`/#/settings`), marque os baralhos incluídos no aplicativo que deseja estudar. Cada linha mostra a quantidade atual de flashcards e carrosséis. Todos começam ativos; as escolhas ficam no navegador e são atualizadas entre abas.
 
 Desativar um baralho o oculta da biblioteca de estudo, da revisão geral e dos carrosséis do Feed, sem apagar conteúdo, favoritos, datas ou progresso. Reativar restaura sua visualização. Backups e o histórico da Administração permanecem completos; baralhos pessoais não são desativados por essa configuração. No celular, a aba também está no menu flutuante do Feed.
+
+### Ritmo e meta diária
+
+O plano de estudo permite escolher **1 a 200 flashcards por dia** (padrão: 20) e um espaçamento de **1× a 4×**, em incrementos de 25%. O gráfico considera apenas os cartões dos baralhos ativos e mostra `ceil(cartões × voltas / meta)` para uma, duas e três voltas a partir de hoje. É uma projeção de esforço, não uma promessa de calendário: não desconta revisões anteriores nem simula vencimentos, pausas ou esquecimentos. A meta orienta o estudo, sem limitar a fila diária.
+
+O multiplicador vale na próxima avaliação e preserva as datas existentes. Para três respostas “Bom”, 1× mantém intervalos de 1 → 2,5 → 6,25 dias; 2× produz 2 → 5 → 12,5 dias. O fator não é aplicado cumulativamente: o agendador normaliza o intervalo anterior pelo fator salvo no cartão antes de aplicar o fator atual. Cartões antigos assumem 1×; “De novo” continua em um minuto. Treino livre não altera agendamento.
+
+Meta e espaçamento ficam no `localStorage` (`folha:study-preferences:v1`), são atualizados entre abas e funcionam offline. Falhas de armazenamento mantêm os valores anteriores. Essas preferências são próprias de cada navegador e não entram no backup dos cartões. O campo opcional `spacingMultiplier` do cartão acompanha seu progresso no armazenamento, backup, edição, recomposição dos baralhos e API. Para sincronizar esse campo nos cartões pessoais, publique também o backend atualizado; não há mudança de recursos Terraform. O progresso dos cartões do repositório continua local.
 
 ## Marcar conteúdo para refazer
 

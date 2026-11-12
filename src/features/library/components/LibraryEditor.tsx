@@ -135,6 +135,9 @@ export function LibraryEditor({
       template === 'multiple-choice' || template === 'multi-face' ? '' : back,
     due: editing?.due ?? createdAt,
     interval: editing?.interval ?? 0,
+    ...(editing?.spacingMultiplier !== undefined
+      ? { spacingMultiplier: editing.spacingMultiplier }
+      : {}),
     reviews: editing?.reviews ?? 0,
     favorite: editing?.favorite ?? false,
     ...(editing?.syncEnabled !== undefined

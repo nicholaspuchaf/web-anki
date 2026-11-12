@@ -72,3 +72,197 @@
     margin-left: 34px;
   }
 }
+
+.study-plan {
+  margin: 1.8rem 0 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.study-plan-intro,
+.study-projection {
+  padding: 1.5rem;
+}
+.study-plan-intro {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--blue) 12%, transparent),
+    transparent
+  );
+}
+.study-plan .study-plan-intro h2 {
+  margin: 0.6rem 0;
+  font-size: 1.5rem;
+}
+.study-plan p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+.study-plan-intro p {
+  margin-bottom: 0;
+  max-width: 60ch;
+}
+.study-plan-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.study-plan-control {
+  padding: 1.5rem;
+  min-width: 0;
+}
+.study-plan-control + .study-plan-control {
+  border-left: 1px solid var(--border);
+}
+.study-plan-control label {
+  font-weight: 600;
+}
+.study-plan-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0.8rem 0;
+}
+.study-plan-value strong {
+  font-size: 2.2rem;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+}
+.study-plan-value span,
+.study-plan-control p,
+.study-plan-scale,
+.study-spacing-preview small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.study-plan-control input[type='range'] {
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+.study-plan-control input:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+.study-plan-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.study-spacing-preview {
+  border-block: 1px solid var(--border);
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.2rem 1.5rem;
+}
+.study-spacing-preview > span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.study-spacing-preview strong {
+  color: var(--green);
+  overflow-wrap: anywhere;
+}
+.study-projection-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.study-projection-heading h3 {
+  margin: 0;
+}
+.study-projection-heading p {
+  font-size: 0.85rem;
+}
+.study-projection-highlight {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 125px;
+}
+.study-projection-highlight strong {
+  font-size: 2.7rem;
+  color: var(--green);
+  line-height: 1;
+}
+.study-projection-highlight span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.study-milestones {
+  margin: 1.5rem 0 0;
+}
+.study-milestones figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.3rem;
+}
+.study-milestone {
+  margin: 1rem 0;
+}
+.study-milestone-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+.study-milestone-label span {
+  color: var(--muted);
+}
+.study-milestone-track {
+  height: 14px;
+  background: color-mix(in srgb, var(--blue) 8%, transparent);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+.study-milestone-track > div {
+  height: 100%;
+  min-width: 4px;
+  background: var(--blue);
+  border-radius: inherit;
+  transition: width 0.2s;
+}
+.study-milestone:nth-of-type(2) .study-milestone-track > div {
+  background: var(--green);
+}
+.study-milestone:nth-of-type(3) .study-milestone-track > div {
+  background: color-mix(in srgb, var(--blue), var(--green));
+}
+.study-milestones > p {
+  font-size: 0.75rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 600px) {
+  .study-plan-controls {
+    grid-template-columns: 1fr;
+  }
+  .study-plan-control + .study-plan-control {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .study-plan-intro,
+  .study-projection,
+  .study-plan-control {
+    padding: 1.2rem;
+  }
+  .study-projection-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .study-projection-highlight {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.8rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .study-milestone-track > div {
+    transition: none;
+  }
+}

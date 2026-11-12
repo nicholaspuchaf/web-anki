@@ -12,6 +12,7 @@ export type Card = {
   back: string;
   due: number;
   interval: number;
+  spacingMultiplier?: number;
   reviews: number;
   leetcode?: LeetCode;
   multipleChoice?: MultipleChoice;

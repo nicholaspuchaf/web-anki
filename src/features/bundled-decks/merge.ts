@@ -18,6 +18,9 @@ export function mergeBundledDeck(
       syncEnabled: false,
       due: old?.due ?? 0,
       interval: old?.interval ?? 0,
+      ...(old?.spacingMultiplier !== undefined
+        ? { spacingMultiplier: old.spacingMultiplier }
+        : {}),
       reviews: old?.reviews ?? 0,
       ...(old?.favorite !== undefined ? { favorite: old.favorite } : {}),
     };

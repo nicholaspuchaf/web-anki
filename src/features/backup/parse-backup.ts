@@ -1,3 +1,4 @@
+import { validSpacing } from '../settings/study-plan';
 import { deckTagPolicy, enforceDeckTags } from '../decks/tag-policy';
 import { parseStudyImage } from '../standard/image';
 import { parseLeetCode } from '../leetcode/model';
@@ -61,6 +62,8 @@ export function parseBackup(text: string): Library {
       c.due < 0 ||
       !Number.isFinite(c.interval) ||
       c.interval < 0 ||
+      (c.spacingMultiplier !== undefined &&
+        !validSpacing(c.spacingMultiplier)) ||
       !Number.isSafeInteger(c.reviews) ||
       c.reviews < 0
     )
@@ -95,6 +98,9 @@ export function parseBackup(text: string): Library {
       back: c.back,
       due: c.due,
       interval: c.interval,
+      ...(c.spacingMultiplier !== undefined
+        ? { spacingMultiplier: c.spacingMultiplier }
+        : {}),
       reviews: c.reviews,
       ...(c.favorite !== undefined ? { favorite: c.favorite } : {}),
       ...(leetcode ? { leetcode } : {}),

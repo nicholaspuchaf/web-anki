@@ -1,3 +1,4 @@
+import { StudyPlan } from './StudyPlan';
 import { useState } from 'react';
 import { bundledDeckDefinitions } from '../../content/decks/catalog';
 import type { Library } from '../library/model';
@@ -7,7 +8,13 @@ import { Alert } from '../../shared/ui/Alert';
 import { useSettings } from './use-settings';
 import './settings.css';
 
-export default function SettingsPage({ library }: { library: Library }) {
+export default function SettingsPage({
+  library,
+  now,
+}: {
+  library: Library;
+  now: number;
+}) {
   const feed = useFeed();
   const { disabledDecks, setDeckEnabled } = useSettings();
   const [error, setError] = useState('');
@@ -16,19 +23,25 @@ export default function SettingsPage({ library }: { library: Library }) {
       <header>
         <h1>Configurações</h1>
         <p>
-          Escolha os baralhos do aplicativo que deseja estudar neste aparelho.
+          Ajuste seu ritmo de revisão e escolha os baralhos que deseja estudar.
         </p>
       </header>
-      <h2>Baralhos incluídos</h2>
-      <p className="settings-help">
-        Desativar oculta o baralho dos flashcards e do Feed. Seu conteúdo,
-        favoritos e progresso são preservados.
-      </p>
       {error && (
         <Alert error onDismiss={() => setError('')}>
           {error}
         </Alert>
       )}
+      <StudyPlan
+        library={library}
+        now={now}
+        disabledDecks={disabledDecks}
+        onError={setError}
+      />
+      <h2>Baralhos incluídos</h2>
+      <p className="settings-help">
+        Desativar oculta o baralho dos flashcards e do Feed. Seu conteúdo,
+        favoritos e progresso são preservados.
+      </p>
       {feed.error && <Alert error>{feed.error}</Alert>}
       <div className="settings-decks">
         {bundledDeckDefinitions.map(({ deck }) => {

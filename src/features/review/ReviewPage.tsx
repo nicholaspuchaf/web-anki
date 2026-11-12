@@ -136,7 +136,12 @@ export function ReviewPage({ library, review, busy, now, onBack }: Props) {
                     rating === 'again',
                 )
                 .map(([rating, label, hint]) => {
-                  const next = schedule(current, rating, now);
+                  const next = schedule(
+                    current,
+                    rating,
+                    now,
+                    review.spacingMultiplier,
+                  );
                   return (
                     <button
                       key={rating}

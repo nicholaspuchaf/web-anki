@@ -123,7 +123,7 @@ export default function App() {
           </div>
         ) : page === 'settings' ? (
           <Suspense fallback={<p role="status">Abrindo as configurações…</p>}>
-            <SettingsPage library={library} />
+            <SettingsPage library={library} now={now} />
           </Suspense>
         ) : page === 'admin' ? (
           <Suspense fallback={<p role="status">Abrindo a administração…</p>}>

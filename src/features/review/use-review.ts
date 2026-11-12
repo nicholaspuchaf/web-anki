@@ -1,3 +1,4 @@
+import { useStudyPreferences } from '../settings/use-study-preferences';
 import { useStudyTimers } from './use-study-timers';
 import { newReviewEvent } from '../review-history/model';
 import { getDueCards, getDeckCards } from '../library/selectors';
@@ -12,6 +13,7 @@ export function useReview(
   disabledDecks: readonly string[] = [],
   active = true,
 ) {
+  const { preferences } = useStudyPreferences();
   const [session, setSession] = useState(0);
   const ratingLock = useRef(false);
   const [practice, setPractice] = useState(false);
@@ -70,7 +72,9 @@ export function useReview(
     ratingLock.current = true;
     try {
       const now = Date.now();
-      const updated = practice ? current : schedule(current, rating, now);
+      const updated = practice
+        ? current
+        : schedule(current, rating, now, preferences.spacingMultiplier);
       const saved =
         practice ||
         (await save(
@@ -95,6 +99,7 @@ export function useReview(
 
   return {
     timers,
+    spacingMultiplier: preferences.spacingMultiplier,
     practice,
     current,
     remaining: activeQueue.length,
